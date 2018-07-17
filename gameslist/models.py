@@ -6,29 +6,29 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+# class Question(models.Model):
+#     question_text = models.CharField(max_length=200)
+#     pub_date = models.DateTimeField('date published')
 
-    def __str__(self):
-        return self.question_text
+#     def __str__(self):
+#         return self.question_text
 
-    def was_published_recently(self):
-        now = timezone.now()
-        return (now - datetime.timedelta(days=1)) <= self.pub_date <= now
+#     def was_published_recently(self):
+#         now = timezone.now()
+#         return (now - datetime.timedelta(days=1)) <= self.pub_date <= now
 
-    was_published_recently.admin_order_field = 'pub_date'
-    was_published_recently.boolean = True
-    was_published_recently.short_description = 'Published recently?'
+#     was_published_recently.admin_order_field = 'pub_date'
+#     was_published_recently.boolean = True
+#     was_published_recently.short_description = 'Published recently?'
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+# class Choice(models.Model):
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+#     choice_text = models.CharField(max_length=200)
+#     votes = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.choice_text
-# Create your models here.
+#     def __str__(self):
+#         return self.choice_text
+# # Create your models here.
 
 class Game(models.Model):
     SYSTEMS = (
@@ -134,7 +134,9 @@ class PreferenceMap(models.Model):
     #its gonna be pretty sparese likely
     #so hmm
     #to be fair this is a bonus feature haha
-    #
+    #so the above works for sparsity sure, but it's hell for like, every type of tracking status of ratnig everything
+
+
 
 #HOW TO DEAL WITH PRICES OVER TIME??
 #     stats
@@ -179,4 +181,6 @@ class PreferenceMap(models.Model):
 # ManyToManyField
 # OneToOneField
 
-#Hbomberguy, Mikey, ContraPoints, Rantasmo, Todd in the Shadows, Lindsay Ellis, Kyle Kallgren, Nella/Nellachronism, and I thiink Obscurus lupa
+#https://schier.co/blog/2014/12/05/html-templating-output-a-grid-in-a-single-loop.html
+
+#Mikey, Rantasmo, Kyle Kallgren, Nella/Nellachronism, and I thiink Obscurus lupa
