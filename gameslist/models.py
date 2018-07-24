@@ -6,69 +6,53 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-# class Question(models.Model):
-#     question_text = models.CharField(max_length=200)
-#     pub_date = models.DateTimeField('date published')
-
-#     def __str__(self):
-#         return self.question_text
-
-#     def was_published_recently(self):
-#         now = timezone.now()
-#         return (now - datetime.timedelta(days=1)) <= self.pub_date <= now
-
-#     was_published_recently.admin_order_field = 'pub_date'
-#     was_published_recently.boolean = True
-#     was_published_recently.short_description = 'Published recently?'
-
-# class Choice(models.Model):
-#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     choice_text = models.CharField(max_length=200)
-#     votes = models.IntegerField(default=0)
-
-#     def __str__(self):
-#         return self.choice_text
 # # Create your models here.
 
+SYSTEMS = (
+    ('3DS', '3DS'),
+    ('AND', 'Android'),
+    ('DIG', 'Digipen'),
+    ('NDS', 'DS'),
+    ('GCN', 'Gamecube'),
+    ('GBC', 'GBC'),
+    ('GBA', 'GBA'),
+    ('GOG', 'GoG'),
+    ('HUM', 'Humble'),
+    ('IIO', 'Itch.io'),
+    ('KIN', 'Kindle'),
+    ('NES', 'NES'),
+    ('N64', 'N64'),
+    ('ORN', 'Origin'),
+    ('PC', 'PC'),
+    ('PSX', 'Playstation'),
+    ('PS2', 'Playstation 2'),
+    ('PS3', 'Playstation 3'),
+    ('PS4', 'Playstation 4'),
+    ('SNS', 'SNES'),
+    ('STM', 'Steam'),
+    ('NSW', 'Switch'),
+    ('TWH', 'Twitch'),
+    ('UPL', 'Uplay'),
+    ('VIT', 'Vita'),
+    ('WII', 'Wii'),
+    ('WIU', 'Wii U'),
+    ('XBX', 'Xbox'),
+    ('360', 'Xbox 360'),
+    ('XB1', 'Xbox One'),
+)
+
 class Game(models.Model):
-    SYSTEMS = (
-        ('3DS', '3DS'),
-        ('AND', 'Android'),
-        ('DIG', 'Digipen'),
-        ('NDS', 'DS'),
-        ('GCN', 'Gamecube'),
-        ('GBC', 'GBC'),
-        ('GBA', 'GBA'),
-        ('GOG', 'GoG'),
-        ('HUM', 'Humble'),
-        ('IIO', 'Itch.io'),
-        ('KIN', 'Kindle'),
-        ('NES', 'NES'),
-        ('N64', 'N64'),
-        ('ORN', 'Origin'),
-        ('PC', 'PC'),
-        ('PSX', 'Playstation'),
-        ('PS2', 'Playstation 2'),
-        ('PS3', 'Playstation 3'),
-        ('PS4', 'Playstation 4'),
-        ('SNS', 'SNES'),
-        ('STM', 'Steam'),
-        ('NSW', 'Switch'),
-        ('TWH', 'Twitch'),
-        ('UPL', 'Uplay'),
-        ('VIT', 'Vita'),
-        ('WII', 'Wii'),
-        ('WIU', 'Wii U'),
-        ('XBX', 'Xbox'),
-        ('360', 'Xbox 360'),
-        ('XB1', 'Xbox One'),
-    )
+
 
     name = models.CharField(max_length=200)
     release_date = models.DateField('date released')
     system = models.CharField(max_length=3, choices=SYSTEMS)
+    times_recommended = models.IntegerField(default=0) #moved to Game as would be present in both objects
 
-class Owned(gameslist.Game):
+    def __str__(self):
+        return self.name + " - " + self.system
+
+class Owned(Game):
     FORMATS = (
         ('P', 'Physical'),
         ('D', 'Digital'),
@@ -108,28 +92,27 @@ class Owned(gameslist.Game):
 
     full_time_to_beat = models.IntegerField(default=0)
     number_of_players = models.IntegerField(default=0)
-    times_recommended = models.IntegerField(default=0)
     times_passed_over = models.IntegerField(default=0)
 
     metacritic = models.FloatField(default=0.0)
     user_score = models.FloatField(default=0.0)
 
-class Wish(gameslist.Game):
+class Wish(Game):
     #may have a different default
     #inherits name
     #inherit system as platform?
     date_added = models.DateField('date added')
     below_latte = models.BooleanField(default=False)
 
-class PreferenceMap(models.Model):
-    PREFERENCES = (
-        (1, 'Greater Than'),
-        (0, 'Neutral'),
-        (-1, 'Less Than'),
-    )
-    source = models.ForeignKey(Game, on_delete=models.CASCADE)
-    destination = models.ForeignKey(Game,  on_delete=models.CASCADE)
-    preference = models.IntegerField(0)
+# class PreferenceMap(models.Model):
+#     PREFERENCES = (
+#         (1, 'Greater Than'),
+#         (0, 'Neutral'),
+#         (-1, 'Less Than'),
+#     )
+#     source = models.ForeignKey(Game, on_delete=models.CASCADE)
+#     destination = models.ForeignKey(Game,  on_delete=models.CASCADE)
+#     preference = models.IntegerField(0)
 
     #its gonna be pretty sparese likely
     #so hmm

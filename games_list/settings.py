@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['games-test.rw3dvkmeac.us-west-2.elasticbeanstalk.com',
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
+    'gameslist.apps.GameslistConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'games_list.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'polls',
+        'NAME': 'gameslist',
         'HOST': 'games-plus.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
         'PORT':'3306',
         'USER':'jubio',
