@@ -6,6 +6,9 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+from endpoints.metacritic import MetaCritic
+from endpoints.howlongtobeat import HowLongToBeat
+
 # # Create your models here.
 
 SYSTEMS = (
@@ -96,6 +99,11 @@ class Owned(Game):
 
     metacritic = models.FloatField(default=0.0)
     user_score = models.FloatField(default=0.0)
+
+    def __init__(self):
+        meta = MetaCritic(self.name,self.system)
+        hltb = HowLongToBeat(self.name)
+        self.metacritic = meta.metacritic
 
 class Wish(Game):
     #may have a different default

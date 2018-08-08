@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Game
+from .models import Game, Owned
 # Register your models here.
 
 
@@ -22,10 +22,15 @@ from .models import Game
 
 #admin.site.register(Question, QuestionAdmin)
 
-class GameAdmin(admin.ModelAdmin):
-    list_display = ('name','system','release_date','times_recommended')
-    #fieldsets 
-    list_filter = ['system']
+
+class OwnedAdmin(admin.ModelAdmin):
+    list_display = ('name','system','location','game_format','series','notes','purchase_date','finish_date',
+                    'played','beaten','abandoned','perler','reviewed','pursued','substantial_progress','current_time',
+                    'times_recommended')
+    exclude = ('release_date','developer','publisher','streamable','recordable','aging',
+              'play_aging', 'full_time_to_beat','number_of_eps','aging_effect','aging_non_ep',
+              'priority','number_of_players','metacritic','user_score','time_to_beat')
+    list_filter = ['system','location','series','developer','publisher','played','beaten']
     search_fields = ['name']
 
-admin.site.register(Game, GameAdmin)
+admin.site.register(Owned, OwnedAdmin)

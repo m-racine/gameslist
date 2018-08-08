@@ -47,7 +47,7 @@ class ExampleHowLongToBeat():
         #request = requests.post(url,data=form_data)
         self.game = game
 
-        self.raw_data = BeautifulSoup(open("examplehtlb.html"),"html.parser")
+        self.raw_data = BeautifulSoup(open("../../examplehtlb.html"),"html.parser")
         try:
             self.id = self.raw_data.find("a",attrs={"title":game})['href'][12:]
             links = self.raw_data.find_all("div",attrs={"class":"search_list_details"})
