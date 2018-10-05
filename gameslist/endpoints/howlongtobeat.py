@@ -13,9 +13,11 @@ class HowLongToBeat():
                     "sorthead": "popular", "sortd": "Normal Order","length_type": "main"}
         url = "https://howlongtobeat.com/search_main.php?page=1"
         #print url
+        #print form_data
         request = requests.post(url,data=form_data)
         self.game = game
         self.raw_data = BeautifulSoup(request.text,"html.parser")
+        #print self.raw_data
         try:
             self.id = self.raw_data.find("a",attrs={"title":game})['href'][12:]
             links = self.raw_data.find_all("div",attrs={"class":"search_list_details"})
@@ -70,14 +72,26 @@ class ExampleHowLongToBeat():
             return self.game + " - Not Found"
 
 
-hlto = ExampleHowLongToBeat("Sunset Overdrive")
-print hlto
-hlto = HowLongToBeat("Super Mario Bros.")
-print hlto
-hlto = HowLongToBeat("Halo Wars")
-print hlto
-hlto = HowLongToBeat("The Miskatonic")
-print hlto
+# hlto = ExampleHowLongToBeat("Sunset Overdrive")
+# print hlto
+# hlto = HowLongToBeat("Human Resource Machine")
+# print hlto
+# hlto = HowLongToBeat("7 Billion Humans")
+# print hlto
+# hlto = HowLongToBeat("Orwell")
+# print hlto
+
+
+with open("titles.txt","r") as f:
+    with open("systems.txt","r") as g:
+        with open("output.txt","w") as h:
+            while(True):
+                title = f.readline().strip("\n")
+                system = g.readline()
+                hltb = HowLongToBeat(title)
+                if hltb.fulltime > 0.0:
+                    print hltb
+
 
 #search_list_details
 #temp = requests.get("https://howlongtobeat.com/game.php?id=21278",headers={'User-Agent': 'Mozilla/5.0'})

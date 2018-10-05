@@ -74,7 +74,7 @@ class MetaCritic():
 
 class ExampleMetaCritic():
     def __init__(self,game,system):
-        self.raw_data = BeautifulSoup(open("example.html"),"html.parser")
+        self.raw_data = BeautifulSoup(open("../../example.html"),"html.parser")
         self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
         self.userscore = self.raw_data.find(user_score_class).text
 

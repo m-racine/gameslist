@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gameslist',
-        'HOST': 'games-plus.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
+        'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
         'PORT':'3306',
         'USER':'jubio',
         'PASSWORD':'Mithras25'
