@@ -18,21 +18,40 @@ class HowLongToBeat():
         self.game = game
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         #print self.raw_data
+        self.raw_time = "help"
         try:
+            #print self.raw_data
+            print self.raw_data["a"].title
+            self.id = self.raw_data.findall("a")
+            print self.id
+            #self.id = self.raw_data.find("a",attrs={"title":game})['href']
+            print "2"
             self.id = self.raw_data.find("a",attrs={"title":game})['href'][12:]
+            print "huuuh"
             links = self.raw_data.find_all("div",attrs={"class":"search_list_details"})
             for link in links:
                 inner_tag = link.find("a",attrs={"title":self.game})
+                #print inner_tag
+                print "whataa"
                 if inner_tag is not None:
                     #print link.prettify()
-                    raw_time = link.find("div",attrs={"class":"search_list_tidbit center time_100"})
-                    time_text = raw_time.text.replace(u"\xbd",'.5')
+                   # self.raw_time = link.findall("div",attrs={"class":"^search_list_tidbit center"})
+                    print "temp"
+                    self.raw_time = link.find("div",attrs={"class":"search_list_details_block"}).contents
+                    print "what"
+                    print self.raw_time
+                    time_text = self.raw_time[1].text.replace(u"\xbd",'.5')
+                    print re.search("([\d.\d]*)",time_text).group(1)
                     self.fulltime = float(re.search("([\d.\d]*)",time_text).group(1))
             self.found = True
         except: 
             self.id = 0
             self.fulltime = 0.0
             self.found = False
+            print sys.exc_info()[0]
+            print sys.exc_info()[1]
+            print "test"
+            raise Exception
     def __str__(self):
         if self.found:
             return self.game + " - " + str(self.fulltime) + " Hours"
@@ -91,6 +110,9 @@ with open("titles.txt","r") as f:
                 hltb = HowLongToBeat(title)
                 if hltb.fulltime > 0.0:
                     print hltb
+                else:
+                    temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
+                    print (temp if temp else hltb.raw_time)
 
 
 #search_list_details

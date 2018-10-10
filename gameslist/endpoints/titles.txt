@@ -1,24 +1,87 @@
-Jackbox Party Pack 4
+The Jackbox Party Pack 4
 Rising Storm
 Rust
+Jackbox Party Pack
+Jackbox Party Pack 2
+Jackbox Party Pack 3
+Find Mii
+Midway's Greatest Arcade Hits Volume 1
+Find Mii 2
+Master of Orion II: Battle at Antares
+Professor Layton VS Phoenix Wright Ace Attorney
+Puzzle Swap
+Zombie Estate
+A Dark Room
+Mario & Luigi: SuperStar Saga
 BugRiders: The Race of Kings
+Aralon: Sword and Shadow HD
+Bag it!
+Bladeslinger Ep.1
+Calculator the Game
+Carcassonne
 Civilization IV: Colonization
-Action Man
+Contre Jour
+Dragon Quest I
+Dragon Quest II: Luminaries Of The Legendary Line
 Albion
+Enviro-bear 2010
+Funky Smugglers
 An Elder Scrolls Legend: Battlespire
+Suikoden Tierkreis
+Unbound Saga
 Eador: Genesis
+Karateka Classic
+Lara Croft Go
+Layton Brothers: Mystery Room
+My Horse Prince
+Pokemon: Magikarp Jump
+Bioshock
+Dragon Age Origins
+Raiden Legacy
+RPG Aeon Avenger
+RPG Asdivine Hearts
+RPG Fortuna Magus
+RPG Legend of Ixtona
+Splitter Critters
+Star Vikings Forever
+Teeny Titans: A Teen Titans Go! Figure Battling Game
+The Spookening
+Time Surfer
+Underhand
+Nine Hours, Nine Persons, Nine Doors
+Brain Age Express: Sudoku
+Come On! Heroes
+Phoenix Wright: Ace Attorney - Justice for All
+Phoenix Wright: Ace Attorney - Trials And Tribulations
+The Urbz: Sims in the City
+Animal Crossing
+Frogger's Adventures: Temple of the Frog
 MDK
+Dragon Ball Z: Buus Fury
 Myst: Masterpiece Edition
+Mario Vs. Donkey Kong
+Fire Emblem
+Penny Arcade's On the Rain-Slick Precipice of Darkness 1
+Penny Arcade's On the Rain-Slick Precipice of Darkness 2
+Breath of Death VII
 Pathologic Classic HD
 The Bard's Tale IV: Barrow's Deep
+Beyond Good & Evil HD
+Pokemon Emerald Version
+Pokemon Emerald Version
+Pokemon LeafGreen Version
+Cave Story Plus
+Pokemon Ruby Version
+Pokemon Ruby Version
 The Elder Scrolls: Arena
+Fire Emblem
 The Elder Scrolls: Chapter II - Daggerfall
 Valhalla Hills
-Virginia
 Warsow
-Ziggurat
 BATTLESLOTHS
+Bio Menace
 Blackwake
+Crypt of the Necrodancer
 Disc Room
 Disc Room
 Elephant in the Room
@@ -26,6 +89,7 @@ Elephant in the Room
 Fidel: Dungeon Rescue
 Fortune-499
 HitchHiker
+Imperium Galactica II: Alliances
 Interplanetary: Enhanced Edition
 Jawns
 Lyric Sonata
@@ -33,7 +97,7 @@ Spoolside
 Stumblehill
 Subserial Network
 Tailwind: Prologue
-The Chronicles of Shakespeare: A MIdsummer Night's Dream
+The Chronicles of Shakespeare: A Midsummer Night's Dream
 The Chronicles of Shakespeare: Romeo and Juliet
 Titan Quest Ragnarok
 Wilmot's Warehouse
@@ -47,7 +111,6 @@ Ken Follett's The Pillars of the Earth
 Laser League
 No Pineapple Left Behind
 Styx: Shards of Darkness
-Yooka-Laylee
 7 Deeds
 A Bathroom Myth
 A Growing Adventure
@@ -57,6 +120,7 @@ air mail
 Archimoulin
 Butterfly Soup
 Causeway
+Fire Emblem: Blazing Sword
 City Clickers
 City Lights
 Clayton's Quest
@@ -66,6 +130,7 @@ DEVIL'S FLOWER
 Earthling Priorities
 Fairy Song
 FAITH
+One Way Heroics
 Freedom Through a Lens
 Ghost Hospital
 Golden Sword of Dragonwalk
@@ -75,6 +140,7 @@ iii
 J'accuse!
 K'NOSSOS
 Kirigami
+Ethereal
 Labors of Love
 Lavendar
 Legend of Xenia
@@ -88,11 +154,13 @@ MORNING POST
 Pacific
 Paisley Princess
 Pet the Pup at the Party
+Knight Club
 Planet Dysphoria
 Princess Kero
 Project Maiden
 RE: Allistair++
 Rhythm Doctor
+LEGO The Lord of the Rings
 Roaring Streets!
 Royals
 Sales Pitch
@@ -108,6 +176,7 @@ The Shifting Catacombs of Mu'ralagh
 The Tearoom
 The Tower
 The Wit.nes (Demo)
+Pokemon Conquest
 Toryanse: Reel
 URDL
 Visioff
@@ -117,6 +186,7 @@ Ninja JaJaMaru-kun
 Crusader No Remorse
 Deity
 Solace
+Woten
 A Stable Romance
 And Everything Started to Fall
 Caging Me Softly
@@ -132,36 +202,21 @@ Minecraft
 Persona 4 Racing All Afternoon
 Pokemon Prism
 PokemonFusionGeneration
+Figment
+Forged Battalion
 Seven Sages
 Super Smash Bros Crusade
 Super Smash Bros Land
 Tales of the Drunken Paladin VII
 The Time Traveller
-Contra III The Alien Wars
-Donkey Kong Country
-EarthBound
-F-ZERO
-Final Fantasy III
-Kirby Super Star
-Kirby's Dream Course
-Mega Man X
-Secret of Mana
-Star Fox
-Star Fox 2
-Street Fighter II Turbo: Hyper Fighting
-Super Castlevania IV
-Super Ghouls 'n Ghosts
-Super Mario Kart
-Super Mario World
-Super Metroid
-Super Punch-Out!!
-The Legend of Zelda: A Link to the Past
-Yoshi's Island
 ARK: Survival of the Fittest
+Magical Diary
+Dust an Elysian Tail
 BLEAK: Welcome to Glimmer
 Bloodsports.TV
 Boxeswithguns
 Conquest of Champions
+Fire Emblem Awakening
 Counter-Strike: Source
 Defender's Quest 2
 Destination Sol
@@ -178,22 +233,22 @@ Move or Die
 Omegaland
 Open Sorcery
 Frogger's Journey: The Forgotten Relic
+Staxel
 Random Access Murder
+Scott Pilgrim vs the World: The Game
 Run or Die
 Frogger's Adventures: The Rescue
 Sid Meier's Covert Action
 Slay the Spire
 Sojourner
 Team Fortress 2
+Zombie Night Terror
 Team Fortress Classic
 The Forest of Doom
 The Nightmare Cooperative
 The Swords of Ditto
-Fire Emblem Warriors
 Vidar
 We Happy Few
-Octopath Traveler
-Subsurface Circular
 Anima: Ark of Sinners
 Mr Driller W
 Sportsball
@@ -202,4 +257,169 @@ F1 2013
 Groov
 Mirror
 Solar
+NFL Blitz
+Saturday Morning RPG
+Oddworld Stranger's Wrath HD
+VA-11 Hall-A KIDS!
+Kingdom Hearts Re: Chain of Memories
+Pokemon Ruby
+Half Minute Hero
+Action Man
+Pokemon Gold
+Pokemon Gold Version
+Pokemon Gold
+Without Within
+Ys I
+Super Smash Bros
+Super Smash Bros
+Tetrisphere
+Super Smash Bros 3DS
+Tetrisphere
+Super Smash Bros
+Tetrisphere
+The Stanley Parable
+The Typing of The Dead: Overkill
+Doom & Destiny
+To The Moon
+Dragon Age Origins - Awakening
+Last Word
+Ys II
+Saints Row the Third
+Final Fantasy IV
+Princess Remedy in a World of Hurt
+Shantae Half-Genie Hero
+Dragon Quest Swords: The Masked Queen and the Tower of Mirrors
+Fate/Extra
+Young Justice Legacy
+Sonic Adventure DX Director's Cut
+Knights of Pen & Paper 2
+Regeria Hope Episode 1
+Grim Legends 3: The Dark City
+Pink Hour
+Savant - Ascent
+Western Press
+Orion Trail
+The Red Mummy
+Master Spy
+Picross Fairytale - nonogram: Red Riding Hood secret
+LEGO Racers
+LEGO Racers
+Pokemon Moon
+Super Daryl Deluxe
+Threads of Fate
+Mystery Series: A Vampire Tale
+Pokemon Puzzle Challenge
+Super Smash Bros Melee
+Fire Emblem the Sacred Stones
+LEGO Racers
+Antihero
+Guild of Dungeoneering
+I, Hope
+Phantasy Star Universe
+Pumped BMX +
+Ratchet Deadlocked
+Blue Dragon Plus
+Strife: Veteren Edition
+Star Wars Battlefront
+The Adventure Pals
+Treadnauts
+Star Wars: Battlefront II
+Suikoden IV
+Zero Escape Virtue's Last Reward
+Adventure Bar Labyrinth
+Legion Saga
+Legion Saga 2
+Magical Boys
+Magical Cyborg Mitsuki
+KickBeat
+Monster Bag
+Dungeons & Dragons Heroes
+Cthulhu Saves the World
+Knights of Pen & Paper (+1 Edition)
+LEGO Batman
+Assassin’s Creed
+Narcissu 1st
+Penny Arcade's On the Rain-Slick Precipice of Darkness 3
+Penny Arcade's On the Rain-Slick Precipice of Darkness 4
+Dynasty Warriors 6
+Enchanted ARMs
+Time Gentlemen Please!
+Words for Evil
+The Lord of the Rings Conquest
+Bit.Trip Presents...Runner2: Future Legend of Rhythm Alien
+Too Human
+#IDARB
+Jetpac Refuelled
+Kinect Sports Rivals
+Pool Nation FX
+Grand Theft Auto 3
+Need for Speed Underground 2
+Playstation Underground 1
+Playstation Underground 2
+Sony Interactive Volume 1
+WF Smackdown
+NFL Blitz 2001
+Karaoke Revolution Presents: American Idol Encore
+Alone in the Dark
+Brink
+Doom 3 BFG Edition
+NFL Head Coach
+Madden NFL 25
+The Incredibles
+Grand Theft Auto 2
+Super Dungeon Bros
+Super Mega Baseball 2
+The Sims
+Injustice Gods Among Us
+Need for Speed Underground
+SteamWorld Dig This is definitely wrong
+Batman Arkham City
+Grand Theft Auto San Andreas
+Cabela's Dangerous Hunts 2009
+Bases Loaded
+Caesars Palace
+Hot Wheels Stunt Track Driver
+Star Wars
+Imagine Teacher School Trip
+Nickelodeon Barnyard
+Yu-Gi-Oh! Stairway to the Destined Duel Worldwide Edition
+Deal or No Deal
+Spirit Stallion of the Cimarron
+Cooking Mama
+Pac-Man
+Space Jockey
+Venture
+Video Pinball
+Jimmy Neutron Boy Genius
+Spider-Man
+The Fairly Odd Parents Volume 2
+Scooby-Doo 2 Monsters Unleashed
+Dogz
+Super Mario Advance 4 Super Mario Bros 3
+Ghost Rider
+Shaman King Legacy of the Spirits
+Yu-Gi-Oh! Destiny Board Traveler
+Yu-Gi-Oh! The Sacred Cards
+Yu-Gi-Oh! Reshef of Destruction
+Dynasty Warriors Advance
+Finding Nemo
+Monster Trucks
+Yu-gi-oh! Reshef of Destruction
+Duel Masters Sempai Legends
+Yu-gi-oh! Dungeon Dice Monsters
+Medabots AX Medabee Version
+Viewtiful Joe 2
+Jak and Daxter the Precursor Legacy
+Jak Combat Racing
+Rabel Radiers Operation Nighthawk
+The Lord of the Rings The Two Towers
+Tumblestone
+Final Fantasy Legend III
+Battalion Wars
+Sphinx and the Cursed Mummy
+Jurassic the Hunted
 hack_me 2
+Super Trucks Racing
+Big Mutha Truckers
+DuelMasters
+Marvel Nemesis Rise of the Imperfects
