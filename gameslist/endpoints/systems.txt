@@ -7,11 +7,8 @@ Steam
 3DS
 N64
 3DS
-GoG
-3DS
 3DS
 Xbox 360
-Android
 GBA
 PlayStation
 Android
@@ -23,14 +20,9 @@ PC
 Android
 Android
 Android
-GoG
 Android
 Android
-GoG
-DS
 Xbox 360
-GoG
-Android
 Android
 Android
 Android
@@ -48,7 +40,6 @@ Android
 Android
 Android
 Android
-DS
 DS
 DS
 DS
@@ -56,15 +47,12 @@ DS
 DS
 GameCube
 GBA
-GoG
 GBA
-GoG
 GBA
 GBA
 Steam
 Steam
 Xbox 360
-GoG
 GoG
 Xbox 360
 GBA

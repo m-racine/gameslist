@@ -4,6 +4,7 @@ import sys
 from bs4 import BeautifulSoup
 import requests
 import re
+import traceback
 
 
 class HowLongToBeat():
@@ -18,39 +19,49 @@ class HowLongToBeat():
         self.game = game
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         #print self.raw_data
-        self.raw_time = "help"
+        self.raw_time = game
+        self.fulltime = 0.0
+        self.found = False
         try:
-            #print self.raw_data
-            print self.raw_data["a"].title
-            self.id = self.raw_data.findall("a")
-            print self.id
-            #self.id = self.raw_data.find("a",attrs={"title":game})['href']
-            print "2"
-            self.id = self.raw_data.find("a",attrs={"title":game})['href'][12:]
-            print "huuuh"
+            
+            #self.id = self.raw_data.find("a",attrs={"title":game})['href'][12:]
             links = self.raw_data.find_all("div",attrs={"class":"search_list_details"})
+            x = 0
             for link in links:
+                x += 1
+                #print link
                 inner_tag = link.find("a",attrs={"title":self.game})
                 #print inner_tag
-                print "whataa"
                 if inner_tag is not None:
+                    print game
+                    #print inner_tag
+                    title = self.raw_data.a
+                    self.id = title['href'][12:]
                     #print link.prettify()
                    # self.raw_time = link.findall("div",attrs={"class":"^search_list_tidbit center"})
-                    print "temp"
+                    #print "temp"
                     self.raw_time = link.find("div",attrs={"class":"search_list_details_block"}).contents
-                    print "what"
-                    print self.raw_time
+                    #print "what"
+                    #print self.raw_time
                     time_text = self.raw_time[1].text.replace(u"\xbd",'.5')
-                    print re.search("([\d.\d]*)",time_text).group(1)
-                    self.fulltime = float(re.search("([\d.\d]*)",time_text).group(1))
+                    #print "hup"
+                    time_search = re.search("\d+\.\d*",time_text)
+                    if time_search:
+                        #print re.search("\d+\.\d*",time_text).group(0)
+                        self.fulltime = float(re.search("\d+\.\d*",time_text).group(0))
+                        break
+                    else:
+                        break
+                else:
+                    #print "{0} not found.".format(game)
+                    pass
+                    #raise Exception
             self.found = True
         except: 
+            print traceback.print_exc()
             self.id = 0
-            self.fulltime = 0.0
-            self.found = False
             print sys.exc_info()[0]
             print sys.exc_info()[1]
-            print "test"
             raise Exception
     def __str__(self):
         if self.found:
@@ -80,10 +91,14 @@ class ExampleHowLongToBeat():
                     time_text = raw_time.text.replace(u"\xbd",'.5')
                     self.fulltime = float(re.search("([\d.\d]*)",time_text).group(1))
             self.found = True
-        except: 
+        except:
+            print sys.exc_info()[0]
+            print sys.exc_info()[1]
+            print sys.exc_info()[2]
             self.id = 0
             self.fulltime = 0.0
             self.found = False
+            raise Exception
     def __str__(self):
         if self.found:
             return self.game + " - " + str(self.fulltime) + " Hours"
@@ -111,8 +126,9 @@ with open("titles.txt","r") as f:
                 if hltb.fulltime > 0.0:
                     print hltb
                 else:
-                    temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
-                    print (temp if temp else hltb.raw_time)
+                    #temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
+                    #print (temp if temp else "{0} not found.".format(title))
+                    pass
 
 
 #search_list_details
