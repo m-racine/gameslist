@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import urllib2
 import sys
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 import requests
 import re
 import traceback
@@ -22,6 +22,7 @@ class HowLongToBeat():
         self.raw_time = game
         self.fulltime = 0.0
         self.found = False
+        self.units = "Hours"
         try:
             
             #self.id = self.raw_data.find("a",attrs={"title":game})['href'][12:]
@@ -29,34 +30,38 @@ class HowLongToBeat():
             x = 0
             for link in links:
                 x += 1
-                #print link
+                #print x
                 inner_tag = link.find("a",attrs={"title":self.game})
-                #print inner_tag
                 if inner_tag is not None:
+                    self.found = True
                     print game
-                    #print inner_tag
                     title = self.raw_data.a
                     self.id = title['href'][12:]
-                    #print link.prettify()
-                   # self.raw_time = link.findall("div",attrs={"class":"^search_list_tidbit center"})
-                    #print "temp"
                     self.raw_time = link.find("div",attrs={"class":"search_list_details_block"}).contents
-                    #print "what"
-                    #print self.raw_time
-                    time_text = self.raw_time[1].text.replace(u"\xbd",'.5')
-                    #print "hup"
-                    time_search = re.search("\d+\.\d*",time_text)
-                    if time_search:
-                        #print re.search("\d+\.\d*",time_text).group(0)
-                        self.fulltime = float(re.search("\d+\.\d*",time_text).group(0))
-                        break
-                    else:
+                    for element in self.raw_time:
+                        if isinstance(element, Tag):
+                            time_text = element.text.replace(u"\xbd",'.5')
+                            time_search = re.search("\d+\.?\d* \w*",time_text)
+                            if time_search:
+                                self.fulltime = float(re.search("\d+\.?\d*",time_text).group(0))
+                                self.units = re.search("(\d+\.?\d*) (\w*)",time_text).group(2)
+                                
+                                break
+                            else:
+                                #print self.raw_time
+                                #print time_text
+                                pass
+                    if self.found:
                         break
                 else:
-                    #print "{0} not found.".format(game)
+                    print "NOT FOUND: {0}.".format(game)
                     pass
                     #raise Exception
-            self.found = True
+            #self.found = True
+            if self.found:
+                pass
+            else:
+                "{0} not found.".format(game)
         except: 
             print traceback.print_exc()
             self.id = 0
@@ -65,7 +70,7 @@ class HowLongToBeat():
             raise Exception
     def __str__(self):
         if self.found:
-            return self.game + " - " + str(self.fulltime) + " Hours"
+            return self.game + " - " + str(self.fulltime) + " " + self.units
         else:
             return self.game + " - Not Found"
 
@@ -119,7 +124,8 @@ class ExampleHowLongToBeat():
 with open("titles.txt","r") as f:
     with open("systems.txt","r") as g:
         with open("output.txt","w") as h:
-            while(True):
+            title = True
+            while title:
                 title = f.readline().strip("\n")
                 system = g.readline()
                 hltb = HowLongToBeat(title)
