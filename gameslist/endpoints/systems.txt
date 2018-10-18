@@ -44,13 +44,11 @@ Steam
 Android
 Humble
 Steam
-Steam
 PC
 Steam
 PC
 Itch.io
 GBA
-Xbox 360
 Android
 Android
 GBA
@@ -224,7 +222,6 @@ Steam
 Itch.io
 PC
 Itch.io
-Steam
 Itch.io
 Android
 Itch.io
@@ -244,3 +241,19 @@ Humble
 Itch.io
 Steam
 Xbox 360
+PlayStation 2
+PlayStation 2
+PlayStation 2
+PlayStation 2
+PlayStation 2
+PlayStation 2
+PlayStation 2
+Xbox 360
+Xbox 360
+Humble
+Humble
+Humble
+Humble
+Humble
+Twitch
+Twitch

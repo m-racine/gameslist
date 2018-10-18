@@ -121,22 +121,22 @@ class ExampleHowLongToBeat():
 # hlto = HowLongToBeat("Orwell")
 # print hlto
 
-def clean_titles():
-    with open("titles.txt","r") as f:
-        with open("systems.txt","r") as g:
-            with open("output.txt","w") as h:
-                title = True
-                while title:
-                    title = f.readline().strip("\n")
-                    system = g.readline()
-                    hltb = HowLongToBeat(title)
-                    if hltb.fulltime > 0.0:
-                        h.write(hltb.__str__())
-                        h.write("\n")
-                    else:
-                        #temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
-                        #print (temp if temp else "{0} not found.".format(title))
-                        pass
+#def clean_titles():
+with open("titles.txt","r") as f:
+    with open("systems.txt","r") as g:
+        with open("output.txt","w") as h:
+            title = True
+            while title:
+                title = f.readline().strip("\n")
+                system = g.readline()
+                hltb = HowLongToBeat(title)
+                if hltb.fulltime > 0.0:
+                    h.write(hltb.__str__())
+                    h.write("\n")
+                else:
+                    #temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
+                    #print (temp if temp else "{0} not found.".format(title))
+                    pass
 
 
 #<li class='global_padding back_white shadow_box'>No results for <strong>a mini falafa</strong> in <u>games</u>.</li>

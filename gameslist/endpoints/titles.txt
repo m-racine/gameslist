@@ -7,10 +7,10 @@ A Stable Romance
 Action Man: Search for Base X
 Adventure Bar Labyrinth
 air mail
-Alone in the Dark
+Alone in the Dark (2008)
 And Everything Started to Fall
 Anima: Ark of Sinners
-Antihero
+Antihero (2017)
 Aralon: Sword and Shadow HD
 Archimoulin
 ARK: Survival of the Fittest
@@ -18,7 +18,7 @@ Assassin’s Creed
 Bag It!
 Bases Loaded
 Battlesloths
-Beyond Good & Evil HD
+Beyond Good & Evil
 Big Mutha Truckers
 Bit.Trip Presents...Runner2: Future Legend of Rhythm Alien
 Blackwake
@@ -43,31 +43,29 @@ Come On! Heroes
 Conquest of Champions
 Contre Jour
 Cook, Serve, Delicious 2!!!
-Cthulhu Saves The World
 Defender's Quest 2
-Deity
+Deity (2012)
 Destination Sol
 Devil Hunter Seeker Of Power
 DEVIL'S FLOWER
 Dogz
-Dragon Age: Origins - Awakening
-Dragon Quest I
-Dragon Quest II: Luminaries Of The Legendary Line
+Dragon Quest
+Dragon Quest II: Luminaries of the Legendary Line
 Duel Masters: Sempai Legends
 DuelMasters
 Dynasty Warriors Advance
 Earthling Priorities
 Elephant in the Room
 Elephant in the Room
-Enchanted ARMs
+Enchanted Arms
 Enviro-bear 2010
-Ethereal
+ETHEREAL
 Fabula Mortis
 Fairy Song
 FAITH
 fate -RPG Maker Game
-Figment
-Final Fantasy IV
+Figment (2017)
+Final Fantasy IV (Final Fantasy II NA)
 Find Mii 2
 Forged Battalion
 Freedom Through a Lens
@@ -78,8 +76,8 @@ Golden Sword of Dragonwalk
 Gone Wandering
 Grand Theft Auto 3
 Groov
-Half Minute Hero Super Mega Neo Climax Ultimate Boy
-HitchHiker
+Half Minute Hero: Super Mega Neo Climax Ultimate Boy
+HitchHiker (2018)
 HoPiKo
 iii --- Typo
 Imagine Teacher School Trip
@@ -92,7 +90,7 @@ Jump Stars
 K'NOSSOS
 Karaoke Revolution Presents: American Idol Encore
 Karateka Classic
-Ken Follett's The Pillars of the Earth
+The Pillars of the Earth
 Kirigami
 Knight Club
 Knights of Pen & Paper (+1 Edition)
@@ -101,7 +99,7 @@ Labors of Love
 Laser League
 last
 Lavendar
-Learn Japanese to Survive! Hiragana Battle
+Learn Japanese To Survive! Hiragana Battle
 Legend of Xenia
 Legend of Xenia 2
 Legion Saga
@@ -131,7 +129,7 @@ NFL Blitz 2001
 NFL Head Coach
 Nickelodeon Barnyard
 Ninja JaJaMaru-kun
-Oddworld Stranger's Wrath HD
+Oddworld Stranger's Wrath
 Pacific -- Typo?
 Paisley Princess
 Penny Arcade's On the Rain-Slick Precipice of Darkness 1
@@ -140,25 +138,25 @@ Penny Arcade's On the Rain-Slick Precipice of Darkness 3
 Penny Arcade's On the Rain-Slick Precipice of Darkness 4
 Persona 4 Racing All Afternoon
 Pet the Pup at the Party
-Phoenix Wright: Ace Attorney - Justice for All
-Phoenix Wright: Ace Attorney - Trials And Tribulations
+Phoenix Wright: Ace Attorney - Justice For All
+Phoenix Wright: Ace Attorney - Trials and Tribulations
 Picross Fairytale - nonogram: Red Riding Hood secret
 Planet Dysphoria
 Playstation Underground 1
 Playstation Underground 2
-Pokemon Conquest
-Pokemon Emerald Version
-Pokemon Emerald Version
-Pokemon Gold
-Pokemon Gold
-Pokemon Gold Version
-Pokemon LeafGreen Version
-Pokemon Moon
-Pokemon Ruby
-Pokemon Ruby Version
-Pokemon Ruby Version
-Pokemon: Magikarp Jump
-PokemonFusionGeneration
+Pokémon Conquest
+Pokémon Emerald Version
+Pokémon Emerald Version
+Pokémon Gold
+Pokémon Gold
+Pokémon Gold Version
+Pokémon LeafGreen Version
+Pokémon Moon
+Pokémon Ruby
+Pokémon Ruby Version
+Pokémon Ruby Version
+Pokémon: Magikarp Jump
+PokémonFusionGeneration
 Pool Nation FX
 Princess Kero
 Project Maiden
@@ -186,10 +184,10 @@ Small World
 Sojourner
 Solace
 Solar
-Sonic Adventure DX Director's Cut
+Sonic Adventure DX
 Sony Interactive Volume 1
 Space Jockey
-Spider-Man
+Spider-Man (2002)
 Spirit Stallion of the Cimarron
 Splitter Critters
 Sportsball
@@ -208,7 +206,7 @@ Tailwind: Prologue
 Tales of the Drunken Paladin VII
 Teeny Titans: A Teen Titans Go! Figure Battling Game
 The Bard's Tale IV: Barrow's Deep
-The Chicken Pain 
+The Chicken Pain
 The Chronicles of Shakespeare: A Midsummer Night's Dream
 The Chronicles of Shakespeare: Romeo and Juliet
 The Elder Scrolls: Chapter II - Daggerfall
@@ -217,14 +215,13 @@ The Huntress of the Hollow
 The Jackbox Party Pack 4
 The Red Mummy
 The Shifting Catacombs of Mu'ralagh
-The Sims
+The Sims (2003)
 The Spookening
-The Stanley Parable
-The Swords of Ditto
+The Stanley Parable (2013)
+The Swords Of Ditto
 The Tearoom
 The Time Traveller
 The Tower
-The Typing of the Dead: Overkill
 The Wit.nes (Demo)
 Time Surfer
 Toryanse: Reel
@@ -244,3 +241,19 @@ Yojimbrawl
 You Only Get One
 Ys I
 Zombie Estate
+Star Wars: Starfighter
+Jampack Volume 13
+Enter the Matrix
+Destroy All Humans! 2
+Taito Legends
+Star Wars Battlefront
+Star Wars: Battlefront II (2005)
+Halo: Reach
+X-Men Destiny
+War for the Overworld - Heart of Gold DLC
+Osiris: New Dawn
+Ollie & Bollie's Outdoor Estate
+SIMULCRA
+Momodora: Reverie Under the Moonlight
+System Shock
+Soma
