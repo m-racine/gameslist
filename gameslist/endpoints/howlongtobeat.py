@@ -55,6 +55,7 @@ class HowLongToBeat():
                         break
                 else:
                     print "NOT FOUND: {0}.".format(game)
+                    print u"Did you mean: {0}?".format(link.find("a")["title"])
                     pass
                     #raise Exception
             #self.found = True
@@ -120,24 +121,34 @@ class ExampleHowLongToBeat():
 # hlto = HowLongToBeat("Orwell")
 # print hlto
 
+def clean_titles():
+    with open("titles.txt","r") as f:
+        with open("systems.txt","r") as g:
+            with open("output.txt","w") as h:
+                title = True
+                while title:
+                    title = f.readline().strip("\n")
+                    system = g.readline()
+                    hltb = HowLongToBeat(title)
+                    if hltb.fulltime > 0.0:
+                        h.write(hltb.__str__())
+                        h.write("\n")
+                    else:
+                        #temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
+                        #print (temp if temp else "{0} not found.".format(title))
+                        pass
 
-with open("titles.txt","r") as f:
-    with open("systems.txt","r") as g:
-        with open("output.txt","w") as h:
-            title = True
-            while title:
-                title = f.readline().strip("\n")
-                system = g.readline()
-                hltb = HowLongToBeat(title)
-                if hltb.fulltime > 0.0:
-                    print hltb
-                else:
-                    #temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
-                    #print (temp if temp else "{0} not found.".format(title))
-                    pass
+
+#<li class='global_padding back_white shadow_box'>No results for <strong>a mini falafa</strong> in <u>games</u>.</li>
 
 
 #search_list_details
 #temp = requests.get("https://howlongtobeat.com/game.php?id=21278",headers={'User-Agent': 'Mozilla/5.0'})
 #temp = BeautifulSoup(temp.text,"html.parser")
 #print temp
+
+
+#Cth Saves The World 
+#Typing of the Dead
+#Lumanaries of The
+#Japanese To Survive

@@ -46,11 +46,24 @@ SYSTEMS = (
 
 class Game(models.Model):
 
-
+    #id = models.IntegerField() ID is automatically included by Django
     name = models.CharField(max_length=200)
+    alternate_name = models.CharField(max_length=200)
     release_date = models.DateField('date released')
     system = models.CharField(max_length=3, choices=SYSTEMS)
     times_recommended = models.IntegerField(default=0) #moved to Game as would be present in both objects
+    series = models.CharField(max_length=100)
+    developer = models.CharField(max_length=100)
+    publisher = models.CharField(max_length=100)
+    metacritic = models.FloatField(default=0.0)
+    user_score = models.FloatField(default=0.0)
+    played = models.BooleanField(default=False)
+    beaten = models.BooleanField(default=False)
+    pursued = models.BooleanField(default=False)
+    substantial_progress = models.BooleanField(default=False)
+    full_time_to_beat = models.IntegerField(default=0)
+    number_of_players = models.IntegerField(default=0)
+    priority = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name + " - " + self.system
@@ -66,39 +79,25 @@ class Owned(Game):
 
     location = models.CharField(max_length=3, choices=SYSTEMS)
     game_format = models.CharField('format',max_length=1, choices=FORMATS)
-    series = models.CharField(max_length=100)
-    developer = models.CharField(max_length=100)
-    publisher = models.CharField(max_length=100)
     notes = models.CharField(max_length=500)
     purchase_date = models.DateField('date purchased')
     finish_date = models.DateField('date finished')
-    played = models.BooleanField(default=False)
-    beaten = models.BooleanField(default=False)
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
     streamable = models.BooleanField(default=False)
     recordable = models.BooleanField(default=False)
     #adding new flag. indicates I super consciously sought it out
-    pursued = models.BooleanField(default=False)
     #may have a different default
-    substantial_progress = models.BooleanField(default=False)
-
     aging = models.IntegerField(default=0)
     play_aging = models.IntegerField(default=0)
-    time_to_beat = models.IntegerField(default=0)
     current_time = models.IntegerField(default=0)
-    number_of_eps = models.IntegerField(default=0)
     aging_effect = models.FloatField(default=0.0)
     aging_non_ep = models.IntegerField(default=0)
-    priority = models.IntegerField(default=0)
-
-    full_time_to_beat = models.IntegerField(default=0)
-    number_of_players = models.IntegerField(default=0)
     times_passed_over = models.IntegerField(default=0)
+    time_to_beat = models.IntegerField(default=0)
+    number_of_eps = models.IntegerField(default=0)
 
-    metacritic = models.FloatField(default=0.0)
-    user_score = models.FloatField(default=0.0)
 
     def __init__(self):
         meta = MetaCritic(self.name,self.system)
