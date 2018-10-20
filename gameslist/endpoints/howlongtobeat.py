@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import urllib2
 import sys
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, Tag, NavigableString
 import requests
 import re
 import traceback
@@ -45,12 +45,16 @@ class HowLongToBeat():
                             if time_search:
                                 self.fulltime = float(re.search("\d+\.?\d*",time_text).group(0))
                                 self.units = re.search("(\d+\.?\d*) (\w*)",time_text).group(2)
-                                
                                 break
                             else:
-                                #print self.raw_time
-                                #print time_text
-                                pass
+                                for l in self.raw_time[1].contents:
+                                    if isinstance(l,Tag):
+                                        if re.search("--",l.text):
+                                            self.fulltime = -1.0
+                                            self.units = "Hours"
+                                            self.found = True
+                                    #else, probably a bs4.element.Tag
+                                break
                     if self.found:
                         break
                 else:
@@ -70,8 +74,11 @@ class HowLongToBeat():
             print sys.exc_info()[1]
             raise Exception
     def __str__(self):
+        return self.__unicode__()
+
+    def __unicode__(self):
         if self.found:
-            return self.game + " - " + str(self.fulltime) + " " + self.units
+            return "{0} - {1} {2}".format(self.game,self.fulltime,self.units)
         else:
             return self.game + " - Not Found"
 
@@ -123,15 +130,16 @@ class ExampleHowLongToBeat():
 
 #def clean_titles():
 with open("titles.txt","r") as f:
-    with open("systems.txt","r") as g:
-        with open("output.txt","w") as h:
+    #with open("systems.txt","r") as g:
+        with open("output.txt","w+") as h:
             title = True
             while title:
                 title = f.readline().strip("\n")
-                system = g.readline()
+                #system = g.readline()
                 hltb = HowLongToBeat(title)
-                if hltb.fulltime > 0.0:
-                    h.write(hltb.__str__())
+                if hltb.found:
+                    print hltb
+                    h.write(str(hltb))
                     h.write("\n")
                 else:
                     #temp = hltb.raw_data.find("h3",attrs={"class":"head_padding shadow_box back_blue center"}) 
