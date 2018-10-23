@@ -3,7 +3,7 @@ import sys
 from bs4 import BeautifulSoup
 import requests
 import re
-
+import os
 #swapMonth function works better as a dict in python
 month_dict = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04",
               "May":"05","Jun":"06","Jul":"07","Aug":"08",
@@ -74,16 +74,16 @@ class MetaCritic():
 
 class ExampleMetaCritic():
     def __init__(self,game,system):
-        self.raw_data = BeautifulSoup(open("../../example.html"),"html.parser")
+        self.raw_data = BeautifulSoup(open(os.path.join(os.getcwd(),"gameslist/endpoints/example.html")),"html.parser")
         self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
         self.userscore = self.raw_data.find(user_score_class).text
 
 
-meta = ExampleMetaCritic("Deus Ex: Mankind Divided","Steam")
-link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
-print link
-links = link.find_all("span",attrs={"class":"data","itemprop":"genre"})
-print links
+#meta = ExampleMetaCritic("Deus Ex: Mankind Divided","Steam")
+#link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
+#print link
+#links = link.find_all("span",attrs={"class":"data","itemprop":"genre"})
+#print links
 #.findall("span",attrs={"class":"data","itemprop":"genre"}).text.strip()
 #print fixDateFormat(meta.raw_data.find("span",attrs={"class":"data","itemprop":"datePublished"}).text)
 #(tests??)

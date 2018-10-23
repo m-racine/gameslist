@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'gameslist/style.css' %}" />
+
+{% if new_games_list %}
+    <ul>
+    {% for game in new_games_list %}
+        <li><a href="{% url 'gameslist:detail' game.id %}">{{ game.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No games are available.</p>
+{% endif %}
