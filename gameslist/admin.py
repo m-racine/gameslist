@@ -29,7 +29,7 @@ class GameAdmin(admin.ModelAdmin):
     exclude = ('release_date','developer','publisher','streamable','recordable','aging',
               'play_aging', 'full_time_to_beat','number_of_eps','aging_effect','aging_non_ep',
               'priority','number_of_players','metacritic','user_score','time_to_beat')
-    list_filter = ['system','location','played','beaten']
+    list_filter = ['system','location','played','beaten','game_format']
     search_fields = ['name']
 
 admin.site.register(Game, GameAdmin)

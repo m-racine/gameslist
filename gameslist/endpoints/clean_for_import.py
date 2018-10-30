@@ -25,9 +25,9 @@ import csv
     #             spamwriter.writerow(temp)
 def yes_no_true_false(answer):
     if answer == "Yes":
-        return "TRUE"
+        return 1
     else: 
-        return "FALSE"
+        return 0
 
 def system_sub(system):
     systems_dict = {'Nintendo 3DS':"3DS",
@@ -109,8 +109,13 @@ with open("/home/jracine/Downloads/Games Tracker - Owned or Beaten.csv",'r') as 
                                                                        'location','game_format','notes','purchase_date',
                                                                        'finish_date','abandoned','perler','reviewed',
                                                                        'aging','play_aging'])
+        #TEMP
+        x = 0
         spamwriter.writeheader()
         for row in spamreader:
+            x +=1
+            if x > 100:
+                break
             #print row
             #do the filtering
             cleaned_row = {}

@@ -6,7 +6,7 @@ from datetime import date
 
 from django.db import models
 from django.utils import timezone
-
+from django.forms import ModelForm
 from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
 
@@ -69,7 +69,7 @@ class Game(models.Model):
     beaten = models.BooleanField(default=False)
     location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
     game_format = models.CharField('format',max_length=1, choices=FORMATS, default='D')
-    notes = models.CharField(max_length=500,default="")
+    notes = models.CharField(max_length=500,default="",blank=True)
     purchase_date = models.DateField('date purchased',default=date.today)
     finish_date = models.DateField('date finished', default=date.today)
     abandoned = models.BooleanField(default=False)
@@ -81,6 +81,14 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.system
+
+class GameForm(ModelForm):
+    class Meta:
+        model = Game
+        fields = ['name','system','location','game_format',
+                  'played','beaten','abandoned','perler',
+                  'reviewed','purchase_date','finish_date',
+                  'aging','play_aging']
 
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)

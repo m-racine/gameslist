@@ -2,3 +2,58 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+<body>
+    <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
+    {% comment %}
+    Should break that apart into better language based on the format.
+    {% endcomment %}
+    <p>Purchased on {{game.purchase_date}} and finished on {{game.finish_date}}</p>
+    {% comment %}
+    Should break that apart into better language based whether it's finished
+    {% endcomment %}
+    <p>Aging: {{game.aging}}. PlayAging: {{game.play_aging}}</p>
+
+    {% if game.played %}<p>Played!</p>
+        {% if game.beaten %}<p>Beaten!</p>
+        {% elif game.abandoned %}<p>Abandoned :( </p>
+        {% else %}
+            <form action="{% url 'gameslist:beat_game' game.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit"> Beat!</button>
+            </form> 
+            <form action="{% url 'gameslist:abandon_game' game.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit"> Abandon.</button>
+            </form> 
+        {% endif %}
+        
+    {% else %}
+        <form action="{% url 'gameslist:play_game' game.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit"> Play!</button>
+        </form> 
+    {% endif %}
+    
+    {% if game.perler %}<p>Perler Made!</p>{% endif %}
+    {% if game.reviewed %}<p>Reviewed!</p>{% endif %}
+
+    <p>{{game.notes}}</p>
+
+    <form action="{% url 'gameslist:index' %}" method="get">
+        {% csrf_token %}
+        <button type="submit">Back to List</button>
+    </form> 
+<body>
+
+
+{% comment %}
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-is-its-importance-and-how-does-it-work 
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
+{% endcomment %}
