@@ -31,24 +31,38 @@ class GameListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Game.objects.all()
+        system = self.request.GET.get('system')
+        game_format = self.request.GET.get('format')
+        if system and game_format:
+            return Game.objects.filter(system=system).filter(game_format=game_format).order_by('name')
+        elif system:
+            return Game.objects.filter(system=system).order_by('name')
+        elif game_format:
+            return Game.objects.filter(game_format=game_format).order_by('name')
+        else:
+            return Game.objects.all().order_by('name')
 
-# class UserListView(ListView):
-#     model = User
-#     template_name = 'core/user_list.html'  # Default: <app_label>/<model_name>_list.html
-#     context_object_name = 'users'  # Default: object_list
+# class GameSystemListView(generic.ListView):
+#     model = Game
+#     template_name = 'gameslist/list.html'
+#     context_object_name = 'full_games_list'
 #     paginate_by = 10
-#     queryset = User.objects.all()  # Default: Model.objects.all()
+
+#     def get_queryset(self):
+#         return Game.objects.filter(system=system).order_by('name')
+
+# class GameListView(generic.ListView):
+#     model = Game
+#     template_name = 'gameslist/list.html'
+#     context_object_name = 'full_games_list'
+#     paginate_by = 10
+
+#     def get_queryset(self):
+#         return Game.objects.filter(system=system).order_by('name')
 
 class DetailView(generic.DetailView):
     model = Game
     template_name = 'gameslist/detail.html'
-
-    def get_queryset(self):
-         """
-         Excludes any questions that aren't published yet.
-         """
-         return Game.objects.filter(purchase_date__lte=timezone.now())
 
 class CreateGame(generic.CreateView):
     model = Game
@@ -56,7 +70,7 @@ class CreateGame(generic.CreateView):
     form_class = GameForm
 
     def get_success_url(self):
-        return reverse('gameslist:index', args=())
+        return reverse('gameslist:list', args=())
 
 #def new_game(request):
 #    form = Game()
@@ -83,20 +97,8 @@ def abandon_game(request, game_id):
     game.abandoned = True
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
-# def vote(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     try:
-#         selected_choice = question.choice_set.get(pk=request.POST['choice'])
-#     except (KeyError, Choice.DoesNotExist):
-#         # Redisplay the question voting form.
-#         return render(request, 'polls/detail.html', {
-#             'question': question,
-#             'error_message': "You didn't select a choice.",
-#         })
-#     else:
-#         selected_choice.votes += 1
-#         selected_choice.save()
-#         # Always return an HttpResponseRedirect after successfully dealing
-#         # with POST data. This prevents data from being posted twice if a
-#         # user hits the Back button.
-#         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+# def games_by_system(self):
+#     system = "3DS"
+#     urlparams = '?system=%s' % (system)    
+#     return redirect(reverse('gameslist:by_system')+urlparams)

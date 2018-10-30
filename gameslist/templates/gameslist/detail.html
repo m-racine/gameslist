@@ -39,21 +39,8 @@
 
     <p>{{game.notes}}</p>
 
-    <form action="{% url 'gameslist:index' %}" method="get">
+    <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List</button>
     </form> 
 <body>
-
-
-{% comment %}
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-is-its-importance-and-how-does-it-work 
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-<input type="submit" value="Vote" />
-</form>
-{% endcomment %}
