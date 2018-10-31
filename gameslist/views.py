@@ -98,6 +98,13 @@ def abandon_game(request, game_id):
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
+def flag_game(request, game_id):
+    game = get_object_or_404(Game, pk=game_id)
+    #set game.beat to true
+    game.flagged = True
+    game.save()
+    return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
+
 # def games_by_system(self):
 #     system = "3DS"
 #     urlparams = '?system=%s' % (system)    

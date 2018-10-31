@@ -36,7 +36,14 @@
     
     {% if game.perler %}<p>Perler Made!</p>{% endif %}
     {% if game.reviewed %}<p>Reviewed!</p>{% endif %}
-
+    {% if game.flagged %}
+        <p>Flagged!</p>
+    {% else %}
+            <form action="{% url 'gameslist:flag_game' game.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit"> Flag for revision!</button>
+            </form>
+    {% endif %}
     <p>{{game.notes}}</p>
 
     <form action="{% url 'gameslist:list' %}" method="get">

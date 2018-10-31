@@ -25,11 +25,11 @@ from .models import Game
 
 class GameAdmin(admin.ModelAdmin):
     list_display = ('name','system','location','game_format','notes','purchase_date','finish_date',
-                    'played','beaten','abandoned','perler','reviewed')
+                    'played','beaten','abandoned','perler','reviewed','flagged')
     exclude = ('release_date','developer','publisher','streamable','recordable','aging',
               'play_aging', 'full_time_to_beat','number_of_eps','aging_effect','aging_non_ep',
               'priority','number_of_players','metacritic','user_score','time_to_beat')
-    list_filter = ['system','location','played','beaten','game_format']
+    list_filter = ['system','location','played','beaten','game_format','flagged']
     search_fields = ['name']
 
 admin.site.register(Game, GameAdmin)

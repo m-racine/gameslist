@@ -75,6 +75,7 @@ class Game(models.Model):
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
+    flagged = models.BooleanField(default=False)
 
     aging = models.IntegerField(default=0)
     play_aging = models.IntegerField(default=0)
