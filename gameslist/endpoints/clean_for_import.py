@@ -102,7 +102,7 @@ def format_sub(form):
         print "{0} not in dictionary!".format(form)
         return form
 
-with open("/home/jracine/Downloads/Games Tracker - Owned or Beaten.csv",'r') as to_Clean:
+with open("/home/jracine/Downloads/Games Tracker - Owned or Beaten (1).csv",'r') as to_Clean:
     with open("/home/jracine/Downloads/cleaned.csv",'w') as cleaned:
         spamreader = csv.DictReader(to_Clean,delimiter=',')
         spamwriter = csv.DictWriter(cleaned, delimiter=',',fieldnames=['name','system','played','beaten',
@@ -110,12 +110,8 @@ with open("/home/jracine/Downloads/Games Tracker - Owned or Beaten.csv",'r') as 
                                                                        'finish_date','abandoned','perler','reviewed',
                                                                        'aging','play_aging'])
         #TEMP
-        x = 0
         spamwriter.writeheader()
         for row in spamreader:
-            x +=1
-            if x > 100:
-                break
             #print row
             #do the filtering
             cleaned_row = {}
