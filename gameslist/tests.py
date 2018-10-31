@@ -45,7 +45,7 @@ from django.shortcuts import reverse
 #     time = timezone.now() + datetime.timedelta(days=days)
 #     return Question.objects.create(question_text=question_text, pub_date=time)
 
-def create_game():
+#def create_game():
     
 
 #class WishModelTests(TestCase):
@@ -60,17 +60,17 @@ class GameIndexViewTests(TestCase):
         self.assertContains(response, "No games are available.")
         self.assertQuerysetEqual(response.context['new_games_list'], [])
 
-    def test_purchased_game(self):
-        """
-        Games with a purchase_date in the past are displayed on the
-        index page.
-        """
-        create_game(question_text="Purchased game.", days=-30)
-        response = self.client.get(reverse('gameslist:index'))
-        self.assertQuerysetEqual(
-            response.context['new_games_list'],
-            ['<Game: Purchased Game.>']
-        )
+    # def test_purchased_game(self):
+    #     """
+    #     Games with a purchase_date in the past are displayed on the
+    #     index page.
+    #     """
+    #     #create_game(question_text="Purchased game.", days=-30)
+    #     response = self.client.get(reverse('gameslist:index'))
+    #     self.assertQuerysetEqual(
+    #         response.context['new_games_list'],
+    #         ['<Game: Purchased Game.>']
+    #     )
 
 #     def test_future_question(self):
 #         """
