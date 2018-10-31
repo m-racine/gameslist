@@ -34,7 +34,6 @@ ALLOWED_HOSTS = ['games-test.rw3dvkmeac.us-west-2.elasticbeanstalk.com',
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
     'gameslist.apps.GameslistConfig',
     'django.contrib.admin',
     'django.contrib.auth',
