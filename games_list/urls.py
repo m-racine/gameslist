@@ -20,6 +20,5 @@ from gameslist import views
 
 urlpatterns = [
     url(r'^gameslist/', include('gameslist.urls', namespace="gameslist")),
-    url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
 ]

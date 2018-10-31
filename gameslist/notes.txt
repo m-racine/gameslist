@@ -34,6 +34,7 @@ other pc games should be verified
 
 TRANSACTION LOG
 
-+850 cycling
-+1000 cycling
++850 cycling 
++1000 cycling 
 -4000 KH Story so Far
++1050 cycling 
