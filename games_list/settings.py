@@ -26,8 +26,8 @@ SECRET_KEY = 'nmt-gpp(iwo=fpnf0*tf0=d@gxyhlt8xxpm2$!7ggj-9ixt851'
 DEBUG = True
 
 ALLOWED_HOSTS = ['games-test.rw3dvkmeac.us-west-2.elasticbeanstalk.com',
-                 'gameslist.griffonflightproductions.com',
-                 '127.0.0.1']
+                 'gameslist.griffonflightproductions.com','http://gameslist.griffonflightproductions.com',
+                 '127.0.0.1','192.168.255.91']
 
 
 # Application definition
