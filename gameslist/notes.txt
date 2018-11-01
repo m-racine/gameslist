@@ -182,3 +182,6 @@ TRANSACTION LOG
 +1000 cycling 
 -4000 KH Story so Far
 +1050 cycling 
++1025 cycling
+__
+-75 Remaining

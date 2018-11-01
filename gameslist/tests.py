@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.apps import apps
 from django.test import TestCase
 from django.shortcuts import reverse,get_object_or_404
 from .models import Game
 from .views import play_game
+from .apps import GameslistConfig
 # Create your tests here.
 
 #HOW DO I TEST admin.py
@@ -32,13 +34,59 @@ class GameIndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No games are available.")
         self.assertQuerysetEqual(response.context['new_games_list'], [])
+    def test_new_game_in_list(self):
+        game = create_game()
+
+        response = self.client.get(reverse('gameslist:index'))
+        self.assertEqual(response.status_code, 200)
+        #print response.context['new_games_list']
+        self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Test - STM>'])
+    
+    # def test_add_game(self):
+    #     response = self.client.get(reverse('gameslist:add'))
+    #     print response.status_code
+    #     print response
+    #     self.assertRedirects(response,reverse('gameslist:list'))
+
+class GameListViewTests(TestCase):
+    def test_list_filters(self):
+        create_game()
+        create_game("Test 2","3DS")
+        create_game("Test 3","3DS",False,False,"3DS","P")
+        #template_name = 'gameslist/list.html'
+        #context_object_name = 'full_games_list'
+        response = self.client.get(reverse('gameslist:list'))
+        self.assertEqual(response.status_code, 200)
+        #print response.context['full_games_list']
+        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test - STM>','<Game: Test 2 - 3DS>','<Game: Test 3 - 3DS>'])
+        #system = self.request.GET.get('system')
+        response = self.client.get(reverse('gameslist:list'),{'system': '3DS'})
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test 2 - 3DS>','<Game: Test 3 - 3DS>'])
+
+        response = self.client.get(reverse('gameslist:list'),{'system': '3DS','format': 'D'})
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test 2 - 3DS>'])
+
+        response = self.client.get(reverse('gameslist:list'),{'system': 'STM'})
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test - STM>'])
+
+        response = self.client.get(reverse('gameslist:list'),{'format': 'M'})
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['full_games_list'], [])
+
+        response = self.client.get(reverse('gameslist:list'),{'system':'GBA'})
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context['full_games_list'], [])
+
 
 class GameDetailViewTests(TestCase):
     def test_create_game(self):
         """
         """
         game = create_game()
-
+        game = get_object_or_404(Game,pk=game.id)
         self.assertEqual(game.name,"Test")
 
     def test_play_game(self):
@@ -80,3 +128,9 @@ class GameDetailViewTests(TestCase):
 #     {% csrf_token %}
 #     <button type="submit">Add New Game</button>
 # </form> 
+
+
+class GameslistConfigTest(TestCase):
+    def test_apps(self):
+        self.assertEqual(GameslistConfig.name, 'gameslist')
+        self.assertEqual(apps.get_app_config('gameslist').name, 'gameslist')
