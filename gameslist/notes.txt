@@ -1,3 +1,147 @@
+Once it is working at that level:
+
+SEARCH
+
+Fields on Main Sheet:
+
+MetaCritic
+    
+UserScore
+    
+Series
+    
+Alternate Names
+    
+TimeToBeat
+    
+CurrentTime
+    
+FullTimeToBeat
+    
+AgingEffect
+    
+AgingNonEp
+    
+TimesRecommended
+    
+TimesPassedOver
+    
+Priority
+    
+Streamable
+    
+Recordable
+    
+Number of Players
+    
+Substantial Progress
+    
+Pursued
+    
+Does Physical Exist
+    
+Duplicate
+    
+
+Filters
+Played and over 1000 old but not beaten
+No TimeToBeat
+No Developer
+
+
+Stats Page:
+
+Breakdown of Total, Beaten,Played,Unbeated,Unplayed,Abandoned
+    
+Date of Most Games Completed:
+    
+Average Completion Time:  (Days and Years)
+Median Aging:
+Median Completion Time: 
+Mode Aging:
+Mode Completion Time: 
+Range Aging:
+Range Completion Time: 
+    
+Games Purchased In 1995 (Included played and beaten breakdowns)
+Games Purchased In 1996 
+Games Purchased In 1997
+Games Purchased In 1998
+Games Purchased In 1999
+Games Purchased In 2000
+Games Purchased In 2001
+Games Purchased In 2002
+Games Purchased In 2003
+Games Purchased In 2004
+Games Purchased In 2005
+Games Purchased In 2006
+Games Purchased In 2007
+Games Purchased In 2008
+Games Purchased In 2009
+Games Purchased In 2010
+Games Purchased In 2011
+Games Purchased In 2012
+Games Purchased In 2013
+Games Purchased In 2014
+Games Purchased In 2015
+Games Purchased In 2016
+Games Purchased In 2017
+Games Purchased In 2018
+Games Purchases Post Employment
+
+3DS (also beaten and played)
+Android
+Digipen
+DS
+GameCube
+GBC
+GBA
+GoG
+Humble
+Itch.io
+Kindle
+NES
+N64
+Origin
+PC
+Playstation
+Playstation 2
+SNES
+Steam
+Switch
+Twitch
+Uplay
+Vita
+Wii
+Wii U
+Xbox 360
+Xbox One
+
+Physical (also beaten and played?)
+Digital
+Borrowed
+Missing
+Returned
+Lent
+Other
+
+
+=COUNT(FILTER('Owned or Beaten'!Q2:Q,'Owned or Beaten'!J2:J="No",'Owned or Beaten'!H2:H="Physical")) -- physical "Backlogged" games
+
+Aging Record:
+
+Import Data
+    
+Table add script
+    
+
+Party Games List
+
+
+Dupes Page
+    
+
+Jake's Page
 
 
 Game

@@ -84,6 +84,7 @@ def beat_game(request, game_id):
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
+#def play_game(request, game_id):
 def play_game(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
     #set game.beat to true
