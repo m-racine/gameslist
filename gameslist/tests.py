@@ -134,3 +134,5 @@ class GameslistConfigTest(TestCase):
     def test_apps(self):
         self.assertEqual(GameslistConfig.name, 'gameslist')
         self.assertEqual(apps.get_app_config('gameslist').name, 'gameslist')
+
+#https://github.com/django/django/blob/master/tests/modeladmin/tests.py

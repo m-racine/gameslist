@@ -1,47 +1,13 @@
+
+setting a system to a valid and an invalid value
+ ditto location?
+setting a format to a valid and an invalid value
+making sure __str__ is returning what we would expect
+most fields have nothing going on.
+Form Test
+Admin Tests
+
 Once it is working at that level:
-
-SEARCH
-
-Fields on Main Sheet:
-
-MetaCritic
-    
-UserScore
-    
-Series
-    
-Alternate Names
-    
-TimeToBeat
-    
-CurrentTime
-    
-FullTimeToBeat
-    
-AgingEffect
-    
-AgingNonEp
-    
-TimesRecommended
-    
-TimesPassedOver
-    
-Priority
-    
-Streamable
-    
-Recordable
-    
-Number of Players
-    
-Substantial Progress
-    
-Pursued
-    
-Does Physical Exist
-    
-Duplicate
-    
 
 Filters
 Played and over 1000 old but not beaten
@@ -183,5 +149,15 @@ TRANSACTION LOG
 -4000 KH Story so Far
 +1050 cycling 
 +1025 cycling
++1060 cycling
+-7000 Grim Fandango PS4+VINYL
 __
--75 Remaining
+-6015 Remaining
+
+Future:
+
+
+https://www.fangamer.com/products/undertale-game-switch-ps4-vita
+https://read.macmillan.com/the-adventure-zone/
+https://www.fangamer.com/products/massive-chalice-game
+https://www.fangamer.com/products/slime-rancher-collectors-edition
