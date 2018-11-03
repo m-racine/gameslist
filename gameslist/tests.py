@@ -134,5 +134,25 @@ class GameslistConfigTest(TestCase):
     def test_apps(self):
         self.assertEqual(GameslistConfig.name, 'gameslist')
         self.assertEqual(apps.get_app_config('gameslist').name, 'gameslist')
+        
+    def basic_session_test(self):
+        #<td><a href={% url 'gameslist:detail' game.id page={{page_obj.current_page_number}} %}>{{ game.name }}</td>
+        # Get a session value by its key (e.g. 'my_car'), raising a KeyError if the key is not present
+        response = self.client.get(reverse('gameslist:list'))
+        request = response.request
+        session = request['session']
+        my_car = request['session']['my_car']
+
+        # Get a session value, setting a default if it is not present ('mini')
+        my_car = request.session.get('my_car', 'mini')
+
+        # Set a session value
+        request.session['my_car'] = 'mini'
+        self.assertContains(request.session,'my_car')
+        # Delete a session value
+        #del request.session['my_car']
+
+
+
 
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py
