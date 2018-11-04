@@ -80,6 +80,9 @@ class GameListViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['full_games_list'], [])
 
+        session = self.client.session
+        self.assertEqual(session['system'],'GBA')
+
 
 class GameDetailViewTests(TestCase):
     def test_create_game(self):
@@ -139,18 +142,18 @@ class GameslistConfigTest(TestCase):
         #<td><a href={% url 'gameslist:detail' game.id page={{page_obj.current_page_number}} %}>{{ game.name }}</td>
         # Get a session value by its key (e.g. 'my_car'), raising a KeyError if the key is not present
         response = self.client.get(reverse('gameslist:list'))
-        request = response.request
-        session = request['session']
-        my_car = request['session']['my_car']
-
+        session = self.client.session
+        #my_car = session['my_car']
+        session['my_car'] = 'mini'
         # Get a session value, setting a default if it is not present ('mini')
-        my_car = request.session.get('my_car', 'mini')
+        my_car = session.get('my_car', 'mini')
 
         # Set a session value
-        request.session['my_car'] = 'mini'
-        self.assertContains(request.session,'my_car')
+        print my_car
+        self.assertEqual(session['my_car'],'mini')
         # Delete a session value
         #del request.session['my_car']
+
 
 
 

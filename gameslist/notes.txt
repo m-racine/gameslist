@@ -151,8 +151,10 @@ TRANSACTION LOG
 +1025 cycling
 +1060 cycling
 -7000 Grim Fandango PS4+VINYL
+-10000 Persona Dancing Duo
+-3200 Phantom Hourglass + Professor Layton
 __
--6015 Remaining
+-19215 Remaining
 
 Future:
 
