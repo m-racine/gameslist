@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from datetime import date
-import logging
+import logging,re
 from django.shortcuts import render,get_object_or_404, reverse
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views import generic
@@ -31,12 +31,23 @@ class GameListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        #a little messy
-
-        system = self.request.session['system']
-        game_format = self.request.session['format']
-        logger.debug(system)
-        logger.debug(game_format)
+        request_system = self.request.GET.get('system')
+        #self.request.GET.set('s')
+        request_game_format = self.request.GET.get('format')
+        if 'HTTP_REFERER' in self.request.environ:
+            logger.debug(self.request.environ['HTTP_REFERER'])
+            if re.search(r'(?P<pk>[0-9]+)/$',self.request.environ['HTTP_REFERER']):
+                logger.debug("MATCH")
+            else:
+                logger.debug("NOT A MATCH")
+        if 'system' in self.request.session:
+            system = self.request.session['system']
+        else:
+            system = False
+        if 'format' in self.request.session:
+            game_format = self.request.session['format']
+        else:
+            game_format = False
         if system and game_format:
             return Game.objects.filter(system=system).filter(game_format=game_format).order_by('name')
         elif system:

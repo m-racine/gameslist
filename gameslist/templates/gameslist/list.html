@@ -5,16 +5,16 @@
   <thead>
     <tr>
       <th>Game</th>
-      <th><a href="?{% session_delete request 'system' %}">System</a></th>
-      <th><a href="?{% session_delete request 'format' %}">Format</a></th>
+      <th><a href="?{% url_replace request 'system'  '' %}">System</a></th>
+      <th><a href="?{% url_replace request 'format'  '' %}">Format</a></th>
     </tr>
   </thead>
   <tbody>
     {% for game in full_games_list %}
       <tr>
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
-        <td><a href="?{% session_replace request 'system' game.system %}">{{ game.get_system_display }}</a></td>
-        <td><a href="?{% session_replace request 'format' game.game_format %}">{{ game.get_game_format_display }}</a></td>
+        <td><a href="?{% url_replace request 'system' game.system %}">{{ game.get_system_display }}</a></td>
+        <td><a href="?{% url_replace request 'format' game.game_format %}">{{ game.get_game_format_display }}</a></td>
       </tr>
     {% endfor %}
   </tbody>
