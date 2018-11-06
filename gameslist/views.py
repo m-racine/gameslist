@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from datetime import date
-
+import logging
 from django.shortcuts import render,get_object_or_404, reverse
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views import generic
@@ -12,7 +12,7 @@ from django.views.generic.edit import CreateView
 from .models import Game,Wish,GameForm
 
 # Create your views here.
-
+logger = logging.getLogger('MYAPP')
 #https://stackoverflow.com/questions/21153852/plotting-graphs-in-numpy-scipy
 
 class IndexView(generic.ListView):
@@ -31,8 +31,12 @@ class GameListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        system = self.request.GET.get('system')
-        game_format = self.request.GET.get('format')
+        #a little messy
+
+        system = self.request.session['system']
+        game_format = self.request.session['format']
+        logger.debug(system)
+        logger.debug(game_format)
         if system and game_format:
             return Game.objects.filter(system=system).filter(game_format=game_format).order_by('name')
         elif system:
@@ -41,6 +45,14 @@ class GameListView(generic.ListView):
             return Game.objects.filter(game_format=game_format).order_by('name')
         else:
             return Game.objects.all().order_by('name')
+
+def set_system(request, system):
+    request.session['system'] = system
+    return HttpResponseRedirect(reverse('gameslist:list'))
+
+def set_format(request, game_format):
+    request.session['format'] = game_format
+    return HttpResponseRedirect(reverse('gameslist:list'))
 
 # class GameSystemListView(generic.ListView):
 #     model = Game
