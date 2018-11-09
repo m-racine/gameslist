@@ -52,4 +52,11 @@
         {% csrf_token %}
         <button type="submit">Back to List</button>
     </form> 
+
+<h3>Session tests</h3>
+<p>System: {{request.session.system}}</p>
+<p>Format: {{request.session.format}}</p>
+<p>Modified: {{request.session.modified}}</p>
+
+
 <body>

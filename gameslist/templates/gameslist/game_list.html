@@ -1,0 +1,9 @@
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for game in filter.qs %}
+    <li>{{ game.name }} - {{ game.get_system_display }}</li>
+  {% endfor %}
+  </ul>

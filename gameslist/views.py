@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.views.generic.edit import CreateView
 
 from .models import Game,Wish,GameForm
+from .filters import GameFilter
 
 # Create your views here.
 logger = logging.getLogger('MYAPP')
@@ -23,47 +24,88 @@ class IndexView(generic.ListView):
         return Game.objects.filter(
             purchase_date__lte=timezone.now()
         ).order_by('-purchase_date')[:5]
-
-class GameListView(generic.ListView):
+    
+def filtered_list(request):
     model = Game
-    template_name = 'gameslist/list.html'
-    context_object_name = 'full_games_list'
     paginate_by = 10
+    game_list = Game.objects.all()
 
-    def get_queryset(self):
-        request_system = self.request.GET.get('system')
-        #self.request.GET.set('s')
-        request_game_format = self.request.GET.get('format')
-        if 'HTTP_REFERER' in self.request.environ:
-            logger.debug(self.request.environ['HTTP_REFERER'])
-            if re.search(r'(?P<pk>[0-9]+)/$',self.request.environ['HTTP_REFERER']):
-                logger.debug("MATCH")
-            else:
-                logger.debug("NOT A MATCH")
-        if 'system' in self.request.session:
-            system = self.request.session['system']
-        else:
-            system = False
-        if 'format' in self.request.session:
-            game_format = self.request.session['format']
-        else:
-            game_format = False
-        if system and game_format:
-            return Game.objects.filter(system=system).filter(game_format=game_format).order_by('name')
-        elif system:
-            return Game.objects.filter(system=system).order_by('name')
-        elif game_format:
-            return Game.objects.filter(game_format=game_format).order_by('name')
-        else:
-            return Game.objects.all().order_by('name')
+    game_filter = GameFilter(request.GET, queryset=game_list)
+    # game_filter.keys()
+    print vars(game_filter)
+    return render(request, 'gameslist/list.html', {'filter': game_filter})
+    # def get_queryset(self):
+    #https://stackoverflow.com/questions/44048156/django-filter-use-paginations
+# def my_view(request):
+#     # BTW you do not need .all() after a .filter() 
+#     # local_url.objects.filter(global_url__id=1) will do
+#     filtered_qs = filters.MyModelFilter(
+#                       request.GET, 
+#                       queryset=MyModel.objects.all()
+#                   ).qs
+#     paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
 
-def set_system(request, system):
-    request.session['system'] = system
-    return HttpResponseRedirect(reverse('gameslist:list'))
+#     page = request.GET.get('page')
+#     try:
+#         response = paginator.page(page)
+#     except PageNotAnInteger:
+#         response = paginator.page(1)
+#     except EmptyPage:
+#         response = paginator.page(paginator.num_pages)
 
-def set_format(request, game_format):
-    request.session['format'] = game_format
-    return HttpResponseRedirect(reverse('gameslist:list'))
+#     return render(
+#         request, 
+#         'your_template.html', 
+#         {'response': response}
+#     )
+
+    #     system = game_format = False
+    #     if 'HTTP_REFERER' in self.request.environ:
+    #         logger.debug(self.request.environ['HTTP_REFERER'])
+    #         if re.search(r'(?P<pk>[0-9]+)/$',self.request.environ['HTTP_REFERER']):
+    #             if self.request.session.test_cookie_worked():
+    #                 self.request.session.delete_test_cookie()
+    #                 logger.info("IT WORKED")
+    #                 #return HttpResponse("You're logged in.")
+    #             else:
+    #                 logger.error("COOKIE NO WORK")
+    #                 #return HttpResponse("Please enable cookies and try again.")
+    #             if 'system' in self.request.session:
+    #                 logger.debug('known system')
+    #                 system = self.request.session['system']
+    #             if 'format' in self.request.session:
+    #                 game_format = self.request.session['format']
+    #         else: #not coing form other page
+    #             system = self.request.GET.get('system')
+    #             game_format = self.request.GET.get('format')
+    #             self.request.session.set_test_cookie()
+    #     else: #not coing form other page
+    #         system = self.request.GET.get('system')
+    #         game_format = self.request.GET.get('format')
+    #     self.request.session['system'] = system
+    #     self.request.session['format'] = game_format
+    #     if system and game_format:
+    #         return Game.objects.filter(system=system).filter(game_format=game_format).order_by('name')
+    #     elif system:
+    #         return Game.objects.filter(system=system).order_by('name')
+    #     elif game_format:
+    #         return Game.objects.filter(game_format=game_format).order_by('name')
+    #     else:
+    #         return Game.objects.all().order_by('name')
+
+def search(request):
+    game_list = Game.objects.all()
+    game_filter = GameFilter(request.GET, queryset=game_list)
+    return render(request, 'gameslist/game_list.html', {'filter': game_filter})
+
+
+# def set_system(request, system):
+#     request.session['system'] = system
+#     return HttpResponseRedirect(reverse('gameslist:list'))
+
+# def set_format(request, game_format):
+#     request.session['format'] = game_format
+#     return HttpResponseRedirect(reverse('gameslist:list'))
 
 # class GameSystemListView(generic.ListView):
 #     model = Game

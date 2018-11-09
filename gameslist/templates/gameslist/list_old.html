@@ -1,29 +1,24 @@
 {% load gameslist_templatetags %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<form method="get">
-  {{ filter.form.as_p }}
-  <button type="submit">Search</button>
-</form>
+
 <table class="table table-bordered">
   <thead>
     <tr>
       <th>Game</th>
-      <th>System</th>
-      <th>Format</th>
+      <th><a href="?{% url_replace request 'system'  '' %}">System</a></th>
+      <th><a href="?{% url_replace request 'format'  '' %}">Format</a></th>
     </tr>
   </thead>
   <tbody>
-    {% for game in filter.qs %}
+    {% for game in full_games_list %}
       <tr>
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
-        <td>{{ game.get_system_display }}</td>
-        <td>{{ game.get_game_format_display }}</td>
+        <td><a href="?{% url_replace request 'system' game.system %}">{{ game.get_system_display }}</a></td>
+        <td><a href="?{% url_replace request 'format' game.game_format %}">{{ game.get_game_format_display }}</a></td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
-
-
 
 {% if is_paginated %}
   <ul class="pagination">
@@ -57,10 +52,18 @@
   </ul>
 {% endif %}
 
+{% comment %}
+Setting up adding a game using a form to but some structure for probable user auth in the future
+{% endcomment %}
 <form action="{% url 'gameslist:add'%}" method="post">
     {% csrf_token %}
     <button type="submit">Add New Game</button>
 </form> 
 
+
+<h3>Session tests</h3>
+<p>System: {{request.session.system}}</p>
+<p>Format: {{request.session.format}}</p>
+<p>Modified: {{request.session.modified}}</p>
 
 
