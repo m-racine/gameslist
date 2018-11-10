@@ -3,17 +3,20 @@ from __future__ import unicode_literals
 
 from datetime import date
 import logging,re
-from django.shortcuts import render,get_object_or_404, reverse
+import urlparse
+import urllib
+from django.shortcuts import render,get_object_or_404, reverse, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views import generic
 from django.utils import timezone
 from django.views.generic.edit import CreateView
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Game,Wish,GameForm
 from .filters import GameFilter
 
 # Create your views here.
 logger = logging.getLogger('MYAPP')
+YOUR_PAGE_SIZE = 10
 #https://stackoverflow.com/questions/21153852/plotting-graphs-in-numpy-scipy
 
 class IndexView(generic.ListView):
@@ -26,104 +29,76 @@ class IndexView(generic.ListView):
         ).order_by('-purchase_date')[:5]
     
 def filtered_list(request):
+    logger.debug(request)
+    logger.debug(request.GET)
     model = Game
     paginate_by = 10
-    game_list = Game.objects.all()
-
+    game_list = Game.objects.all().order_by('name')
+    #if request.META.get('HTTP_REFERER'):
+    logger.debug("BACK")
+    if 'Current_Search' in request.session:
+        logger.debug(request.session['Current_Search'])
+    else:
+        logger.debug(request.session.keys())
     game_filter = GameFilter(request.GET, queryset=game_list)
-    # game_filter.keys()
-    print vars(game_filter)
-    return render(request, 'gameslist/list.html', {'filter': game_filter})
-    # def get_queryset(self):
+    filtered_qs = game_filter.qs
+    paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
+    page = request.GET.get('page')
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+    except:
+        response = paginator.page(1)
+    #logger.error(response)
+    #logger.error(vars(response))
+    logger.debug(request.META.get('HTTP_REFERER'))
+    logger.debug(request.session)
+    return render(
+         request, 
+         'gameslist/list.html', 
+         {'response': response,'filter':game_filter}
+    )
+
+def move_to_detail_view(request, pk):
+    logger.debug(request.META.get('HTTP_REFERER'))
+    request.session['Current_Search'] = request.META.get('HTTP_REFERER')
+    if 'Current_Search' in request.session:
+        logger.debug(request.session['Current_Search'])
+        logger.debug(request.session.modified)
+    else:
+        logger.debug(request.session.keys())
+    game = get_object_or_404(Game, pk=pk)
+    return render(request, 'gameslist/detail.html', {'game':game})
+
+def return_to_list_view(request,search):
+    # logger.debug(search)
+    # logger.debug(type(search))
+    # parsed = urlparse.urlparse(search)
+    # logger.debug(urlparse.parse_qs(parsed.query)['system'])
+    # response = redirect('gameslist:list')
+    # return response
+    logger.debug(request.META.get('HTTP_REFERER'))
+    request.session['Current_Search'] = request.META.get('HTTP_REFERER')
+    if 'Current_Search' in request.session:
+        logger.debug(request.session['Current_Search'])
+        logger.debug(request.session.modified)
+    else:
+        logger.debug(request.session.keys())
+    game = get_object_or_404(Game, pk=pk)
+    return render(request, 'gameslist/detail.html', {'game':game})
+
+
+#    return render(request, 'gameslist/list.html', {'filter': game_filter})
     #https://stackoverflow.com/questions/44048156/django-filter-use-paginations
-# def my_view(request):
-#     # BTW you do not need .all() after a .filter() 
-#     # local_url.objects.filter(global_url__id=1) will do
-#     filtered_qs = filters.MyModelFilter(
-#                       request.GET, 
-#                       queryset=MyModel.objects.all()
-#                   ).qs
-#     paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
-
-#     page = request.GET.get('page')
-#     try:
-#         response = paginator.page(page)
-#     except PageNotAnInteger:
-#         response = paginator.page(1)
-#     except EmptyPage:
-#         response = paginator.page(paginator.num_pages)
-
-#     return render(
-#         request, 
-#         'your_template.html', 
-#         {'response': response}
-#     )
-
-    #     system = game_format = False
-    #     if 'HTTP_REFERER' in self.request.environ:
-    #         logger.debug(self.request.environ['HTTP_REFERER'])
-    #         if re.search(r'(?P<pk>[0-9]+)/$',self.request.environ['HTTP_REFERER']):
-    #             if self.request.session.test_cookie_worked():
-    #                 self.request.session.delete_test_cookie()
-    #                 logger.info("IT WORKED")
-    #                 #return HttpResponse("You're logged in.")
-    #             else:
-    #                 logger.error("COOKIE NO WORK")
-    #                 #return HttpResponse("Please enable cookies and try again.")
-    #             if 'system' in self.request.session:
-    #                 logger.debug('known system')
-    #                 system = self.request.session['system']
-    #             if 'format' in self.request.session:
-    #                 game_format = self.request.session['format']
-    #         else: #not coing form other page
-    #             system = self.request.GET.get('system')
-    #             game_format = self.request.GET.get('format')
-    #             self.request.session.set_test_cookie()
-    #     else: #not coing form other page
-    #         system = self.request.GET.get('system')
-    #         game_format = self.request.GET.get('format')
-    #     self.request.session['system'] = system
-    #     self.request.session['format'] = game_format
-    #     if system and game_format:
-    #         return Game.objects.filter(system=system).filter(game_format=game_format).order_by('name')
-    #     elif system:
-    #         return Game.objects.filter(system=system).order_by('name')
-    #     elif game_format:
-    #         return Game.objects.filter(game_format=game_format).order_by('name')
-    #     else:
-    #         return Game.objects.all().order_by('name')
 
 def search(request):
     game_list = Game.objects.all()
     game_filter = GameFilter(request.GET, queryset=game_list)
     return render(request, 'gameslist/game_list.html', {'filter': game_filter})
 
-
-# def set_system(request, system):
-#     request.session['system'] = system
-#     return HttpResponseRedirect(reverse('gameslist:list'))
-
-# def set_format(request, game_format):
-#     request.session['format'] = game_format
-#     return HttpResponseRedirect(reverse('gameslist:list'))
-
-# class GameSystemListView(generic.ListView):
-#     model = Game
-#     template_name = 'gameslist/list.html'
-#     context_object_name = 'full_games_list'
-#     paginate_by = 10
-
-#     def get_queryset(self):
-#         return Game.objects.filter(system=system).order_by('name')
-
-# class GameListView(generic.ListView):
-#     model = Game
-#     template_name = 'gameslist/list.html'
-#     context_object_name = 'full_games_list'
-#     paginate_by = 10
-
-#     def get_queryset(self):
-#         return Game.objects.filter(system=system).order_by('name')
 
 class DetailView(generic.DetailView):
     model = Game
@@ -136,11 +111,6 @@ class CreateGame(generic.CreateView):
 
     def get_success_url(self):
         return reverse('gameslist:list', args=())
-
-#def new_game(request):
-#    form = Game()
-#    return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
-    
 
 def beat_game(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
@@ -170,12 +140,6 @@ def flag_game(request, game_id):
     game.flagged = True
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
-
-# def games_by_system(self):
-#     system = "3DS"
-#     urlparams = '?system=%s' % (system)    
-#     return redirect(reverse('gameslist:by_system')+urlparams)
-
 
 
 # # Some standard Django stuff

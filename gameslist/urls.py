@@ -9,7 +9,7 @@ urlpatterns = [
     #url(r'^by_system(?P<system>\D+)$',views.GameSystemListView.as_view(),name='by_system'),
     #url(r'^(?P<system>[A-z]+)$', views.GameListView.as_view(), name='list'),
     url(r'^add/',views.CreateGame.as_view(), name='add'),
-    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+    url(r'^(?P<pk>[0-9]+)/$', views.move_to_detail_view, name='detail'),
     url(r'^(?P<game_id>[0-9]+)/beat_game/$', views.beat_game, name='beat_game'),
     url(r'^(?P<game_id>[0-9]+)/play_game/$', views.play_game, name='play_game'),
     url(r'^(?P<game_id>[0-9]+)/abandon_game/$', views.abandon_game, name='abandon_game'),
@@ -17,4 +17,5 @@ urlpatterns = [
     #url(r'^search/$', views.search, name='search'),
     #url(r'^set_system/(?P<system>[\w]*)$', views.set_system, name='set_system'),
     #url(r'^set_format/(?P<format>[\w]*)$', views.set_format, name='set_format'),
+    url(r'^(?P<search>[\w:/.?&=]*)/$',views.return_to_list_view,name='return'),
     url(r'^$', views.filtered_list, name='list')]

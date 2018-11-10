@@ -1,9 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <h1>{{ game.name }}</h1>
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+<h2>{{ request.session.Current_Search }}</h2>
 <body>
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
     {% comment %}
@@ -48,15 +46,8 @@
     {% endif %}
     <p>{{game.notes}}</p>
 
-    <form action="{% url 'gameslist:list' %}" method="get">
+    <form action="{% url 'gameslist:return' request.session.Current_Search %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List</button>
     </form> 
-
-<h3>Session tests</h3>
-<p>System: {{request.session.system}}</p>
-<p>Format: {{request.session.format}}</p>
-<p>Modified: {{request.session.modified}}</p>
-
-
 <body>
