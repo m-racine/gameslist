@@ -1,5 +1,8 @@
 {% load gameslist_templatetags %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<h3>{{ request.session.page}}</h3>
+<h3>{{ request.session.system}}</h3>
+<h3>{{ request.session.game_format}}</h3>
 <form method="get">
   {{ filter.form.as_p }}
   <button type="submit">Search</button>
@@ -15,7 +18,6 @@
   <tbody>
     {% for game in response.object_list %}
       <tr>
-        {%comment%}<td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>{%endcomment%}
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
         <td>{{ game.get_system_display }}</td>
         <td>{{ game.get_game_format_display }}</td>

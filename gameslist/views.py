@@ -29,33 +29,29 @@ class IndexView(generic.ListView):
         ).order_by('-purchase_date')[:5]
     
 def filtered_list(request):
-    logger.debug(request)
-    logger.debug(request.GET)
     model = Game
     paginate_by = 10
     game_list = Game.objects.all().order_by('name')
-    #if request.META.get('HTTP_REFERER'):
-    logger.debug("BACK")
-    if 'Current_Search' in request.session:
-        logger.debug(request.session['Current_Search'])
-    else:
-        logger.debug(request.session.keys())
     game_filter = GameFilter(request.GET, queryset=game_list)
     filtered_qs = game_filter.qs
     paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
     page = request.GET.get('page')
     try:
         response = paginator.page(page)
+        request.session['page'] = page
     except PageNotAnInteger:
         response = paginator.page(1)
+        request.session['page'] = 1
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
+        request.session['page'] = paginator.num_pages
     except:
         response = paginator.page(1)
-    #logger.error(response)
-    #logger.error(vars(response))
-    logger.debug(request.META.get('HTTP_REFERER'))
-    logger.debug(request.session)
+        request.session['page'] = 1
+    for x in ["system","game_format"]:
+        if request.GET.get(x):
+            request.session[x] = request.GET.get(x)
+    logger.debug(request.session.keys())
     return render(
          request, 
          'gameslist/list.html', 
@@ -63,32 +59,23 @@ def filtered_list(request):
     )
 
 def move_to_detail_view(request, pk):
-    logger.debug(request.META.get('HTTP_REFERER'))
-    request.session['Current_Search'] = request.META.get('HTTP_REFERER')
-    if 'Current_Search' in request.session:
-        logger.debug(request.session['Current_Search'])
-        logger.debug(request.session.modified)
-    else:
-        logger.debug(request.session.keys())
+    logger.debug(request.session.keys())
     game = get_object_or_404(Game, pk=pk)
     return render(request, 'gameslist/detail.html', {'game':game})
 
-def return_to_list_view(request,search):
+def return_to_list_view(request):
     # logger.debug(search)
     # logger.debug(type(search))
     # parsed = urlparse.urlparse(search)
     # logger.debug(urlparse.parse_qs(parsed.query)['system'])
     # response = redirect('gameslist:list')
     # return response
-    logger.debug(request.META.get('HTTP_REFERER'))
-    request.session['Current_Search'] = request.META.get('HTTP_REFERER')
-    if 'Current_Search' in request.session:
-        logger.debug(request.session['Current_Search'])
-        logger.debug(request.session.modified)
-    else:
-        logger.debug(request.session.keys())
-    game = get_object_or_404(Game, pk=pk)
-    return render(request, 'gameslist/detail.html', {'game':game})
+    logger.debug(request.session.keys())
+    args = {}
+    for x in ["system","game_format","page"]:
+        if x in request.session:
+            args[x] = request.session[x]
+    return HttpResponseRedirect(reverse('gameslist:list',args=args))
 
 
 #    return render(request, 'gameslist/list.html', {'filter': game_filter})
@@ -141,7 +128,23 @@ def flag_game(request, game_id):
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
+#...
+def stop_tracking(request):
+#...
+    return HttpResponse("Stop?")
 
+def test_session(request):
+    request.session.set_test_cookie()
+    return HttpResponse("Testing session cookie")
+
+
+def test_delete(request):
+    if request.session.test_cookie_worked():
+        request.session.delete_test_cookie()
+        response = HttpResponse("Cookie test passed")
+    else:
+        response = HttpResponse("Cookie test failed")
+    return response
 # # Some standard Django stuff
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
 # from django.template import Context, loader
