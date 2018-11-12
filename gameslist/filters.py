@@ -11,4 +11,6 @@ from .models import Game
 class GameFilter(django_filters.FilterSet):
     class Meta:
         model = Game
-        fields = ['system','game_format']
+        fields = {'name':['contains'],
+                  'system':['exact'],
+                  'game_format':['exact']}

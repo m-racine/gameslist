@@ -4,13 +4,7 @@
 
 <body>
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
-    {% comment %}
-    Should break that apart into better language based on the format.
-    {% endcomment %}
     <p>Purchased on {{game.purchase_date}} and finished on {{game.finish_date}}</p>
-    {% comment %}
-    Should break that apart into better language based whether it's finished
-    {% endcomment %}
     <p>Aging: {{game.aging}}. PlayAging: {{game.play_aging}}</p>
 
     {% if game.played %}<p>Played!</p>

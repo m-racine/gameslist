@@ -1,3 +1,4 @@
+___
 
 setting a system to a valid and an invalid value
  ditto location?
@@ -7,18 +8,22 @@ most fields have nothing going on.
 Form Test
 Admin Tests
 
-Once it is working at that level:
+___
+
 
 Filters
 Played and over 1000 old but not beaten
 No TimeToBeat
 No Developer
 
+___
 
 Stats Page:
 
 Breakdown of Total, Beaten,Played,Unbeated,Unplayed,Abandoned
     
+___
+
 Date of Most Games Completed:
     
 Average Completion Time:  (Days and Years)
@@ -54,6 +59,8 @@ Games Purchased In 2016
 Games Purchased In 2017
 Games Purchased In 2018
 Games Purchases Post Employment
+
+___
 
 3DS (also beaten and played)
 Android
@@ -91,24 +98,31 @@ Returned
 Lent
 Other
 
+___
 
 =COUNT(FILTER('Owned or Beaten'!Q2:Q,'Owned or Beaten'!J2:J="No",'Owned or Beaten'!H2:H="Physical")) -- physical "Backlogged" games
 
+___
+
 Aging Record:
+
+___
 
 Import Data
     
+___
+
 Table add script
     
-
+___
 Party Games List
-
+___
 
 Dupes Page
     
-
+___
 Jake's Page
-
+___
 
 Game
 TO DO
@@ -160,8 +174,10 @@ TRANSACTION LOG
 +1010 cycling
 -4049 Battle Chef Brigade
 -1050 Brutal Legend
++700 cycling
++700 cycling
 _
--30359 Remaining
+-29000 Remaining (slight rounding)
 
 Future:
 

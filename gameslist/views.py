@@ -32,15 +32,12 @@ def filtered_list(request,**kwargs):
     model = Game
     paginate_by = 10
     game_list = Game.objects.all().order_by('name')
-    logger.debug(request)
-    logger.debug(request.META.get('QUERY_STRING'))
+
     if "&" not in request.META.get('QUERY_STRING') and request.META.get('HTTP_REFERER'):
         match = re.search(r'([\d]+)/$',request.META.get('HTTP_REFERER'))
         if match:
             if check_url_match(reverse('gameslist:detail', args=(match.group(1),)),request.META.get('HTTP_REFERER')):
-                return HttpResponseRedirect(reverse('gameslist:list')+"?page={0}&system={1}&game_format={2}".format(request.session['page'],
-                                                                     request.session['system'],
-                                                                     request.session['game_format']))
+                return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
             else:
                 logger.debug("Referer was not a match.")
                 logger.debug(request.META.get('HTTP_REFERER'))
@@ -57,21 +54,13 @@ def filtered_list(request,**kwargs):
     
     try:
         response = paginator.page(page)
-        request.session['page'] = page
     except PageNotAnInteger:
         response = paginator.page(1)
-        request.session['page'] = 1
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
-        request.session['page'] = paginator.num_pages
     except:
         response = paginator.page(1)
-        request.session['page'] = 1
-    for x in ["system","game_format"]:
-        if request.GET.get(x):
-            request.session[x] = request.GET.get(x)
-        else:
-            request.session[x] = ""
+    request.session['query_string'] =request.GET.urlencode()
     return render(
          request, 
          'gameslist/list.html', 
@@ -88,15 +77,6 @@ def move_to_detail_view(request, pk):
     logger.debug(request.session.keys())
     game = get_object_or_404(Game, pk=pk)
     return render(request, 'gameslist/detail.html', {'game':game})
-
-#    return render(request, 'gameslist/list.html', {'filter': game_filter})
-    #https://stackoverflow.com/questions/44048156/django-filter-use-paginations
-
-def search(request):
-    game_list = Game.objects.all()
-    game_filter = GameFilter(request.GET, queryset=game_list)
-    return render(request, 'gameslist/game_list.html', {'filter': game_filter})
-
 
 class DetailView(generic.DetailView):
     model = Game
