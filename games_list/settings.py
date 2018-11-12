@@ -24,11 +24,11 @@ SECRET_KEY = 'nmt-gpp(iwo=fpnf0*tf0=d@gxyhlt8xxpm2$!7ggj-9ixt851'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ADMINS = [('Morgan','griffonlord@gmail.com')]
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['games-test.rw3dvkmeac.us-west-2.elasticbeanstalk.com',
                  'gameslist.griffonflightproductions.com',
-                 '127.0.0.1','192.168.255.91']
+                 '127.0.0.1','192.168.255.91','10.1.10.54','10.1.10.225']
 
 
 # Application definition
@@ -175,12 +175,12 @@ NOSE_ARGS = [
     '--cover-html'
 ]
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
+#SECURE_CONTENT_TYPE_NOSNIFF = True
+#SECURE_BROWSER_XSS_FILTER = True
 SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = "DENY"
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+#X_FRAME_OPTIONS = "DENY"
 
 # ?: (security.W004) You have not set a value for the SECURE_HSTS_SECONDS setting. If your entire site is served only over SSL, you may want to consider setting a value and enabling HTTP Strict Transport Security. Be sure to read the documentation first; enabling HSTS carelessly can cause serious, irreversible problems.
 # ?: (security.W006) Your SECURE_CONTENT_TYPE_NOSNIFF setting is not set to True, so your pages will not be served with an 'x-content-type-options: nosniff' header. You should consider enabling this header to prevent the browser from identifying content types incorrectly.

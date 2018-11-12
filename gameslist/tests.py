@@ -55,30 +55,36 @@ class GameListViewTests(TestCase):
         create_game("Test 3","3DS",False,False,"3DS","P")
         #template_name = 'gameslist/list.html'
         #context_object_name = 'full_games_list'
-        response = self.client.get(reverse('gameslist:list'))
-        self.assertEqual(response.status_code, 200)
-        #print response.context['full_games_list']
-        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test - STM>','<Game: Test 2 - 3DS>','<Game: Test 3 - 3DS>'])
-        #system = self.request.GET.get('system')
-        response = self.client.get(reverse('gameslist:list'),{'system': '3DS'})
-        self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test 2 - 3DS>','<Game: Test 3 - 3DS>'])
+        request = self.client.get(reverse('gameslist:list'))
+        response = request.context['response']
 
-        response = self.client.get(reverse('gameslist:list'),{'system': '3DS','format': 'D'})
-        self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test 2 - 3DS>'])
+        self.assertEqual(request.status_code, 200)
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test - STM>','<Game: Test 2 - 3DS>','<Game: Test 3 - 3DS>'])
 
-        response = self.client.get(reverse('gameslist:list'),{'system': 'STM'})
-        self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['full_games_list'], ['<Game: Test - STM>'])
+        request = self.client.get(reverse('gameslist:list'),{'system': '3DS'})
+        response = request.context['response']
+        self.assertEqual(request.status_code, 200)
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test 2 - 3DS>','<Game: Test 3 - 3DS>'])
 
-        response = self.client.get(reverse('gameslist:list'),{'format': 'M'})
-        self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['full_games_list'], [])
+        request = self.client.get(reverse('gameslist:list'),{'system': '3DS','game_format': 'D'})
+        response = request.context['response']
+        self.assertEqual(request.status_code, 200)
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test 2 - 3DS>'])
 
-        response = self.client.get(reverse('gameslist:list'),{'system':'GBA'})
-        self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context['full_games_list'], [])
+        request = self.client.get(reverse('gameslist:list'),{'system': 'STM'})
+        response = request.context['response']
+        self.assertEqual(request.status_code, 200)
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test - STM>'])
+
+        request = self.client.get(reverse('gameslist:list'),{'game_format': 'M'})
+        response = request.context['response']
+        self.assertEqual(request.status_code, 200)
+        self.assertQuerysetEqual(response.object_list, [])
+
+        request = self.client.get(reverse('gameslist:list'),{'system':'GBA'})
+        response = request.context['response']
+        self.assertEqual(request.status_code, 200)
+        self.assertQuerysetEqual(response.object_list, [])
 
         session = self.client.session
         self.assertEqual(session['system'],'GBA')
