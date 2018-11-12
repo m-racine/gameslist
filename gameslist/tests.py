@@ -87,7 +87,7 @@ class GameListViewTests(TestCase):
         self.assertQuerysetEqual(response.object_list, [])
 
         session = self.client.session
-        self.assertEqual(session['system'],'GBA')
+        self.assertEqual(session['query_string'],'system=GBA')
 
 
 class GameDetailViewTests(TestCase):
