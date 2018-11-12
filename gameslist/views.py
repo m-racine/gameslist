@@ -28,14 +28,33 @@ class IndexView(generic.ListView):
             purchase_date__lte=timezone.now()
         ).order_by('-purchase_date')[:5]
     
-def filtered_list(request):
+def filtered_list(request,**kwargs):
     model = Game
     paginate_by = 10
     game_list = Game.objects.all().order_by('name')
+    logger.debug(request)
+    logger.debug(request.META.get('QUERY_STRING'))
+    if "&" not in request.META.get('QUERY_STRING') and request.META.get('HTTP_REFERER'):
+        match = re.search(r'([\d]+)/$',request.META.get('HTTP_REFERER'))
+        if match:
+            if check_url_match(reverse('gameslist:detail', args=(match.group(1),)),request.META.get('HTTP_REFERER')):
+                return HttpResponseRedirect(reverse('gameslist:list')+"?page={0}&system={1}&game_format={2}".format(request.session['page'],
+                                                                     request.session['system'],
+                                                                     request.session['game_format']))
+            else:
+                logger.debug("Referer was not a match.")
+                logger.debug(request.META.get('HTTP_REFERER'))
+        else:
+            logger.debug("NO INITIAL MATCH")
+            logger.debug(request.META.get('HTTP_REFERER'))
+    else:
+        logger.debug("NO REFERER")
+    page = request.GET.get('page')
     game_filter = GameFilter(request.GET, queryset=game_list)
+    
     filtered_qs = game_filter.qs
     paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
-    page = request.GET.get('page')
+    
     try:
         response = paginator.page(page)
         request.session['page'] = page
@@ -51,32 +70,24 @@ def filtered_list(request):
     for x in ["system","game_format"]:
         if request.GET.get(x):
             request.session[x] = request.GET.get(x)
-    logger.debug(request.session.keys())
+        else:
+            request.session[x] = ""
     return render(
          request, 
          'gameslist/list.html', 
          {'response': response,'filter':game_filter}
     )
 
+def check_url_match(url,referer):
+    for host in ['http://gameslist.griffonflightproductions.com','http://127.0.0.1:8000']:
+        if re.match("{0}{1}".format(host,url),referer):
+            return True
+    return False
+
 def move_to_detail_view(request, pk):
     logger.debug(request.session.keys())
     game = get_object_or_404(Game, pk=pk)
     return render(request, 'gameslist/detail.html', {'game':game})
-
-def return_to_list_view(request):
-    # logger.debug(search)
-    # logger.debug(type(search))
-    # parsed = urlparse.urlparse(search)
-    # logger.debug(urlparse.parse_qs(parsed.query)['system'])
-    # response = redirect('gameslist:list')
-    # return response
-    logger.debug(request.session.keys())
-    args = {}
-    for x in ["system","game_format","page"]:
-        if x in request.session:
-            args[x] = request.session[x]
-    return HttpResponseRedirect(reverse('gameslist:list',args=args))
-
 
 #    return render(request, 'gameslist/list.html', {'filter': game_filter})
     #https://stackoverflow.com/questions/44048156/django-filter-use-paginations

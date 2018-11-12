@@ -1,0 +1,173 @@
+
+setting a system to a valid and an invalid value
+ ditto location?
+setting a format to a valid and an invalid value
+making sure __str__ is returning what we would expect
+most fields have nothing going on.
+Form Test
+Admin Tests
+
+Once it is working at that level:
+
+Filters
+Played and over 1000 old but not beaten
+No TimeToBeat
+No Developer
+
+
+Stats Page:
+
+Breakdown of Total, Beaten,Played,Unbeated,Unplayed,Abandoned
+    
+Date of Most Games Completed:
+    
+Average Completion Time:  (Days and Years)
+Median Aging:
+Median Completion Time: 
+Mode Aging:
+Mode Completion Time: 
+Range Aging:
+Range Completion Time: 
+    
+Games Purchased In 1995 (Included played and beaten breakdowns)
+Games Purchased In 1996 
+Games Purchased In 1997
+Games Purchased In 1998
+Games Purchased In 1999
+Games Purchased In 2000
+Games Purchased In 2001
+Games Purchased In 2002
+Games Purchased In 2003
+Games Purchased In 2004
+Games Purchased In 2005
+Games Purchased In 2006
+Games Purchased In 2007
+Games Purchased In 2008
+Games Purchased In 2009
+Games Purchased In 2010
+Games Purchased In 2011
+Games Purchased In 2012
+Games Purchased In 2013
+Games Purchased In 2014
+Games Purchased In 2015
+Games Purchased In 2016
+Games Purchased In 2017
+Games Purchased In 2018
+Games Purchases Post Employment
+
+3DS (also beaten and played)
+Android
+Digipen
+DS
+GameCube
+GBC
+GBA
+GoG
+Humble
+Itch.io
+Kindle
+NES
+N64
+Origin
+PC
+Playstation
+Playstation 2
+SNES
+Steam
+Switch
+Twitch
+Uplay
+Vita
+Wii
+Wii U
+Xbox 360
+Xbox One
+
+Physical (also beaten and played?)
+Digital
+Borrowed
+Missing
+Returned
+Lent
+Other
+
+
+=COUNT(FILTER('Owned or Beaten'!Q2:Q,'Owned or Beaten'!J2:J="No",'Owned or Beaten'!H2:H="Physical")) -- physical "Backlogged" games
+
+Aging Record:
+
+Import Data
+    
+Table add script
+    
+
+Party Games List
+
+
+Dupes Page
+    
+
+Jake's Page
+
+
+Game
+TO DO
+
+shoot something else had like a second game to it....
+Fallout 4 maybe?
+ME3 with mods on PC?
+Double check origin games too
+also double check random pc games
+king of fighters gog
+Steam gifts?
+Superhot on Xbox ONe ws missing?
+https://www.humblebundle.com/store/wishlist/56825651
+https://www.gog.com/u/griffonlord/wishlist
+https://store.steampowered.com/wishlist/profiles/76561198017111032
+https://itch.io/c/235575/wishlist
+
+nintendo--not accessible
+xbox --non existant
+https://store.playstation.com/en-us/wishlist
+
+not publically accessible, no known api
+
+banjo pilotwings perfect dark n64 not on sheet
+final fantasy 8 and 9 not on sheet
+final fantasy chronicles not on sheet?
+breath of the wild nad octopath traveler missing?
+Indie box games
+Atari games need cases
+pile of recent acquisitions
+other pc games should be verified
+
+
+TRANSACTION LOG
+
++850 cycling 
++1000 cycling 
+-4000 KH Story so Far
++1050 cycling 
++1025 cycling
++1060 cycling
+-7000 Grim Fandango PS4+VINYL
+-10000 Persona Dancing Duo
+-3200 Phantom Hourglass + Professor Layton
+-1809 Torchlight II Indiebox
++600 cycling
+-3268 Snake Pass
+-2558 Wasteland 2
++1010 cycling
+-4049 Battle Chef Brigade
+-1050 Brutal Legend
+_
+-30359 Remaining
+
+Future:
+
+
+https://www.fangamer.com/products/undertale-game-switch-ps4-vita
+https://www.fangamer.com/products/massive-chalice-game
+https://www.fangamer.com/products/slime-rancher-collectors-edition
+
+https://oss.hpconnected.com/oss/ui/views/spinner.html?eventCompleteUrl=https%3A%2F%2Foss.hpconnected.com%2Foss%2Finstalls%2Fb70c0e86566c5f5d5be1828246024fc9%2Fcdd00de3541042cc8a01dc7c3fb942b5%2Fsteps%2Fad4937af28394411afec1d839ca1bd6e%2Fprepare&redirect_uri=https%3A%2F%2Foss.hpconnected.com%2Foss%2Finstalls%2Fb70c0e86566c5f5d5be1828246024fc9%2Fcdd00de3541042cc8a01dc7c3fb942b5%2FpauseComplete

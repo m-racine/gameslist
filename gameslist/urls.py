@@ -17,8 +17,9 @@ urlpatterns = [
     #url(r'^search/$', views.search, name='search'),
     #url(r'^set_system/(?P<system>[\w]*)$', views.set_system, name='set_system'),
     #url(r'^set_format/(?P<format>[\w]*)$', views.set_format, name='set_format'),
-    url(r'^return/',views.return_to_list_view,name='return'),
     url(r'^test-delete/$', views.test_delete, name='test_delete'),
     url(r'^test-session/$', views.test_session, name='test_session'),
     url(r'^stop-tracking/$', views.stop_tracking, name='stop_tracking'),
+    url(r'^$', views.filtered_list, name='list',kwargs=dict({'page':'','system':'','game_format':''})),
     url(r'^$', views.filtered_list, name='list')]
+    #url(r'^(?P<page>[0-9]+)$', views.filtered_list, name='list_with_arguments')]

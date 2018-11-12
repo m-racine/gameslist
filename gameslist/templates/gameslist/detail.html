@@ -2,9 +2,6 @@
 
 <h1>{{ game.name }}</h1>
 
-<h3>{{ request.session.page}}</h3>
-<h3>{{ request.session.system}}</h3>
-<h3>{{ request.session.game_format}}</h3>
 <body>
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
     {% comment %}
@@ -49,7 +46,7 @@
     {% endif %}
     <p>{{game.notes}}</p>
 
-    <form action="{% url 'gameslist:return' %}" method="get">
+    <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List</button>
     </form> 
