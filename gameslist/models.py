@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
+
 import datetime
 from datetime import date
-
+import logging
 from django.db import models
 from django.utils import timezone
 from django.forms import ModelForm
 from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
+
+logger = logging.getLogger('MYAPP')
 
 # # Create your models here.
 
@@ -70,26 +74,43 @@ class Game(models.Model):
     location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
     game_format = models.CharField('format',max_length=1, choices=FORMATS, default='D')
     notes = models.CharField(max_length=500,default="",blank=True)
-    purchase_date = models.DateField('date purchased',default=date.today)
-    finish_date = models.DateField('date finished', default=date.today)
+    purchase_date = models.DateField('date purchased',default=timezone.now)
+    finish_date = models.DateField('date finished', default=None)
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
 
-    aging = models.IntegerField(default=0)
-    play_aging = models.IntegerField(default=0)
+    @property
+    def aging(self):
+        if self.beaten or self.abandoned:
+            #logger.debug(type(self.finish_date-self.purchase_date.days()))
+            return self.finish_date-self.purchase_date
+        return date.today() - self.purchase_date
+    
+    @property
+    def play_aging(self):
+        if self.played:
+            return 0
+        return date.today() - self.purchase_date
+    
+    #aging = models.IntegerField(default=0)
+    #play_aging = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name + " - " + self.system
+
+class GameManager(models.Manager):
+    def create_game(self):
+        game = self.create()
+
 
 class GameForm(ModelForm):
     class Meta:
         model = Game
         fields = ['name','system','location','game_format',
                   'played','beaten','abandoned','perler',
-                  'reviewed','purchase_date','finish_date',
-                  'aging','play_aging']
+                  'reviewed','purchase_date','finish_date']
 
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)

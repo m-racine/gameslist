@@ -32,18 +32,23 @@ def filtered_list(request,**kwargs):
     model = Game
     paginate_by = 10
     game_list = Game.objects.all().order_by('name')
-
-    if "&" not in request.META.get('QUERY_STRING') and request.META.get('HTTP_REFERER'):
+    #logger.debug(kwargs)
+    if request.META.get('HTTP_REFERER'):
         match = re.search(r'([\d]+)/$',request.META.get('HTTP_REFERER'))
         if match:
-            if check_url_match(reverse('gameslist:detail', args=(match.group(1),)),request.META.get('HTTP_REFERER')):
-                return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
+            if not (request.META.get('QUERY_STRING')):
+                if check_url_match(reverse('gameslist:detail', args=(match.group(1),)),request.META.get('HTTP_REFERER')):
+                    if 'query_string' in request.session:
+                        if request.session['query_string'].strip():
+                            return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
+                        return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
+                    logger.debug(reverse('gameslist:list')+"?page=1")
+                    return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
+                    
             else:
                 logger.debug("Referer was not a match.")
-                logger.debug(request.META.get('HTTP_REFERER'))
         else:
             logger.debug("NO INITIAL MATCH")
-            logger.debug(request.META.get('HTTP_REFERER'))
     else:
         logger.debug("NO REFERER")
     page = request.GET.get('page')
@@ -74,7 +79,6 @@ def check_url_match(url,referer):
     return False
 
 def move_to_detail_view(request, pk):
-    logger.debug(request.session.keys())
     game = get_object_or_404(Game, pk=pk)
     return render(request, 'gameslist/detail.html', {'game':game})
 

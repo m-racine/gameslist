@@ -176,8 +176,9 @@ TRANSACTION LOG
 -1050 Brutal Legend
 +700 cycling
 +700 cycling
+-1525 Lovers in a dangerous spacetime
 _
--29000 Remaining (slight rounding)
+-30525 Remaining (slight rounding)
 
 Future:
 

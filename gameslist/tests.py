@@ -4,6 +4,10 @@ from __future__ import unicode_literals
 from django.apps import apps
 from django.test import TestCase
 from django.shortcuts import reverse,get_object_or_404
+from django.conf import settings
+from django.test.client import Client
+from importlib import import_module
+
 from .models import Game
 from .views import play_game
 from .apps import GameslistConfig
@@ -11,17 +15,36 @@ from .apps import GameslistConfig
 
 #HOW DO I TEST admin.py
 #HOW DO I TEST apps.py
+#Test going to detail for a game not in the current query set.
+"""
+The Django test client implements the session API but doesn't persist values in it:
+https://docs.djangoproject.com/en/dev/topics/testing/?from=olddocs#django.test.client.Client.session
+This Client subclass can be used to maintain a persistent session during test cases.
+"""
+
+
+class PersistentSessionClient(Client):
+    #https://gist.github.com/stephenmcd/1702592
+    @property
+    def session(self):
+        if not hasattr(self, "_persisted_session"):
+            engine = import_module(settings.SESSION_ENGINE)
+            self._persisted_session = engine.SessionStore("persistent")
+        return self._persisted_session
+
+
+#class MyTests(TestCase):
+
+#    client_class = PersistentSessionClient
 
 
 def create_game(name="Test",system="STM",played=False,beaten=False,location="STM",
                 game_format="D",notes="",purchase_date='2018-10-30',finish_date='2018-10-30',
-                abandoned=False,perler=False,reviewed=False,flagged=False,
-                aging=0,play_aging=0):
+                abandoned=False,perler=False,reviewed=False,flagged=False):
     return Game.objects.create(name=name,system=system,played=played,beaten=beaten,
                                location=location,game_format=game_format,notes=notes,
                                purchase_date=purchase_date,finish_date=finish_date,
-                               abandoned=abandoned,perler=perler,reviewed=reviewed,flagged=flagged,
-                               aging=aging,play_aging=play_aging)
+                               abandoned=abandoned,perler=perler,reviewed=reviewed,flagged=flagged)
 
 #class WishModelTests(TestCase):
 
@@ -49,6 +72,7 @@ class GameIndexViewTests(TestCase):
     #     self.assertRedirects(response,reverse('gameslist:list'))
 
 class GameListViewTests(TestCase):
+
     def test_list_filters(self):
         create_game()
         create_game("Test 2","3DS")
@@ -88,6 +112,56 @@ class GameListViewTests(TestCase):
 
         session = self.client.session
         self.assertEqual(session['query_string'],'system=GBA')
+
+class ListDetailRedirectTests(TestCase):
+    #client_class = PersistentSessionClient
+    def test_known_bad(self):
+        game = create_game("Test","3DS",False,False,"3DS","P")
+        game2 = create_game("Test 2","GBA",False,False,"3DS","P")
+        request = self.client.get(reverse('gameslist:list'),follow=True)
+        request = self.client.get(reverse('gameslist:detail',args=(game.id,)),follow=True)
+        request = self.client.get(reverse('gameslist:list'),follow=True,HTTP_REFERER="http://127.0.0.1:8000/3/")
+        response = request.context['response']
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>','<Game: Test 2 - GBA>'])
+        self.assertEqual(request.status_code,200)
+        
+    def test_list(self):
+        game = create_game("Test","3DS",False,False,"3DS","P")
+        game2 = create_game("Test 2","GBA",False,False,"3DS","P")
+        request = self.client.get(reverse('gameslist:list'),{'system':'3DS'},follow=True)
+        session = self.client.session
+        self.assertEqual(session['query_string'],'system=3DS')
+        response = request.context['response']
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+
+    def test_list_detail(self):
+        game = create_game("Test","3DS",False,False,"3DS","P")
+        game2 = create_game("Test 2","GBA",False,False,"3DS","P")
+        request = self.client.get(reverse('gameslist:list'),{'system':'3DS'},follow=True)
+        session = self.client.session
+        self.assertEqual(session['query_string'],'system=3DS')
+        response = request.context['response']
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+        request = self.client.get(reverse('gameslist:detail',args=(game.id,)),follow=True)  
+        self.assertEqual(session['query_string'],'system=3DS')
+
+    def test_list_detail_list(self):
+        game = create_game("Test","3DS",False,False,"3DS","P")
+        game2 = create_game("Test 2","GBA",False,False,"3DS","P")
+        request = self.client.get(reverse('gameslist:list'),{'system':'3DS'},follow=True)
+        session = self.client.session
+        response = request.context['response']
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+
+        self.assertEqual(session['query_string'],'system=3DS')
+        request = self.client.get(reverse('gameslist:detail',args=(game.id,)),follow=True)
+        self.assertEqual(session['query_string'],'system=3DS')
+        request = self.client.get(reverse('gameslist:list'),HTTP_REFERER="http://127.0.0.1:8000/3/",follow=True)
+        #self.assertQuerysetEqual(request.context['response'].object_list,['<Game: Test - 3DS>'])
+        response = request.context['response']
+        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+        self.assertEqual(session['query_string'],'system=3DS')
+        self.assertEqual(request.status_code, 200)
 
 
 class GameDetailViewTests(TestCase):
