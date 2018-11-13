@@ -34,9 +34,10 @@ def filtered_list(request,**kwargs):
     game_list = Game.objects.all().order_by('name')
     #logger.debug(kwargs)
     if request.META.get('HTTP_REFERER'):
+        logger.debug(request.META.get('HTTP_REFERER'))
         match = re.search(r'([\d]+)/$',request.META.get('HTTP_REFERER'))
         if match:
-            if not (request.META.get('QUERY_STRING')):
+            if check_url_args_for_only_token(request.META.get('QUERY_STRING')):
                 if check_url_match(reverse('gameslist:detail', args=(match.group(1),)),request.META.get('HTTP_REFERER')):
                     if 'query_string' in request.session:
                         if request.session['query_string'].strip():
@@ -46,7 +47,7 @@ def filtered_list(request,**kwargs):
                     return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
                     
             else:
-                logger.debug("Referer was not a match.")
+                logger.debug("Query String has search data.")
         else:
             logger.debug("NO INITIAL MATCH")
     else:
@@ -74,9 +75,31 @@ def filtered_list(request,**kwargs):
 
 def check_url_match(url,referer):
     for host in ['http://gameslist.griffonflightproductions.com','http://127.0.0.1:8000']:
+        logger.debug("{0}{1}".format(host,url))
+        logger.debug(referer)
         if re.match("{0}{1}".format(host,url),referer):
             return True
     return False
+
+def check_url_args_for_only_token(url):
+    temp = url.split("&")
+    temp_2 = []
+    for x in temp:
+        temp_2.append(x.split("="))
+
+    dict_temp = {}
+    for x in temp_2:
+        dict_temp[x[0]] = x[1]
+    logger.debug(temp)
+    logger.debug(temp_2)
+    logger.debug(dict_temp)
+    for x in dict_temp.keys():
+        logger.debug("{0}:{1}".format(x,dict_temp[x]))
+    if dict_temp.keys() == ['csrfmiddlewaretoken']:
+        return True
+    
+    return False
+
 
 def move_to_detail_view(request, pk):
     game = get_object_or_404(Game, pk=pk)

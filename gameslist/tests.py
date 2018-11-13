@@ -9,7 +9,7 @@ from django.test.client import Client
 from importlib import import_module
 
 from .models import Game
-from .views import play_game
+from .views import play_game,check_url_args_for_only_token
 from .apps import GameslistConfig
 # Create your tests here.
 
@@ -47,6 +47,14 @@ def create_game(name="Test",system="STM",played=False,beaten=False,location="STM
                                abandoned=abandoned,perler=perler,reviewed=reviewed,flagged=flagged)
 
 #class WishModelTests(TestCase):
+
+#class AgingTests(TestCase):
+    #test for aging < 0
+    #test for aging when beaten
+    #test for aging when abandoned
+    #test for play aging when played
+    #test for play aging when not played
+    #test for finish  date on or after purchasee?
 
 class GameIndexViewTests(TestCase):
     def test_no_games(self):
@@ -234,7 +242,14 @@ class GameslistConfigTest(TestCase):
         # Delete a session value
         #del request.session['my_car']
 
+class ListURLHelperTest(TestCase):
 
+    def test_check_url_args_for_only_token(self):
+        self.assertEqual(check_url_args_for_only_token(""),False)
+        self.assertEqual(check_url_args_for_only_token("/"),False)
+        self.assertEqual(check_url_args_for_only_token("?"),False)
+        self.assertEqual(check_url_args_for_only_token("csrfmiddlewaretoken=xxxyyy22233345455asdfasdf"),True)
+        self.assertEqual(check_url_args_for_only_token("csrfmiddlewaretoken=xxxyyy22233345455asdfasdf&page=1"),False)
 
 
 
