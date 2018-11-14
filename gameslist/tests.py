@@ -245,9 +245,9 @@ class GameslistConfigTest(TestCase):
 class ListURLHelperTest(TestCase):
 
     def test_check_url_args_for_only_token(self):
-        self.assertEqual(check_url_args_for_only_token(""),False)
-        self.assertEqual(check_url_args_for_only_token("/"),False)
-        self.assertEqual(check_url_args_for_only_token("?"),False)
+        self.assertEqual(check_url_args_for_only_token(" "),True)
+        self.assertEqual(check_url_args_for_only_token("/"),True)
+        self.assertEqual(check_url_args_for_only_token("?"),True)
         self.assertEqual(check_url_args_for_only_token("csrfmiddlewaretoken=xxxyyy22233345455asdfasdf"),True)
         self.assertEqual(check_url_args_for_only_token("csrfmiddlewaretoken=xxxyyy22233345455asdfasdf&page=1"),False)
 
