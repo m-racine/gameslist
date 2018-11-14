@@ -34,7 +34,6 @@ class HowLongToBeat():
                 inner_tag = link.find("a",attrs={"title":self.game})
                 if inner_tag is not None:
                     self.found = True
-                    print game
                     title = self.raw_data.a
                     self.id = title['href'][12:]
                     self.raw_time = link.find("div",attrs={"class":"search_list_details_block"}).contents
@@ -119,14 +118,14 @@ class ExampleHowLongToBeat():
             return self.game + " - Not Found"
 
 
-# hlto = ExampleHowLongToBeat("Sunset Overdrive")
-# print hlto
-# hlto = HowLongToBeat("Human Resource Machine")
-# print hlto
-# hlto = HowLongToBeat("7 Billion Humans")
-# print hlto
-# hlto = HowLongToBeat("Orwell")
-# print hlto
+hlto = ExampleHowLongToBeat("Sunset Overdrive")
+print hlto
+hlto = HowLongToBeat("Human Resource Machine")
+print hlto
+hlto = HowLongToBeat("7 Billion Humans")
+print hlto
+hlto = HowLongToBeat("Orwell")
+print hlto
 
 # #def clean_titles():
 # with open("titles.txt","r") as f:

@@ -82,6 +82,10 @@ class Game(models.Model):
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
+    #substantial_progress = models.BooleanField(default=False)
+    full_time_to_beat = models.IntegerField(default=0)
+    #time_to_beat = models.IntegerField(default=0)
+    #current_time = models.IntegerField(default=0)
 
     @property
     def aging(self):
@@ -104,9 +108,9 @@ class Game(models.Model):
     def __str__(self):
         return self.name + " - " + self.system
 
-class GameManager(models.Manager):
-    def create_game(self):
-        game = self.create()
+#class GameManager(models.Manager):
+#    def create_game(self):
+#        game = self.create()
 
 
 class GameForm(ModelForm):
