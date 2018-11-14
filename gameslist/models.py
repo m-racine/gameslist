@@ -10,7 +10,7 @@ from datetime import timedelta
 import logging
 from django.db import models
 from django.utils import timezone
-from django.forms import ModelForm
+from django.forms import ModelForm,DateField,SelectDateWidget
 from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
 
@@ -90,10 +90,7 @@ class Game(models.Model):
     @property
     def aging(self):
         if self.beaten or self.abandoned:
-            #logger.debug(type(self.finish_date-self.purchase_date.days()))
-            #return datetime.strptime(self.finish_date,"%Y-%m-%d")-datetime.strptime(self.purchase_date,"%Y-%m-%d")
             return self.finish_date - self.purchase_date
-        #return date.today() - datetime.strptime(self.purchase_date,"%Y-%m-%d")
         return date.today() - self.purchase_date
     
     @property
@@ -106,9 +103,6 @@ class Game(models.Model):
         if self.full_time_to_beat == 0.0:
             self.full_time_to_beat = HowLongToBeat(self.name).fulltime
         super(Game, self).save(*args,**kwargs)
-    
-    #aging = models.IntegerField(default=0)
-    #play_aging = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name + " - " + self.system
@@ -121,9 +115,31 @@ class Game(models.Model):
 class GameForm(ModelForm):
     class Meta:
         model = Game
-        fields = ['name','system','location','game_format',
+        years = [x for x in range(datetime.now().year-9,datetime.now().year+1)]
+        years.reverse()
+        fields = ('name','system','location','game_format',
                   'played','beaten','abandoned','perler',
-                  'reviewed','purchase_date','finish_date']
+                  'reviewed','purchase_date','finish_date')
+        widgets = {
+            'finish_date': SelectDateWidget(years=years),
+            'purchase_date': SelectDateWidget(years=years),
+        }
+
+    def clean(self):
+        data = self.cleaned_data
+        logger.debug(data)
+        # A custom empty label with string
+        #field1 = forms.DateField(widget=SelectDateWidget(empty_label="Nothing"))
+
+        # A custom empty label with tuple
+        #field1 = forms.DateField(
+        #widget=SelectDateWidget(
+        #empty_label=("Choose Year", "Choose Month", "Choose Day"),
+        #),
+        #)
+    #SelectDateWidget¶
+    #class SelectDateWidget[source]¶
+    #template_name: 'django/forms/widgets/select_date.html'
 
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)

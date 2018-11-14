@@ -5,7 +5,9 @@ from bs4 import BeautifulSoup, Tag, NavigableString
 import requests
 import re
 import traceback
+import logging
 
+logger = logging.getLogger('MYAPP')
 
 class HowLongToBeat():
     def __init__(self,game):
@@ -57,8 +59,8 @@ class HowLongToBeat():
                     if self.found:
                         break
                 else:
-                    print "NOT FOUND: {0}.".format(game)
-                    print u"Did you mean: {0}?".format(link.find("a")["title"])
+                    logger.info("NOT FOUND: {0}.".format(game))
+                    logger.info(u"Did you mean: {0}?".format(link.find("a")["title"]))
                     pass
                     #raise Exception
             #self.found = True
@@ -67,10 +69,10 @@ class HowLongToBeat():
             else:
                 "{0} not found.".format(game)
         except: 
-            print traceback.print_exc()
+            logger.error(traceback.print_exc())
             self.id = 0
-            print sys.exc_info()[0]
-            print sys.exc_info()[1]
+            logger.error(sys.exc_info()[0])
+            logger.error(sys.exc_info()[1])
             raise Exception
     def __str__(self):
         return self.__unicode__()
@@ -104,9 +106,9 @@ class ExampleHowLongToBeat():
                     self.fulltime = float(re.search("([\d.\d]*)",time_text).group(1))
             self.found = True
         except:
-            print sys.exc_info()[0]
-            print sys.exc_info()[1]
-            print sys.exc_info()[2]
+            logger.error(sys.exc_info()[0])
+            logger.error(sys.exc_info()[1])
+            logger.error(sys.exc_info()[2])
             self.id = 0
             self.fulltime = -1
             self.found = False

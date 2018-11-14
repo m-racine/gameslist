@@ -338,7 +338,9 @@ class HLTBTest(TestCase):
         game = create_game("Sunset Overdrive")
         self.assertEqual(game.full_time_to_beat,10.5)
 
-
+    def test_list_of_dates(self):
+        print [x for x in range(datetime.now().year-9,datetime.now().year+1)]
+        self.assertEqual(0,1)
 
         #NEED DIFFERENT RESULTS FOR DIFFERENT STATE
 
