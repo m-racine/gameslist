@@ -3,8 +3,10 @@ from __future__ import unicode_literals
 
 
 
-import datetime
+#import datetime
 from datetime import date
+from datetime import datetime
+from datetime import timedelta
 import logging
 from django.db import models
 from django.utils import timezone
@@ -74,8 +76,8 @@ class Game(models.Model):
     location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
     game_format = models.CharField('format',max_length=1, choices=FORMATS, default='D')
     notes = models.CharField(max_length=500,default="",blank=True)
-    purchase_date = models.DateField('date purchased',default=timezone.now)
-    finish_date = models.DateField('date finished', default=None)
+    purchase_date = models.DateField('date purchased',default=date.today().isoformat())
+    finish_date = models.DateField('date finished', default=None, blank=True)
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
@@ -85,13 +87,15 @@ class Game(models.Model):
     def aging(self):
         if self.beaten or self.abandoned:
             #logger.debug(type(self.finish_date-self.purchase_date.days()))
-            return self.finish_date-self.purchase_date
+            #return datetime.strptime(self.finish_date,"%Y-%m-%d")-datetime.strptime(self.purchase_date,"%Y-%m-%d")
+            return self.finish_date - self.purchase_date
+        #return date.today() - datetime.strptime(self.purchase_date,"%Y-%m-%d")
         return date.today() - self.purchase_date
     
     @property
     def play_aging(self):
         if self.played:
-            return 0
+            return timedelta(0)
         return date.today() - self.purchase_date
     
     #aging = models.IntegerField(default=0)

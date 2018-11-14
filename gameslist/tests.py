@@ -5,13 +5,19 @@ from django.apps import apps
 from django.test import TestCase
 from django.shortcuts import reverse,get_object_or_404
 from django.conf import settings
+from django.test import tag
 from django.test.client import Client
+from django.utils import timezone
 from importlib import import_module
-
+from datetime import date,datetime,timedelta
+import logging
+import unittest
 from .models import Game
 from .views import play_game,check_url_args_for_only_token
 from .apps import GameslistConfig
 # Create your tests here.
+
+
 
 #HOW DO I TEST admin.py
 #HOW DO I TEST apps.py
@@ -21,7 +27,7 @@ The Django test client implements the session API but doesn't persist values in 
 https://docs.djangoproject.com/en/dev/topics/testing/?from=olddocs#django.test.client.Client.session
 This Client subclass can be used to maintain a persistent session during test cases.
 """
-
+logger = logging.getLogger('MYAPP')
 
 class PersistentSessionClient(Client):
     #https://gist.github.com/stephenmcd/1702592
@@ -39,7 +45,8 @@ class PersistentSessionClient(Client):
 
 
 def create_game(name="Test",system="STM",played=False,beaten=False,location="STM",
-                game_format="D",notes="",purchase_date='2018-10-30',finish_date='2018-10-30',
+                game_format="D",notes="",purchase_date=datetime.strptime('2018-10-30','%Y-%m-%d'),
+                finish_date=datetime.strptime('2018-10-30','%Y-%m-%d'),
                 abandoned=False,perler=False,reviewed=False,flagged=False):
     return Game.objects.create(name=name,system=system,played=played,beaten=beaten,
                                location=location,game_format=game_format,notes=notes,
@@ -48,13 +55,56 @@ def create_game(name="Test",system="STM",played=False,beaten=False,location="STM
 
 #class WishModelTests(TestCase):
 
-#class AgingTests(TestCase):
-    #test for aging < 0
-    #test for aging when beaten
-    #test for aging when abandoned
-    #test for play aging when played
-    #test for play aging when not played
-    #test for finish  date on or after purchasee?
+class AgingTests(unittest.TestCase):
+    @tag('aging')
+    def test_aging_zero(self):
+        game = create_game(purchase_date=date.today())
+        self.assertEqual(game.purchase_date,date.today())
+        self.assertEqual(game.aging.days,0)
+        self.assertEqual(game.play_aging.days,0)
+
+    @tag('aging')
+    def test_aging_over_year(self):
+        game = create_game(played=True,beaten=True,purchase_date=datetime.strptime('2016-10-30','%Y-%m-%d'),finish_date=datetime.strptime('2018-10-30','%Y-%m-%d'))
+        self.assertEqual(game.purchase_date,datetime.strptime('2016-10-30','%Y-%m-%d'))
+        self.assertEqual(game.aging.days,365+365)
+        self.assertEqual(game.play_aging.days,0)
+
+    #this is a VALID state due to preorders
+    @tag('aging')
+    def test_negative_aging(self):
+        future_date = date.today() + timedelta(8)
+        game = create_game(purchase_date=future_date)
+        #self.assertEqual(game.purchase_date,date.today())
+        self.assertEqual(game.aging.days,-8)
+        self.assertEqual(game.play_aging.days,-8)
+
+    @tag('aging')
+    def test_aging_beaten(self):
+        game = create_game(purchase_date=date.today()-timedelta(1),beaten=True,finish_date=date.today(),played=True)
+        self.assertGreater(game.aging.days,0)
+        self.assertEqual(game.play_aging.days,0)
+        game = create_game(beaten=True,played=True,purchase_date=date.today(),finish_date=date.today())
+        self.assertEqual(game.aging.days,0)
+        self.assertEqual(game.play_aging.days,0)
+
+    @tag('aging')
+    def test_aging_played(self):
+        game = create_game(played=True,purchase_date=date.today()-timedelta(1))
+        self.assertEqual(game.aging.days,1)
+        self.assertEqual(game.play_aging.days,0)
+
+    @tag('aging')
+    def test_aging_abandoned(self):
+        game = create_game(purchase_date=date.today()-timedelta(4),abandoned=True,finish_date=date.today(),played=True)
+        self.assertEqual(game.aging.days,4)
+        self.assertEqual(game.play_aging.days,0)
+
+    @tag('aging')
+    def test_aging_not_played(self):
+        game = create_game(purchase_date=date.today()-timedelta(5))
+        self.assertEqual(game.aging.days,5)
+        self.assertEqual(game.play_aging.days,5)
 
 class GameIndexViewTests(TestCase):
     def test_no_games(self):
