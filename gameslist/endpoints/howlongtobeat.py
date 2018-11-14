@@ -20,7 +20,7 @@ class HowLongToBeat():
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         #print self.raw_data
         self.raw_time = game
-        self.fulltime = 0.0
+        self.fulltime = -1
         self.found = False
         self.units = "Hours"
         try:
@@ -108,7 +108,7 @@ class ExampleHowLongToBeat():
             print sys.exc_info()[1]
             print sys.exc_info()[2]
             self.id = 0
-            self.fulltime = 0.0
+            self.fulltime = -1
             self.found = False
             raise Exception
     def __str__(self):
@@ -116,16 +116,6 @@ class ExampleHowLongToBeat():
             return self.game + " - " + str(self.fulltime) + " Hours"
         else:
             return self.game + " - Not Found"
-
-
-hlto = ExampleHowLongToBeat("Sunset Overdrive")
-print hlto
-hlto = HowLongToBeat("Human Resource Machine")
-print hlto
-hlto = HowLongToBeat("7 Billion Humans")
-print hlto
-hlto = HowLongToBeat("Orwell")
-print hlto
 
 # #def clean_titles():
 # with open("titles.txt","r") as f:
@@ -154,8 +144,3 @@ print hlto
 #temp = BeautifulSoup(temp.text,"html.parser")
 #print temp
 
-
-#Cth Saves The World 
-#Typing of the Dead
-#Lumanaries of The
-#Japanese To Survive

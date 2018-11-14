@@ -83,7 +83,7 @@ class Game(models.Model):
     reviewed = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
     #substantial_progress = models.BooleanField(default=False)
-    full_time_to_beat = models.IntegerField(default=0)
+    full_time_to_beat = models.FloatField(default=0.0)
     #time_to_beat = models.IntegerField(default=0)
     #current_time = models.IntegerField(default=0)
 
@@ -101,6 +101,11 @@ class Game(models.Model):
         if self.played:
             return timedelta(0)
         return date.today() - self.purchase_date
+
+    def save(self, *args, **kwargs):
+        if self.full_time_to_beat == 0.0:
+            self.full_time_to_beat = HowLongToBeat(self.name).fulltime
+        super(Game, self).save(*args,**kwargs)
     
     #aging = models.IntegerField(default=0)
     #play_aging = models.IntegerField(default=0)

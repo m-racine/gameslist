@@ -15,6 +15,7 @@ import unittest
 from .models import Game
 from .views import play_game,check_url_args_for_only_token
 from .apps import GameslistConfig
+from endpoints.howlongtobeat import HowLongToBeat,ExampleHowLongToBeat
 # Create your tests here.
 
 
@@ -302,5 +303,43 @@ class ListURLHelperTest(TestCase):
         self.assertEqual(check_url_args_for_only_token("csrfmiddlewaretoken=xxxyyy22233345455asdfasdf&page=1"),False)
 
 
+
+class HLTBTest(TestCase):
+    @tag('hltb')
+    def test_example_hltb(self):
+        hltb = ExampleHowLongToBeat("Sunset Overdrive")
+        self.assertEqual(hltb.game,"Sunset Overdrive")
+        self.assertEqual(hltb.fulltime,10.5)
+
+    @tag('htlb')
+    def test_known_good_hltb(self):
+        hltb = HowLongToBeat("Human Resource Machine")
+        self.assertEqual(hltb.game,"Human Resource Machine")
+        self.assertEqual(hltb.fulltime,4.5)
+
+    @tag('htlb')
+    def test_known_bad_hltb(self):
+        hltb = HowLongToBeat("Legion Saga")
+        self.assertEqual(hltb.game,"Legion Saga")
+        self.assertEqual(hltb.fulltime,-1)
+
+    @tag('htlb')
+    def test_alternate_names_hltb(self):
+        hltb = HowLongToBeat("Antihero")
+        self.assertEqual(str(hltb),"Antihero - Not Found")
+        self.assertEqual(hltb.fulltime,-1)
+
+        hltb = HowLongToBeat("Antihero (2017)")
+        self.assertEqual(hltb.game,"Antihero (2017)")
+        self.assertEqual(hltb.fulltime,6.0)
+
+    @tag('htlb')
+    def test_full_time_on_create(self):
+        game = create_game("Sunset Overdrive")
+        self.assertEqual(game.full_time_to_beat,10.5)
+
+
+
+        #NEED DIFFERENT RESULTS FOR DIFFERENT STATE
 
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py
