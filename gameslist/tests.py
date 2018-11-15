@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.apps import apps
-from django.test import TestCase
-from django.shortcuts import reverse,get_object_or_404
-from django.conf import settings
-from django.test import tag
-from django.test.client import Client
-from django.utils import timezone
 from importlib import import_module
 from datetime import date,datetime,timedelta
 import logging
 import unittest
-from .models import Game
+
+from django.apps import apps
+from django.test import TestCase, tag
+from django.test.client import Client
+from django.shortcuts import reverse,get_object_or_404
+from django.conf import settings
+from django.utils import timezone
+from django.core.exceptions import ValidationError
+
+
+from .models import Game,GameForm
 from .views import play_game,check_url_args_for_only_token
 from .apps import GameslistConfig
 from endpoints.howlongtobeat import HowLongToBeat,ExampleHowLongToBeat
@@ -53,6 +56,9 @@ def create_game(name="Test",system="STM",played=False,beaten=False,location="STM
                                location=location,game_format=game_format,notes=notes,
                                purchase_date=purchase_date,finish_date=finish_date,
                                abandoned=abandoned,perler=perler,reviewed=reviewed,flagged=flagged)
+
+def convert_date(date_string):
+    return datetime.strptime(date_string,'%Y-%m-%d').date()
 
 #class WishModelTests(TestCase):
 
@@ -337,6 +343,82 @@ class HLTBTest(TestCase):
     def test_full_time_on_create(self):
         game = create_game("Sunset Overdrive")
         self.assertEqual(game.full_time_to_beat,10.5)
+
+@tag('date_validation')
+class GameModelTests(TestCase):
+    @tag('date_validation')
+    def test_future_purchase_date(self):
+        form = GameForm({
+            'name': "Test Future Purchase",
+            'purchase_date': '2019-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM'
+        })
+        self.assertTrue(convert_date(form.data['purchase_date']) > date.today())
+        self.assertRaises(ValidationError,form.full_clean())
+
+    @tag('date_validation')
+    def test_past_purchase_date(self):
+        form = GameForm({
+            'name': "Test Past Purchase",
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM'
+        })
+        self.assertTrue(form.is_valid())
+
+    @tag('date_validation')
+    def test_future_finish_date(self):
+        form = GameForm({
+            'name': "Test Future Finish",
+            'finish_date': '2019-01-01',
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM'
+        })
+        self.assertTrue(convert_date(form.data['finish_date']) > date.today())
+        self.assertRaises(ValidationError,form.full_clean())
+
+    @tag('date_validation')
+    def test_past_finish_date(self):
+        form = GameForm({
+            'name': "Test Past Finish",
+            'finish_date': '2018-01-01',
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM'
+        })
+        print(form.errors.as_json())
+        self.assertTrue(form.is_valid())
+
+    ##need to validate finish is after purchase?
+
+    # def test_valid_data(self):
+    #     form = CommentForm({
+    #         'name': "Turanga Leela",
+    #         'email': "leela@example.com",
+    #         'body': "Hi there",
+    #     }, entry=self.entry)
+    #     self.assertTrue(form.is_valid())
+    #     comment = form.save()
+    #     self.assertEqual(comment.name, "Turanga Leela")
+    #     self.assertEqual(comment.email, "leela@example.com")
+    #     self.assertEqual(comment.body, "Hi there")
+    #     self.assertEqual(comment.entry, self.entry)
+
+
+    # def test_blank_data(self):
+    #     form = CommentForm({}, entry=self.entry)
+    #     self.assertFalse(form.is_valid())
+    #     self.assertEqual(form.errors, {
+    #         'name': ['required'],
+    #         'email': ['required'],
+    #         'body': ['required'],
+    #     })
 
 #    def test_list_of_dates(self):
 #        print [x for x in range(datetime.now().year-9,datetime.now().year+1)]

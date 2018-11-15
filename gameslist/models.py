@@ -132,28 +132,12 @@ class GameForm(ModelForm):
             'purchase_date': SelectDateWidget(years=years),
         }
 
-    # def clean(self):
-    #     data = self.cleaned_data
-    #     logger.debug(data)
-        
-    #     if data['purchase_date'] > date.today():
-    #         ValidationError(
-    #             ('Invalid value: %(value)s'),
-    #              params={'value': data['purchase_date']},
-#            )
+        def clean_purchase_date(self):
+          purchase_date = self.cleaned_data['purchase_date']
+          no_future(purchase_date)
+          return purchase_date
 
-        # A custom empty label with string
-        #field1 = forms.DateField(widget=SelectDateWidget(empty_label="Nothing"))
 
-        # A custom empty label with tuple
-        #field1 = forms.DateField(
-        #widget=SelectDateWidget(
-        #empty_label=("Choose Year", "Choose Month", "Choose Day"),
-        #),
-        #)
-    #SelectDateWidget¶
-    #class SelectDateWidget[source]¶
-    #template_name: 'django/forms/widgets/select_date.html'
 
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)
