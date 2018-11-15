@@ -11,6 +11,7 @@ import logging
 from django.db import models
 from django.utils import timezone
 from django.forms import ModelForm,DateField,SelectDateWidget
+from django.core.exceptions import ValidationError
 from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
 
@@ -57,6 +58,11 @@ SYSTEMS = (
     ('XB1', 'Xbox One')
 )
 
+def no_future(value):
+    today = date.today()
+    if value > today:
+        raise ValidationError('Purchase_Date/finish_date cannot be in the future.')
+
 class Game(models.Model):
     FORMATS = (
         ('P', 'Physical'),
@@ -76,8 +82,8 @@ class Game(models.Model):
     location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
     game_format = models.CharField('format',max_length=1, choices=FORMATS, default='D')
     notes = models.CharField(max_length=500,default="",blank=True, null=True)
-    purchase_date = models.DateField('date purchased',default=date.today().isoformat())
-    finish_date = models.DateField('date finished', default=None, blank=True, null=True)
+    purchase_date = models.DateField('date purchased',default=date.today().isoformat(),validators=[no_future])
+    finish_date = models.DateField('date finished', default=None, blank=True, null=True,validators=[no_future])
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
@@ -110,6 +116,7 @@ class Game(models.Model):
 #class GameManager(models.Manager):
 #    def create_game(self):
 #        game = self.create()
+    
 
 
 class GameForm(ModelForm):
@@ -125,9 +132,16 @@ class GameForm(ModelForm):
             'purchase_date': SelectDateWidget(years=years),
         }
 
-    def clean(self):
-        data = self.cleaned_data
-        logger.debug(data)
+    # def clean(self):
+    #     data = self.cleaned_data
+    #     logger.debug(data)
+        
+    #     if data['purchase_date'] > date.today():
+    #         ValidationError(
+    #             ('Invalid value: %(value)s'),
+    #              params={'value': data['purchase_date']},
+#            )
+
         # A custom empty label with string
         #field1 = forms.DateField(widget=SelectDateWidget(empty_label="Nothing"))
 
