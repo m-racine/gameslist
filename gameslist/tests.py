@@ -380,6 +380,9 @@ class GameModelTests(TestCase):
             'location': 'STM'
         })
         self.assertTrue(convert_date(form.data['finish_date']) > date.today())
+        print form.data.keys()
+
+        self.assertFalse(form.data['beaten'])
         self.assertRaises(ValidationError,form.full_clean())
 
     @tag('date_validation')
@@ -392,7 +395,9 @@ class GameModelTests(TestCase):
             'game_format': 'D',
             'location': 'STM'
         })
+        print vars(form)
         print(form.errors.as_json())
+        self.assertFalse(form.data['beaten'])
         self.assertTrue(form.is_valid())
 
     ##need to validate finish is after purchase?

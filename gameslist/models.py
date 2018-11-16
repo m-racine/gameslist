@@ -110,6 +110,10 @@ class Game(models.Model):
             self.full_time_to_beat = HowLongToBeat(self.name).fulltime
         super(Game, self).save(*args,**kwargs)
 
+    def clean(self):
+        if self.finish_date and (self.played and (self.beaten or self.abandoned)):
+            raise ValidationError({'finish_date':_('finish_date must be empty if game is not played and either beaten or abandoned.')})
+
     def __str__(self):
         return self.name + " - " + self.system
 
@@ -131,11 +135,6 @@ class GameForm(ModelForm):
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),
         }
-
-        def clean_purchase_date(self):
-          purchase_date = self.cleaned_data['purchase_date']
-          no_future(purchase_date)
-          return purchase_date
 
 
 
