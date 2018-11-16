@@ -9,9 +9,11 @@ from django.shortcuts import render,get_object_or_404, reverse, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views import generic
 from django.utils import timezone
+from django import forms
+from django.forms.utils import ErrorList
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game,Wish,GameForm
+from .models import Game,Wish,GameForm,PlayBeatAbandonForm
 from .filters import GameFilter
 
 # Create your views here.
@@ -120,12 +122,32 @@ class CreateGame(generic.CreateView):
     def get_success_url(self):
         return reverse('gameslist:list', args=())
 
-def beat_game(request, game_id):
-    game = get_object_or_404(Game, pk=game_id)
-    #set game.beat to true
-    game.beaten = True
-    game.save()
-    return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
+class PlayBeatAbandonGame(generic.UpdateView):
+    model = Game
+    form_class = PlayBeatAbandonForm
+    template_name_suffix = '_update_form'
+
+    #https://gist.github.com/vero4karu/3b62a13bdce7fe4178ac
+    def form_valid(self, form):
+        if form.cleaned_data['beaten'] or form.cleaned_data['abandoned']:
+            if not form.cleaned_data['finish_date']:
+                form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
+                    u'You need to have a finish date in order to beat or abandon a game.'
+                ])
+                return self.form_invalid(form)
+        self.object.is_submitted = True
+        self.object = form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('gameslist:detail', args=(self.object.id,))
+
+# def beat_game(request, game_id):
+#     game = get_object_or_404(Game, pk=game_id)
+#     #set game.beat to true
+#     game.beaten = True
+#     game.save()
+#     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
 #def play_game(request, game_id):
 def play_game(request, game_id):

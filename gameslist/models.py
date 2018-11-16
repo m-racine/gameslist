@@ -139,7 +139,15 @@ class GameForm(ModelForm):
             'purchase_date': SelectDateWidget(years=years),
         }
 
-
+class PlayBeatAbandonForm(ModelForm):
+    class Meta:
+        model = Game
+        years = [x for x in range(datetime.now().year-9,datetime.now().year+1)]
+        years.reverse()
+        fields = ('played','beaten','abandoned','finish_date')
+        widgets = {
+            'finish_date': SelectDateWidget(years=years),
+        }
 
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)

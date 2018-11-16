@@ -15,7 +15,7 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 
-from .models import Game,GameForm
+from .models import Game,GameForm,PlayBeatAbandonForm
 from .views import play_game,check_url_args_for_only_token
 from .apps import GameslistConfig
 from endpoints.howlongtobeat import HowLongToBeat,ExampleHowLongToBeat
@@ -254,10 +254,22 @@ class GameDetailViewTests(TestCase):
 
 
     def test_beat_game(self):
-        game = create_game()
-        response = self.client.post(reverse('gameslist:beat_game',args=(game.id,)))
-        game = get_object_or_404(Game,pk=game.id)
-        self.assertEqual(game.beaten,True)
+        game = create_game(beaten=False)
+#        response = self.client.post(reverse('gameslist:beat_game',args=(game.id,)))
+#        game = get_object_or_404(Game,pk=game.id)
+        self.assertFalse(game.beaten)
+        form = PlayBeatAbandonForm({
+            'finish_date': '2018-11-01',
+            'played':True,
+            'beaten':True
+        })
+        #self.assertTrue(convert_date(form.data['purchase_date']) > date.today())
+        #self.assertRaises(ValidationError,form.full_clean())
+        self.assertTrue(form.is_valid())
+        game = form.save()
+        logger.debug(form.errors.as_json())
+        #game = get_object_or_404(Game,pk=game.id)
+        self.assertTrue(game.beaten)
 
     def test_abandon_game(self):
         game = create_game()
