@@ -377,12 +377,10 @@ class GameModelTests(TestCase):
             'purchase_date': '2018-01-01',
             'system': 'STM',
             'game_format': 'D',
-            'location': 'STM'
+            'location': 'STM',
+            'beaten': True
         })
         self.assertTrue(convert_date(form.data['finish_date']) > date.today())
-        print form.data.keys()
-
-        self.assertFalse(form.data['beaten'])
         self.assertRaises(ValidationError,form.full_clean())
 
     @tag('date_validation')
@@ -393,42 +391,74 @@ class GameModelTests(TestCase):
             'purchase_date': '2018-01-01',
             'system': 'STM',
             'game_format': 'D',
-            'location': 'STM'
+            'location': 'STM',
+            'beaten': True
         })
-        print vars(form)
         print(form.errors.as_json())
-        self.assertFalse(form.data['beaten'])
         self.assertTrue(form.is_valid())
 
-    ##need to validate finish is after purchase?
+    @tag('date_validation')
+    def test_not_played(self):
+        form = GameForm({
+            'name': "Test Past Finish",
+            'finish_date': '2018-01-01',
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'played': False
+        })
+        print(form.errors.as_json())
+        #self.assertFalse(form.is_valid())
+        self.assertRaises(ValidationError,form.full_clean())
 
-    # def test_valid_data(self):
-    #     form = CommentForm({
-    #         'name': "Turanga Leela",
-    #         'email': "leela@example.com",
-    #         'body': "Hi there",
-    #     }, entry=self.entry)
-    #     self.assertTrue(form.is_valid())
-    #     comment = form.save()
-    #     self.assertEqual(comment.name, "Turanga Leela")
-    #     self.assertEqual(comment.email, "leela@example.com")
-    #     self.assertEqual(comment.body, "Hi there")
-    #     self.assertEqual(comment.entry, self.entry)
+    @tag('date_validation')
+    def test_not_played_but_beaten(self):
+        form = GameForm({
+            'name': "Test Past Finish",
+            'finish_date': '2018-01-01',
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'played': False,
+            'beaten': True
+        })
+        print(form.errors.as_json())
+        #self.assertFalse(form.is_valid())
+        self.assertRaises(ValidationError,form.full_clean())
 
+    @tag('date_validation')
+    def test_not_played_but_abandoned(self):
+        form = GameForm({
+            'name': "Test Past Finish",
+            'finish_date': '2018-01-01',
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'played': False,
+            'abandoned': True
+        })
+        print(form.errors.as_json())
+        #self.assertFalse(form.is_valid())
+        self.assertRaises(ValidationError,form.full_clean())
 
-    # def test_blank_data(self):
-    #     form = CommentForm({}, entry=self.entry)
-    #     self.assertFalse(form.is_valid())
-    #     self.assertEqual(form.errors, {
-    #         'name': ['required'],
-    #         'email': ['required'],
-    #         'body': ['required'],
-    #     })
-
-#    def test_list_of_dates(self):
-#        print [x for x in range(datetime.now().year-9,datetime.now().year+1)]
-#        self.assertEqual(0,1)
-
-        #NEED DIFFERENT RESULTS FOR DIFFERENT STATE
+    @tag('date_validation')
+    def test_not_beaten_or_abandoned(self):
+        form = GameForm({
+            'name': "Test Past Finish",
+            'finish_date': '2018-01-01',
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'played': True,
+            'beaten': False,
+            'abandoned': False
+        })
+        print(form.errors.as_json())
+        #self.assertFalse(form.is_valid())
+        self.assertRaises(ValidationError,form.full_clean())
 
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py

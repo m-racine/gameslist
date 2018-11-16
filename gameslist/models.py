@@ -111,8 +111,8 @@ class Game(models.Model):
         super(Game, self).save(*args,**kwargs)
 
     def clean(self):
-        if self.finish_date and (self.played and (self.beaten or self.abandoned)):
-            raise ValidationError({'finish_date':_('finish_date must be empty if game is not played and either beaten or abandoned.')})
+        if self.finish_date and not (self.played and (self.beaten or self.abandoned)):
+            raise ValidationError({'finish_date':('finish_date must be empty if game is not played and either beaten or abandoned.')})
 
     def __str__(self):
         return self.name + " - " + self.system
