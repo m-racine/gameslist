@@ -116,6 +116,9 @@ class Game(models.Model):
         if self.finish_date:
             if self.finish_date < self.purchase_date:
                 raise ValidationError({'finish_date':('finish_date must be after date of purchase.')})
+        if self.beaten or self.abandoned:
+            if not self.played:
+                raise ValidationError({'played': ('You must have played a game to beat or abandon it.')})
 
     def __str__(self):
         return self.name + " - " + self.system

@@ -149,20 +149,20 @@ class PlayBeatAbandonGame(generic.UpdateView):
 #     game.save()
 #     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
-#def play_game(request, game_id):
-def play_game(request, game_id):
-    game = get_object_or_404(Game, pk=game_id)
-    #set game.beat to true
-    game.played = True
-    game.save()
-    return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
+# #def play_game(request, game_id):
+# def play_game(request, game_id):
+#     game = get_object_or_404(Game, pk=game_id)
+#     #set game.beat to true
+#     game.played = True
+#     game.save()
+#     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
-def abandon_game(request, game_id):
-    game = get_object_or_404(Game, pk=game_id)
-    #set game.beat to true
-    game.abandoned = True
-    game.save()
-    return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
+# def abandon_game(request, game_id):
+#     game = get_object_or_404(Game, pk=game_id)
+#     #set game.beat to true
+#     game.abandoned = True
+#     game.save()
+#     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
 def flag_game(request, game_id):
     game = get_object_or_404(Game, pk=game_id)

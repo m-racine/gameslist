@@ -8,26 +8,10 @@
     <p>Aging: {{game.aging}}. PlayAging: {{game.play_aging}}</p>
     <p>Full Time to Beat: {{game.full_time_to_beat}} Hours</p>
 
-    {% if game.played %}<p>Played!</p>
-        {% if game.beaten %}<p>Beaten!</p>
-        {% elif game.abandoned %}<p>Abandoned :( </p>
-        {% else %}
-            <form action="{% url 'gameslist:beat_game' game.id %}" method="get">
-                {% csrf_token %}
-                <button type="submit"> Beat!</button>
-            </form> 
-            <form action="{% url 'gameslist:abandon_game' game.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit"> Abandon.</button>
-            </form> 
-        {% endif %}
-        
-    {% else %}
-        <form action="{% url 'gameslist:play_game' game.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit"> Play!</button>
-        </form> 
-    {% endif %}
+    <form action="{% url 'gameslist:play_game' game.id %}" method="get">
+        {% csrf_token %}
+        <button type="submit"> Change Play Status</button>
+    </form> 
     
     {% if game.perler %}<p>Perler Made!</p>{% endif %}
     {% if game.reviewed %}<p>Reviewed!</p>{% endif %}

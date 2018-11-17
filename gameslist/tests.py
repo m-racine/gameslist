@@ -16,7 +16,7 @@ from django.core.exceptions import ValidationError
 
 
 from .models import Game,GameForm,PlayBeatAbandonForm
-from .views import play_game,check_url_args_for_only_token
+from .views import check_url_args_for_only_token
 from .apps import GameslistConfig
 from endpoints.howlongtobeat import HowLongToBeat,ExampleHowLongToBeat
 # Create your tests here.
@@ -238,44 +238,42 @@ class GameDetailViewTests(TestCase):
         self.assertEqual(game.name,"Test")
 
     def test_play_game(self):
-        game = create_game()
-        # <form action="{% url 'gameslist:beat_game' game.id %}" method="post">
-        #         {% csrf_token %}
-        #         <button type="submit"> Beat!</button>
-        #     </form> 
-        response = self.client.post(reverse('gameslist:play_game',args=(game.id,)))
-
-        #print response.content
-        #print response.reason_phrase
-        #self.assertEqual(response.status_code,200)
-        #play_game(game.id)
-        game = get_object_or_404(Game,pk=game.id)
-        self.assertEqual(game.played,True)
+        game = create_game(beaten=False)
+        self.assertFalse(game.played)
+        form = PlayBeatAbandonForm({
+            'played':True
+        })
+        self.assertTrue(form.is_valid())
+        game = form.save()
+        logger.debug(form.errors.as_json())
+        self.assertTrue(game.played)
 
 
     def test_beat_game(self):
         game = create_game(beaten=False)
-#        response = self.client.post(reverse('gameslist:beat_game',args=(game.id,)))
-#        game = get_object_or_404(Game,pk=game.id)
         self.assertFalse(game.beaten)
         form = PlayBeatAbandonForm({
             'finish_date': '2018-11-01',
             'played':True,
             'beaten':True
         })
-        #self.assertTrue(convert_date(form.data['purchase_date']) > date.today())
-        #self.assertRaises(ValidationError,form.full_clean())
         self.assertTrue(form.is_valid())
         game = form.save()
         logger.debug(form.errors.as_json())
-        #game = get_object_or_404(Game,pk=game.id)
         self.assertTrue(game.beaten)
 
     def test_abandon_game(self):
-        game = create_game()
-        response = self.client.post(reverse('gameslist:abandon_game',args=(game.id,)))
-        game = get_object_or_404(Game,pk=game.id)
-        self.assertEqual(game.abandoned,True)    
+        game = create_game(beaten=False)
+        self.assertFalse(game.abandoned)
+        form = PlayBeatAbandonForm({
+            'finish_date': '2018-11-01',
+            'played':True,
+            'abandoned':True
+        })
+        self.assertTrue(form.is_valid())
+        game = form.save()
+        logger.debug(form.errors.as_json())
+        self.assertTrue(game.abandoned)
 
     def test_flag_game(self):
         game = create_game()
@@ -404,6 +402,7 @@ class GameModelTests(TestCase):
             'system': 'STM',
             'game_format': 'D',
             'location': 'STM',
+            'played': True,
             'beaten': True
         })
         print(form.errors.as_json())
