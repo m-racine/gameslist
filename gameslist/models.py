@@ -91,7 +91,7 @@ class Game(models.Model):
     #substantial_progress = models.BooleanField(default=False)
     full_time_to_beat = models.FloatField(default=0.0)
     #time_to_beat = models.IntegerField(default=0)
-    #current_time = models.IntegerField(default=0)
+    current_time = models.IntegerField(default=0)
 
     @property
     def aging(self):
@@ -111,6 +111,8 @@ class Game(models.Model):
         super(Game, self).save(*args,**kwargs)
 
     def clean(self):
+        if self.played and self.current_time <=0:
+            raise ValidationError({'current_time':('If a game is played the current_time must be over 0.')})
         if self.finish_date and not (self.played and (self.beaten or self.abandoned)):
             raise ValidationError({'finish_date':('finish_date must be empty if game is not played and either beaten or abandoned.')})
         if self.finish_date:
@@ -136,7 +138,7 @@ class GameForm(ModelForm):
         years.reverse()
         fields = ('name','system','location','game_format',
                   'played','beaten','abandoned','perler',
-                  'reviewed','purchase_date','finish_date')
+                  'reviewed','current_time','purchase_date','finish_date')
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),
@@ -147,7 +149,7 @@ class PlayBeatAbandonForm(ModelForm):
         model = Game
         years = [x for x in range(datetime.now().year-9,datetime.now().year+1)]
         years.reverse()
-        fields = ('played','beaten','abandoned','finish_date')
+        fields = ('played','current_time','beaten','abandoned','finish_date')
         widgets = {
             'finish_date': SelectDateWidget(years=years),
         }

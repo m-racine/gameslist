@@ -241,7 +241,8 @@ class GameDetailViewTests(TestCase):
         game = create_game(beaten=False)
         self.assertFalse(game.played)
         form = PlayBeatAbandonForm({
-            'played':True
+            'played':True,
+            'current_time': 1
         })
         self.assertTrue(form.is_valid())
         game = form.save()
@@ -255,6 +256,7 @@ class GameDetailViewTests(TestCase):
         form = PlayBeatAbandonForm({
             'finish_date': '2018-11-01',
             'played':True,
+            'current_time':1,
             'beaten':True
         })
         self.assertTrue(form.is_valid())
@@ -268,6 +270,7 @@ class GameDetailViewTests(TestCase):
         form = PlayBeatAbandonForm({
             'finish_date': '2018-11-01',
             'played':True,
+            'current_time':1,
             'abandoned':True
         })
         self.assertTrue(form.is_valid())
@@ -365,6 +368,7 @@ class GameModelTests(TestCase):
             'game_format': 'D',
             'location': 'STM'
         })
+        print(form.errors.as_json())
         self.assertTrue(convert_date(form.data['purchase_date']) > date.today())
         self.assertRaises(ValidationError,form.full_clean())
 
@@ -375,8 +379,10 @@ class GameModelTests(TestCase):
             'purchase_date': '2018-01-01',
             'system': 'STM',
             'game_format': 'D',
-            'location': 'STM'
+            'location': 'STM',
+            'current_time': 0
         })
+        print(form.errors.as_json())
         self.assertTrue(form.is_valid())
 
     @tag('date_validation')
@@ -403,6 +409,7 @@ class GameModelTests(TestCase):
             'game_format': 'D',
             'location': 'STM',
             'played': True,
+            'current_time': 1,
             'beaten': True
         })
         print(form.errors.as_json())
@@ -465,6 +472,7 @@ class GameModelTests(TestCase):
             'game_format': 'D',
             'location': 'STM',
             'played': True,
+            'current_time': 1,
             'beaten': False,
             'abandoned': False
         })
