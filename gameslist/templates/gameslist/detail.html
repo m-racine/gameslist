@@ -6,6 +6,7 @@
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
     <p>Purchased on {{game.purchase_date}} and finished on {{game.finish_date}}</p>
     <p>Aging: {{game.aging}}. PlayAging: {{game.play_aging}}</p>
+    <p>Remaining Time {{game.time_to_beat}} and Current Time {{game.current_time}}
     <p>Full Time to Beat: {{game.full_time_to_beat}} Hours</p>
 
     <form action="{% url 'gameslist:play_game' game.id %}" method="get">
