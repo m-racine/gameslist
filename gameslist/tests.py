@@ -51,11 +51,11 @@ class PersistentSessionClient(Client):
 def create_game(name="Test",system="STM",played=False,beaten=False,location="STM",
                 game_format="D",notes="",purchase_date=datetime.strptime('2018-10-30','%Y-%m-%d'),
                 finish_date=datetime.strptime('2018-10-30','%Y-%m-%d'),
-                abandoned=False,perler=False,reviewed=False,flagged=False):
+                abandoned=False,perler=False,reviewed=False,flagged=False,current_time=0):
     return Game.objects.create(name=name,system=system,played=played,beaten=beaten,
                                location=location,game_format=game_format,notes=notes,
                                purchase_date=purchase_date,finish_date=finish_date,
-                               abandoned=abandoned,perler=perler,reviewed=reviewed,flagged=flagged)
+                               abandoned=abandoned,perler=perler,reviewed=reviewed,flagged=flagged,current_time=current_time)
 
 def convert_date(date_string):
     return datetime.strptime(date_string,'%Y-%m-%d').date()
@@ -356,6 +356,17 @@ class HLTBTest(TestCase):
     def test_full_time_on_create(self):
         game = create_game("Sunset Overdrive")
         self.assertEqual(game.full_time_to_beat,10.5)
+
+    @tag('htlb')
+    def test_time_to_beat_not_played(self):
+        game = create_game("Sunset Overdrive",current_time=0)
+        self.assertEqual(game.time_to_beat,10.5)
+
+    @tag('htlb')
+    def test_time_to_beat_partial(self):
+        game = create_game("Sunset Overdrive",current_time=5.5)
+        self.assertEqual(game.full_time_to_beat,10.5)
+        self.assertEqual(game.time_to_beat,5.0)
 
 @tag('date_validation')
 class GameModelTests(TestCase):
