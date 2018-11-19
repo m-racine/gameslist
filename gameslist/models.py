@@ -63,6 +63,11 @@ def no_future(value):
     if value > today:
         raise ValidationError('Purchase_Date/finish_date cannot be in the future.')
 
+def only_positive_or_zero(value):
+    if value < 0:
+        return False
+    return True
+
 class Game(models.Model):
     FORMATS = (
         ('P', 'Physical'),
@@ -89,9 +94,9 @@ class Game(models.Model):
     reviewed = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
     #substantial_progress = models.BooleanField(default=False)
-    full_time_to_beat = models.FloatField(default=0.0)
+    full_time_to_beat = models.FloatField(default=0.0,validators=[only_positive_or_zero])
     #time_to_beat = models.IntegerField(default=0)
-    current_time = models.IntegerField(default=0)
+    current_time = models.IntegerField(default=0,validators=[only_positive_or_zero])
 
     @property
     def aging(self):
@@ -134,11 +139,12 @@ class Game(models.Model):
 class GameForm(ModelForm):
     class Meta:
         model = Game
-        years = [x for x in range(datetime.now().year-9,datetime.now().year+1)]
+        years = [x for x in range(datetime.now().year-19,datetime.now().year+1)]
         years.reverse()
         fields = ('name','system','location','game_format',
                   'played','beaten','abandoned','perler',
-                  'reviewed','current_time','purchase_date','finish_date')
+                  'reviewed','current_time','purchase_date','finish_date',
+                  'notes')
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),
@@ -147,7 +153,7 @@ class GameForm(ModelForm):
 class PlayBeatAbandonForm(ModelForm):
     class Meta:
         model = Game
-        years = [x for x in range(datetime.now().year-9,datetime.now().year+1)]
+        years = [x for x in range(datetime.now().year-19,datetime.now().year+1)]
         years.reverse()
         fields = ('played','current_time','beaten','abandoned','finish_date')
         widgets = {

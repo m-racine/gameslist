@@ -480,4 +480,67 @@ class GameModelTests(TestCase):
         #self.assertFalse(form.is_valid())
         self.assertRaises(ValidationError,form.full_clean())
 
+class CurrentTimeTests(TestCase):
+    #test that setting current time under 0 is impossible
+    @tag('current_time')
+    def test_negative_current_time(self):
+        form = GameForm({
+            'name': "Test Future Purchase",
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'current_time': -1,
+            'played': True
+        })
+        print(form.errors.as_json())
+        self.assertRaises(ValidationError,form.full_clean())
+        self.assertFalse(form.is_valid())
+
+    #test that setting current time over 1 with played false is impossible
+    @tag('current_time')
+    def test_current_time_not_played(self):
+        form = GameForm({
+            'name': "Test Future Purchase",
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'current_time': 1
+        })
+        print(form.errors.as_json())
+        self.assertRaises(ValidationError,form.full_clean())
+
+    #test that setting played to true with current time == 0 is impossible
+    @tag('current_time')
+    def test_no_time_yes_played(self):
+        form = GameForm({
+            'name': "Test Future Purchase",
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'played': True
+        })
+        print(form.errors.as_json())
+        self.assertRaises(ValidationError,form.full_clean())
+
+    #test that setting played to true AND current time > 0 is POSSIBLE
+    @tag('current_time')
+    def test_valid_current_played(self):
+        form = GameForm({
+            'name': "Test Future Purchase",
+            'purchase_date': '2018-01-01',
+            'system': 'STM',
+            'game_format': 'D',
+            'location': 'STM',
+            'played': True,
+            'current_time': 1
+        })
+        self.assertTrue(form.is_valid())
+        game = form.save()
+        logger.debug(form.errors.as_json())
+        self.assertTrue(game.played)
+        self.assertEqual(game.current_time,1)
+
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py
