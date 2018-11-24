@@ -158,11 +158,6 @@ class GameForm(ModelForm):
                   'played','beaten','abandoned','perler',
                   'reviewed','current_time','purchase_date','finish_date',
                   'notes')
-        initials = {
-            'purchase_date': date.today().isoformat(),
-            'current_time': 0.0
-            #resolved GL-65
-        }
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),

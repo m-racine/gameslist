@@ -119,6 +119,12 @@ class CreateGame(generic.CreateView):
     #fields = ['name']
     form_class = GameForm
 
+    def get_initial(self):
+        super(CreateGame, self).get_initial()
+        self.initial['purchase_date']= date.today().isoformat()
+        self.initial['current_time'] = 0.0
+        return self.initial
+
     def get_success_url(self):
         return reverse('gameslist:list', args=())
 
