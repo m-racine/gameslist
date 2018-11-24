@@ -96,12 +96,17 @@ class Game(models.Model):
     #substantial_progress = models.BooleanField(default=False)
     full_time_to_beat = models.FloatField(default=0.0,validators=[only_positive_or_zero])
     #time_to_beat = models.IntegerField(default=0)
-    current_time = models.IntegerField(default=0,validators=[only_positive_or_zero])
+    current_time = models.FloatField(default=0.0,validators=[only_positive_or_zero])
 
     @property
     def aging(self):
         if self.beaten or self.abandoned:
-            return self.finish_date - self.purchase_date
+            if self.finish_date:
+                return self.finish_date - self.purchase_date
+            else:
+                self.flagged = True
+                logger.warning("%s is lacking a finish_date" % self.name)
+                return date.today() - self.purchase_date
         return date.today() - self.purchase_date
     
     @property
@@ -153,6 +158,10 @@ class GameForm(ModelForm):
                   'played','beaten','abandoned','perler',
                   'reviewed','current_time','purchase_date','finish_date',
                   'notes')
+        initials = {
+            'purchase_date': date.today().isoformat(),
+            'current_time': 0.0
+        }
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),
