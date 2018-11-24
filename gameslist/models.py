@@ -161,6 +161,7 @@ class GameForm(ModelForm):
         initials = {
             'purchase_date': date.today().isoformat(),
             'current_time': 0.0
+            #resolved GL-65
         }
         widgets = {
             'finish_date': SelectDateWidget(years=years),
