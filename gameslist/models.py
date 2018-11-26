@@ -94,9 +94,8 @@ class Game(models.Model):
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
-    #substantial_progress = models.BooleanField(default=False)
+    substantial_progress = models.BooleanField(default=False)
     full_time_to_beat = models.FloatField(default=0.0,validators=[only_positive_or_zero])
-    #time_to_beat = models.IntegerField(default=0)
     current_time = models.FloatField(default=0.0,validators=[only_positive_or_zero])
 
     @property
@@ -127,6 +126,8 @@ class Game(models.Model):
     def save(self, *args, **kwargs):
         if self.full_time_to_beat == 0.0:
             self.full_time_to_beat = HowLongToBeat(self.name).fulltime
+        if self.time_to_beat > (self.full_time_to_beat/2):
+            self.substantial_progress = True
         super(Game, self).save(*args,**kwargs)
 
     def clean(self):

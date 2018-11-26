@@ -340,7 +340,7 @@ class HLTBTest(TestCase):
     def test_example_hltb(self):
         hltb = ExampleHowLongToBeat("Sunset Overdrive")
         self.assertEqual(hltb.game,"Sunset Overdrive")
-        self.assertEqual(hltb.fulltime,10.5)
+        self.assertEqual(hltb.fulltime,10.0)
 
     @tag('htlb')
     def test_known_good_hltb(self):
@@ -367,7 +367,7 @@ class HLTBTest(TestCase):
     @tag('htlb')
     def test_full_time_on_create(self):
         game = create_game("Sunset Overdrive")
-        self.assertEqual(game.full_time_to_beat,10.5)
+        self.assertEqual(game.full_time_to_beat,10.0)
 
     @tag('htlb')
     def test_time_to_beat_not_played(self):
@@ -377,7 +377,7 @@ class HLTBTest(TestCase):
     @tag('htlb')
     def test_time_to_beat_partial(self):
         game = create_game("Sunset Overdrive",current_time=5.5)
-        self.assertEqual(game.full_time_to_beat,10.5)
+        self.assertEqual(game.full_time_to_beat,10.0)
         self.assertEqual(game.time_to_beat,5.0)
 
 @tag('date_validation')
