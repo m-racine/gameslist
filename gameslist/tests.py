@@ -372,13 +372,13 @@ class HLTBTest(TestCase):
     @tag('htlb')
     def test_time_to_beat_not_played(self):
         game = create_game("Sunset Overdrive",current_time=0)
-        self.assertEqual(game.time_to_beat,10.5)
+        self.assertEqual(game.time_to_beat,10.0)
 
     @tag('htlb')
     def test_time_to_beat_partial(self):
         game = create_game("Sunset Overdrive",current_time=5.5)
         self.assertEqual(game.full_time_to_beat,10.0)
-        self.assertEqual(game.time_to_beat,5.0)
+        self.assertEqual(game.time_to_beat,4.5)
 
 @tag('date_validation')
 class GameModelTests(TestCase):
