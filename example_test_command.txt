@@ -1,0 +1,1 @@
+python manage.py test  --verbosity 2 --with-xunit --xunit-file=tests.xml -a 'aging'

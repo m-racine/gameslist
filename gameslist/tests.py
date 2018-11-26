@@ -14,6 +14,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 
+from nose.plugins.attrib import attr
 
 from .models import Game,GameForm,PlayBeatAbandonForm
 from .views import check_url_args_for_only_token
@@ -57,14 +58,14 @@ def convert_date(date_string):
 #class WishModelTests(TestCase):
 
 class AgingTests(unittest.TestCase):
-    @tag('aging')
+    @attr('aging')
     def test_aging_zero(self):
         game = create_game(purchase_date=date.today())
         self.assertEqual(game.purchase_date,date.today())
         self.assertEqual(game.aging.days,0)
         self.assertEqual(game.play_aging.days,0)
 
-    @tag('aging')
+    @attr('aging')
     def test_aging_over_year(self):
         game = create_game(played=True,beaten=True,purchase_date=datetime.strptime('2016-10-30','%Y-%m-%d'),finish_date=datetime.strptime('2018-10-30','%Y-%m-%d'))
         self.assertEqual(game.purchase_date,datetime.strptime('2016-10-30','%Y-%m-%d'))
@@ -72,7 +73,7 @@ class AgingTests(unittest.TestCase):
         self.assertEqual(game.play_aging.days,0)
 
     #this is a VALID state due to preorders
-    @tag('aging')
+    @attr('aging')
     def test_negative_aging(self):
         future_date = date.today() + timedelta(8)
         game = create_game(purchase_date=future_date)
@@ -80,7 +81,7 @@ class AgingTests(unittest.TestCase):
         self.assertEqual(game.aging.days,-8)
         self.assertEqual(game.play_aging.days,-8)
 
-    @tag('aging')
+    @attr('aging')
     def test_aging_beaten(self):
         game = create_game(purchase_date=date.today()-timedelta(1),beaten=True,finish_date=date.today(),played=True)
         self.assertGreater(game.aging.days,0)
@@ -89,19 +90,19 @@ class AgingTests(unittest.TestCase):
         self.assertEqual(game.aging.days,0)
         self.assertEqual(game.play_aging.days,0)
 
-    @tag('aging')
+    @attr('aging')
     def test_aging_played(self):
         game = create_game(played=True,purchase_date=date.today()-timedelta(1))
         self.assertEqual(game.aging.days,1)
         self.assertEqual(game.play_aging.days,0)
 
-    @tag('aging')
+    @attr('aging')
     def test_aging_abandoned(self):
         game = create_game(purchase_date=date.today()-timedelta(4),abandoned=True,finish_date=date.today(),played=True)
         self.assertEqual(game.aging.days,4)
         self.assertEqual(game.play_aging.days,0)
 
-    @tag('aging')
+    @attr('aging')
     def test_aging_not_played(self):
         game = create_game(purchase_date=date.today()-timedelta(5))
         self.assertEqual(game.aging.days,5)
@@ -336,25 +337,25 @@ class ListURLHelperTest(TestCase):
 
 
 class HLTBTest(TestCase):
-    @tag('hltb')
+    @attr('hltb')
     def test_example_hltb(self):
         hltb = ExampleHowLongToBeat("Sunset Overdrive")
         self.assertEqual(hltb.game,"Sunset Overdrive")
         self.assertEqual(hltb.fulltime,10.0)
 
-    @tag('htlb')
+    @attr('hltb')
     def test_known_good_hltb(self):
         hltb = HowLongToBeat("Human Resource Machine")
         self.assertEqual(hltb.game,"Human Resource Machine")
         self.assertEqual(hltb.fulltime,4.5)
 
-    @tag('htlb')
+    @attr('hltb')
     def test_known_bad_hltb(self):
         hltb = HowLongToBeat("Legion Saga")
         self.assertEqual(hltb.game,"Legion Saga")
         self.assertEqual(hltb.fulltime,-1)
 
-    @tag('htlb')
+    @attr('hltb')
     def test_alternate_names_hltb(self):
         hltb = HowLongToBeat("Antihero")
         self.assertEqual(str(hltb),"Antihero - Not Found")
@@ -364,25 +365,25 @@ class HLTBTest(TestCase):
         self.assertEqual(hltb.game,"Antihero (2017)")
         self.assertEqual(hltb.fulltime,6.0)
 
-    @tag('htlb')
+    @attr('hltb')
     def test_full_time_on_create(self):
         game = create_game("Sunset Overdrive")
         self.assertEqual(game.full_time_to_beat,10.0)
 
-    @tag('htlb')
+    @attr('hltb')
     def test_time_to_beat_not_played(self):
         game = create_game("Sunset Overdrive",current_time=0)
         self.assertEqual(game.time_to_beat,10.0)
 
-    @tag('htlb')
+    @attr('hltb')
     def test_time_to_beat_partial(self):
         game = create_game("Sunset Overdrive",current_time=5.5)
         self.assertEqual(game.full_time_to_beat,10.0)
         self.assertEqual(game.time_to_beat,4.5)
 
-@tag('date_validation')
+@attr('date_validation')
 class GameModelTests(TestCase):
-    @tag('date_validation')
+    @attr('date_validation')
     def test_future_purchase_date(self):
 
         form = GameForm({
@@ -399,7 +400,7 @@ class GameModelTests(TestCase):
         self.assertRaises(ValidationError('Purchase_Date/finish_date cannot be in the future.'),
                           form.full_clean())
 
-    @tag('date_validation')
+    @attr('date_validation')
     def test_past_purchase_date(self):
         form = GameForm({
             'name': "Test Past Purchase",
@@ -414,7 +415,7 @@ class GameModelTests(TestCase):
         print(form.errors.as_json())
         self.assertTrue(form.is_valid())
 
-    @tag('date_validation')
+    @attr('date_validation')
     def test_future_finish_date(self):
         form = GameForm({
             'name': "Test Future Finish",
@@ -435,7 +436,7 @@ class GameModelTests(TestCase):
         self.assertRaises(ValidationError('Purchase_Date/finish_date cannot be in the future.'),
                           form.full_clean())
 
-    @tag('date_validation')
+    @attr('date_validation')
     def test_past_finish_date(self):
         data = {
             'name': "Test Past Finish",
@@ -468,7 +469,7 @@ class GameModelTests(TestCase):
 #        self.assertEqual(Game.objects.last().name,"Test Past Finish")
 #        self.assertEqual(Game.objects.last().purchase_date,convert_date('2018-01-01'))
         
-    @tag('date_validation')
+    @attr('date_validation')
     def test_not_played(self):
         form = GameForm({
             'name': "Test Past Finish",
@@ -490,7 +491,7 @@ class GameModelTests(TestCase):
         self.assertRaises(ValidationError({'finish_date':('finish_date must be empty if game is not played and either beaten or abandoned.')}),
                           form.full_clean())
 
-    @tag('date_validation')
+    @attr('date_validation')
     def test_not_played_but_beaten(self):
         form = GameForm({
             'name': "Test Past Finish",
@@ -511,7 +512,7 @@ class GameModelTests(TestCase):
         self.assertRaises(ValidationError({'played': ('You must have played a game to beat or abandon it.')}),
                           form.full_clean())
 
-    @tag('date_validation')
+    @attr('date_validation')
     def test_not_played_but_abandoned(self):
         form = GameForm({
             'name': "Test Past Finish",
@@ -532,7 +533,7 @@ class GameModelTests(TestCase):
         self.assertRaises(ValidationError({'played': ('You must have played a game to beat or abandon it.')}),
                           form.full_clean())
 
-    @tag('date_validation')
+    @attr('date_validation')
     def test_not_beaten_or_abandoned(self):
         form = GameForm({
             'name': "Test Past Finish",
@@ -555,7 +556,7 @@ class GameModelTests(TestCase):
         self.assertRaises(ValidationError({'finish_date':('finish_date must be empty if game is not played and either beaten or abandoned.')}),
                           form.full_clean())
 
-    @tag('date_validation')
+    @attr('date_validation')
     def test_beaten_no_finish(self):
         form = GameForm({
             'name': "Test No Finish",
@@ -578,7 +579,7 @@ class GameModelTests(TestCase):
 
 class CurrentTimeTests(TestCase):
     #test that setting current time under 0 is impossible
-    @tag('current_time')
+    @attr('current_time')
     def test_negative_current_time(self):
         form = GameForm({
             'name': "Test Future Purchase",
@@ -596,7 +597,7 @@ class CurrentTimeTests(TestCase):
                           form.full_clean())
 
     #test that setting current time over 1 with played false is impossible
-    @tag('current_time')
+    @attr('current_time')
     def test_current_time_not_played(self):
         form = GameForm({
             'name': "Test Future Purchase",
@@ -612,7 +613,7 @@ class CurrentTimeTests(TestCase):
                           form.full_clean())
 
     #test that setting played to true with current time == 0 is impossible
-    @tag('current_time')
+    @attr('current_time')
     def test_no_time_yes_played(self):
         form = GameForm({
             'name': "Test Future Purchase",
@@ -629,7 +630,7 @@ class CurrentTimeTests(TestCase):
                           form.full_clean())
    
     #test that setting played to true AND current time > 0 is POSSIBLE
-    @tag('current_time')
+    @attr('current_time')
     def test_valid_current_played(self):
         form = GameForm({
             'name': "Test Future Purchase",
