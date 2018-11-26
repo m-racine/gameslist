@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
-import logging
+import logging 
 from django.db import models
 from django.utils import timezone
 from django.forms import ModelForm,DateField,SelectDateWidget
@@ -59,13 +59,14 @@ SYSTEMS = (
 )
 
 def no_future(value):
+    print value
     today = date.today()
     if value > today:
         raise ValidationError('Purchase_Date/finish_date cannot be in the future.')
 
 def only_positive_or_zero(value):
     if value < 0:
-        return False
+        raise ValidationError('Value cannot be negative or zero.')
     return True
 
 class Game(models.Model):
@@ -129,16 +130,25 @@ class Game(models.Model):
         super(Game, self).save(*args,**kwargs)
 
     def clean(self):
+        super(Game, self).clean()
         if self.played and self.current_time <=0:
+            print "If a game is played the current_time must be over 0."
             raise ValidationError({'current_time':('If a game is played the current_time must be over 0.')})
-        if self.finish_date and not (self.played and (self.beaten or self.abandoned)):
+        if self.finish_date and not (self.beaten or self.abandoned):
+            print 'finish_date must be empty if game is not either beaten or abandoned.'
             raise ValidationError({'finish_date':('finish_date must be empty if game is not played and either beaten or abandoned.')})
         if self.finish_date:
             if self.finish_date < self.purchase_date:
+                print 'finish_date must be after date of purchase.'
                 raise ValidationError({'finish_date':('finish_date must be after date of purchase.')})
         if self.beaten or self.abandoned:
             if not self.played:
+                print 'You must have played a game to beat or abandon it.'
                 raise ValidationError({'played': ('You must have played a game to beat or abandon it.')})
+            if self.finish_date is None:
+                print self.finish_date
+                print 'You must have a finish date to beat or abandon a game.'
+                raise ValidationError({'finish_date': ('You must have a finish date to beat or abandon a game.')})
 
     def __str__(self):
         return self.name + " - " + self.system

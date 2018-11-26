@@ -16,7 +16,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Game,Wish,GameForm,PlayBeatAbandonForm
 from .filters import GameFilter
 
-# Create your views here.
+# Create your views here. 
 logger = logging.getLogger('MYAPP')
 YOUR_PAGE_SIZE = 10
 #https://stackoverflow.com/questions/21153852/plotting-graphs-in-numpy-scipy
@@ -119,11 +119,12 @@ class CreateGame(generic.CreateView):
     #fields = ['name']
     form_class = GameForm
 
-    def get_initial(self):
-        super(CreateGame, self).get_initial()
-        self.initial['purchase_date']= date.today().isoformat()
-        self.initial['current_time'] = 0.0
-        return self.initial
+    #def get_initial(self):
+    #    super(CreateGame, self).get_initial()
+    #    print self.initial['purchase_date']
+    #    self.initial['purchase_date']= date.today().isoformat()
+    #    self.initial['current_time'] = 0.0
+    #    return self.initial
 
     def get_success_url(self):
         return reverse('gameslist:list', args=())
