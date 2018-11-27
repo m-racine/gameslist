@@ -18,7 +18,8 @@ from nose.plugins.attrib import attr
 
 from endpoints.howlongtobeat import HowLongToBeat, ExampleHowLongToBeat
 
-from .models import Game, GameForm
+from .forms import GameForm
+from .models import Game
 from .models import CURRENT_TIME_NEGATIVE, FINISH_DATE_REQUIRED, FINISH_DATE_NOT_ALLOWED
 from .models import NOT_PLAYED, FINISH_AFTER_PURCHASE, CURRENT_TIME_NOT_ALLOWED
 from .views import check_url_args_for_only_token

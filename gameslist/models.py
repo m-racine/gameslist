@@ -11,7 +11,7 @@ import logging
 from django.db import models
 #from django.utils import timezone
 #from django.forms import DateField
-from django.forms import ModelForm, SelectDateWidget
+#from django.forms import ModelForm, SelectDateWidget
 from django.core.exceptions import ValidationError
 #from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
@@ -159,30 +159,6 @@ class Game(models.Model):
 #class GameManager(models.Manager):
 #    def create_game(self):
 #        game = self.create()
-
-class GameForm(ModelForm):
-    class Meta:
-        model = Game
-        years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
-        years.reverse()
-        fields = ('name', 'system', 'location', 'game_format',
-                  'played', 'beaten', 'abandoned', 'perler',
-                  'reviewed', 'current_time', 'purchase_date', 'finish_date',
-                  'notes')
-        widgets = {
-            'finish_date': SelectDateWidget(years=years),
-            'purchase_date': SelectDateWidget(years=years),
-        }
-
-class PlayBeatAbandonForm(ModelForm):
-    class Meta:
-        model = Game
-        years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
-        years.reverse()
-        fields = ('played', 'current_time', 'beaten', 'abandoned', 'finish_date')
-        widgets = {
-            'finish_date': SelectDateWidget(years=years),
-        }
 
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)

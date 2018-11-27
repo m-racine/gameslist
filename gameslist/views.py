@@ -13,7 +13,8 @@ from django import forms
 from django.forms.utils import ErrorList
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game,Wish,GameForm,PlayBeatAbandonForm
+from .models import Game,Wish
+from .forms import GameForm,PlayBeatAbandonForm
 from .filters import GameFilter
 
 # Create your views here. 
@@ -118,13 +119,16 @@ class CreateGame(generic.CreateView):
     model = Game
     #fields = ['name']
     form_class = GameForm
+    initial = {"purchase_date":date.today()}
 
-    #def get_initial(self):
-    #    super(CreateGame, self).get_initial()
-    #    print self.initial['purchase_date']
-    #    self.initial['purchase_date']= date.today().isoformat()
-    #    self.initial['current_time'] = 0.0
-    #    return self.initial
+    # def get_initial(self):
+    #     initial = super(CreateGame, self).get_initial()
+    #     #print self.initial['purchase_date']
+    #     logger.debug(initial)
+    #     initial.update({'purchase_date':date.today(),
+    #                     'current_time':0.0})
+    #     logger.debug(initial)
+    #     return initial
 
     def get_success_url(self):
         return reverse('gameslist:list', args=())
