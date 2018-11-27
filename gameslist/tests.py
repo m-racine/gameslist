@@ -341,6 +341,7 @@ class HLTBTest(TestCase):
     def test_example_hltb(self):
         hltb = ExampleHowLongToBeat("Sunset Overdrive")
         self.assertEqual(hltb.game,"Sunset Overdrive")
+        #print hltb
         self.assertEqual(hltb.fulltime,10.0)
 
     @attr('hltb')

@@ -126,29 +126,23 @@ class Game(models.Model):
     def save(self, *args, **kwargs):
         if self.full_time_to_beat == 0.0:
             self.full_time_to_beat = HowLongToBeat(self.name).fulltime
-        if self.time_to_beat > (self.full_time_to_beat/2):
+        if self.current_time > (self.full_time_to_beat/2):
             self.substantial_progress = True
         super(Game, self).save(*args,**kwargs)
 
     def clean(self):
         super(Game, self).clean()
         if self.played and self.current_time <=0:
-            print "If a game is played the current_time must be over 0."
             raise ValidationError({'current_time':('If a game is played the current_time must be over 0.')})
         if self.finish_date and not (self.beaten or self.abandoned):
-            print 'finish_date must be empty if game is not either beaten or abandoned.'
             raise ValidationError({'finish_date':('finish_date must be empty if game is not played and either beaten or abandoned.')})
         if self.finish_date:
             if self.finish_date < self.purchase_date:
-                print 'finish_date must be after date of purchase.'
                 raise ValidationError({'finish_date':('finish_date must be after date of purchase.')})
         if self.beaten or self.abandoned:
             if not self.played:
-                print 'You must have played a game to beat or abandon it.'
                 raise ValidationError({'played': ('You must have played a game to beat or abandon it.')})
             if self.finish_date is None:
-                print self.finish_date
-                print 'You must have a finish date to beat or abandon a game.'
                 raise ValidationError({'finish_date': ('You must have a finish date to beat or abandon a game.')})
 
     def __str__(self):

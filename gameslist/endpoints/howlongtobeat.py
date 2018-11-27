@@ -137,7 +137,7 @@ class ExampleHowLongToBeat():
 #                     #print (temp if temp else "{0} not found.".format(title))
 #                     pass
 
-print ExampleHowLongToBeat("Sunset Overdrive").fulltime
+#print ExampleHowLongToBeat("Sunset Overdrive")
 
 #<li class='global_padding back_white shadow_box'>No results for <strong>a mini falafa</strong> in <u>games</u>.</li>
 
