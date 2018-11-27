@@ -9,13 +9,21 @@ from datetime import datetime
 from datetime import timedelta
 import logging
 from django.db import models
-from django.utils import timezone
-from django.forms import ModelForm
-from endpoints.metacritic import MetaCritic
+#from django.utils import timezone
+#from django.forms import DateField
+from django.forms import ModelForm, SelectDateWidget
+from django.core.exceptions import ValidationError
+#from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
 
-logger = logging.getLogger('MYAPP')
+LOGGER = logging.getLogger('MYAPP')
 
+CURRENT_TIME_NOT_ALLOWED = 'Current time must be 0 if a game is unplayed.'
+CURRENT_TIME_NEGATIVE = 'If a game is played the current_time must be over 0.'
+FINISH_DATE_NOT_ALLOWED = "finish_date must be empty if game isn't played and beaten or abandoned."
+NOT_PLAYED = 'You must have played a game to beat or abandon it.'
+FINISH_AFTER_PURCHASE = 'finish_date must be after date of purchase.'
+FINISH_DATE_REQUIRED = 'You must have a finish date to beat or abandon a game.'
 # # Create your models here.
 
 SYSTEMS = (
@@ -26,10 +34,10 @@ SYSTEMS = (
     ('DIG', 'Digipen'),
     ('NDS', 'Nintendo DS'),
     ('GCN', 'Gamecube'),
-    ('GB',  'Game Boy'),
+    ('GB', 'Game Boy'),
     ('GBC', 'Game Boy Color'),
     ('GBA', 'Game Boy Advance'),
-    ('GG',  'GameGear'),
+    ('GG', 'GameGear'),
     ('GOG', 'GoG'),
     ('HUM', 'Humble'),
     ('IND', 'IndieBox'),
@@ -57,6 +65,16 @@ SYSTEMS = (
     ('XB1', 'Xbox One')
 )
 
+def no_future(value):
+    today = date.today()
+    if value > today:
+        raise ValidationError('Purchase_Date/finish_date cannot be in the future.')
+
+def only_positive_or_zero(value):
+    if value < 0:
+        raise ValidationError('Value cannot be negative or zero.')
+    return True
+
 class Game(models.Model):
     FORMATS = (
         ('P', 'Physical'),
@@ -74,47 +92,97 @@ class Game(models.Model):
     played = models.BooleanField(default=False)
     beaten = models.BooleanField(default=False)
     location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
-    game_format = models.CharField('format',max_length=1, choices=FORMATS, default='D')
-    notes = models.CharField(max_length=500,default="",blank=True)
-    purchase_date = models.DateField('date purchased',default=date.today().isoformat())
-    finish_date = models.DateField('date finished', default=None, blank=True)
+    game_format = models.CharField('format', max_length=1, choices=FORMATS, default='D')
+    notes = models.CharField(max_length=500, default="", blank=True, null=True)
+    purchase_date = models.DateField('date purchased', default=date.today().isoformat(),
+                                     validators=[no_future])
+    finish_date = models.DateField('date finished', default=None, blank=True, null=True,
+                                   validators=[no_future])
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
+    substantial_progress = models.BooleanField(default=False)
+    full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
 
     @property
     def aging(self):
         if self.beaten or self.abandoned:
-            #logger.debug(type(self.finish_date-self.purchase_date.days()))
-            #return datetime.strptime(self.finish_date,"%Y-%m-%d")-datetime.strptime(self.purchase_date,"%Y-%m-%d")
-            return self.finish_date - self.purchase_date
-        #return date.today() - datetime.strptime(self.purchase_date,"%Y-%m-%d")
+            if self.finish_date:
+                return self.finish_date - self.purchase_date
+            self.flagged = True
+            LOGGER.warning("%s is lacking a finish_date", self.name)
+            return date.today() - self.purchase_date
         return date.today() - self.purchase_date
-    
+
     @property
     def play_aging(self):
         if self.played:
             return timedelta(0)
         return date.today() - self.purchase_date
-    
-    #aging = models.IntegerField(default=0)
-    #play_aging = models.IntegerField(default=0)
+
+    @property
+    def time_to_beat(self):
+        if self.beaten or self.abandoned:
+            return 0.0
+        return self.full_time_to_beat - self.current_time
+
+
+    def save(self, *args, **kwargs):
+        if self.full_time_to_beat == 0.0:
+            self.full_time_to_beat = HowLongToBeat(self.name).fulltime
+        if self.current_time > (self.full_time_to_beat / 2):
+            self.substantial_progress = True
+        super(Game, self).save(*args, **kwargs)
+
+    def clean(self):
+        super(Game, self).clean()
+        if self.played and self.current_time <= 0:
+            raise ValidationError({'current_time':(CURRENT_TIME_NEGATIVE)})
+        if self.current_time > 0 and not self.played:
+            raise ValidationError({'current_time':(CURRENT_TIME_NOT_ALLOWED)})
+        if self.finish_date and not (self.beaten or self.abandoned):
+            raise ValidationError({'finish_date':(FINISH_DATE_NOT_ALLOWED)})
+        if self.finish_date:
+            if self.finish_date < self.purchase_date:
+                raise ValidationError({'finish_date':(FINISH_AFTER_PURCHASE)})
+        if self.beaten or self.abandoned:
+            if not self.played:
+                raise ValidationError({'played': (NOT_PLAYED)})
+            if self.finish_date is None:
+                raise ValidationError({'finish_date': (FINISH_DATE_REQUIRED)})
 
     def __str__(self):
         return self.name + " - " + self.system
 
-class GameManager(models.Manager):
-    def create_game(self):
-        game = self.create()
-
+#class GameManager(models.Manager):
+#    def create_game(self):
+#        game = self.create()
 
 class GameForm(ModelForm):
     class Meta:
         model = Game
-        fields = ['name','system','location','game_format',
-                  'played','beaten','abandoned','perler',
-                  'reviewed','purchase_date','finish_date']
+        years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
+        years.reverse()
+        fields = ('name', 'system', 'location', 'game_format',
+                  'played', 'beaten', 'abandoned', 'perler',
+                  'reviewed', 'current_time', 'purchase_date', 'finish_date',
+                  'notes')
+        widgets = {
+            'finish_date': SelectDateWidget(years=years),
+            'purchase_date': SelectDateWidget(years=years),
+        }
+
+class PlayBeatAbandonForm(ModelForm):
+    class Meta:
+        model = Game
+        years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
+        years.reverse()
+        fields = ('played', 'current_time', 'beaten', 'abandoned', 'finish_date')
+        widgets = {
+            'finish_date': SelectDateWidget(years=years),
+        }
 
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)
@@ -162,4 +230,3 @@ class Wish(models.Model):
 # OneToOneField
 
 #https://schier.co/blog/2014/12/05/html-templating-output-a-grid-in-a-single-loop.html
-

@@ -5,7 +5,9 @@ from bs4 import BeautifulSoup, Tag, NavigableString
 import requests
 import re
 import traceback
+import logging
 
+logger = logging.getLogger('MYAPP')
 
 class HowLongToBeat():
     def __init__(self,game):
@@ -20,7 +22,7 @@ class HowLongToBeat():
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         #print self.raw_data
         self.raw_time = game
-        self.fulltime = 0.0
+        self.fulltime = -1
         self.found = False
         self.units = "Hours"
         try:
@@ -34,7 +36,6 @@ class HowLongToBeat():
                 inner_tag = link.find("a",attrs={"title":self.game})
                 if inner_tag is not None:
                     self.found = True
-                    print game
                     title = self.raw_data.a
                     self.id = title['href'][12:]
                     self.raw_time = link.find("div",attrs={"class":"search_list_details_block"}).contents
@@ -58,8 +59,8 @@ class HowLongToBeat():
                     if self.found:
                         break
                 else:
-                    print "NOT FOUND: {0}.".format(game)
-                    print u"Did you mean: {0}?".format(link.find("a")["title"])
+                    logger.info("NOT FOUND: {0}.".format(game))
+                    logger.info(u"Did you mean: {0}?".format(link.find("a")["title"]))
                     pass
                     #raise Exception
             #self.found = True
@@ -68,10 +69,10 @@ class HowLongToBeat():
             else:
                 "{0} not found.".format(game)
         except: 
-            print traceback.print_exc()
+            logger.error(traceback.print_exc())
             self.id = 0
-            print sys.exc_info()[0]
-            print sys.exc_info()[1]
+            logger.error(sys.exc_info()[0])
+            logger.error(sys.exc_info()[1])
             raise Exception
     def __str__(self):
         return self.__unicode__()
@@ -105,11 +106,11 @@ class ExampleHowLongToBeat():
                     self.fulltime = float(re.search("([\d.\d]*)",time_text).group(1))
             self.found = True
         except:
-            print sys.exc_info()[0]
-            print sys.exc_info()[1]
-            print sys.exc_info()[2]
+            logger.error(sys.exc_info()[0])
+            logger.error(sys.exc_info()[1])
+            logger.error(sys.exc_info()[2])
             self.id = 0
-            self.fulltime = 0.0
+            self.fulltime = -1
             self.found = False
             raise Exception
     def __str__(self):
@@ -117,16 +118,6 @@ class ExampleHowLongToBeat():
             return self.game + " - " + str(self.fulltime) + " Hours"
         else:
             return self.game + " - Not Found"
-
-
-# hlto = ExampleHowLongToBeat("Sunset Overdrive")
-# print hlto
-# hlto = HowLongToBeat("Human Resource Machine")
-# print hlto
-# hlto = HowLongToBeat("7 Billion Humans")
-# print hlto
-# hlto = HowLongToBeat("Orwell")
-# print hlto
 
 # #def clean_titles():
 # with open("titles.txt","r") as f:
@@ -146,6 +137,7 @@ class ExampleHowLongToBeat():
 #                     #print (temp if temp else "{0} not found.".format(title))
 #                     pass
 
+#print ExampleHowLongToBeat("Sunset Overdrive")
 
 #<li class='global_padding back_white shadow_box'>No results for <strong>a mini falafa</strong> in <u>games</u>.</li>
 
@@ -155,8 +147,3 @@ class ExampleHowLongToBeat():
 #temp = BeautifulSoup(temp.text,"html.parser")
 #print temp
 
-
-#Cth Saves The World 
-#Typing of the Dead
-#Lumanaries of The
-#Japanese To Survive

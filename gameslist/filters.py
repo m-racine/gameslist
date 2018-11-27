@@ -13,4 +13,6 @@ class GameFilter(django_filters.FilterSet):
         model = Game
         fields = {'name':['contains'],
                   'system':['exact'],
-                  'game_format':['exact']}
+                  'location':['exact'],
+                  'game_format':['exact'],
+                  'substantial_progress':['exact']}

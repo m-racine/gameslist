@@ -6,27 +6,13 @@
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
     <p>Purchased on {{game.purchase_date}} and finished on {{game.finish_date}}</p>
     <p>Aging: {{game.aging}}. PlayAging: {{game.play_aging}}</p>
+    <p>Remaining Time {{game.time_to_beat}} and Current Time {{game.current_time}}
+    <p>Full Time to Beat: {{game.full_time_to_beat}} Hours</p>
 
-    {% if game.played %}<p>Played!</p>
-        {% if game.beaten %}<p>Beaten!</p>
-        {% elif game.abandoned %}<p>Abandoned :( </p>
-        {% else %}
-            <form action="{% url 'gameslist:beat_game' game.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit"> Beat!</button>
-            </form> 
-            <form action="{% url 'gameslist:abandon_game' game.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit"> Abandon.</button>
-            </form> 
-        {% endif %}
-        
-    {% else %}
-        <form action="{% url 'gameslist:play_game' game.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit"> Play!</button>
-        </form> 
-    {% endif %}
+    <form action="{% url 'gameslist:play_game' game.id %}" method="get">
+        {% csrf_token %}
+        <button type="submit"> Change Play Status</button>
+    </form> 
     
     {% if game.perler %}<p>Perler Made!</p>{% endif %}
     {% if game.reviewed %}<p>Reviewed!</p>{% endif %}
@@ -45,3 +31,70 @@
         <button type="submit">Back to List</button>
     </form> 
 <body>
+
+
+{%comment%}
+
+https://stackoverflow.com/questions/38965677/django-how-to-show-and-hide-div-based-on-the-selection-of-the-dropdown-menu
+
+
+Template(html)
+
+<div id="pack-method" class="col-sm-30">
+   {{ form.item_packmethod}}
+</div>
+<div id="hidden2-1">
+  <div class="col-sm-20">
+    {{form.pallet_count}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_width}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_height}}
+  </div>
+</div>
+<div id="hidden2-2">
+  <div class="col-sm-20">
+    {{form.pallet_count}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_width}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_height}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_depth}}
+  </div>
+</div>
+
+<script type="text/javascript">
+    $('#hidden2-1').css({
+       'display': 'none'
+    });
+    $('#hidden2-2').css({
+       'display': 'none'
+    });
+    $('select').on('change', function() {
+       var a = $(this).val();
+       if (a === 'Pallet') {
+           $('#hidden2-1').show();
+           $('#hidden2-2').hide();
+       }
+       else if (a === 'Rack') {
+           $('#hidden2-1').hide();
+           $('#hidden2-2').show();
+       }
+       else if (a === 'Box') {
+           $('#hidden2-1').hide();
+           $('#hidden2-2').show();
+       }
+       else {
+           $('#hidden2-1').hide();
+           $('#hidden2-2').hide();
+       }
+    });
+</script>
+
+{%endcomment%}
