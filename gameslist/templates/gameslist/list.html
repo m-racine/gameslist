@@ -2,7 +2,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <form method="get">
-  {{ filter.form.as_p }}
+  <div>
+      {{ filter.form.name__contains.label }}  {{ filter.form.name__contains }}
+  </div>
+  <div>
+      {{ filter.form.system.label }}/{{ filter.form.location.label }}  {{ filter.form.system }}  {{ filter.form.location }}
+  </div>
+  <div>
+      {{ filter.form.game_format.label }}  {{ filter.form.game_format }}
+  </div>
+  <div>
+      {{ filter.form.substantial_progress.label }}  {{ filter.form.substantial_progress }}
+  </div>
+    
   <button type="submit">Search</button>
 </form>
 <table class="table table-bordered">
