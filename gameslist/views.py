@@ -115,16 +115,15 @@ class DetailView(generic.DetailView):
     model = Game
     template_name = 'gameslist/detail.html'
 
-class CreateGame(generic.CreateView):
-    model = Game
-    #fields = ['name']
-    form_class = GameForm
-
-    def get_success_url(self):
-        return reverse('gameslist:list', args=())
-
 def add_game_view(request):
-    form = GameForm(initial={"purchase_date":date.today()})
+    if request.POST:
+        form = GameForm(request.POST)
+        if form.is_valid():
+            game = form.save()
+            game.save()
+            return render(request,'gameslist/thanks.html', {'game':game})
+    else:
+        form = GameForm(initial={"purchase_date":date.today()})
     return render(request,'gameslist/game_form.html', {'form':form})
 
 class PlayBeatAbandonGame(generic.UpdateView):

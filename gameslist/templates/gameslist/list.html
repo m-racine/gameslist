@@ -44,7 +44,7 @@
     </span>
 </div>
 
-<form action="{% url 'gameslist:add'%}" method="post">
+<form action="{% url 'gameslist:add'%}" method="get">
     {% csrf_token %}
     <button type="submit">Add New Game</button>
 </form> 

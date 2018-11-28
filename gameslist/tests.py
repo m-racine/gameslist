@@ -450,8 +450,11 @@ class GameModelTests(TestCase):
             'beaten': True
         }
         response = self.client.post(reverse("gameslist:add"), data)
+        logger.debug(vars(response).keys())
         self.assertRaises(ValidationError({"finish_date":(FINISH_AFTER_PURCHASE)}),
-                          response.context_data['form'].full_clean())
+                          response.context['form'].full_clean())
+        logger.debug(response.context['form'])
+        #self.assertTrue(False)
         
     @attr('date_validation')
     def test_not_played(self):
