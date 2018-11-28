@@ -43,7 +43,7 @@ SYSTEMS = (
     ('IND', 'IndieBox'),
     ('IIO', 'Itch.io'),
     ('KIN', 'Kindle'),
-    ('NES', 'Nintendo Entertainment System'),
+    ('NES', 'NES'),
     ('N64', 'Nintendo 64'),
     ('ORN', 'Origin'),
     ('PC', 'PC'),
@@ -52,7 +52,7 @@ SYSTEMS = (
     ('PS3', 'PlayStation 3'),
     ('PS4', 'PlayStation 4'),
     ('PSP', 'PlayStation Portable'),
-    ('SNS', 'Super Nintendo Entertainment System'),
+    ('SNS', 'SNES'),
     ('STM', 'Steam'),
     ('NSW', 'Switch'),
     ('TWH', 'Twitch'),
@@ -94,7 +94,7 @@ class Game(models.Model):
     location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
     game_format = models.CharField('format', max_length=1, choices=FORMATS, default='D')
     notes = models.CharField(max_length=500, default="", blank=True, null=True)
-    purchase_date = models.DateField('date purchased', default=date.today().isoformat(),
+    purchase_date = models.DateField('date purchased', default=None,
                                      validators=[no_future])
     finish_date = models.DateField('date finished', default=None, blank=True, null=True,
                                    validators=[no_future])
