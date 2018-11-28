@@ -50,13 +50,13 @@ def filtered_list(request,**kwargs):
                     logger.debug(reverse('gameslist:list')+"?page=1")
                     return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
                     
-            else:
-                logger.debug(request.META.get('QUERY_STRING'))
-                logger.debug("Query String has search data.")
-        else:
-            logger.debug("NO INITIAL MATCH")
-    else:
-        logger.debug("NO REFERER")
+            #else:
+            #    logger.debug(request.META.get('QUERY_STRING'))
+            #    logger.debug("Query String has search data.")
+        #else:
+        #    logger.debug("NO INITIAL MATCH")
+    #else:
+    #    logger.debug("NO REFERER")
     page = request.GET.get('page')
     game_filter = GameFilter(request.GET, queryset=game_list)
     
@@ -119,19 +119,13 @@ class CreateGame(generic.CreateView):
     model = Game
     #fields = ['name']
     form_class = GameForm
-    initial = {"purchase_date":date.today()}
-
-    # def get_initial(self):
-    #     initial = super(CreateGame, self).get_initial()
-    #     #print self.initial['purchase_date']
-    #     logger.debug(initial)
-    #     initial.update({'purchase_date':date.today(),
-    #                     'current_time':0.0})
-    #     logger.debug(initial)
-    #     return initial
 
     def get_success_url(self):
         return reverse('gameslist:list', args=())
+
+def add_game_view(request):
+    form = GameForm(initial={"purchase_date":date.today()})
+    return render(request,'gameslist/game_form.html', {'form':form})
 
 class PlayBeatAbandonGame(generic.UpdateView):
     model = Game

@@ -1,8 +1,11 @@
 from datetime import date
 from datetime import datetime
 
-from django.forms import ModelForm, SelectDateWidget
+from django.forms import ModelForm, SelectDateWidget, DateField
 from .models import Game
+
+years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
+years.reverse()
 
 class GameForm(ModelForm):
 #https://stackoverflow.com/questions/604266/django-set-default-form-values
@@ -13,8 +16,6 @@ class GameForm(ModelForm):
 
     class Meta:
         model = Game
-        years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
-        years.reverse()
         fields = ('name', 'system', 'location', 'game_format',
                   'played', 'beaten', 'abandoned', 'perler',
                   'reviewed', 'current_time', 'purchase_date', 'finish_date',
@@ -24,16 +25,18 @@ class GameForm(ModelForm):
             'purchase_date': SelectDateWidget(years=years),
         }
 
-    def __init__(self, *args, **kwargs):
-         # Get 'initial' argument if any
-        initial_arguments = kwargs.get('initial', None)
-        updated_initial = {}
-        # You can also initialize form fields with hardcoded values
-        # or perform complex DB logic here to then perform initialization
-        updated_initial['purchase_date'] = date.today()
-        # Finally update the kwargs initial reference
-        kwargs.update(initial=updated_initial)
-        super(GameForm, self).__init__(*args, **kwargs)
+    #purchase_date = DateField(initial=date.today(),widget=SelectDateWidget(years=years))
+
+    # def __init__(self, *args, **kwargs):
+    #      # Get 'initial' argument if any
+    #     initial_arguments = kwargs.get('initial', None)
+    #     updated_initial = {}
+    #     # You can also initialize form fields with hardcoded values
+    #     # or perform complex DB logic here to then perform initialization
+    #     updated_initial['purchase_date'] = date.today()
+    #     # Finally update the kwargs initial reference
+    #     kwargs.update(initial=updated_initial)
+    #     super(GameForm, self).__init__(*args, **kwargs)
 
 class PlayBeatAbandonForm(ModelForm):
     class Meta:

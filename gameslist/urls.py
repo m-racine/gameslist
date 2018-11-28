@@ -6,7 +6,8 @@ app_name = "gameslist"
 
 urlpatterns = [
     url(r'^index/', views.IndexView.as_view(), name='index'),
-    url(r'^add/',views.CreateGame.as_view(), name='add'),
+    #url(r'^add/',views.CreateGame.as_view(), name='add'),
+    url(r'^add/',views.add_game_view, name='add'),
     url(r'^(?P<pk>[0-9]+)/$', views.move_to_detail_view, name='detail'),
     url(r'^(?P<pk>[0-9]+)/play_game/$', views.PlayBeatAbandonGame.as_view(), name='play_game'),
     url(r'^(?P<game_id>[0-9]+)/flag_game/$', views.flag_game, name='flag_game'),
