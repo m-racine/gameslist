@@ -49,7 +49,7 @@ class PersistentSessionClient(Client):
 def create_game(name="Test", system="STM", played=False, beaten=False, location="STM",
                 game_format="D", notes="",
                 purchase_date=None,
-                finish_date=datetime.strptime('2018-10-30', '%Y-%m-%d'),
+                finish_date=None,
                 abandoned=False, perler=False, reviewed=False, flagged=False, current_time=0):
     return Game.objects.create(name=name, system=system, played=played, beaten=beaten,
                                location=location, game_format=game_format, notes=notes,
@@ -126,7 +126,7 @@ class GameIndexViewTests(TestCase):
         self.assertQuerysetEqual(response.context['new_games_list'], [])
 
     def test_new_game_in_list(self):
-        create_game()
+        create_game(purchase_date=convert_date('2018-10-01'))
         response = self.client.get(reverse('gameslist:index'))
         self.assertEqual(response.status_code, 200)
         #print response.context['new_games_list']
@@ -141,9 +141,9 @@ class GameIndexViewTests(TestCase):
 class GameListViewTests(TestCase):
 
     def test_list_filters(self):
-        create_game()
-        create_game("Test 2", "3DS")
-        create_game("Test 3", "3DS", False, False, "3DS", "P")
+        create_game(purchase_date=convert_date('2018-10-01'))
+        create_game("Test 2", "3DS",purchase_date=convert_date('2018-10-01'))
+        create_game("Test 3", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         #template_name = 'gameslist/list.html'
         #context_object_name = 'full_games_list'
         request = self.client.get(reverse('gameslist:list'))
@@ -187,8 +187,8 @@ class GameListViewTests(TestCase):
 class ListDetailRedirectTests(TestCase):
     #client_class = PersistentSessionClient
     def test_known_bad(self):
-        game = create_game("Test", "3DS", False, False, "3DS", "P")
-        create_game("Test 2", "GBA", False, False, "3DS", "P")
+        game = create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), follow=True)
         request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
         request = self.client.get(reverse('gameslist:list'), follow=True,
@@ -199,8 +199,8 @@ class ListDetailRedirectTests(TestCase):
         self.assertEqual(request.status_code, 200)
 
     def test_list(self):
-        create_game("Test", "3DS", False, False, "3DS", "P")
-        create_game("Test 2", "GBA", False, False, "3DS", "P")
+        create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         self.assertEqual(session['query_string'], 'system=3DS')
@@ -208,8 +208,8 @@ class ListDetailRedirectTests(TestCase):
         self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
 
     def test_list_detail(self):
-        game = create_game("Test", "3DS", False, False, "3DS", "P")
-        create_game("Test 2", "GBA", False, False, "3DS", "P")
+        game = create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         self.assertEqual(session['query_string'], 'system=3DS')
@@ -219,8 +219,8 @@ class ListDetailRedirectTests(TestCase):
         self.assertEqual(session['query_string'], 'system=3DS')
 
     def test_list_detail_list(self):
-        game = create_game("Test", "3DS", False, False, "3DS", "P")
-        create_game("Test 2", "GBA", False, False, "3DS", "P")
+        game = create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         response = request.context['response']
@@ -244,12 +244,12 @@ class GameDetailViewTests(TestCase):
     def test_create_game(self):
         """
         """
-        game = create_game()
+        game = create_game(purchase_date=convert_date("2018-1-1"))
         game = get_object_or_404(Game, pk=game.id)
         self.assertEqual(game.name, "Test")
 
     def test_play_game(self):
-        game = create_game(finish_date=None)
+        game = create_game(finish_date=None,purchase_date=convert_date('2018-10-01'))
         self.assertFalse(game.played)
         response = self.client.post(
             reverse('gameslist:play_game', kwargs={'pk':game.id}),
@@ -262,7 +262,7 @@ class GameDetailViewTests(TestCase):
 
 
     def test_beat_game(self):
-        game = create_game()
+        game = create_game(purchase_date=convert_date('2018-10-01'))
         self.assertFalse(game.beaten)
         response = self.client.post(
             reverse('gameslist:play_game', kwargs={'pk':game.id}),
@@ -271,10 +271,7 @@ class GameDetailViewTests(TestCase):
              'beaten':True,
              'finish_date_year': 2018,
              'finish_date_day':1,
-             'finish_date_month': 11,
-             'purchase_date_year': 2018,
-             'purchase_date_day':1,
-             'purchase_date_month': 10}
+             'finish_date_month': 11}
         )
         self.assertEqual(response.status_code, 302)
         game.refresh_from_db()
@@ -282,16 +279,13 @@ class GameDetailViewTests(TestCase):
 
     def test_abandon_game(self):
         #play_game
-        game = create_game()
+        game = create_game(purchase_date=convert_date('2018-10-01'))
         self.assertFalse(game.abandoned)
         response = self.client.post(
             reverse('gameslist:play_game', kwargs={'pk':game.id}),
             {'finish_date_year': 2018,
              'finish_date_day':1,
              'finish_date_month': 11,
-             'purchase_date_year': 2018,
-             'purchase_date_day':1,
-             'purchase_date_month': 10,
              'played':True,
              'current_time':1,
              'abandoned':True}
@@ -301,7 +295,7 @@ class GameDetailViewTests(TestCase):
         self.assertTrue(game.abandoned)
 
     def test_flag_game(self):
-        game = create_game()
+        game = create_game(purchase_date=convert_date('2018-10-01'))
         self.assertFalse(game.flagged)
         _ = self.client.post(reverse('gameslist:flag_game', args=(game.id,)))
         game = get_object_or_404(Game, pk=game.id)
@@ -368,17 +362,17 @@ class HLTBTest(TestCase):
 
     @attr('hltb')
     def test_full_time_on_create(self):
-        game = create_game("Sunset Overdrive")
+        game = create_game("Sunset Overdrive",purchase_date=convert_date('2018-10-01'))
         self.assertEqual(game.full_time_to_beat, 10.0)
 
     @attr('hltb')
     def test_time_to_beat_not_played(self):
-        game = create_game("Sunset Overdrive", current_time=0)
+        game = create_game("Sunset Overdrive", current_time=0,purchase_date=convert_date('2018-10-01'))
         self.assertEqual(game.time_to_beat, 10.0)
 
     @attr('hltb')
     def test_time_to_beat_partial(self):
-        game = create_game("Sunset Overdrive", current_time=5.5)
+        game = create_game("Sunset Overdrive", current_time=5.5,purchase_date=convert_date('2018-10-01'))
         self.assertEqual(game.full_time_to_beat, 10.0)
         self.assertEqual(game.time_to_beat, 4.5)
 
