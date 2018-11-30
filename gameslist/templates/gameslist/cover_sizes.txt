@@ -1,8 +1,13 @@
+DVD
 1536x2160 - side
 170x2160 - spine
+7.125 inches by 10.75 inches
 
+DS
 1536x1370 -- side
 170x1370 -- spine
+
+10.867 in x 4.567 in total
 
 4.724x4.724in -- case insert
 

@@ -132,8 +132,9 @@ class Game(models.Model):
     def save(self, *args, **kwargs):
         if self.full_time_to_beat == 0.0:
             self.full_time_to_beat = HowLongToBeat(self.name).fulltime
-        if self.current_time > (self.full_time_to_beat / 2):
-            self.substantial_progress = True
+        if self.full_time_to_beat > 0:
+            if self.current_time > (self.full_time_to_beat / 2):
+                self.substantial_progress = True
         super(Game, self).save(*args, **kwargs)
 
     def clean(self):

@@ -48,7 +48,7 @@ class PersistentSessionClient(Client):
 
 def create_game(name="Test", system="STM", played=False, beaten=False, location="STM",
                 game_format="D", notes="",
-                purchase_date=datetime.strptime('2018-10-30', '%Y-%m-%d'),
+                purchase_date=None,
                 finish_date=datetime.strptime('2018-10-30', '%Y-%m-%d'),
                 abandoned=False, perler=False, reviewed=False, flagged=False, current_time=0):
     return Game.objects.create(name=name, system=system, played=played, beaten=beaten,
@@ -271,7 +271,10 @@ class GameDetailViewTests(TestCase):
              'beaten':True,
              'finish_date_year': 2018,
              'finish_date_day':1,
-             'finish_date_month': 11}
+             'finish_date_month': 11,
+             'purchase_date_year': 2018,
+             'purchase_date_day':1,
+             'purchase_date_month': 10}
         )
         self.assertEqual(response.status_code, 302)
         game.refresh_from_db()
@@ -286,6 +289,9 @@ class GameDetailViewTests(TestCase):
             {'finish_date_year': 2018,
              'finish_date_day':1,
              'finish_date_month': 11,
+             'purchase_date_year': 2018,
+             'purchase_date_day':1,
+             'purchase_date_month': 10,
              'played':True,
              'current_time':1,
              'abandoned':True}
@@ -638,3 +644,10 @@ class CurrentTimeTests(TestCase):
         self.assertEqual(game.current_time, 1)
 
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py
+
+#fulltimetobeat of -1 and current time of 0 shouldn't equal substantial progress  (GL-72)
+#need to resolve Unknown/Yes/No
+#filter ignoring Substantial progress
+#filter only substantial progress
+#filter no substantail progress
+#substantial progress = True for beaten?

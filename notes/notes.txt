@@ -177,6 +177,21 @@ TRANSACTION LOG
 +700 cycling
 +700 cycling
 -1525 Lovers in a dangerous spacetime
+
+-2602 Invisible Inc
++1000 cycling
+-1000 Tetrisphere 
+-4311 Tokyo 42
++6000 Bullhorn Cares
+-4700 Various PS4
++2000 WBGH
+-ALOT Black Friday etc. (PS4, Amazon, Newegg, Steam, Square Enix, Gamestop)
++ 300 cycling
+-2479 Etsy molds
+-928 etsy mold
+-200 Mario music
+-3249 Enter Gungeons
+-6000 Bullhorn Cares
 _
 -30525 Remaining (slight rounding)
 

@@ -79,9 +79,9 @@ class ExampleMetaCritic():
         self.userscore = self.raw_data.find(user_score_class).text
 
 
-#meta = ExampleMetaCritic("Deus Ex: Mankind Divided","Steam")
-#link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
-#print link
+meta = ExampleMetaCritic("Deus Ex: Mankind Divided","Steam")
+link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
+print link
 #links = link.find_all("span",attrs={"class":"data","itemprop":"genre"})
 #print links
 #.findall("span",attrs={"class":"data","itemprop":"genre"}).text.strip()
