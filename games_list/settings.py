@@ -24,7 +24,7 @@ SECRET_KEY = 'nmt-gpp(iwo=fpnf0*tf0=d@gxyhlt8xxpm2$!7ggj-9ixt851'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ADMINS = [('Morgan','griffonlord@gmail.com')]
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['games-test.rw3dvkmeac.us-west-2.elasticbeanstalk.com',
                  'gameslist.griffonflightproductions.com',
@@ -120,7 +120,7 @@ TIME_ZONE = 'EST'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -172,7 +172,10 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=gameslist',
-    '--cover-html'
+    '--cover-html',
+    '--verbosity=2',
+    '--with-xunit',
+    '--xunit-file=tests.xml'
 ]
 
 #SECURE_CONTENT_TYPE_NOSNIFF = True

@@ -34,7 +34,7 @@ class IndexView(generic.ListView):
 def filtered_list(request,**kwargs):
     model = Game
     paginate_by = 10
-    game_list = Game.objects.all().order_by('name')
+    game_list = Game.objects.all().order_by('-purchase_date')
     #logger.debug(kwargs)
     if request.META.get('HTTP_REFERER'):
         logger.debug(request.META.get('HTTP_REFERER'))
