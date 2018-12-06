@@ -2,12 +2,6 @@
 import django_filters
 from .models import Game
 
-#class UserFilter(django_filters.FilterSet):
-#    class Meta:
-#        model = User
-#        fields = ['username', 'first_name', 'last_name', ]
-
-
 class GameFilter(django_filters.FilterSet):
     class Meta:
         model = Game
@@ -15,4 +9,6 @@ class GameFilter(django_filters.FilterSet):
                   'system':['exact'],
                   'location':['exact'],
                   'game_format':['exact'],
-                  'substantial_progress':['exact']}
+                  'substantial_progress':['exact'],
+                  'beaten':['exact'],
+                  'finish_date':['year__gte']}

@@ -157,6 +157,9 @@ class Game(models.Model):
     def __str__(self):
         return self.name + " - " + self.system
 
+    def __unicode__(self):
+        return unicode(self.name) + u" - " + unicode(self.system)
+
 #class GameManager(models.Manager):
 #    def create_game(self):
 #        game = self.create()

@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^test-delete/$', views.test_delete, name='test_delete'),
     url(r'^test-session/$', views.test_session, name='test_session'),
     url(r'^stop-tracking/$', views.stop_tracking, name='stop_tracking'),
+    url(r'^save-all/$', views.save_all_games, name='save_all'),
+    url(r'^beaten/$', views.beaten_in_2018_list, name='beaten'),
     url(r'^$', views.filtered_list, name='list',kwargs=dict({'page':'','system':'','game_format':''})),
     url(r'^$', views.filtered_list, name='list')]

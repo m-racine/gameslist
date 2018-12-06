@@ -59,7 +59,7 @@ class HowLongToBeat():
                     if self.found:
                         break
                 else:
-                    logger.info("NOT FOUND: {0}.".format(game))
+                    logger.info(u"NOT FOUND: {0}.".format(game))
                     logger.info(u"Did you mean: {0}?".format(link.find("a")["title"]))
                     pass
                     #raise Exception
@@ -67,7 +67,7 @@ class HowLongToBeat():
             if self.found:
                 pass
             else:
-                "{0} not found.".format(game)
+                u"{0} not found.".format(game)
         except: 
             logger.error(traceback.print_exc())
             self.id = 0
@@ -79,9 +79,9 @@ class HowLongToBeat():
 
     def __unicode__(self):
         if self.found:
-            return "{0} - {1} {2}".format(self.game,self.fulltime,self.units)
+            return u"{0} - {1} {2}".format(self.game,self.fulltime,self.units)
         else:
-            return self.game + " - Not Found"
+            return unicode(self.game) + u" - Not Found"
 
 class ExampleHowLongToBeat():
     def __init__(self,game):

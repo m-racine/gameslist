@@ -21,6 +21,8 @@ from .models import Game
 #     search_fields = ['question_text']
 
 #admin.site.register(Question, QuestionAdmin)
+def wipe_finish(GameAdmin, request, queryset):
+    queryset.update(finish_date=None)
 
 
 class GameAdmin(admin.ModelAdmin):
@@ -32,4 +34,10 @@ class GameAdmin(admin.ModelAdmin):
     list_filter = ['system','location','played','beaten','game_format','flagged']
     search_fields = ['name']
 
+    actions = [wipe_finish]
+
+
 admin.site.register(Game, GameAdmin)
+
+
+

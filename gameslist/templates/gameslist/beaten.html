@@ -1,28 +1,6 @@
 {% load gameslist_templatetags %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<form method="get">
-  <div>
-      {{ filter.form.name__contains.label }}  {{ filter.form.name__contains }}
-  </div>
-  <div>
-      {{ filter.form.system.label }}/{{ filter.form.location.label }}  {{ filter.form.system }}  {{ filter.form.location }}
-  </div>
-  <div>
-      {{ filter.form.game_format.label }}  {{ filter.form.game_format }}
-  </div>
-  <div>
-      {{ filter.form.substantial_progress.label }}  {{ filter.form.substantial_progress }}
-  </div>
-  <div>
-      {{ filter.form.beaten.label }}  {{ filter.form.beaten }}
-  </div>
-  <div>
-      {{ filter.form.finish_date__year__gte.label }}  {{ filter.form.finish_date__year__gte }}
-  </div>
-    
-  <button type="submit">Search</button>
-</form>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -62,13 +40,10 @@
     </span>
 </div>
 
-<form action="{% url 'gameslist:add'%}" method="get">
+<form action="{% url 'gameslist:list'%}" method="get">
     {% csrf_token %}
-    <button type="submit">Add New Game</button>
+    <button type="submit">Return to Main List</button>
 </form> 
 
-<form action="{% url 'gameslist:beaten' %}" method="get">
-  {% csrf_token %}
-    <button type="submit">Beaten list</button>
-</form> 
+
 

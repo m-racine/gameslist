@@ -5,6 +5,7 @@ from datetime import date
 import logging,re
 import urlparse
 import urllib
+import sys
 from django.shortcuts import render,get_object_or_404, reverse, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views import generic
@@ -78,6 +79,31 @@ def filtered_list(request,**kwargs):
          {'response': response,'filter':game_filter}
     )
 
+def beaten_in_2018_list(request,**kwargs):
+    model = Game
+    paginate_by = 100
+    game_list = Game.objects.all().order_by('system')
+
+    page = request.GET.get('page')
+    game_filter = GameFilter({'beaten':True,'finish_date__year__gte':2018}, queryset=game_list)
+    
+    filtered_qs = game_filter.qs
+    paginator = Paginator(filtered_qs, paginate_by)
+    
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+    except:
+        response = paginator.page(1)
+    return render(
+         request, 
+         'gameslist/beaten.html', 
+         {'response': response,'filter':game_filter}
+    )
+
 def check_url_match(url,referer):
     for host in ['http://gameslist.griffonflightproductions.com','http://127.0.0.1:8000']:
         logger.debug("{0}{1}".format(host,url))
@@ -146,6 +172,17 @@ class PlayBeatAbandonGame(generic.UpdateView):
     def get_success_url(self):
         return reverse('gameslist:detail', args=(self.object.id,))
 
+def save_all_games(request):
+    game_list = Game.objects.all()
+    for game in game_list:
+        
+        try:
+            game.clean()
+            game.save()
+        except:
+            logger.warning(unicode(game))
+            logger.warning(sys.exc_info()[1])
+    return HttpResponseRedirect(reverse('gameslist:list'))
 # def beat_game(request, game_id):
 #     game = get_object_or_404(Game, pk=game_id)
 #     #set game.beat to true
