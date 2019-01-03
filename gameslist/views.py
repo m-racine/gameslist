@@ -20,7 +20,7 @@ from .filters import GameFilter
 
 # Create your views here. 
 logger = logging.getLogger('MYAPP')
-YOUR_PAGE_SIZE = 10
+YOUR_PAGE_SIZE = 10 
 #https://stackoverflow.com/questions/21153852/plotting-graphs-in-numpy-scipy
 
 class IndexView(generic.ListView):
@@ -101,6 +101,31 @@ def beaten_in_2018_list(request,**kwargs):
     return render(
          request, 
          'gameslist/beaten.html', 
+         {'response': response,'filter':game_filter}
+    )
+
+def missing_hltb_list(request,**kwargs):
+    model = Game
+    paginate_by = 100
+    game_list = Game.objects.all().order_by('system')
+
+    page = request.GET.get('page')
+    game_filter = GameFilter({'full_time_to_beat':-1.0}, queryset=game_list)
+    
+    filtered_qs = game_filter.qs
+    paginator = Paginator(filtered_qs, paginate_by)
+    
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+    except:
+        response = paginator.page(1)
+    return render(
+         request, 
+         'gameslist/missinghltb.html', 
          {'response': response,'filter':game_filter}
     )
 

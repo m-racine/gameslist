@@ -208,5 +208,5 @@ Future:
 https://www.fangamer.com/products/undertale-game-switch-ps4-vita
 https://www.fangamer.com/products/massive-chalice-game
 https://www.fangamer.com/products/slime-rancher-collectors-edition
-
+https://signatureeditiongames.com
 https://oss.hpconnected.com/oss/ui/views/spinner.html?eventCompleteUrl=https%3A%2F%2Foss.hpconnected.com%2Foss%2Finstalls%2Fb70c0e86566c5f5d5be1828246024fc9%2Fcdd00de3541042cc8a01dc7c3fb942b5%2Fsteps%2Fad4937af28394411afec1d839ca1bd6e%2Fprepare&redirect_uri=https%3A%2F%2Foss.hpconnected.com%2Foss%2Finstalls%2Fb70c0e86566c5f5d5be1828246024fc9%2Fcdd00de3541042cc8a01dc7c3fb942b5%2FpauseComplete

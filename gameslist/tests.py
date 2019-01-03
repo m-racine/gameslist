@@ -5,6 +5,7 @@ from importlib import import_module
 from datetime import date, datetime, timedelta
 import logging
 import unittest
+import os
 
 from django.apps import apps
 from django.test import TestCase
@@ -333,7 +334,9 @@ class ListURLHelperTest(TestCase):
 class HLTBTest(TestCase):
     @attr('hltb')
     def test_example_hltb(self):
+        os.chdir("gameslist/endpoints")
         hltb = ExampleHowLongToBeat("Sunset Overdrive")
+        os.chdir("../../")
         self.assertEqual(hltb.game, "Sunset Overdrive")
         #print hltb
         self.assertEqual(hltb.fulltime, 10.0)

@@ -15,6 +15,12 @@
       {{ filter.form.substantial_progress.label }}  {{ filter.form.substantial_progress }}
   </div>
   <div>
+      {{ filter.form.full_time_to_beat__lte.label }}  {{ filter.form.full_time_to_beat__lte }}
+  </div>
+  <div>
+      {{ filter.form.full_time_to_beat__gte.label }}  {{ filter.form.full_time_to_beat__gte }}
+  </div>
+  <div>
       {{ filter.form.beaten.label }}  {{ filter.form.beaten }}
   </div>
   <div>
@@ -27,7 +33,7 @@
   <thead>
     <tr>
       <th>Game</th>
-      <th>System</th>
+      <th>Location</th>
       <th>Format</th>
     </tr>
   </thead>
@@ -35,7 +41,7 @@
     {% for game in response.object_list %}
       <tr>
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
-        <td>{{ game.get_system_display }}</td>
+        <td>{{ game.get_location_display }}</td>
         <td>{{ game.get_game_format_display }}</td>
       </tr>
     {% endfor %}

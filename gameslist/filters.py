@@ -9,6 +9,7 @@ class GameFilter(django_filters.FilterSet):
                   'system':['exact'],
                   'location':['exact'],
                   'game_format':['exact'],
-                  'substantial_progress':['exact'],
+                  #'substantial_progress':['exact'],
                   'beaten':['exact'],
+                  'full_time_to_beat':['lte','gte'],
                   'finish_date':['year__gte']}

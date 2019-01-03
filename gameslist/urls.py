@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^stop-tracking/$', views.stop_tracking, name='stop_tracking'),
     url(r'^save-all/$', views.save_all_games, name='save_all'),
     url(r'^beaten/$', views.beaten_in_2018_list, name='beaten'),
+    url(r'^hltb/$', views.missing_hltb_list, name='hltb'),
     url(r'^$', views.filtered_list, name='list',kwargs=dict({'page':'','system':'','game_format':''})),
     url(r'^$', views.filtered_list, name='list')]

@@ -6,7 +6,7 @@
     <tr>
       <th>Game</th>
       <th>System</th>
-      <th>Beaten On</th>
+      <th>Time To Beat</th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +14,7 @@
       <tr>
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
         <td>{{ game.get_system_display }}</td>
-        <td>{{ game.finish_date }}</td>
+        <td>{{ game.full_time_to_beat }}</td>
       </tr>
     {% endfor %}
   </tbody>
