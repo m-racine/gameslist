@@ -5,3 +5,6 @@
 !.elasticbeanstalk/*.global.yml
 **/*.pyc
 lib/*
+.coverage
+cover/*
+mysite.log
