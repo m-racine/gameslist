@@ -14,7 +14,7 @@ class HowLongToBeat():
         headers={'User-Agent': 'Mozilla/5.0'}
         form_data = {"queryString": game,"t": "games",
                     "sorthead": "popular", "sortd": "Normal Order","length_type": "main"}
-        url = "https://howlongtobeat.com/search_main.php?page=1"
+        url = "https://howlongtobeat.com/search_results.php?page=1"
         #print url
         #print form_data
         request = requests.post(url,data=form_data)
@@ -137,7 +137,9 @@ class ExampleHowLongToBeat():
 #                     #print (temp if temp else "{0} not found.".format(title))
 #                     pass
 
-#print ExampleHowLongToBeat("Sunset Overdrive")
+hltb = HowLongToBeat("Sunset Overdrive")
+print ExampleHowLongToBeat("Sunset Overdrive")
+print hltb
 
 #<li class='global_padding back_white shadow_box'>No results for <strong>a mini falafa</strong> in <u>games</u>.</li>
 
