@@ -26,7 +26,7 @@ def wipe_finish(GameAdmin, request, queryset):
 
 
 class GameAdmin(admin.ModelAdmin):
-    list_display = ('name','system','location','game_format','notes','purchase_date','finish_date',
+    list_display = ('name','system','location','game_format','notes_old','purchase_date','finish_date',
                     'played','beaten','abandoned','perler','reviewed','flagged')
     exclude = ('release_date','developer','publisher','streamable','recordable','aging',
               'play_aging', 'full_time_to_beat','number_of_eps','aging_effect','aging_non_ep',

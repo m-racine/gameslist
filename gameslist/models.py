@@ -33,6 +33,7 @@ SYSTEMS = (
     ('BNT', 'Battle.net'),
     ('DIG', 'Digipen'),
     ('NDS', 'Nintendo DS'),
+    ('EPI', 'Epic Games'),
     ('GCN', 'Gamecube'),
     ('GB', 'Game Boy'),
     ('GBC', 'Game Boy Color'),
@@ -75,6 +76,7 @@ def only_positive_or_zero(value):
         raise ValidationError('Value cannot be negative or zero.')
     return True
 
+
 class Game(models.Model):
     FORMATS = (
         ('P', 'Physical'),
@@ -93,7 +95,8 @@ class Game(models.Model):
     beaten = models.BooleanField(default=False)
     location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
     game_format = models.CharField('format', max_length=1, choices=FORMATS, default='D')
-    notes = models.CharField(max_length=500, default="", blank=True, null=True)
+    notes_old = models.CharField(max_length=500, default="", blank=True, null=True)
+    #notes = models.ForeignKey(Note, on_delete=models.CASCADE, null=True)
     purchase_date = models.DateField('date purchased', default=None,
                                      validators=[no_future])
     finish_date = models.DateField('date finished', default=None, blank=True, null=True,
@@ -164,6 +167,8 @@ class Game(models.Model):
 #    def create_game(self):
 #        game = self.create()
 
+
+
 class Wish(models.Model):
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
@@ -175,6 +180,15 @@ class Wish(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.system
+
+
+class Note(models.Model):
+    text = models.CharField(max_length=500,default="",blank=True,null=True)
+    date_added = models.DateField(null=False,validators=[no_future])
+    date_last_modified = models.DateField(null=False,validators=[no_future])
+    parent_game = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
+    def __str__(self):
+        return self.text
 
 # #
 # AutoField

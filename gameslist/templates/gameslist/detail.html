@@ -24,7 +24,7 @@
                 <button type="submit"> Flag for revision!</button>
             </form>
     {% endif %}
-    <p>{{game.notes}}</p>
+    <p>{{game.notes_old}}</p>
 
     <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}

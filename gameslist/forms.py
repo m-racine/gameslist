@@ -19,7 +19,7 @@ class GameForm(ModelForm):
         fields = ('name', 'system', 'location', 'game_format',
                   'played', 'beaten', 'abandoned', 'perler',
                   'reviewed', 'current_time', 'purchase_date', 'finish_date',
-                  'notes')
+                  'notes_old')
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),

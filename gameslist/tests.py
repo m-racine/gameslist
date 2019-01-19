@@ -48,12 +48,12 @@ class PersistentSessionClient(Client):
         return self._persisted_session
 
 def create_game(name="Test", system="STM", played=False, beaten=False, location="STM",
-                game_format="D", notes="",
+                game_format="D", notes_old="",
                 purchase_date=None,
                 finish_date=None,
                 abandoned=False, perler=False, reviewed=False, flagged=False, current_time=0):
     return Game.objects.create(name=name, system=system, played=played, beaten=beaten,
-                               location=location, game_format=game_format, notes=notes,
+                               location=location, game_format=game_format, notes_old=notes_old,
                                purchase_date=purchase_date, finish_date=finish_date,
                                abandoned=abandoned, perler=perler, reviewed=reviewed,
                                flagged=flagged, current_time=current_time)
