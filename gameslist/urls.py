@@ -16,6 +16,22 @@ urlpatterns = [
     url(r'^stop-tracking/$', views.stop_tracking, name='stop_tracking'),
     url(r'^save-all/$', views.save_all_games, name='save_all'),
     url(r'^beaten/$', views.beaten_in_2018_list, name='beaten'),
-    url(r'^hltb/$', views.missing_hltb_list, name='hltb'),
+    url(r'^hltb/$', views.hltb_list, name='hltb'),
+    #url(r'^notes/$', views.process_notes, name='notes'),
     url(r'^$', views.filtered_list, name='list',kwargs=dict({'page':'','system':'','game_format':''})),
     url(r'^$', views.filtered_list, name='list')]
+
+
+###notes: need to change detail page to show list of notes associated
+###add note
+###delete note
+###modify note
+###
+###alternate names:
+###follow same format, but we don't need to convert initial name maybe?
+###metacritc needs to be pulled into play
+###
+###MOAR SORTING AND SEARCHING
+###by LENGTH
+###BY PRIORITY
+###BY started?

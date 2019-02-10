@@ -137,9 +137,9 @@ class ExampleHowLongToBeat():
 #                     #print (temp if temp else "{0} not found.".format(title))
 #                     pass
 
-hltb = HowLongToBeat("Sunset Overdrive")
-print ExampleHowLongToBeat("Sunset Overdrive")
-print hltb
+# hltb = HowLongToBeat("Sunset Overdrive")
+# print ExampleHowLongToBeat("Sunset Overdrive")
+# print hltb
 
 #<li class='global_padding back_white shadow_box'>No results for <strong>a mini falafa</strong> in <u>games</u>.</li>
 

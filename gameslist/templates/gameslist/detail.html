@@ -24,7 +24,14 @@
                 <button type="submit"> Flag for revision!</button>
             </form>
     {% endif %}
-    <p>{{game.notes_old}}</p>
+    {%comment%}<p>{{game.notes_old}}</p>{%endcomment%}
+
+    <ul>
+        <h2>Notes for game {{game.id}}</h2>
+        {% for obj in game.note_set.all %}
+           <li>{{obj.text}}</li>
+        {% endfor %}
+    </ul>
 
     <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}
@@ -34,6 +41,27 @@
 
 
 {%comment%}
+
+
+http://protocolostomy.com/2009/08/31/representing-relationships-in-django-templates-without-writing-extra-code-relatedmanager-and-manyrelatedmanager/
+
+
+{% block content %}
+<h2>Projects for {{object.user.first_name}} {{object.user.last_name}}</h2>
+<ul>
+   {% for project in object.project_set.all %}
+      <li><a href="{{project.get_absolute_url}}">{{project.id}} (Opened: {{project.date_started.date}})</a>
+      <ul>
+         <h2>Clients for project {{project.id}}</h2>
+         {% for obj in project.client.all %}
+            <li>{{obj.lname}}, {{obj.fname}}</li>
+         {% endfor %}
+      </ul>
+   {% endfor %}
+</ul>
+{% endblock %}
+
+
 
 https://stackoverflow.com/questions/38965677/django-how-to-show-and-hide-div-based-on-the-selection-of-the-dropdown-menu
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from datetime import date
+from datetime import date,datetime
 import logging,re
 import urlparse
 import urllib
@@ -14,7 +14,7 @@ from django import forms
 from django.forms.utils import ErrorList
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game,Wish
+from .models import Game,Wish,Note
 from .forms import GameForm,PlayBeatAbandonForm
 from .filters import GameFilter
 
@@ -129,6 +129,31 @@ def missing_hltb_list(request,**kwargs):
          {'response': response,'filter':game_filter}
     )
 
+def hltb_list(request,**kwargs):
+    model = Game
+    paginate_by = 100
+    game_list = Game.objects.all().order_by('system')
+
+    page = request.GET.get('page')
+    game_filter = GameFilter({'full_time_to_beat__lte':5.0,'full_time_to_beat__gte':0.1,'beaten':False}, queryset=game_list)
+    
+    filtered_qs = game_filter.qs
+    paginator = Paginator(filtered_qs, paginate_by)
+    
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+    except:
+        response = paginator.page(1)
+    return render(
+         request, 
+         'gameslist/missinghltb.html', 
+         {'response': response,'filter':game_filter}
+    )
+
 def check_url_match(url,referer):
     for host in ['http://gameslist.griffonflightproductions.com','http://127.0.0.1:8000']:
         logger.debug("{0}{1}".format(host,url))
@@ -160,6 +185,8 @@ def check_url_args_for_only_token(url):
 
 def move_to_detail_view(request, pk):
     game = get_object_or_404(Game, pk=pk)
+    #print vars(game)
+    #print game.note_set.all()
     return render(request, 'gameslist/detail.html', {'game':game})
 
 class DetailView(generic.DetailView):
@@ -254,6 +281,17 @@ def test_delete(request):
     else:
         response = HttpResponse("Cookie test failed")
     return response
+
+def process_notes(request):
+    games = Game.objects.all()
+    for game in games:
+        #print game
+        if game.notes_old:
+            Note.objects.create(text=game.notes_old,date_added=datetime.strptime('2019-1-19', '%Y-%m-%d'),
+                                date_last_modified=datetime.strptime('2019-1-19', '%Y-%m-%d'),parent_game_id=game.id)
+    return HttpResponseRedirect(reverse('gameslist:list'))
+
+
 # # Some standard Django stuff
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
 # from django.template import Context, loader
