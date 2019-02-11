@@ -15,6 +15,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 #from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
+from endpoints.metacritic import MetaCritic
 
 LOGGER = logging.getLogger('MYAPP')
 
@@ -108,6 +109,9 @@ class Game(models.Model):
     substantial_progress = models.BooleanField(default=False)
     full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
 
     @property
     def aging(self):
@@ -131,13 +135,17 @@ class Game(models.Model):
             return 0.0
         return self.full_time_to_beat - self.current_time
 
-
     def save(self, *args, **kwargs):
         if self.full_time_to_beat == 0.0:
             self.full_time_to_beat = HowLongToBeat(self.name).fulltime
         if self.full_time_to_beat > 0:
             if self.current_time > (self.full_time_to_beat / 2):
                 self.substantial_progress = True
+        if self.metacritic == 0.0 or self.user_score == 0.0:
+            meta = MetaCritic(self.name, self.get_system_display())
+            self.metacritic = float(meta.metacritic)
+            self.user_score = float(meta.userscore)
+        self.priority = self.calculate_priority()
         super(Game, self).save(*args, **kwargs)
 
     def clean(self):
@@ -156,6 +164,13 @@ class Game(models.Model):
                 raise ValidationError({'played': (NOT_PLAYED)})
             if self.finish_date is None:
                 raise ValidationError({'finish_date': (FINISH_DATE_REQUIRED)})
+
+    def calculate_priority(self):
+        if self.beaten or self.abandoned:
+            return 0.0
+        elif self.played:
+            return (float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat)) * 2
+        return (float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat))
 
     def __str__(self):
         return self.name + " - " + self.system

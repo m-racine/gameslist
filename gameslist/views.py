@@ -35,7 +35,8 @@ class IndexView(generic.ListView):
 def filtered_list(request,**kwargs):
     model = Game
     paginate_by = 10
-    game_list = Game.objects.all().order_by('-purchase_date')
+    #game_list = Game.objects.all().order_by('-purchase_date')
+    game_list = Game.objects.all().order_by('-priority')
     #logger.debug(kwargs)
     if request.META.get('HTTP_REFERER'):
         logger.debug(request.META.get('HTTP_REFERER'))
@@ -227,9 +228,9 @@ class PlayBeatAbandonGame(generic.UpdateView):
 def save_all_games(request):
     game_list = Game.objects.all()
     for game in game_list:
-        
+        logger.info(unicode(game))
         try:
-            game.clean()
+            #game.clean()
             game.save()
         except:
             logger.warning(unicode(game))

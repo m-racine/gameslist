@@ -35,6 +35,7 @@
       <th>Game</th>
       <th>Location</th>
       <th>Format</th>
+      <th>Priority</th>
     </tr>
   </thead>
   <tbody>
@@ -43,6 +44,7 @@
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
         <td>{{ game.get_location_display }}</td>
         <td>{{ game.get_game_format_display }}</td>
+        <td>{{ game.priority }}</td>
       </tr>
     {% endfor %}
   </tbody>

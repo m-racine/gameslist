@@ -62,24 +62,33 @@ class MetaCritic():
         #print url
         request = requests.get(url,headers=headers)
         self.raw_data = BeautifulSoup(request.text,"html.parser")
+        self.game = game
         self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
         self.userscore = self.raw_data.find(user_score_class).text
-        self.publisher = self.raw_data.find('li',attrs={"class":"summary_detail publisher"}).find("span",attrs={'itemprop':'name'}).text.strip()
-        #can be a list, may need to refactor
-        self.developer = self.raw_data.find("li",attrs={"class":"summary_detail developer"}).find("span",attrs={"class":"data"}).text.strip()
-        self.release_date = fixDateFormat(self.raw_data.find("span",attrs={"class":"data","itemprop":"datePublished"}).text)
-        self.players  = self.raw_data.find("li",attrs={"class":"summary_detail product_players"}).find("span",attrs={"class":"data"}).text.strip()
-        #can be a list
-        self.genre = self.raw_data.find("li",attrs={"class":"summary_detail product_genre"}).findall("span",attrs={"class":"data","itemprop":"genre"}).text.strip()
+        # self.publisher = self.raw_data.find('li',attrs={"class":"summary_detail publisher"}).find("span",attrs={'itemprop':'name'}).text.strip()
+        # #can be a list, may need to refactor
+        # self.developer = self.raw_data.find("li",attrs={"class":"summary_detail developer"}).find("span",attrs={"class":"data"}).text.strip()
+        # self.release_date = fixDateFormat(self.raw_data.find("span",attrs={"class":"data","itemprop":"datePublished"}).text)
+        # self.players  = self.raw_data.find("li",attrs={"class":"summary_detail product_players"}).find("span",attrs={"class":"data"}).text.strip()
+        # #can be a list
+        # self.genre = self.raw_data.find("li",attrs={"class":"summary_detail product_genre"}).findall("span",attrs={"class":"data","itemprop":"genre"}).text.strip()
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __unicode__(self):
+        return u"{0} - {1} {2}".format(self.game,self.metacritic,self.userscore)
+
 
 class ExampleMetaCritic():
     def __init__(self,game,system):
-        self.raw_data = BeautifulSoup(open(os.path.join(os.getcwd(),"gameslist/endpoints/example.html")),"html.parser")
+        self.raw_data = BeautifulSoup(open("C:\\Users\\griff\\Documents\\Coding\\games_list\\example.html","r"),"html.parser")
         self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
         self.userscore = self.raw_data.find(user_score_class).text
 
 
-meta = ExampleMetaCritic("Deus Ex: Mankind Divided","Steam")
+meta = MetaCritic("Deus Ex: Mankind Divided","Steam")
+print meta
 link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
 print link
 #links = link.find_all("span",attrs={"class":"data","itemprop":"genre"})
