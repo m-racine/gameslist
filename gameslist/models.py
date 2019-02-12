@@ -168,9 +168,11 @@ class Game(models.Model):
     def calculate_priority(self):
         if self.beaten or self.abandoned:
             return 0.0
-        elif self.played:
-            return (float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat)) * 2
-        return (float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat))
+        score_factor = float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat)
+        age_factor = float(self.aging / 365 * 12) * 0.25
+        if self.played:
+            return (age_factor +  score_factor)* 2
+        return age_factor + score_factor
 
     def __str__(self):
         return self.name + " - " + self.system
