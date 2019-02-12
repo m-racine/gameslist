@@ -77,8 +77,20 @@ def only_positive_or_zero(value):
         raise ValidationError('Value cannot be negative or zero.')
     return True
 
+class BaseModel(models.Model):
+    created_date = models.DateField(default=None,editable=False)
+    modified_date = models.DateField(default=None,editable=False)
 
-class Game(models.Model):
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        self.modified_date = datetime.now()
+        if not self.created_date:
+            self.created_date = datetime.now()
+        super(BaseModel, self).save(*args, **kwargs)
+
+class Game(BaseModel):
     FORMATS = (
         ('P', 'Physical'),
         ('D', 'Digital'),
@@ -111,7 +123,16 @@ class Game(models.Model):
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    #not a property so that it can be sorted more easily.
     priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
+    times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
+
+    #substantial_progress
+    #developer
+    #publisher
+    #release_date
+    #series
 
     @property
     def aging(self):
@@ -186,7 +207,7 @@ class Game(models.Model):
 
 
 
-class Wish(models.Model):
+class Wish(BaseModel):
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
     system = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
@@ -199,14 +220,18 @@ class Wish(models.Model):
         return self.name + " - " + self.system
 
 
-class Note(models.Model):
+class Note(BaseModel):
     text = models.CharField(max_length=500,default="",blank=True,null=True)
-    date_added = models.DateField(null=False,validators=[no_future])
-    date_last_modified = models.DateField(null=False,validators=[no_future])
     parent_game = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.text
 
+class AlternateName(BaseModel):
+    parent_game = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
+    text = models.CharField(max_length=200,default="",blank=True,null=True)
+
+    def __str__(self):
+        return self.text
 # #
 # AutoField
 # BigAutoField

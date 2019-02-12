@@ -2,7 +2,7 @@ from datetime import date
 from datetime import datetime
 
 from django.forms import ModelForm, SelectDateWidget, DateField
-from .models import Game
+from .models import Game, Note, AlternateName
 
 years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
 years.reverse()
@@ -18,8 +18,7 @@ class GameForm(ModelForm):
         model = Game
         fields = ('name', 'system', 'location', 'game_format',
                   'played', 'beaten', 'abandoned', 'perler',
-                  'reviewed', 'current_time', 'purchase_date', 'finish_date',
-                  'notes_old')
+                  'reviewed', 'current_time', 'purchase_date', 'finish_date')
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),
@@ -47,3 +46,8 @@ class PlayBeatAbandonForm(ModelForm):
         widgets = {
             'finish_date': SelectDateWidget(years=years),
         }
+
+class NoteForm(ModelForm):
+    class Meta:
+        model = Note
+        fields = ('text',)
