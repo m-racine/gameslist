@@ -1,6 +1,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <h1>{{ game.name }}</h1>
+{% if game.note_set.all %}
+<h2>Also Known As<h2>
+  {% for obj in game.alternatenames_set.all %}
+    <li>{{obj.text}}</li>
+  {% endfor %}
+{% endif %}
 
 <body>
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
@@ -27,7 +33,7 @@
     {%comment%}<p>{{game.notes_old}}</p>{%endcomment%}
 
     <ul>
-        <h2>Notes for game {{game.id}}</h2>
+        <h2>Notes</h2>
         {% for obj in game.note_set.all %}
            <li>{{obj.text}}</li>
         {% endfor %}

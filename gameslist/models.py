@@ -191,9 +191,10 @@ class Game(BaseModel):
             return 0.0
         score_factor = float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat)
         age_factor = float(self.aging / 365 * 12) * 0.25
+        rec_factor = max(1,self.times_recommended) / max(1, times_passed_over)
         if self.played:
-            return (age_factor +  score_factor)* 2
-        return age_factor + score_factor
+            return ((age_factor +  score_factor)* 2) * rec_factor
+        return (age_factor + score_factor) * rec_factor
 
     def __str__(self):
         return self.name + " - " + self.system
