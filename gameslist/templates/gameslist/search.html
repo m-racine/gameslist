@@ -45,16 +45,6 @@
         <td>{{ game.get_location_display }}</td>
         <td>{{ game.get_game_format_display }}</td>
         <td>{{ game.priority }}</td>
-        <td><form action="{% url 'gameslist:recommend' game.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Rec</button>
-            </form>
-        </td>
-        <td><form action="{% url 'gameslist:pass_over' game.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Pass</button>
-            </form> 
-        </td>
       </tr>
     {% endfor %}
   </tbody>

@@ -47,7 +47,7 @@ class PersistentSessionClient(Client):
             self._persisted_session = engine.SessionStore("persistent")
         return self._persisted_session
 
-def create_game(name="Test", system="STM", played=False, beaten=False, location="STM",
+def create_game(name="Portal", system="STM", played=False, beaten=False, location="STM",
                 game_format="D", notes_old="",
                 purchase_date=None,
                 finish_date=None,
@@ -131,7 +131,7 @@ class GameIndexViewTests(TestCase):
         response = self.client.get(reverse('gameslist:index'))
         self.assertEqual(response.status_code, 200)
         #print response.context['new_games_list']
-        self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Test - STM>'])
+        self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Portal - STM>'])
 
     # def test_add_game(self):
     #     response = self.client.get(reverse('gameslist:add'))
@@ -143,34 +143,34 @@ class GameListViewTests(TestCase):
 
     def test_list_filters(self):
         create_game(purchase_date=convert_date('2018-10-01'))
-        create_game("Test 2", "3DS",purchase_date=convert_date('2018-10-01'))
-        create_game("Test 3", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Shin Megami Tensei IV", "3DS",purchase_date=convert_date('2018-10-01'))
+        create_game("Bravely Default", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         #template_name = 'gameslist/list.html'
         #context_object_name = 'full_games_list'
         request = self.client.get(reverse('gameslist:list'))
         response = request.context['response']
 
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test - STM>',
-                                                        '<Game: Test 2 - 3DS>',
-                                                        '<Game: Test 3 - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Portal - STM>',
+                                                        '<Game: Shin Megami Tensei IV - 3DS>',
+                                                        '<Game: Bravely Default - 3DS>'])
 
         request = self.client.get(reverse('gameslist:list'), {'system': '3DS'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test 2 - 3DS>',
-                                                        '<Game: Test 3 - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>',
+                                                        '<Game: Bravely Default - 3DS>'])
 
         request = self.client.get(reverse('gameslist:list'),
                                   {'system': '3DS', 'game_format': 'D'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test 2 - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
 
         request = self.client.get(reverse('gameslist:list'), {'system': 'STM'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test - STM>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Portal - STM>'])
 
         request = self.client.get(reverse('gameslist:list'), {'game_format': 'M'})
         response = request.context['response']
@@ -188,44 +188,44 @@ class GameListViewTests(TestCase):
 class ListDetailRedirectTests(TestCase):
     #client_class = PersistentSessionClient
     def test_known_bad(self):
-        game = create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        game = create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), follow=True)
         request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
         request = self.client.get(reverse('gameslist:list'), follow=True,
                                   HTTP_REFERER="http://127.0.0.1:8000/3/")
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>',
-                                                        '<Game: Test 2 - GBA>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Fire Emblem - GBA>',
+                                                        '<Game: Shin Megami Tensei IV - 3DS>'])
         self.assertEqual(request.status_code, 200)
 
     def test_list(self):
-        create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         self.assertEqual(session['query_string'], 'system=3DS')
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
 
     def test_list_detail(self):
-        game = create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        game = create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         self.assertEqual(session['query_string'], 'system=3DS')
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
         request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
         self.assertEqual(session['query_string'], 'system=3DS')
 
     def test_list_detail_list(self):
-        game = create_game("Test", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Test 2", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        game = create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
         request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
 
         self.assertEqual(session['query_string'], 'system=3DS')
         request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
@@ -234,7 +234,7 @@ class ListDetailRedirectTests(TestCase):
                                   HTTP_REFERER="http://127.0.0.1:8000/3/", follow=True)
         #self.assertQuerysetEqual(request.context['response'].object_list,['<Game: Test - 3DS>'])
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Test - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
         self.assertEqual(session['query_string'], 'system=3DS')
         self.assertEqual(request.status_code, 200)
 
@@ -247,7 +247,7 @@ class GameDetailViewTests(TestCase):
         """
         game = create_game(purchase_date=convert_date("2018-1-1"))
         game = get_object_or_404(Game, pk=game.id)
-        self.assertEqual(game.name, "Test")
+        self.assertEqual(game.name, "Portal")
 
     def test_play_game(self):
         game = create_game(finish_date=None,purchase_date=convert_date('2018-10-01'))
@@ -345,7 +345,7 @@ class HLTBTest(TestCase):
     def test_known_good_hltb(self):
         hltb = HowLongToBeat("Human Resource Machine")
         self.assertEqual(hltb.game, "Human Resource Machine")
-        self.assertEqual(hltb.fulltime, 4.5)
+        self.assertEqual(hltb.fulltime, 4.0)
 
     @attr('hltb')
     def test_known_bad_hltb(self):
@@ -385,7 +385,7 @@ class GameModelTests(TestCase):
     def test_future_purchase_date(self):
 
         form = GameForm({
-            'name': "Test Future Purchase",
+            'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
             'purchase_date_day': 01,
@@ -401,7 +401,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_past_purchase_date(self):
         form = GameForm({
-            'name': "Test Past Purchase",
+            'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
             'purchase_date_day': 01,
@@ -416,7 +416,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_future_finish_date(self):
         form = GameForm({
-            'name': "Test Future Finish",
+            'name': "Portal 2",
             'finish_date_year': 2019,
             'finish_date_month': 01,
             'finish_date_day': 01,
@@ -437,7 +437,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_past_finish_date(self):
         data = {
-            'name': "Test Past Finish",
+            'name': "Portal 2",
             #'finish_date': (2018,02,01),
             'purchase_date_day': 1,
             'purchase_date_month': 1,
@@ -462,7 +462,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_not_played(self):
         form = GameForm({
-            'name': "Test Past Finish",
+            'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
             'finish_date_day': 01,
@@ -484,7 +484,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_not_played_but_beaten(self):
         form = GameForm({
-            'name': "Test Past Finish",
+            'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
             'finish_date_day': 01,
@@ -505,7 +505,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_not_played_but_abandoned(self):
         form = GameForm({
-            'name': "Test Past Finish",
+            'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
             'finish_date_day': 01,
@@ -526,7 +526,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_not_beaten_or_abandoned(self):
         form = GameForm({
-            'name': "Test Past Finish",
+            'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
             'finish_date_day': 01,
@@ -549,7 +549,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_beaten_no_finish(self):
         form = GameForm({
-            'name': "Test No Finish",
+            'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
             'purchase_date_day': 01,
@@ -572,7 +572,7 @@ class CurrentTimeTests(TestCase):
     @attr('current_time')
     def test_negative_current_time(self):
         form = GameForm({
-            'name': "Test Future Purchase",
+            'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 1,
             'purchase_date_day': 1,
@@ -590,7 +590,7 @@ class CurrentTimeTests(TestCase):
     @attr('current_time')
     def test_current_time_not_played(self):
         form = GameForm({
-            'name': "Test Future Purchase",
+            'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 1,
             'purchase_date_day': 1,
@@ -606,7 +606,7 @@ class CurrentTimeTests(TestCase):
     @attr('current_time')
     def test_no_time_yes_played(self):
         form = GameForm({
-            'name': "Test Future Purchase",
+            'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
             'purchase_date_day': 01,
@@ -623,7 +623,7 @@ class CurrentTimeTests(TestCase):
     @attr('current_time')
     def test_valid_current_played(self):
         form = GameForm({
-            'name': "Test Future Purchase",
+            'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
             'purchase_date_day': 01,

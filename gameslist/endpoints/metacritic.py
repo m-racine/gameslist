@@ -26,17 +26,19 @@ def fixSystem(system):
     elif system in ["kindle","android"]:
         return "ios"
     #system = "-".join(system.lower().split(" "))
-    return system
+    
     #unsure if going to use these base don how systems are stored in the db
-#     if (system == "gba"){
-#        system = "game-boy-advance";
-#     }else if (system == "gbc"){
-#        system = "game-boy-color";
-#     }else if (system == "n64"){
-#        system = "nintendo-64";
-#     }else if (system == "vita"){
-#        system = "playstation-vita";
-#     }
+    if (system == "gba"):
+        system = "game-boy-advance"
+    elif (system == "gbc"):
+        system = "game-boy-color"
+    elif (system == "n64"):
+        system = "nintendo-64"
+    elif system == "nintendo-3ds":
+        system = "3ds"
+    elif (system == "vita"):
+        system = "playstation-vita"
+    return system
 
 def fixGame(game):
     # to replace \ that's what you need in the re, \\\\
@@ -59,10 +61,11 @@ class MetaCritic():
     def __init__(self,game,system):
         headers={'User-Agent': 'Mozilla/5.0'}
         url = "http://www.metacritic.com/game/"+fixSystem(system)+"/"+ fixGame(game)
-        #print url
+        print url
         request = requests.get(url,headers=headers)
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         self.game = game
+
         self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
         self.userscore = self.raw_data.find(user_score_class).text
         # self.publisher = self.raw_data.find('li',attrs={"class":"summary_detail publisher"}).find("span",attrs={'itemprop':'name'}).text.strip()
@@ -87,10 +90,10 @@ class ExampleMetaCritic():
         self.userscore = self.raw_data.find(user_score_class).text
 
 
-meta = MetaCritic("Deus Ex: Mankind Divided","Steam")
+meta = MetaCritic("Fire Emblem","Game Boy Advance")
 print meta
-link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
-print link
+# link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
+# print link
 #links = link.find_all("span",attrs={"class":"data","itemprop":"genre"})
 #print links
 #.findall("span",attrs={"class":"data","itemprop":"genre"}).text.strip()

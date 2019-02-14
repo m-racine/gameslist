@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-
-
 #import datetime
 from datetime import date
 from datetime import datetime
@@ -187,13 +185,17 @@ class Game(BaseModel):
                 raise ValidationError({'finish_date': (FINISH_DATE_REQUIRED)})
 
     def calculate_priority(self):
+        LOGGER.debug("WHAT")
         if self.beaten or self.abandoned:
             return 0.0
         score_factor = float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat)
-        age_factor = float(self.aging / 365 * 12) * 0.25
-        rec_factor = max(1,self.times_recommended) / max(1, times_passed_over)
+        if score_factor < 0:
+            score_factor = 0
+        age_factor = ((self.aging.days / 365.0) * 12.0) * 0.25
+        rec_factor = float(1 + self.times_recommended) / float(1 + self.times_passed_over)
+        LOGGER.debug("score: %2.f age: %2.f rec %2.f",score_factor,age_factor,rec_factor)
         if self.played:
-            return ((age_factor +  score_factor)* 2) * rec_factor
+            return ((age_factor +  score_factor)* 2.0) * rec_factor
         return (age_factor + score_factor) * rec_factor
 
     def __str__(self):

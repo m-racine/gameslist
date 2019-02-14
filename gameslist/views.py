@@ -292,6 +292,17 @@ def process_notes(request):
                                 date_last_modified=datetime.strptime('2019-1-19', '%Y-%m-%d'),parent_game_id=game.id)
     return HttpResponseRedirect(reverse('gameslist:list'))
 
+def rec_from_list(request, game_id):
+    game = get_object_or_404(Game, pk=game_id)
+    game.times_recommended += 1
+    game.save()
+    return HttpResponseRedirect(reverse('gameslist:list'))
+
+def pass_from_list(request, game_id):
+    game = get_object_or_404(Game, pk=game_id)
+    game.times_passed_over += 1
+    game.save()
+    return HttpResponseRedirect(reverse('gameslist:list'))
 
 # # Some standard Django stuff
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
