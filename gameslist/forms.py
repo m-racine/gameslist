@@ -51,3 +51,8 @@ class NoteForm(ModelForm):
     class Meta:
         model = Note
         fields = ('text',)
+
+class AlternateNameForm(ModelForm):
+    class Meta:
+        model = AlternateName
+        fields = ('text',)

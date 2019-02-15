@@ -155,16 +155,22 @@ class Game(BaseModel):
         return self.full_time_to_beat - self.current_time
 
     def save(self, *args, **kwargs):
-        if self.full_time_to_beat == 0.0:
-            self.full_time_to_beat = HowLongToBeat(self.name).fulltime
+        if self.full_time_to_beat <= 0.0:
+            self.full_time_to_beat = self.calculate_how_long_to_beat()
         if self.full_time_to_beat > 0:
             if self.current_time > (self.full_time_to_beat / 2):
                 self.substantial_progress = True
-        if self.metacritic == 0.0 or self.user_score == 0.0:
-            meta = MetaCritic(self.name, self.get_system_display())
-            self.metacritic = float(meta.metacritic)
-            self.user_score = float(meta.userscore)
-        self.priority = self.calculate_priority()
+            else:
+                self.substantial_progress = False
+        else:
+            self.substantial_progress = False
+        if self.metacritic <= 0.0 or self.user_score <= 0.0:
+            (self.metacritic,self.user_score) = self.calculate_metacritic()
+        #temp
+        if self.priority < 1.0:
+            self.priority = self.calculate_priority()
+        if self.priority == 0.0:
+            self.priority = 5.0
         super(Game, self).save(*args, **kwargs)
 
     def clean(self):
@@ -184,19 +190,64 @@ class Game(BaseModel):
             if self.finish_date is None:
                 raise ValidationError({'finish_date': (FINISH_DATE_REQUIRED)})
 
+    def calculate_metacritic(self):
+        names_list = [self.name] + list(AlternateName.objects.all().filter(parent_game=self.id))
+        for name in names_list:
+            try:
+                if type(name) == AlternateName:
+                    meta = MetaCritic(name.text, self.get_system_display())
+                else:
+                    meta = MetaCritic(name, self.get_system_display())
+                metacritic = float(meta.metacritic)
+                user_score = float(meta.userscore)
+                if metacritic > 0 or user_score > 0:
+                    return (metacritic, user_score)
+            except:
+                logging.error("METACRITIC FAIL FOR %s", name)
+        return (-1.0,-1.0)
+
+    def calculate_how_long_to_beat(self):
+        names_list = [self.name] + list(AlternateName.objects.all().filter(parent_game=self.id))
+        LOGGER.warning(names_list)
+        for name in names_list:
+            try:
+                if type(name) == AlternateName:
+                    fulltime = HowLongToBeat(name.text).fulltime
+                else:
+                    fulltime = HowLongToBeat(self.name).fulltime
+                if fulltime > 0:
+                    return fulltime
+            except:
+                logging.error("HLTB FAIL FOR %s", name)
+        return -1.0
+
     def calculate_priority(self):
         LOGGER.debug("WHAT")
-        if self.beaten or self.abandoned:
-            return 0.0
-        score_factor = float(self.metacritic+(self.user_score*10))/float(self.full_time_to_beat)
-        if score_factor < 0:
-            score_factor = 0
-        age_factor = ((self.aging.days / 365.0) * 12.0) * 0.25
-        rec_factor = float(1 + self.times_recommended) / float(1 + self.times_passed_over)
-        LOGGER.debug("score: %2.f age: %2.f rec %2.f",score_factor,age_factor,rec_factor)
-        if self.played:
-            return ((age_factor +  score_factor)* 2.0) * rec_factor
-        return (age_factor + score_factor) * rec_factor
+        try:
+            if self.beaten or self.abandoned:
+                return -1.0
+            if self.game_format in ["M","R","E","L","N"]:
+                return -2.0
+            score_factor = float(self.metacritic+(self.user_score*10.0))/float(self.full_time_to_beat)
+            if score_factor < 0.0:
+                score_factor = 0.0
+            age_factor = ((self.aging.days / 365.0) * 12.0) * 0.5
+            rec_factor = float(1 + self.times_recommended) / float(1 + self.times_passed_over)
+            LOGGER.debug("score: %2.f age: %2.f rec %2.f",score_factor,age_factor,rec_factor)
+            misc_factor = 1.0
+            if self.played:
+                misc_factor += 1.0
+            if self.game_format == "B":
+                misc_factor += 1.0
+            if self.substantial_progress:
+                misc_factor += 1.0
+            prior = round(((age_factor +  score_factor)* misc_factor) * rec_factor,2) 
+            if round(prior,1) == 0.0:
+                return -3.0
+            return prior
+        except:
+            pass
+        return -4.0
 
     def __str__(self):
         return self.name + " - " + self.system

@@ -1,38 +1,11 @@
 {% load gameslist_templatetags %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<form method="get">
-  <div>
-      {{ filter.form.name__contains.label }}  {{ filter.form.name__contains }}
-  </div>
-  <div>
-      {{ filter.form.system.label }}/{{ filter.form.location.label }}  {{ filter.form.system }}  {{ filter.form.location }}
-  </div>
-  <div>
-      {{ filter.form.game_format.label }}  {{ filter.form.game_format }}
-  </div>
-  <div>
-      {{ filter.form.substantial_progress.label }}  {{ filter.form.substantial_progress }}
-  </div>
-  <div>
-      {{ filter.form.full_time_to_beat__lte.label }}  {{ filter.form.full_time_to_beat__lte }}
-  </div>
-  <div>
-      {{ filter.form.full_time_to_beat__gte.label }}  {{ filter.form.full_time_to_beat__gte }}
-  </div>
-  <div>
-      {{ filter.form.beaten.label }}  {{ filter.form.beaten }}
-  </div>
-  <div>
-      {{ filter.form.finish_date__year__gte.label }}  {{ filter.form.finish_date__year__gte }}
-  </div>
-    
-  <button type="submit">Search</button>
-</form>
 <table class="table table-bordered">
   <thead>
     <tr>
       <th>Game</th>
+      <th>System</th>
       <th>Location</th>
       <th>Format</th>
       <th>Priority</th>
@@ -43,6 +16,7 @@
       <tr>
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
         <td>{{ game.get_location_display }}</td>
+        <td>{{ game.get_system_display }}</td>
         <td>{{ game.get_game_format_display }}</td>
         <td>{{ game.priority }}</td>
         <td><form action="{% url 'gameslist:recommend' game.id %}" method="post">

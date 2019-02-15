@@ -1,13 +1,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <h1>{{ game.name }}</h1>
-{% if game.note_set.all %}
-<h2>Also Known As<h2>
-  {% for obj in game.alternatenames_set.all %}
+{% if game.alternatename_set.all %}
+<h2>Also Known As</h2>
+  {% for obj in game.alternatename_set.all %}
     <li>{{obj.text}}</li>
   {% endfor %}
 {% endif %}
-
+<form action="{% url 'gameslist:add_name' game.id %}" method="get">
+                {% csrf_token %}
+                <button type="submit"> Add Alternate Name</button>
+</form>
 <body>
     <p>Priority {{game.priority}} </p>
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
@@ -40,7 +43,10 @@
            <li>{{obj.text}}</li>
         {% endfor %}
     </ul>
-
+    <form action="{% url 'gameslist:add_note' game.id %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit"> Add Note</button>
+    </form>
     <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List</button>

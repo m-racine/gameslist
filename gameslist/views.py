@@ -14,13 +14,14 @@ from django import forms
 from django.forms.utils import ErrorList
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game,Wish,Note
-from .forms import GameForm,PlayBeatAbandonForm
+from .models import Game,Wish,Note, SYSTEMS
+from .forms import GameForm,PlayBeatAbandonForm,AlternateNameForm,NoteForm
 from .filters import GameFilter
 
 # Create your views here. 
 logger = logging.getLogger('MYAPP')
-YOUR_PAGE_SIZE = 10 
+#YOUR_PAGE_SIZE = len(SYSTEMS)
+YOUR_PAGE_SIZE = 10
 #https://stackoverflow.com/questions/21153852/plotting-graphs-in-numpy-scipy
 
 class IndexView(generic.ListView):
@@ -32,9 +33,50 @@ class IndexView(generic.ListView):
             purchase_date__lte=timezone.now()
         ).order_by('-purchase_date')[:5]
     
+def top_priority_list(request,**kwags):
+    model = Game
+    paginate_by = len(SYSTEMS)
+
+    # wanted_items = set()
+    # for item in model1.objects.all():
+    #     if check_want_item(item):
+    #         wanted_items.add(item.pk)
+
+    # return model1.objects.filter(pk__in = wanted_items)
+    top_dict = {}
+    game_list = Game.objects.all().order_by('-priority')
+    for item in game_list:
+        if item.system in top_dict:
+            pass
+        else:
+            top_dict[item.system] = item.id
+        if len(top_dict.keys()) == paginate_by:
+            break
+    page = request.GET.get('page')
+    filtered_set = set(top_dict.values())
+    #print filtered_set
+    filtered_qs = Game.objects.filter(pk__in = filtered_set).order_by('-priority')
+    paginator = Paginator(filtered_qs, paginate_by)
+
+    
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+    except:
+        response = paginator.page(1)
+    request.session['query_string'] =request.GET.urlencode()
+    return render(
+         request, 
+         'gameslist/top_priority.html', 
+         {'response': response}
+    )
+
 def filtered_list(request,**kwargs):
     model = Game
-    paginate_by = 10
+    paginate_by = YOUR_PAGE_SIZE
     #game_list = Game.objects.all().order_by('-purchase_date')
     game_list = Game.objects.all().order_by('-priority')
     #logger.debug(kwargs)
@@ -205,6 +247,32 @@ def add_game_view(request):
         form = GameForm(initial={"purchase_date":date.today()})
     return render(request,'gameslist/game_form.html', {'form':form})
 
+def add_note_view(request,game_id):
+    if request.POST:
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note = form.save()
+            note.parent_game_id = game_id
+            note.save()
+            return HttpResponseRedirect(reverse('gameslist:detail', args=(game_id,)))
+    else:
+        form = NoteForm(initial={"parent_game_id":game_id})
+    return render(request,'gameslist/note_form.html', {'form':form})
+
+def add_name_view(request,game_id):
+    if request.POST:
+        form = AlternateNameForm(request.POST)
+        if form.is_valid():
+            name = form.save()
+            name.parent_game_id = game_id
+            name.save()
+            game = get_object_or_404(Game, pk=game_id)
+            game.save()
+            return HttpResponseRedirect(reverse('gameslist:detail', args=(game_id,)))
+    else:
+        form = AlternateNameForm(initial={"parent_game_id":game_id})
+    return render(request,'gameslist/alternatename_form.html', {'form':form})
+
 class PlayBeatAbandonGame(generic.UpdateView):
     model = Game
     form_class = PlayBeatAbandonForm
@@ -288,8 +356,8 @@ def process_notes(request):
     for game in games:
         #print game
         if game.notes_old:
-            Note.objects.create(text=game.notes_old,date_added=datetime.strptime('2019-1-19', '%Y-%m-%d'),
-                                date_last_modified=datetime.strptime('2019-1-19', '%Y-%m-%d'),parent_game_id=game.id)
+            Note.objects.create(text=game.notes_old,created_date=datetime.strptime('2019-1-19', '%Y-%m-%d'),
+                                modified_date=datetime.strptime('2019-1-19', '%Y-%m-%d'),parent_game_id=game.id)
     return HttpResponseRedirect(reverse('gameslist:list'))
 
 def rec_from_list(request, game_id):

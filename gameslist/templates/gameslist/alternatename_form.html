@@ -1,0 +1,20 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<form method="post">{% csrf_token %}
+    {%comment%}
+    {% for field in form %}
+        <div id="{{ field.auto_id }}_container">
+            {{ field.help_text }}
+            <div>
+                {{ field.label_tag }} {{ field }}
+            </div>
+            <div id="{{ field.auto_id }}_errors">
+                {{ field.errors }}
+            </div>
+        </div>
+    {% endfor %}
+    {%endcomment%}
+    {{form.as_p}}
+
+    <input type="submit" value="Save.">
+</form>

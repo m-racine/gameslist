@@ -21,7 +21,8 @@ def user_score_class(tag):
 def fixSystem(system):
     #faster to do this first
     system = "-".join(system.lower().split(" "))
-    if system in ["steam","gog","origin","humble","uplay","twitch","battle.net","itch.io"]:
+    if system in ["steam","gog","origin","humble","uplay","twitch","battle.net",
+                  "itch.io","epic-games","indiebox","digipen"]:
         return "pc"
     elif system in ["kindle","android"]:
         return "ios"
@@ -36,6 +37,10 @@ def fixSystem(system):
         system = "nintendo-64"
     elif system == "nintendo-3ds":
         system = "3ds"
+    elif system == "nintendo-ds":
+        system = "ds"
+    elif system == "playstation-portable":
+        system = "psp"
     elif (system == "vita"):
         system = "playstation-vita"
     return system
@@ -61,7 +66,7 @@ class MetaCritic():
     def __init__(self,game,system):
         headers={'User-Agent': 'Mozilla/5.0'}
         url = "http://www.metacritic.com/game/"+fixSystem(system)+"/"+ fixGame(game)
-        print url
+        #print url
         request = requests.get(url,headers=headers)
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         self.game = game
@@ -75,6 +80,7 @@ class MetaCritic():
         # self.players  = self.raw_data.find("li",attrs={"class":"summary_detail product_players"}).find("span",attrs={"class":"data"}).text.strip()
         # #can be a list
         # self.genre = self.raw_data.find("li",attrs={"class":"summary_detail product_genre"}).findall("span",attrs={"class":"data","itemprop":"genre"}).text.strip()
+        print self
 
     def __str__(self):
         return self.__unicode__()
@@ -90,8 +96,8 @@ class ExampleMetaCritic():
         self.userscore = self.raw_data.find(user_score_class).text
 
 
-meta = MetaCritic("Fire Emblem","Game Boy Advance")
-print meta
+# meta = MetaCritic("Fire Emblem","Game Boy Advance")
+# print meta
 # link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
 # print link
 #links = link.find_all("span",attrs={"class":"data","itemprop":"genre"})
