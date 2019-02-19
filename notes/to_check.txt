@@ -1,3 +1,5 @@
+Check (release year) as well?
+
 [18/Feb/2019 15:04:55] WARNING [MYAPP:209] Found Ace Attorney Investigations: Miles Edgeworth, not full scores
 [18/Feb/2019 15:04:59] WARNING [MYAPP:209] Found An Octave Higher, not full scores
 [18/Feb/2019 15:04:59] WARNING [MYAPP:253] Found Bit.Trip Presents...Runner2: Future Legend of Rhythm Alien, no time recorded

@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+#needs roman numeral check
+#and just number check
+#and checking sans a 1 at the end?
+
 import re
 import logging
 import traceback
@@ -239,7 +243,7 @@ def gen_names(input_string):
 		and_splits = sub_and(input_string.split(" "))
 		for x in and_splits:
 			true_splits.append(fuse_fills(x))
-		cap_string = ' '.join(w.capitalize() for w in input_string.split())
+		cap_string = ' '.join(w.lower().capitalize() for w in input_string.split())
 		if cap_string == input_string:
 			pass
 		else:
@@ -267,3 +271,4 @@ def gen_metacritic_names(input_string):
 		naive_list[x] = fixGame(naive_list[x])
 	return list(set(naive_list))
 
+print gen_names("FINAL FANTASY VIII")
