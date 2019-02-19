@@ -21,7 +21,7 @@ class HowLongToBeat():
         self.game = game
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         #print self.raw_data
-        self.raw_time = game
+        self.raw_time = ""
         self.fulltime = -1
         self.found = False
         self.units = "Hours"
@@ -137,8 +137,8 @@ class ExampleHowLongToBeat():
 #                     #print (temp if temp else "{0} not found.".format(title))
 #                     pass
 
-# hltb = HowLongToBeat("Sunset Overdrive")
-# print ExampleHowLongToBeat("Sunset Overdrive")
+# hltb = HowLongToBeat("Anthem")
+# #print ExampleHowLongToBeat("Sunset Overdrive")
 # print hltb
 
 #<li class='global_padding back_white shadow_box'>No results for <strong>a mini falafa</strong> in <u>games</u>.</li>

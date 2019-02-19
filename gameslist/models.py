@@ -2,10 +2,12 @@
 from __future__ import unicode_literals
 
 #import datetime
+import sys
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
 import logging
+import traceback
 from django.db import models
 #from django.utils import timezone
 #from django.forms import DateField
@@ -14,6 +16,7 @@ from django.core.exceptions import ValidationError
 #from endpoints.metacritic import MetaCritic
 from endpoints.howlongtobeat import HowLongToBeat
 from endpoints.metacritic import MetaCritic
+from misc.names import gen_names, gen_metacritic_names
 
 LOGGER = logging.getLogger('MYAPP')
 
@@ -167,10 +170,10 @@ class Game(BaseModel):
         if self.metacritic <= 0.0 or self.user_score <= 0.0:
             (self.metacritic,self.user_score) = self.calculate_metacritic()
         #temp
-        if self.priority < 1.0:
-            self.priority = self.calculate_priority()
+        #if self.priority < 1.0:
+        self.priority = self.calculate_priority()
         if self.priority == 0.0:
-            self.priority = 5.0
+            self.priority = -5.0
         super(Game, self).save(*args, **kwargs)
 
     def clean(self):
@@ -202,27 +205,82 @@ class Game(BaseModel):
                 user_score = float(meta.userscore)
                 if metacritic > 0 or user_score > 0:
                     return (metacritic, user_score)
+                if metacritic == -2.0 or user_score == -2.0:
+                    LOGGER.warning("Found %s, not full scores", name)
+                    return (metacritic, user_score)
             except:
-                logging.error("METACRITIC FAIL FOR %s", name)
+                LOGGER.error("METACRITIC FAIL FOR %s", name)
+                LOGGER.error(sys.exc_info()[0])
+                LOGGER.error(sys.exc_info()[1])
+                LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
+        #LOGGER.debug(self.name)
+        names_to_try = gen_metacritic_names(self.name)
+        #LOGGER.warning(names_to_try)
+        if len(names_to_try) > 1000:
+            return (-2.0, -2.0)
+        for name in names_to_try:
+            try:
+                meta = MetaCritic(name, self.get_system_display())
+                metacritic = float(meta.metacritic)
+                user_score = float(meta.userscore)
+                if metacritic > 0.0 or user_score > 0.0:
+                    alt = AlternateName.create(text=name,parent_game=self)
+                    alt.save()
+                    return (metacritic, user_score)
+                if metacritic == -2.0 or user_score == -2.0:
+                    LOGGER.warning("Found %s, not full scores", name)
+                    alt = AlternateName.create(text=name,parent_game=self)
+                    alt.save()
+                    return (metacritic, user_score)
+            except:
+                LOGGER.error("MetaCritic FAIL FOR %s", name)
+                LOGGER.error(sys.exc_info()[0])
+                LOGGER.error(sys.exc_info()[1])
+                LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
         return (-1.0,-1.0)
 
     def calculate_how_long_to_beat(self):
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_game=self.id))
-        LOGGER.warning(names_list)
         for name in names_list:
             try:
                 if type(name) == AlternateName:
                     fulltime = HowLongToBeat(name.text).fulltime
                 else:
                     fulltime = HowLongToBeat(self.name).fulltime
-                if fulltime > 0:
+                if fulltime > 0.0:
+                    return fulltime
+                elif fulltime == -1.0:
+                    LOGGER.warning("Found %s, no time recorded", name)
                     return fulltime
             except:
-                logging.error("HLTB FAIL FOR %s", name)
+                LOGGER.error("HLTB FAIL FOR %s", name)
+                LOGGER.error(sys.exc_info()[0])
+                LOGGER.error(sys.exc_info()[1])
+                LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
+        names_to_try = gen_names(self.name)
+        #LOGGER.warning(names_to_try)
+        if len(names_to_try) > 1000:
+            return -2.0
+        for name in names_to_try:
+            try:
+                fulltime = HowLongToBeat(name).fulltime
+                if fulltime > 0.0:
+                    alt = AlternateName.create(text=name,parent_game=self)
+                    alt.save()
+                    return fulltime
+                elif fulltime == -1.0:
+                    LOGGER.warning("Found %s, no time recorded", name)
+                    alt = AlternateName.create(text=name,parent_game=self)
+                    alt.save()
+                    return fulltime
+            except:
+                LOGGER.error("HLTB FAIL FOR %s", name)
+                LOGGER.error(sys.exc_info()[0])
+                LOGGER.error(sys.exc_info()[1])
+                LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
         return -1.0
 
     def calculate_priority(self):
-        LOGGER.debug("WHAT")
         try:
             if self.beaten or self.abandoned:
                 return -1.0
@@ -286,6 +344,12 @@ class AlternateName(BaseModel):
 
     def __str__(self):
         return self.text
+
+    @classmethod
+    def create(cls, text, parent_game):
+        name = cls(text=text, parent_game=parent_game, created_date=date.today(),modified_date=date.today())
+        # do something with the book
+        return name
 # #
 # AutoField
 # BigAutoField

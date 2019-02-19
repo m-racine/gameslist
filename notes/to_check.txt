@@ -1,0 +1,897 @@
+[18/Feb/2019 15:04:55] WARNING [MYAPP:209] Found Ace Attorney Investigations: Miles Edgeworth, not full scores
+[18/Feb/2019 15:04:59] WARNING [MYAPP:209] Found An Octave Higher, not full scores
+[18/Feb/2019 15:04:59] WARNING [MYAPP:253] Found Bit.Trip Presents...Runner2: Future Legend of Rhythm Alien, no time recorded
+[18/Feb/2019 15:05:04] WARNING [MYAPP:209] Found Canabalt, not full scores
+[18/Feb/2019 15:05:07] WARNING [MYAPP:209] Found Cat Girl Without Salad: Amuse-Bouche, not full scores
+[18/Feb/2019 15:05:08] WARNING [MYAPP:253] Found Cave Story Plus, no time recorded
+[18/Feb/2019 15:05:11] WARNING [MYAPP:209] Found Cthulhu Realms, not full scores
+[18/Feb/2019 15:05:12] WARNING [MYAPP:253] Found Defender's Quest 2, no time recorded
+[18/Feb/2019 15:05:33] WARNING [MYAPP:253] Found Dragon Quest I, no time recorded
+[18/Feb/2019 15:05:34] WARNING [MYAPP:253] Found Epistory - Typing Chronicles, no time recorded
+[18/Feb/2019 15:05:38] WARNING [MYAPP:253] Found Fabula Mortis, no time recorded
+[18/Feb/2019 15:05:40] WARNING [MYAPP:209] Found Fabula Mortis, not full scores
+[18/Feb/2019 15:05:41] WARNING [MYAPP:253] Found Feel The Magic: XY/XX, no time recorded
+[18/Feb/2019 15:05:42] WARNING [MYAPP:253] Found Final Fantasy IV, no time recorded
+[18/Feb/2019 15:06:06] WARNING [MYAPP:253] Found FINAL FANTASY VIII, no time recorded
+[18/Feb/2019 15:06:15] WARNING [MYAPP:253] Found Find Mii 2, no time recorded
+[18/Feb/2019 15:06:22] WARNING [MYAPP:253] Found Fire Emblem: Blazing Sword, no time recorded
+[18/Feb/2019 15:06:29] WARNING [MYAPP:253] Found Fire Emblem: Echoes: Shadows of Valentia, no time recorded
+[18/Feb/2019 15:06:32] WARNING [MYAPP:209] Found Grim Legends 3: The Dark City, not full scores
+[18/Feb/2019 15:06:35] WARNING [MYAPP:209] Found hack_me, not full scores
+[18/Feb/2019 15:07:08] WARNING [MYAPP:253] Found Knights of Pen & Paper (+1 Edition), no time recorded
+[18/Feb/2019 15:07:08] WARNING [MYAPP:253] Found Knights of Pen & Paper 2, no time recorded
+[18/Feb/2019 15:07:09] WARNING [MYAPP:253] Found Legion Saga, no time recorded
+[18/Feb/2019 15:07:15] WARNING [MYAPP:253] Found Legion Saga 2, no time recorded
+[18/Feb/2019 15:07:32] WARNING [MYAPP:253] Found LEGO The Lord of the Rings: The Videogame, no time recorded
+[18/Feb/2019 15:09:18] WARNING [MYAPP:253] Found Magical Boys, no time recorded
+[18/Feb/2019 15:09:23] WARNING [MYAPP:253] Found Magical Cyborg Mitsuki, no time recorded
+[18/Feb/2019 15:09:44] WARNING [MYAPP:253] Found My Horse Prince, no time recorded
+[18/Feb/2019 15:09:46] WARNING [MYAPP:209] Found My Horse Prince, not full scores
+[18/Feb/2019 15:09:49] WARNING [MYAPP:253] Found Oddworld Stranger's Wrath HD, no time recorded
+[18/Feb/2019 15:10:05] WARNING [MYAPP:209] Found Orion Trail, not full scores
+[18/Feb/2019 15:10:07] WARNING [MYAPP:253] Found Penny Arcade's On the Rain-Slick Precipice of Darkness 1, no time recorded
+[18/Feb/2019 15:17:24] WARNING [MYAPP:253] Found Penny Arcade's On the Rain-Slick Precipice of Darkness 2, no time recorded
+[18/Feb/2019 15:24:44] WARNING [MYAPP:253] Found Penny Arcade's On the Rain-Slick Precipice of Darkness 3, no time recorded
+[18/Feb/2019 15:24:45] WARNING [MYAPP:253] Found Penny Arcade's On the Rain-Slick Precipice of Darkness 4, no time recorded
+[18/Feb/2019 15:24:46] WARNING [MYAPP:253] Found Phoenix Wright: Ace Attorney - Justice For All, no time recorded
+[18/Feb/2019 15:24:49] WARNING [MYAPP:209] Found Pink Hour, not full scores
+[18/Feb/2019 15:25:00] WARNING [MYAPP:253] Found Pokémon Emerald Version, no time recorded
+[18/Feb/2019 15:25:07] WARNING [MYAPP:253] Found Pokémon Emerald Version, no time recorded
+[18/Feb/2019 15:25:15] WARNING [MYAPP:253] Found Pokémon Gold, no time recorded
+[18/Feb/2019 15:25:19] WARNING [MYAPP:253] Found Pokémon Gold, no time recorded
+[18/Feb/2019 15:25:24] WARNING [MYAPP:253] Found Pokémon Gold Version, no time recorded
+[18/Feb/2019 15:25:31] WARNING [MYAPP:253] Found Pokémon LeafGreen Version, no time recorded
+[18/Feb/2019 15:25:39] WARNING [MYAPP:253] Found Pokémon Moon, no time recorded
+[18/Feb/2019 15:25:52] WARNING [MYAPP:253] Found Pokémon Ruby, no time recorded
+[18/Feb/2019 15:25:56] WARNING [MYAPP:253] Found Pokémon Ruby Version, no time recorded
+[18/Feb/2019 15:26:03] WARNING [MYAPP:253] Found Pokémon Ruby Version, no time recorded
+[18/Feb/2019 15:26:10] WARNING [MYAPP:253] Found Pokémon: Magikarp Jump, no time recorded
+[18/Feb/2019 15:26:12] WARNING [MYAPP:209] Found Pokémon: Magikarp Jump, not full scores
+[18/Feb/2019 15:26:19] WARNING [MYAPP:209] Found Regeria Hope: Episode 1, not full scores
+[18/Feb/2019 15:26:24] WARNING [MYAPP:253] Found Savant - Ascent, no time recorded
+[18/Feb/2019 15:26:32] WARNING [MYAPP:253] Found Sonic Adventure DX Director's Cut, no time recorded
+[18/Feb/2019 15:26:37] WARNING [MYAPP:253] Found Star Wars: Battlefront, no time recorded
+[18/Feb/2019 15:26:37] WARNING [MYAPP:253] Found Star Wars: Battlefront II, no time recorded
+[18/Feb/2019 15:26:41] WARNING [MYAPP:209] Found Super Daryl Deluxe, not full scores
+[18/Feb/2019 15:28:24] WARNING [MYAPP:253] Found Teeny Titans: A Teen Titans Go! Figure Battling Game, no time recorded
+[18/Feb/2019 15:28:29] WARNING [MYAPP:253] Found The Jackbox Party Pack, no time recorded
+[18/Feb/2019 15:28:35] WARNING [MYAPP:209] Found The Jackbox Party Pack 2, not full scores
+[18/Feb/2019 15:28:35] WARNING [MYAPP:253] Found The Jackbox Party Pack 3, no time recorded
+[18/Feb/2019 15:28:38] WARNING [MYAPP:209] Found The Jackbox Party Pack 3, not full scores
+[18/Feb/2019 15:28:39] WARNING [MYAPP:253] Found The Red Mummy, no time recorded
+[18/Feb/2019 15:28:47] WARNING [MYAPP:253] Found The Stanley Parable, no time recorded
+[18/Feb/2019 15:28:48] WARNING [MYAPP:253] Found The Typing of The Dead: Overkill, no time recorded
+[18/Feb/2019 15:29:09] WARNING [MYAPP:209] Found Western Press, not full scores
+[18/Feb/2019 15:29:11] WARNING [MYAPP:209] Found Without Within, not full scores
+[18/Feb/2019 15:29:14] WARNING [MYAPP:209] Found Words for Evil, not full scores
+[18/Feb/2019 15:29:19] WARNING [MYAPP:253] Found Ys I, no time recorded
+[18/Feb/2019 15:29:27] WARNING [MYAPP:253] Found Zombie Estate, no time recorded
+[18/Feb/2019 15:29:56] WARNING [MYAPP:253] Found War for the Overworld - Heart of Gold DLC, no time recorded
+[18/Feb/2019 15:32:01] WARNING [MYAPP:253] Found SIMULCRA, no time recorded
+[18/Feb/2019 15:32:30] WARNING [MYAPP:253] Found Space Jockey, no time recorded
+[18/Feb/2019 15:32:35] WARNING [MYAPP:253] Found The Fairly Odd Parents Volume 2, no time recorded
+[18/Feb/2019 15:33:23] WARNING [MYAPP:253] Found Imagine Teacher School Trip, no time recorded
+[18/Feb/2019 15:33:36] WARNING [MYAPP:253] Found Nickelodeon Barnyard, no time recorded
+[18/Feb/2019 15:33:41] WARNING [MYAPP:253] Found Bases Loaded, no time recorded
+[18/Feb/2019 15:33:46] WARNING [MYAPP:253] Found Caesars Palace, no time recorded
+[18/Feb/2019 15:33:55] WARNING [MYAPP:253] Found Playstation Underground 1, no time recorded
+[18/Feb/2019 15:34:02] WARNING [MYAPP:253] Found Playstation Underground 2, no time recorded
+[18/Feb/2019 15:34:10] WARNING [MYAPP:253] Found Sony Interactive Volume 1, no time recorded
+[18/Feb/2019 15:34:22] WARNING [MYAPP:253] Found SteamWorld Dig This is definitely wrong, no time recorded
+[18/Feb/2019 15:35:11] WARNING [MYAPP:253] Found WF Smackdown, no time recorded
+[18/Feb/2019 15:35:16] WARNING [MYAPP:253] Found Imperium Galactica II: Alliances, no time recorded
+[18/Feb/2019 15:35:23] WARNING [MYAPP:253] Found Picross Fairytale - nonogram: Red Riding Hood secret, no time recorded
+[18/Feb/2019 15:35:50] WARNING [MYAPP:253] Found Treadnauts, no time recorded
+[18/Feb/2019 15:35:52] WARNING [MYAPP:209] Found Treadnauts, not full scores
+[18/Feb/2019 15:35:53] WARNING [MYAPP:253] Found Sojourner, no time recorded
+[18/Feb/2019 15:35:56] WARNING [MYAPP:209] Found Sojourner, not full scores
+[18/Feb/2019 15:35:57] WARNING [MYAPP:253] Found Knight Club, no time recorded
+[18/Feb/2019 15:35:59] WARNING [MYAPP:209] Found Knight Club, not full scores
+[18/Feb/2019 15:36:00] WARNING [MYAPP:253] Found iii --- Typo, no time recorded
+[18/Feb/2019 15:36:09] WARNING [MYAPP:253] Found Locked Hear  -- TYPO, no time recorded
+[18/Feb/2019 15:36:10] WARNING [MYAPP:305] Locked Hear  -- TYPO - IIO
+[18/Feb/2019 15:36:10] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 15:36:10] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 15:36:10] ERROR [MYAPP:308] None
+[18/Feb/2019 15:36:11] WARNING [MYAPP:253] Found Pacific -- Typo?, no time recorded
+[18/Feb/2019 15:36:16] WARNING [MYAPP:253] Found VA-11 Hall-A KIDS!, no time recorded
+[18/Feb/2019 15:36:21] WARNING [MYAPP:253] Found Ninja JaJaMaru-kun, no time recorded
+[18/Feb/2019 15:36:42] WARNING [MYAPP:253] Found Jawns, no time recorded
+[18/Feb/2019 15:36:45] WARNING [MYAPP:253] Found Wilmot's Warehouse, no time recorded
+[18/Feb/2019 15:36:50] WARNING [MYAPP:253] Found Yojimbrawl, no time recorded
+[18/Feb/2019 15:36:53] WARNING [MYAPP:253] Found The Jackbox Party Pack 4, no time recorded
+[18/Feb/2019 15:36:55] WARNING [MYAPP:209] Found The Jackbox Party Pack 4, not full scores
+[18/Feb/2019 15:36:56] WARNING [MYAPP:253] Found Jump Stars, no time recorded
+[18/Feb/2019 15:37:00] WARNING [MYAPP:209] Found Jump Stars, not full scores
+[18/Feb/2019 15:37:00] WARNING [MYAPP:253] Found A Bathroom Myth, no time recorded
+[18/Feb/2019 15:37:11] WARNING [MYAPP:253] Found A Growing Adventure, no time recorded
+[18/Feb/2019 15:37:20] WARNING [MYAPP:253] Found A Pirate's End, no time recorded
+[18/Feb/2019 15:37:29] WARNING [MYAPP:253] Found air mail, no time recorded
+[18/Feb/2019 15:37:35] WARNING [MYAPP:253] Found Archimoulin, no time recorded
+[18/Feb/2019 15:37:38] WARNING [MYAPP:253] Found Causeway, no time recorded
+[18/Feb/2019 15:37:41] WARNING [MYAPP:253] Found City Clickers, no time recorded
+[18/Feb/2019 15:37:47] WARNING [MYAPP:253] Found City Lights, no time recorded
+[18/Feb/2019 15:37:52] WARNING [MYAPP:253] Found Clayton's Quest, no time recorded
+[18/Feb/2019 15:37:58] WARNING [MYAPP:253] Found DEVIL'S FLOWER, no time recorded
+[18/Feb/2019 15:38:03] WARNING [MYAPP:253] Found Earthling Priorities, no time recorded
+[18/Feb/2019 15:38:08] WARNING [MYAPP:253] Found Fairy Song, no time recorded
+[18/Feb/2019 15:38:13] WARNING [MYAPP:253] Found FAITH, no time recorded
+[18/Feb/2019 15:38:16] WARNING [MYAPP:253] Found Freedom Through a Lens, no time recorded
+[18/Feb/2019 15:38:29] WARNING [MYAPP:253] Found Ghost Hospital, no time recorded
+[18/Feb/2019 15:38:34] WARNING [MYAPP:253] Found Golden Sword of Dragonwalk, no time recorded
+[18/Feb/2019 15:38:48] WARNING [MYAPP:253] Found Gone Wandering, no time recorded
+[18/Feb/2019 15:38:53] WARNING [MYAPP:253] Found J'accuse!, no time recorded
+[18/Feb/2019 15:38:56] WARNING [MYAPP:253] Found K'NOSSOS, no time recorded
+[18/Feb/2019 15:38:58] WARNING [MYAPP:209] Found K'NOSSOS, not full scores
+[18/Feb/2019 15:38:59] WARNING [MYAPP:253] Found Kirigami, no time recorded
+[18/Feb/2019 15:39:02] WARNING [MYAPP:253] Found Labors of Love, no time recorded
+[18/Feb/2019 15:39:11] WARNING [MYAPP:253] Found Lavendar, no time recorded
+[18/Feb/2019 15:39:13] WARNING [MYAPP:253] Found Legend of Xenia, no time recorded
+[18/Feb/2019 15:39:22] WARNING [MYAPP:253] Found Legend of Xenia 2, no time recorded
+[18/Feb/2019 15:39:38] WARNING [MYAPP:253] Found Lingotopia, no time recorded
+[18/Feb/2019 15:39:41] WARNING [MYAPP:209] Found Lingotopia, not full scores
+[18/Feb/2019 15:39:42] WARNING [MYAPP:253] Found Melone in the Dark, no time recorded
+[18/Feb/2019 15:39:58] WARNING [MYAPP:253] Found Ministry of Synthesis, no time recorded
+[18/Feb/2019 15:40:09] WARNING [MYAPP:253] Found MORNING POST, no time recorded
+[18/Feb/2019 15:40:14] WARNING [MYAPP:253] Found Paisley Princess, no time recorded
+[18/Feb/2019 15:40:20] WARNING [MYAPP:253] Found Pet the Pup at the Party, no time recorded
+[18/Feb/2019 15:41:20] WARNING [MYAPP:253] Found Planet Dysphoria, no time recorded
+[18/Feb/2019 15:41:24] WARNING [MYAPP:253] Found Princess Kero, no time recorded
+[18/Feb/2019 15:41:30] WARNING [MYAPP:253] Found Project Maiden, no time recorded
+[18/Feb/2019 15:41:35] WARNING [MYAPP:253] Found RE: Allistair++, no time recorded
+[18/Feb/2019 15:41:38] WARNING [MYAPP:253] Found Rhythm Doctor, no time recorded
+[18/Feb/2019 15:41:41] WARNING [MYAPP:209] Found Rhythm Doctor, not full scores
+[18/Feb/2019 15:41:42] WARNING [MYAPP:253] Found Roaring Streets!, no time recorded
+[18/Feb/2019 15:41:45] WARNING [MYAPP:253] Found Royals, no time recorded
+[18/Feb/2019 15:41:49] WARNING [MYAPP:209] Found Royals, not full scores
+[18/Feb/2019 15:41:50] WARNING [MYAPP:253] Found Sales Pitch, no time recorded
+[18/Feb/2019 15:41:55] WARNING [MYAPP:253] Found SCANLINE, no time recorded
+[18/Feb/2019 15:41:57] WARNING [MYAPP:253] Found Shuriken, no time recorded
+[18/Feb/2019 15:42:00] WARNING [MYAPP:253] Found Sinewave Samurai, no time recorded
+[18/Feb/2019 15:42:06] WARNING [MYAPP:253] Found Small World, no time recorded
+[18/Feb/2019 15:42:11] WARNING [MYAPP:253] Found Star Trek: The Hand of Fate, no time recorded
+[18/Feb/2019 15:42:39] WARNING [MYAPP:253] Found The Chicken Pain , no time recorded
+[18/Feb/2019 15:42:40] WARNING [MYAPP:305] The Chicken Pain  - IIO
+[18/Feb/2019 15:42:40] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 15:42:40] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 15:42:40] ERROR [MYAPP:308] None
+[18/Feb/2019 15:42:41] WARNING [MYAPP:253] Found The Huntress of the Hollow, no time recorded
+[18/Feb/2019 15:43:10] WARNING [MYAPP:253] Found The Shifting Catacombs of Mu'ralagh, no time recorded
+[18/Feb/2019 15:43:38] WARNING [MYAPP:253] Found The Tearoom, no time recorded
+[18/Feb/2019 15:43:44] WARNING [MYAPP:253] Found The Tower, no time recorded
+[18/Feb/2019 15:43:47] WARNING [MYAPP:209] Found The Tower, not full scores
+[18/Feb/2019 15:43:48] WARNING [MYAPP:253] Found The Wit.nes (Demo), no time recorded
+[18/Feb/2019 15:43:57] WARNING [MYAPP:253] Found Toryanse: Reel, no time recorded
+[18/Feb/2019 15:43:59] WARNING [MYAPP:253] Found URDL, no time recorded
+[18/Feb/2019 15:44:02] WARNING [MYAPP:253] Found Visioff, no time recorded
+[18/Feb/2019 15:44:05] WARNING [MYAPP:253] Found Where The Goats Are, no time recorded
+[18/Feb/2019 15:44:20] WARNING [MYAPP:253] Found You Only Get One, no time recorded
+[18/Feb/2019 15:44:35] WARNING [MYAPP:253] Found BLEAK: Welcome to Glimmer, no time recorded
+[18/Feb/2019 15:44:38] WARNING [MYAPP:209] Found BLEAK: Welcome to Glimmer, not full scores
+[18/Feb/2019 15:44:39] WARNING [MYAPP:253] Found Vidar, no time recorded
+[18/Feb/2019 15:44:41] WARNING [MYAPP:209] Found Vidar, not full scores
+[18/Feb/2019 15:44:42] WARNING [MYAPP:253] Found Yojimbrawl, no time recorded
+[18/Feb/2019 15:44:44] WARNING [MYAPP:253] Found Underhand, no time recorded
+[18/Feb/2019 15:44:46] WARNING [MYAPP:253] Found The Time Traveller, no time recorded
+[18/Feb/2019 15:44:53] WARNING [MYAPP:253] Found Random Access Murder, no time recorded
+[18/Feb/2019 15:44:55] WARNING [MYAPP:209] Found Random Access Murder, not full scores
+[18/Feb/2019 15:44:56] WARNING [MYAPP:253] Found Cobra Club, no time recorded
+[18/Feb/2019 15:45:00] WARNING [MYAPP:253] Found Seven Sages, no time recorded
+[18/Feb/2019 15:45:05] WARNING [MYAPP:253] Found Jetpac Refuelled, no time recorded
+[18/Feb/2019 15:45:11] WARNING [MYAPP:253] Found Tailwind: Prologue, no time recorded
+[18/Feb/2019 15:45:13] WARNING [MYAPP:253] Found ARK: Survival of the Fittest, no time recorded
+[18/Feb/2019 15:45:16] WARNING [MYAPP:209] Found ARK: Survival of the Fittest, not full scores
+[18/Feb/2019 15:45:28] WARNING [MYAPP:253] Found Megaman DL, no time recorded
+[18/Feb/2019 15:45:33] WARNING [MYAPP:253] Found Devil Hunter Seeker Of Power, no time recorded
+[18/Feb/2019 15:45:56] WARNING [MYAPP:253] Found last, no time recorded
+[18/Feb/2019 15:46:00] WARNING [MYAPP:253] Found Tales of the Drunken Paladin VII, no time recorded
+[18/Feb/2019 15:46:46] WARNING [MYAPP:253] Found Let the Cat in, no time recorded
+[18/Feb/2019 15:46:50] WARNING [MYAPP:209] Found Let the Cat in, not full scores
+[18/Feb/2019 15:46:50] WARNING [MYAPP:253] Found A Stable Romance, no time recorded
+[18/Feb/2019 15:46:59] WARNING [MYAPP:253] Found Caging Me Softly, no time recorded
+[18/Feb/2019 15:47:07] WARNING [MYAPP:253] Found Sid Meier's Covert Action, no time recorded
+[18/Feb/2019 15:47:09] WARNING [MYAPP:209] Found Sid Meier's Covert Action, not full scores
+[18/Feb/2019 15:47:10] WARNING [MYAPP:253] Found Destination Sol, no time recorded
+[18/Feb/2019 15:47:13] WARNING [MYAPP:209] Found Destination Sol, not full scores
+[18/Feb/2019 15:47:14] WARNING [MYAPP:253] Found BoxesWithGuns, no time recorded
+[18/Feb/2019 15:47:15] WARNING [MYAPP:209] Found BoxesWithGuns, not full scores
+[18/Feb/2019 15:47:16] WARNING [MYAPP:253] Found A Mini Falafel Adventure, no time recorded
+[18/Feb/2019 15:47:31] WARNING [MYAPP:253] Found Deity, no time recorded
+[18/Feb/2019 15:47:33] WARNING [MYAPP:209] Found Deity, not full scores
+[18/Feb/2019 15:47:34] WARNING [MYAPP:253] Found Solace, no time recorded
+[18/Feb/2019 15:47:37] WARNING [MYAPP:209] Found Solace, not full scores
+[18/Feb/2019 15:47:38] WARNING [MYAPP:253] Found Micro Emblem, no time recorded
+[18/Feb/2019 15:47:42] WARNING [MYAPP:253] Found The Chronicles of Shakespeare: A Midsummer Night's Dream, no time recorded
+[18/Feb/2019 15:49:22] WARNING [MYAPP:253] Found The Chronicles of Shakespeare: Romeo and Juliet, no time recorded
+[18/Feb/2019 15:49:45] WARNING [MYAPP:253] Found Scooby-Doo 2: Monsters Unleashed, no time recorded
+[18/Feb/2019 15:49:47] WARNING [MYAPP:253] Found Spirit Stallion of the Cimarron, no time recorded
+[18/Feb/2019 15:49:49] WARNING [MYAPP:253] Found Warsow, no time recorded
+[18/Feb/2019 15:49:51] WARNING [MYAPP:209] Found Warsow, not full scores
+[18/Feb/2019 15:49:52] WARNING [MYAPP:253] Found fate -RPG Maker Game, no time recorded
+[18/Feb/2019 15:50:05] WARNING [MYAPP:253] Found PokémonFusionGeneration, no time recorded
+[18/Feb/2019 15:50:07] WARNING [MYAPP:253] Found Super Smash Bros. Crusade, no time recorded
+[18/Feb/2019 15:50:16] WARNING [MYAPP:253] Found Super Smash Bros. Land, no time recorded
+[18/Feb/2019 15:50:24] WARNING [MYAPP:253] Found Adventure Bar Labyrinth, no time recorded
+[18/Feb/2019 15:50:26] WARNING [MYAPP:209] Found Adventure Bar Labyrinth, not full scores
+[18/Feb/2019 15:50:27] WARNING [MYAPP:253] Found And Everything Started to Fall, no time recorded
+[18/Feb/2019 15:50:28] WARNING [MYAPP:305] And Everything Started to Fall - PC
+[18/Feb/2019 15:50:28] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 15:50:28] WARNING [MYAPP:307] list index out of range
+[18/Feb/2019 15:50:28] ERROR [MYAPP:308] None
+[18/Feb/2019 15:50:28] WARNING [MYAPP:253] Found Persona 4 Racing All Afternoon, no time recorded
+[18/Feb/2019 15:50:59] WARNING [MYAPP:253] Found Super Trucks Racing, no time recorded
+[18/Feb/2019 15:51:02] WARNING [MYAPP:253] Found Taito Legends, no time recorded
+[18/Feb/2019 15:51:05] WARNING [MYAPP:253] Found Anima: Ark of Sinners, no time recorded
+[18/Feb/2019 15:51:08] WARNING [MYAPP:253] Found NFL Blitz 2001, no time recorded
+[18/Feb/2019 15:51:13] WARNING [MYAPP:209] Found Max Gentlemen, not full scores
+[18/Feb/2019 15:51:14] WARNING [MYAPP:253] Found Karaoke Revolution Presents: American Idol Encore, no time recorded
+[18/Feb/2019 15:51:16] WARNING [MYAPP:253] Found Enviro-bear 2010, no time recorded
+[18/Feb/2019 15:51:20] WARNING [MYAPP:253] Found Conquest of Champions, no time recorded
+[18/Feb/2019 15:51:22] WARNING [MYAPP:209] Found Conquest of Champions, not full scores
+[18/Feb/2019 15:51:23] WARNING [MYAPP:253] Found Love Love Chau, no time recorded
+[18/Feb/2019 15:51:31] WARNING [MYAPP:253] Found Dogz, no time recorded
+[18/Feb/2019 15:51:32] WARNING [MYAPP:253] Found Big Mutha Truckers, no time recorded
+[18/Feb/2019 15:51:33] WARNING [MYAPP:253] Found NFL Head Coach, no time recorded
+[18/Feb/2019 15:51:34] WARNING [MYAPP:253] Found Pool Nation FX, no time recorded
+[18/Feb/2019 15:51:39] WARNING [MYAPP:253] Found Mirror, no time recorded
+[18/Feb/2019 15:51:41] WARNING [MYAPP:253] Found Solar, no time recorded
+[18/Feb/2019 15:51:44] WARNING [MYAPP:253] Found Groov, no time recorded
+[18/Feb/2019 15:51:46] WARNING [MYAPP:253] Found Jampack Volume 13, no time recorded
+[18/Feb/2019 15:51:53] WARNING [MYAPP:253] Found Dynasty Warriors Advance, no time recorded
+[18/Feb/2019 15:51:54] WARNING [MYAPP:253] Found Mr Driller W, no time recorded
+[18/Feb/2019 15:51:57] WARNING [MYAPP:253] Found Duel Masters: Sempai Legends, no time recorded
+[18/Feb/2019 15:51:58] WARNING [MYAPP:253] Found Star Wars Battlefront, no time recorded
+[18/Feb/2019 15:51:59] WARNING [MYAPP:253] Found Monolith, no time recorded
+[18/Feb/2019 15:51:59] WARNING [MYAPP:253] Found Splitter Critters, no time recorded
+[18/Feb/2019 15:52:03] WARNING [MYAPP:253] Found HoPiKo, no time recorded
+[18/Feb/2019 15:52:06] WARNING [MYAPP:253] Found Battlesloths, no time recorded
+[18/Feb/2019 15:52:08] WARNING [MYAPP:209] Found Battlesloths, not full scores
+[18/Feb/2019 15:52:09] WARNING [MYAPP:253] Found Legion Saga 3, no time recorded
+[18/Feb/2019 15:52:16] WARNING [MYAPP:253] Found RPG Legend of Ixtona, no time recorded
+[18/Feb/2019 15:52:28] WARNING [MYAPP:253] Found Star Vikings Forever, no time recorded
+[18/Feb/2019 15:52:31] WARNING [MYAPP:253] Found Bloodsports.TV, no time recorded
+[18/Feb/2019 15:52:32] WARNING [MYAPP:253] Found Action Man: Search for Base X, no time recorded
+[18/Feb/2019 15:53:07] WARNING [MYAPP:253] Found Move or Die, no time recorded
+[18/Feb/2019 15:53:08] WARNING [MYAPP:253] Found Super Dungeon Bros, no time recorded
+[18/Feb/2019 15:53:08] WARNING [MYAPP:253] Found RPG Aeon Avenger, no time recorded
+[18/Feb/2019 15:53:16] WARNING [MYAPP:253] Found Sportsball, no time recorded
+[18/Feb/2019 15:53:17] WARNING [MYAPP:253] Found Calculator the Game, no time recorded
+[18/Feb/2019 15:53:19] WARNING [MYAPP:209] Found Calculator the Game, not full scores
+[18/Feb/2019 15:53:20] WARNING [MYAPP:253] Found Bladeslinger Ep.1, no time recorded
+[18/Feb/2019 15:53:24] WARNING [MYAPP:253] Found Rising Storm, no time recorded
+[18/Feb/2019 15:53:25] WARNING [MYAPP:253] Found Come On! Heroes, no time recorded
+[18/Feb/2019 15:53:27] WARNING [MYAPP:209] Found Come On! Heroes, not full scores
+[18/Feb/2019 15:53:28] WARNING [MYAPP:253] Found BugRiders: The Race of Kings, no time recorded
+[18/Feb/2019 15:53:41] WARNING [MYAPP:253] Found The Spookening, no time recorded
+[18/Feb/2019 15:53:44] WARNING [MYAPP:209] Found The Spookening, not full scores
+[18/Feb/2019 15:53:45] WARNING [MYAPP:253] Found Contre Jour, no time recorded
+[18/Feb/2019 15:53:49] WARNING [MYAPP:253] Found Funky Smugglers, no time recorded
+[18/Feb/2019 15:53:52] WARNING [MYAPP:209] Found Funky Smugglers, not full scores
+[18/Feb/2019 15:53:53] WARNING [MYAPP:253] Found Raiden Legacy, no time recorded
+[18/Feb/2019 15:53:57] WARNING [MYAPP:209] Found Raiden Legacy, not full scores
+[18/Feb/2019 15:53:58] WARNING [MYAPP:253] Found Brain Age Express: Sudoku, no time recorded
+[18/Feb/2019 15:54:00] WARNING [MYAPP:209] Found Brain Age Express: Sudoku, not full scores
+[18/Feb/2019 15:54:01] WARNING [MYAPP:253] Found Midway's Greatest Arcade Hits Volume 1, no time recorded
+[18/Feb/2019 15:54:05] WARNING [MYAPP:253] Found Frogger's Journey: The Forgotten Relic, no time recorded
+[18/Feb/2019 15:54:06] WARNING [MYAPP:253] Found Hand Of Fate, no time recorded
+[18/Feb/2019 15:54:07] WARNING [MYAPP:253] Found Time Surfer, no time recorded
+[18/Feb/2019 15:54:12] WARNING [MYAPP:253] Found Bag It!, no time recorded
+[18/Feb/2019 15:54:15] WARNING [MYAPP:253] Found #IDARB, no time recorded
+[18/Feb/2019 15:54:17] WARNING [MYAPP:209] Found >observer_, not full scores
+[18/Feb/2019 15:54:20] WARNING [MYAPP:253] Found 2000 to 1: A Space Felony, no time recorded
+[18/Feb/2019 15:54:53] WARNING [MYAPP:209] Found 7 Billion Humans, not full scores
+[18/Feb/2019 15:54:54] WARNING [MYAPP:253] Found 7 Deeds, no time recorded
+[18/Feb/2019 15:55:03] WARNING [MYAPP:209] Found 8-Bit Bayonetta, not full scores
+[18/Feb/2019 15:55:04] WARNING [MYAPP:253] Found A Bird Story, no time recorded
+[18/Feb/2019 15:55:20] WARNING [MYAPP:209] Found A Healer Only Lives Twice, not full scores
+[18/Feb/2019 15:55:22] WARNING [MYAPP:209] Found A Magical High School Girl, not full scores
+[18/Feb/2019 15:55:22] WARNING [MYAPP:253] Found A Virus Named TOM, no time recorded
+[18/Feb/2019 15:55:29] WARNING [MYAPP:209] Found A2Be - A Science Fiction Narrative, not full scores
+[18/Feb/2019 15:55:30] WARNING [MYAPP:253] Found Abzu, no time recorded
+[18/Feb/2019 15:55:33] WARNING [MYAPP:209] Found Acceleration of SUGURI 2, not full scores
+[18/Feb/2019 15:55:34] WARNING [MYAPP:253] Found Acceptance, no time recorded
+[18/Feb/2019 15:55:36] WARNING [MYAPP:253] Found AER Memories of Old, no time recorded
+[18/Feb/2019 15:55:37] WARNING [MYAPP:253] Found Agatha Christie: and Then There Were None, no time recorded
+[18/Feb/2019 15:55:43] WARNING [MYAPP:209] Found Alex Kidd in the Enchanted Castle, not full scores
+[18/Feb/2019 15:55:49] WARNING [MYAPP:209] Found ALLTYNEX Second, not full scores
+[18/Feb/2019 15:55:50] WARNING [MYAPP:253] Found Alone in the Dark, no time recorded
+[18/Feb/2019 15:55:52] WARNING [MYAPP:209] Found Altered Beast, not full scores
+[18/Feb/2019 15:55:53] WARNING [MYAPP:253] Found amiibo tap Nintendo's Greatest Bits, no time recorded
+[18/Feb/2019 15:55:57] WARNING [MYAPP:209] Found Among Ripples, not full scores
+[18/Feb/2019 15:56:04] WARNING [MYAPP:253] Found Animal Crossing New Leaf, no time recorded
+[18/Feb/2019 15:56:05] WARNING [MYAPP:253] Found Anomaly Korea, no time recorded
+[18/Feb/2019 15:56:06] WARNING [MYAPP:253] Found Another World: 20th Anniversary Edition, no time recorded
+[18/Feb/2019 15:56:06] WARNING [MYAPP:253] Found Antihero, no time recorded
+[18/Feb/2019 15:56:07] WARNING [MYAPP:253] Found Aralon: Sword and Shadow HD, no time recorded
+[18/Feb/2019 15:56:16] WARNING [MYAPP:253] Found ARK: Survival Evolved, no time recorded
+[18/Feb/2019 15:56:17] WARNING [MYAPP:253] Found ARMA Gold Edition, no time recorded
+[18/Feb/2019 15:56:20] WARNING [MYAPP:253] Found Army of TWO The Devil's Cartel, no time recorded
+[18/Feb/2019 15:56:20] WARNING [MYAPP:253] Found Artemis: Spaceship Bridge Simulator, no time recorded
+[18/Feb/2019 15:56:26] WARNING [MYAPP:209] Found Artifact Adventure, not full scores
+[18/Feb/2019 15:56:27] WARNING [MYAPP:253] Found Asagao Academy, no time recorded
+[18/Feb/2019 15:56:32] WARNING [MYAPP:253] Found Assassin's Creed Brotherhood, no time recorded
+[18/Feb/2019 15:56:33] WARNING [MYAPP:253] Found Assassin's Creed Revelations, no time recorded
+[18/Feb/2019 15:56:33] WARNING [MYAPP:253] Found Assassin’s Creed Chronicles: Russia, no time recorded
+[18/Feb/2019 15:56:44] WARNING [MYAPP:253] Found Audiosurf, no time recorded
+[18/Feb/2019 15:56:45] WARNING [MYAPP:253] Found Avadon the Black Fortress, no time recorded
+[18/Feb/2019 15:56:48] WARNING [MYAPP:209] Found Avalanche 2: Super Avalanche, not full scores
+[18/Feb/2019 15:56:49] WARNING [MYAPP:253] Found Avernum: Escape From the Pit, no time recorded
+[18/Feb/2019 15:56:51] WARNING [MYAPP:253] Found Aveyond 3-1: Lord of Twilight, no time recorded
+[18/Feb/2019 15:56:53] WARNING [MYAPP:209] Found Aveyond 3-1: Lord of Twilight, not full scores
+[18/Feb/2019 15:56:54] WARNING [MYAPP:253] Found Back to the Future: The Game - Episode I: It's About Time, no time recorded
+[18/Feb/2019 15:56:54] WARNING [MYAPP:253] Found Back to the Future: The Game - Episode II: Get Tannen!, no time recorded
+[18/Feb/2019 15:56:55] WARNING [MYAPP:253] Found Back to the Future: The Game - Episode III: Citizen Brown, no time recorded
+[18/Feb/2019 15:56:56] WARNING [MYAPP:253] Found Back to the Future: The Game - Episode IV: Double Visions, no time recorded
+[18/Feb/2019 15:56:57] WARNING [MYAPP:253] Found Back to the Future: The Game - Episode V: OUTATIME, no time recorded
+[18/Feb/2019 15:57:02] WARNING [MYAPP:253] Found BADLAND: GotY Edition, no time recorded
+[18/Feb/2019 15:57:11] WARNING [MYAPP:253] Found Batman Arkham Asylum, no time recorded
+[18/Feb/2019 15:57:12] WARNING [MYAPP:253] Found Batman Arkham City, no time recorded
+[18/Feb/2019 15:57:13] WARNING [MYAPP:253] Found Batman Arkham Origins, no time recorded
+[18/Feb/2019 15:57:14] WARNING [MYAPP:253] Found Battlestations Pacific, no time recorded
+[18/Feb/2019 15:57:17] WARNING [MYAPP:209] Found Battletoads, not full scores
+[18/Feb/2019 15:57:40] WARNING [MYAPP:209] Found Beneath a Steel Sky, not full scores
+[18/Feb/2019 15:57:42] WARNING [MYAPP:209] Found Besiege, not full scores
+[18/Feb/2019 15:57:45] WARNING [MYAPP:209] Found Beyond Oasis, not full scores
+[18/Feb/2019 15:57:50] WARNING [MYAPP:209] Found Bio-Hazard Battle, not full scores
+[18/Feb/2019 15:57:51] WARNING [MYAPP:253] Found Bioshock 2, no time recorded
+[18/Feb/2019 15:57:52] WARNING [MYAPP:253] Found bit Dungeon II, no time recorded
+[18/Feb/2019 15:57:55] WARNING [MYAPP:253] Found BIT.TRIP RUNNER, no time recorded
+[18/Feb/2019 15:57:58] WARNING [MYAPP:253] Found Black the Fall, no time recorded
+[18/Feb/2019 15:57:59] WARNING [MYAPP:253] Found Blackwake, no time recorded
+[18/Feb/2019 15:58:00] WARNING [MYAPP:209] Found Blackwake, not full scores
+[18/Feb/2019 15:58:10] WARNING [MYAPP:209] Found Bonanza Bros., not full scores
+[18/Feb/2019 15:58:11] WARNING [MYAPP:253] Found Borderlands: The Pre Sequel, no time recorded
+[18/Feb/2019 15:58:14] WARNING [MYAPP:209] Found Borealis, not full scores
+[18/Feb/2019 15:58:43] WARNING [MYAPP:209] Found Bret Airborne, not full scores
+[18/Feb/2019 15:58:48] WARNING [MYAPP:253] Found Brink, no time recorded
+[18/Feb/2019 15:58:49] WARNING [MYAPP:253] Found Broken Sword: The Smoking Mirror - Remastered, no time recorded
+[18/Feb/2019 15:59:00] WARNING [MYAPP:209] Found C. Kane, not full scores
+[18/Feb/2019 15:59:01] WARNING [MYAPP:253] Found Cabela's Dangerous Hunts 2009, no time recorded
+[18/Feb/2019 15:59:06] WARNING [MYAPP:253] Found Call of Duty World At War, no time recorded
+[18/Feb/2019 15:59:07] WARNING [MYAPP:253] Found Carcassonne, no time recorded
+[18/Feb/2019 15:59:15] WARNING [MYAPP:253] Found Cattails, no time recorded
+[18/Feb/2019 15:59:17] WARNING [MYAPP:209] Found Cattails, not full scores
+[18/Feb/2019 15:59:17] WARNING [MYAPP:253] Found Chantelise, no time recorded
+[18/Feb/2019 15:59:22] WARNING [MYAPP:209] Found Cherry Tree High I! My! Girls!, not full scores
+[18/Feb/2019 15:59:25] WARNING [MYAPP:209] Found Chocolate Castle, not full scores
+[18/Feb/2019 15:59:48] WARNING [MYAPP:209] Found Columns, not full scores
+[18/Feb/2019 15:59:51] WARNING [MYAPP:209] Found Columns III, not full scores
+[18/Feb/2019 16:00:13] WARNING [MYAPP:253] Found CONSORTIUM, no time recorded
+[18/Feb/2019 16:00:34] WARNING [MYAPP:253] Found Cook, Serve, Delicious 2!!!, no time recorded
+[18/Feb/2019 16:00:43] WARNING [MYAPP:209] Found Copoka, not full scores
+[18/Feb/2019 16:00:46] WARNING [MYAPP:209] Found Copoka, not full scores
+[18/Feb/2019 16:00:51] WARNING [MYAPP:253] Found Counter-Strike: Condition Zero, no time recorded
+[18/Feb/2019 16:01:04] WARNING [MYAPP:253] Found Counter-Strike: Source, no time recorded
+[18/Feb/2019 16:01:07] WARNING [MYAPP:209] Found Crack Down, not full scores
+[18/Feb/2019 16:01:08] WARNING [MYAPP:253] Found Crawl, no time recorded
+[18/Feb/2019 16:01:25] WARNING [MYAPP:209] Found Crown and Council, not full scores
+[18/Feb/2019 16:01:30] WARNING [MYAPP:253] Found Crypt of the Necrodancer, no time recorded
+[18/Feb/2019 16:01:35] WARNING [MYAPP:209] Found Cube & Star: An Arbitrary Love, not full scores
+[18/Feb/2019 16:01:36] WARNING [MYAPP:253] Found Dangerous High School Girls in Trouble, no time recorded
+[18/Feb/2019 16:01:37] WARNING [MYAPP:253] Found Dark Fall: Lights Out, no time recorded
+[18/Feb/2019 16:01:40] WARNING [MYAPP:209] Found Dark Scavenger, not full scores
+[18/Feb/2019 16:01:41] WARNING [MYAPP:253] Found DARK SOULS III, no time recorded
+[18/Feb/2019 16:01:42] WARNING [MYAPP:253] Found DARK SOULS III - Ashes of Ariandel, no time recorded
+[18/Feb/2019 16:02:15] WARNING [MYAPP:253] Found Day of Defeat: Source, no time recorded
+[18/Feb/2019 16:02:18] WARNING [MYAPP:209] Found Dead Horizon, not full scores
+[18/Feb/2019 16:02:22] WARNING [MYAPP:253] Found Deadly Premonition: The Director's Cut, no time recorded
+[18/Feb/2019 16:02:22] WARNING [MYAPP:253] Found Dear Esther, no time recorded
+[18/Feb/2019 16:02:29] WARNING [MYAPP:209] Found Death Squared, not full scores
+[18/Feb/2019 16:02:34] WARNING [MYAPP:253] Found Deathmatch Classic, no time recorded
+[18/Feb/2019 16:02:37] WARNING [MYAPP:253] Found Decap Attack, no time recorded
+[18/Feb/2019 16:02:40] WARNING [MYAPP:209] Found Decap Attack, not full scores
+[18/Feb/2019 16:02:49] WARNING [MYAPP:253] Found Deus Ex Go, no time recorded
+[18/Feb/2019 16:02:54] WARNING [MYAPP:253] Found Devil May Cry HD, no time recorded
+[18/Feb/2019 16:03:12] WARNING [MYAPP:253] Found Digger T. Rock, no time recorded
+[18/Feb/2019 16:03:17] WARNING [MYAPP:253] Found Digimon Story Cyber Sleuth, no time recorded
+[18/Feb/2019 16:03:21] WARNING [MYAPP:253] Found DiRT 3, no time recorded
+[18/Feb/2019 16:03:30] WARNING [MYAPP:253] Found Doki Doki Literature Club, no time recorded
+[18/Feb/2019 16:03:43] WARNING [MYAPP:253] Found DoReMi Fantasy: Milon's DokiDoki Adventure, no time recorded
+[18/Feb/2019 16:03:57] WARNING [MYAPP:253] Found Dragon Age Inquisition, no time recorded
+[18/Feb/2019 16:03:58] WARNING [MYAPP:253] Found Dragon Quest Monsters Joker 2, no time recorded
+[18/Feb/2019 16:04:14] WARNING [MYAPP:253] Found Dragon Warrior Monsters Cobi's Journey, no time recorded
+[18/Feb/2019 16:04:41] WARNING [MYAPP:209] Found Dragonsphere, not full scores
+[18/Feb/2019 16:04:42] WARNING [MYAPP:253] Found Drakensang The River of Time, no time recorded
+[18/Feb/2019 16:04:46] WARNING [MYAPP:253] Found Drawn to Life: The Next Chapter, no time recorded
+[18/Feb/2019 16:04:49] WARNING [MYAPP:209] Found DubWars, not full scores
+[18/Feb/2019 16:04:50] WARNING [MYAPP:253] Found Dungeon Keeper Gold Edition, no time recorded
+[18/Feb/2019 16:04:51] WARNING [MYAPP:209] Found Dungeon Keeper Gold Edition, not full scores
+[18/Feb/2019 16:04:52] WARNING [MYAPP:253] Found Dustforce, no time recorded
+[18/Feb/2019 16:04:57] WARNING [MYAPP:209] Found Dynamite Headdy, not full scores
+[18/Feb/2019 16:04:58] WARNING [MYAPP:253] Found Dynasty Warriors Gundam 3, no time recorded
+[18/Feb/2019 16:05:05] WARNING [MYAPP:253] Found Earthlock: Festival of Magic, no time recorded
+[18/Feb/2019 16:05:09] WARNING [MYAPP:209] Found Ecco Jr., not full scores
+[18/Feb/2019 16:05:09] WARNING [MYAPP:253] Found Ecco The Dolphin, no time recorded
+[18/Feb/2019 16:05:12] WARNING [MYAPP:209] Found Ecco The Dolphin, not full scores
+[18/Feb/2019 16:05:13] WARNING [MYAPP:253] Found Ecco: The Tides Of Time, no time recorded
+[18/Feb/2019 16:05:14] WARNING [MYAPP:209] Found Ecco: The Tides Of Time, not full scores
+[18/Feb/2019 16:05:23] WARNING [MYAPP:253] Found Eco Shooter: Plant 530, no time recorded
+[18/Feb/2019 16:05:45] WARNING [MYAPP:209] Found Elven Legacy: Magic, not full scores
+[18/Feb/2019 16:05:47] WARNING [MYAPP:209] Found Elven Legacy: Siege, not full scores
+[18/Feb/2019 16:05:51] WARNING [MYAPP:253] Found Eswat: City Under Seige, no time recorded
+[18/Feb/2019 16:06:01] WARNING [MYAPP:209] Found Eternal Champions, not full scores
+[18/Feb/2019 16:06:04] WARNING [MYAPP:253] Found Ethereal, no time recorded
+[18/Feb/2019 16:06:06] WARNING [MYAPP:209] Found Ethereal, not full scores
+[18/Feb/2019 16:06:13] WARNING [MYAPP:253] Found F-Zero Maximum Velocity, no time recorded
+[18/Feb/2019 16:06:19] WARNING [MYAPP:253] Found Fallout New Vegas, no time recorded
+[18/Feb/2019 16:06:25] WARNING [MYAPP:209] Found Fatal Labyrinth, not full scores
+[18/Feb/2019 16:06:26] WARNING [MYAPP:253] Found FATE, no time recorded
+[18/Feb/2019 16:06:27] WARNING [MYAPP:253] Found Fate Stay Night, no time recorded
+[18/Feb/2019 16:06:34] WARNING [MYAPP:253] Found FATE: Undiscovered Realms, no time recorded
+[18/Feb/2019 16:06:43] WARNING [MYAPP:253] Found fault - milestone one, no time recorded
+[18/Feb/2019 16:06:47] WARNING [MYAPP:253] Found fault - milestone two side:above, no time recorded
+[18/Feb/2019 16:06:59] WARNING [MYAPP:253] Found FEZ, no time recorded
+[18/Feb/2019 16:07:27] WARNING [MYAPP:253] Found Figment, no time recorded
+[18/Feb/2019 16:07:28] WARNING [MYAPP:253] Found Final Fantasy Anthology, no time recorded
+[18/Feb/2019 16:07:29] WARNING [MYAPP:253] Found Final Fantasy III, no time recorded
+[18/Feb/2019 16:07:37] WARNING [MYAPP:253] Found Final Fantasy IV The After Years, no time recorded
+[18/Feb/2019 16:08:39] WARNING [MYAPP:253] Found FINAL FANTASY TYPE-0 HD, no time recorded
+[18/Feb/2019 16:09:14] WARNING [MYAPP:253] Found Fire Emblem Fates: Conquest, no time recorded
+[18/Feb/2019 16:09:28] WARNING [MYAPP:209] Found Flicky, not full scores
+[18/Feb/2019 16:09:29] WARNING [MYAPP:253] Found Flight of the Amazon Queen, no time recorded
+[18/Feb/2019 16:09:32] WARNING [MYAPP:209] Found Flight of the Amazon Queen, not full scores
+[18/Feb/2019 16:09:37] WARNING [MYAPP:253] Found Forged Battalion, no time recorded
+[18/Feb/2019 16:09:40] WARNING [MYAPP:209] Found Forged Battalion, not full scores
+[18/Feb/2019 16:09:44] WARNING [MYAPP:253] Found Forts, no time recorded
+[18/Feb/2019 16:09:48] WARNING [MYAPP:253] Found Fortune Summoners: Secret of the Elemental Stone, no time recorded
+[18/Feb/2019 16:09:50] WARNING [MYAPP:209] Found Fortune-499, not full scores
+[18/Feb/2019 16:09:52] WARNING [MYAPP:209] Found FreeCell Quest, not full scores
+[18/Feb/2019 16:09:53] WARNING [MYAPP:253] Found Freedom Force, no time recorded
+[18/Feb/2019 16:09:54] WARNING [MYAPP:253] Found Freedom Force vs The 3rd Reich, no time recorded
+[18/Feb/2019 16:09:57] WARNING [MYAPP:253] Found G Police: Weapons of Justice, no time recorded
+[18/Feb/2019 16:10:14] WARNING [MYAPP:209] Found Gain Ground, not full scores
+[18/Feb/2019 16:10:22] WARNING [MYAPP:209] Found Galactic Missile Defense, not full scores
+[18/Feb/2019 16:10:24] WARNING [MYAPP:253] Found GALAK-Z: The Dimensional, no time recorded
+[18/Feb/2019 16:10:26] WARNING [MYAPP:209] Found Galaxy Force II, not full scores
+[18/Feb/2019 16:10:29] WARNING [MYAPP:253] Found Game of the Year 420 Blazeit, no time recorded
+[18/Feb/2019 16:11:21] WARNING [MYAPP:253] Found Game of Thrones - A Telltale Games Series, no time recorded
+[18/Feb/2019 16:11:25] WARNING [MYAPP:253] Found Getting Over It with Bennet Foddy, no time recorded
+[18/Feb/2019 16:12:17] WARNING [MYAPP:253] Found Giana Sisters: Twisted Dreams - Director's Cut, no time recorded
+[18/Feb/2019 16:12:21] WARNING [MYAPP:253] Found GOD EATER 2 Rage Burst, no time recorded
+[18/Feb/2019 16:12:21] WARNING [MYAPP:253] Found GOD EATER: Resurrection, no time recorded
+[18/Feb/2019 16:12:27] WARNING [MYAPP:209] Found God of Blades, not full scores
+[18/Feb/2019 16:12:28] WARNING [MYAPP:253] Found Gold Rush! Classic , no time recorded
+[18/Feb/2019 16:12:29] WARNING [MYAPP:305] Gold Rush! Classic  - STM
+[18/Feb/2019 16:12:29] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:12:29] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:12:29] ERROR [MYAPP:308] None
+[18/Feb/2019 16:12:40] WARNING [MYAPP:253] Found Golden Sun The Lost Age, no time recorded
+[18/Feb/2019 16:12:41] WARNING [MYAPP:253] Found Gotham City Impostors, no time recorded
+[18/Feb/2019 16:12:58] WARNING [MYAPP:253] Found Grand Theft Auto 3, no time recorded
+[18/Feb/2019 16:13:12] WARNING [MYAPP:253] Found Grandia II Anniversary Edition, no time recorded
+[18/Feb/2019 16:13:13] WARNING [MYAPP:253] Found GRAV, no time recorded
+[18/Feb/2019 16:13:16] WARNING [MYAPP:209] Found GRAV, not full scores
+[18/Feb/2019 16:13:19] WARNING [MYAPP:253] Found GRID 2, no time recorded
+[18/Feb/2019 16:13:20] WARNING [MYAPP:253] Found Grim Dawn , no time recorded
+[18/Feb/2019 16:13:21] WARNING [MYAPP:305] Grim Dawn  - STM
+[18/Feb/2019 16:13:21] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:13:21] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:13:21] ERROR [MYAPP:308] None
+[18/Feb/2019 16:13:22] WARNING [MYAPP:253] Found Grim Fandango Remastered, no time recorded
+[18/Feb/2019 16:13:23] WARNING [MYAPP:253] Found Guacamelee! Super Turbo Championship Edition, no time recorded
+[18/Feb/2019 16:13:27] WARNING [MYAPP:209] Found Gunmetal Arcadia Zero, not full scores
+[18/Feb/2019 16:13:29] WARNING [MYAPP:209] Found Gunstar Heroes, not full scores
+[18/Feb/2019 16:13:36] WARNING [MYAPP:209] Found hack_me 2, not full scores
+[18/Feb/2019 16:13:37] WARNING [MYAPP:253] Found HackNet Deluxe, no time recorded
+[18/Feb/2019 16:13:42] WARNING [MYAPP:253] Found Half-Life 2: Deathmatch, no time recorded
+[18/Feb/2019 16:13:49] WARNING [MYAPP:253] Found Half-Life Deathmatch: Source, no time recorded
+[18/Feb/2019 16:13:57] WARNING [MYAPP:253] Found Halo 5 Guardians, no time recorded
+[18/Feb/2019 16:13:58] WARNING [MYAPP:253] Found Halo: The Master Chief Collection, no time recorded
+[18/Feb/2019 16:14:02] WARNING [MYAPP:253] Found Hell, no time recorded
+[18/Feb/2019 16:14:04] WARNING [MYAPP:209] Found Hell, not full scores
+[18/Feb/2019 16:14:10] WARNING [MYAPP:253] Found Heroes of Might & Magic III - HD Edition, no time recorded
+[18/Feb/2019 16:14:16] WARNING [MYAPP:253] Found HitchHiker, no time recorded
+[18/Feb/2019 16:14:18] WARNING [MYAPP:253] Found Hitman Sniper, no time recorded
+[18/Feb/2019 16:14:19] WARNING [MYAPP:253] Found Hitman: Sniper Challenge, no time recorded
+[18/Feb/2019 16:14:22] WARNING [MYAPP:253] Found HOARD, no time recorded
+[18/Feb/2019 16:14:23] WARNING [MYAPP:253] Found Hob, no time recorded
+[18/Feb/2019 16:14:50] WARNING [MYAPP:253] Found Hue, no time recorded
+[18/Feb/2019 16:14:51] WARNING [MYAPP:253] Found Hue, no time recorded
+[18/Feb/2019 16:14:52] WARNING [MYAPP:253] Found HunieCam Studio, no time recorded
+[18/Feb/2019 16:14:58] WARNING [MYAPP:253] Found Hurtworld, no time recorded
+[18/Feb/2019 16:15:00] WARNING [MYAPP:209] Found Hurtworld, not full scores
+[18/Feb/2019 16:15:01] WARNING [MYAPP:253] Found Hyperdimension Neptunia Re;Birth1, no time recorded
+[18/Feb/2019 16:15:01] WARNING [MYAPP:253] Found I am Bread, no time recorded
+[18/Feb/2019 16:15:08] WARNING [MYAPP:209] Found I, Hope, not full scores
+[18/Feb/2019 16:15:13] WARNING [MYAPP:253] Found Imscared, no time recorded
+[18/Feb/2019 16:15:16] WARNING [MYAPP:209] Found Imscared, not full scores
+[18/Feb/2019 16:15:34] WARNING [MYAPP:253] Found Interplanetary: Enhanced Edition, no time recorded
+[18/Feb/2019 16:15:37] WARNING [MYAPP:209] Found Interplanetary: Enhanced Edition, not full scores
+[18/Feb/2019 16:15:38] WARNING [MYAPP:253] Found Jamestown: Legend of the Lost Colony, no time recorded
+[18/Feb/2019 16:15:41] WARNING [MYAPP:209] Found Jasper's Journeys, not full scores
+[18/Feb/2019 16:16:06] WARNING [MYAPP:209] Found Juniper's Knot, not full scores
+[18/Feb/2019 16:16:08] WARNING [MYAPP:209] Found Jurassic: The Hunted, not full scores
+[18/Feb/2019 16:16:10] WARNING [MYAPP:209] Found Just Deserts, not full scores
+[18/Feb/2019 16:16:11] WARNING [MYAPP:253] Found KAMUI, no time recorded
+[18/Feb/2019 16:16:13] WARNING [MYAPP:209] Found KAMUI, not full scores
+[18/Feb/2019 16:16:14] WARNING [MYAPP:253] Found KARAKARA, no time recorded
+[18/Feb/2019 16:16:16] WARNING [MYAPP:209] Found KARAKARA, not full scores
+[18/Feb/2019 16:16:17] WARNING [MYAPP:253] Found Karateka Classic, no time recorded
+[18/Feb/2019 16:16:25] WARNING [MYAPP:253] Found Keep Talking and Nobody Explodes, no time recorded
+[18/Feb/2019 16:16:26] WARNING [MYAPP:253] Found Ken Follett's The Pillars of the Earth, no time recorded
+[18/Feb/2019 16:16:27] WARNING [MYAPP:253] Found Kentucky Route Zero, no time recorded
+[18/Feb/2019 16:16:36] WARNING [MYAPP:209] Found Keyboard Sports, not full scores
+[18/Feb/2019 16:16:39] WARNING [MYAPP:209] Found Kid Chameleon, not full scores
+[18/Feb/2019 16:16:40] WARNING [MYAPP:253] Found Killer Instinct, no time recorded
+[18/Feb/2019 16:16:48] WARNING [MYAPP:253] Found Killer is Dead: Nightmare Edition, no time recorded
+[18/Feb/2019 16:16:49] WARNING [MYAPP:253] Found Kimmy, no time recorded
+[18/Feb/2019 16:16:51] WARNING [MYAPP:209] Found Kimmy, not full scores
+[18/Feb/2019 16:16:52] WARNING [MYAPP:253] Found Kimmy, no time recorded
+[18/Feb/2019 16:16:53] WARNING [MYAPP:209] Found Kimmy, not full scores
+[18/Feb/2019 16:16:55] WARNING [MYAPP:253] Found Kingdom Hearts: 358/2 Days, no time recorded
+[18/Feb/2019 16:16:58] WARNING [MYAPP:253] Found Kirby & The Amazing Mirror, no time recorded
+[18/Feb/2019 16:17:25] WARNING [MYAPP:209] Found Ku: Shroud of the Morrigan, not full scores
+[18/Feb/2019 16:17:38] WARNING [MYAPP:253] Found Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy, no time recorded
+[18/Feb/2019 16:17:40] WARNING [MYAPP:209] Found Learn Japanese To Survive! Hiragana Battle, not full scores
+[18/Feb/2019 16:17:46] WARNING [MYAPP:253] Found LEGO Pirates of the Caribbean: The Video Game, no time recorded
+[18/Feb/2019 16:17:50] WARNING [MYAPP:253] Found Leviathan Warships, no time recorded
+[18/Feb/2019 16:17:53] WARNING [MYAPP:209] Found Light Crusader, not full scores
+[18/Feb/2019 16:17:54] WARNING [MYAPP:253] Found Lightning Returns Final Fantasy XIII, no time recorded
+[18/Feb/2019 16:17:58] WARNING [MYAPP:253] Found LIMBO, no time recorded
+[18/Feb/2019 16:17:58] WARNING [MYAPP:253] Found Little Big Adventure - Enhanced Edition, no time recorded
+[18/Feb/2019 16:18:02] WARNING [MYAPP:253] Found Little Big Planet, no time recorded
+[18/Feb/2019 16:18:10] WARNING [MYAPP:253] Found Long Live The Queen, no time recorded
+[18/Feb/2019 16:18:13] WARNING [MYAPP:253] Found Lovers in a Dangerous Spacetime, no time recorded
+[18/Feb/2019 16:18:14] WARNING [MYAPP:253] Found Lucid9: Inciting Incident, no time recorded
+[18/Feb/2019 16:18:17] WARNING [MYAPP:209] Found Lucid9: Inciting Incident, not full scores
+[18/Feb/2019 16:18:18] WARNING [MYAPP:253] Found LUFTRAUSERS, no time recorded
+[18/Feb/2019 16:18:23] WARNING [MYAPP:253] Found Lure of the Temptress , no time recorded
+[18/Feb/2019 16:18:23] WARNING [MYAPP:305] Lure of the Temptress  - GOG
+[18/Feb/2019 16:18:23] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:18:23] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:18:23] ERROR [MYAPP:308] None
+[18/Feb/2019 16:18:24] WARNING [MYAPP:253] Found Lyne, no time recorded
+[18/Feb/2019 16:18:33] WARNING [MYAPP:253] Found Machina of the Planet Tree -Planet Ruler-, no time recorded
+[18/Feb/2019 16:20:08] WARNING [MYAPP:253] Found Mad Max, no time recorded
+[18/Feb/2019 16:20:14] WARNING [MYAPP:253] Found Madden NFL 25, no time recorded
+[18/Feb/2019 16:20:15] WARNING [MYAPP:253] Found Mafia III: Sign of the Times, no time recorded
+[18/Feb/2019 16:20:22] WARNING [MYAPP:209] Found Magical Battle Festa, not full scores
+[18/Feb/2019 16:20:22] WARNING [MYAPP:253] Found Majesty: The Fantasy Kingdom Sim Gold Edition, no time recorded
+[18/Feb/2019 16:20:31] WARNING [MYAPP:253] Found Marvel Ultimate Alliance 2, no time recorded
+[18/Feb/2019 16:20:32] WARNING [MYAPP:253] Found Mass Effect Andromeda, no time recorded
+[18/Feb/2019 16:20:33] WARNING [MYAPP:253] Found Master of Orion, no time recorded
+[18/Feb/2019 16:20:36] WARNING [MYAPP:209] Found Master of Orion, not full scores
+[18/Feb/2019 16:20:39] WARNING [MYAPP:209] Found Master of Orion (1993), not full scores
+[18/Feb/2019 16:20:46] WARNING [MYAPP:253] Found Mechassault, no time recorded
+[18/Feb/2019 16:20:47] WARNING [MYAPP:253] Found Mechassault 2: Lone Wolf, no time recorded
+[18/Feb/2019 16:20:48] WARNING [MYAPP:253] Found Medabots AX Medabee Version, no time recorded
+[18/Feb/2019 16:21:32] WARNING [MYAPP:253] Found Metal Gear Solid, no time recorded
+[18/Feb/2019 16:21:42] WARNING [MYAPP:253] Found METAL SLUG 3, no time recorded
+[18/Feb/2019 16:21:45] WARNING [MYAPP:253] Found Metroid , no time recorded
+[18/Feb/2019 16:21:46] WARNING [MYAPP:305] Metroid  - NES
+[18/Feb/2019 16:21:46] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:21:46] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:21:46] ERROR [MYAPP:308] None
+[18/Feb/2019 16:21:47] WARNING [MYAPP:253] Found Metroid Other M, no time recorded
+[18/Feb/2019 16:21:48] WARNING [MYAPP:253] Found Middle-earth: Shadow of Mordor, no time recorded
+[18/Feb/2019 16:21:54] WARNING [MYAPP:253] Found Might & Magic: Clash of Heroes, no time recorded
+[18/Feb/2019 16:22:10] WARNING [MYAPP:253] Found Minecraft, no time recorded
+[18/Feb/2019 16:22:11] WARNING [MYAPP:253] Found Minecraft: Story Mode - A Telltales Games Series - The Complete Adventure, no time recorded
+[18/Feb/2019 16:23:45] WARNING [MYAPP:253] Found Mini metro, no time recorded
+[18/Feb/2019 16:23:46] WARNING [MYAPP:253] Found Mini NInjas, no time recorded
+[18/Feb/2019 16:23:47] WARNING [MYAPP:253] Found Mini-Mario & Friends amiibo Challenge, no time recorded
+[18/Feb/2019 16:23:50] WARNING [MYAPP:253] Found Minion Masters, no time recorded
+[18/Feb/2019 16:23:55] WARNING [MYAPP:253] Found Mirror, no time recorded
+[18/Feb/2019 16:23:56] WARNING [MYAPP:209] Found Mirror, not full scores
+[18/Feb/2019 16:23:57] WARNING [MYAPP:253] Found Mirror's Edge Catalyst, no time recorded
+[18/Feb/2019 16:23:58] WARNING [MYAPP:253] Found Monaco: What's Yours Is Mine, no time recorded
+[18/Feb/2019 16:23:59] WARNING [MYAPP:253] Found Monkey Island 2 Special Edition: LeChuck's Revenge, no time recorded
+[18/Feb/2019 16:24:00] WARNING [MYAPP:253] Found Monkey Island 2: Special Edition: LeChuck's Revenge, no time recorded
+[18/Feb/2019 16:24:06] WARNING [MYAPP:209] Found Monster Trucks, not full scores
+[18/Feb/2019 16:24:07] WARNING [MYAPP:253] Found Monster's Inc, no time recorded
+[18/Feb/2019 16:24:12] WARNING [MYAPP:253] Found Moon Chronicles Episode 1, no time recorded
+[18/Feb/2019 16:24:13] WARNING [MYAPP:253] Found Mordheim City of the Damned, no time recorded
+[18/Feb/2019 16:24:14] WARNING [MYAPP:253] Found Mount & Blade: Warband, no time recorded
+[18/Feb/2019 16:24:15] WARNING [MYAPP:253] Found Mount & Blade: With Fire and Sword, no time recorded
+[18/Feb/2019 16:24:20] WARNING [MYAPP:253] Found MURDERED: SOUL SUSPECT, no time recorded
+[18/Feb/2019 16:24:23] WARNING [MYAPP:253] Found MySims: Kingdom, no time recorded
+[18/Feb/2019 16:24:29] WARNING [MYAPP:209] Found Myst: Masterpiece Edition, not full scores
+[18/Feb/2019 16:24:31] WARNING [MYAPP:209] Found Mystery Series: A Vampire Tale, not full scores
+[18/Feb/2019 16:24:32] WARNING [MYAPP:253] Found Nano Assault Ex, no time recorded
+[18/Feb/2019 16:24:33] WARNING [MYAPP:253] Found Narcissu 2nd, no time recorded
+[18/Feb/2019 16:24:37] WARNING [MYAPP:253] Found Naruto Ultimate Ninja 2, no time recorded
+[18/Feb/2019 16:24:38] WARNING [MYAPP:253] Found NEO Scavenger, no time recorded
+[18/Feb/2019 16:24:39] WARNING [MYAPP:253] Found NEON STRUCT, no time recorded
+[18/Feb/2019 16:24:40] WARNING [MYAPP:253] Found NES Open Tournement Golf, no time recorded
+[18/Feb/2019 16:24:57] WARNING [MYAPP:253] Found Neverwinter Nights Diamond, no time recorded
+[18/Feb/2019 16:25:00] WARNING [MYAPP:253] Found New Super Mario Bros Wii, no time recorded
+[18/Feb/2019 16:25:01] WARNING [MYAPP:253] Found Next Up Hero, no time recorded
+[18/Feb/2019 16:25:05] WARNING [MYAPP:209] Found Next Up Hero, not full scores
+[18/Feb/2019 16:25:06] WARNING [MYAPP:253] Found NHL Faceoff 99, no time recorded
+[18/Feb/2019 16:25:13] WARNING [MYAPP:253] Found Nicolas Eymerich The Inquisitor Book II : The Village, no time recorded
+[18/Feb/2019 16:25:16] WARNING [MYAPP:209] Found nicolas-eymerich---the-inquisitor-book-ii-the-village, not full scores
+[18/Feb/2019 16:25:25] WARNING [MYAPP:253] Found No Time To Explain Remastered, no time recorded
+[18/Feb/2019 16:25:27] WARNING [MYAPP:209] Found No Time To Explain Remastered, not full scores
+[18/Feb/2019 16:25:28] WARNING [MYAPP:253] Found NOT A HERO, no time recorded
+[18/Feb/2019 16:25:32] WARNING [MYAPP:253] Found Oddworld: Abe's Oddysee - New 'n' Tasty, no time recorded
+[18/Feb/2019 16:25:35] WARNING [MYAPP:253] Found Ogre Battle: March of the Black Queen, no time recorded
+[18/Feb/2019 16:26:27] WARNING [MYAPP:253] Found Oh... Sir! The Hollywood Roast, no time recorded
+[18/Feb/2019 16:26:41] WARNING [MYAPP:253] Found Oh...Sir!, no time recorded
+[18/Feb/2019 16:26:47] WARNING [MYAPP:209] Found Omegaland, not full scores
+[18/Feb/2019 16:26:53] WARNING [MYAPP:209] Found Open Sorcery, not full scores
+[18/Feb/2019 16:26:57] WARNING [MYAPP:209] Found Osiris: New Dawn, not full scores
+[18/Feb/2019 16:27:00] WARNING [MYAPP:253] Found Overlord, no time recorded
+[18/Feb/2019 16:27:01] WARNING [MYAPP:253] Found Overwatch, no time recorded
+[18/Feb/2019 16:27:04] WARNING [MYAPP:253] Found PAC-MAN Championship Edition 2, no time recorded
+[18/Feb/2019 16:27:05] WARNING [MYAPP:253] Found Paper Mario: The Thousand Year Door, no time recorded
+[18/Feb/2019 16:27:08] WARNING [MYAPP:209] Found Paper Monsters, not full scores
+[18/Feb/2019 16:27:09] WARNING [MYAPP:253] Found PAYDAY 2, no time recorded
+[18/Feb/2019 16:27:11] WARNING [MYAPP:253] Found Phantasy Star III Generations of Doom, no time recorded
+[18/Feb/2019 16:27:14] WARNING [MYAPP:253] Found Phantasy Star IV The End of the Millenium, no time recorded
+[18/Feb/2019 16:30:31] WARNING [MYAPP:253] Found Phoenix Wright: Ace Attorney - Spirit of Justice - Apollo Justice: Asanine Attorney, no time recorded
+[18/Feb/2019 16:32:08] WARNING [MYAPP:253] Found Phoenix Wright: Ace Attorney - Spirit of Justice - Phoenix Wright: Asanine Attorney, no time recorded
+[18/Feb/2019 16:33:46] WARNING [MYAPP:253] Found Phoenix Wright: Ace Attorney - Spirit of Justice - Turnabout Time Traveler , no time recorded
+[18/Feb/2019 16:33:47] WARNING [MYAPP:305] Phoenix Wright: Ace Attorney - Spirit of Justice - Turnabout Time Traveler  - 3DS
+[18/Feb/2019 16:33:47] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:33:47] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:33:47] ERROR [MYAPP:308] None
+[18/Feb/2019 16:33:47] WARNING [MYAPP:253] Found Pillars of Eternity Definitive Edition, no time recorded
+[18/Feb/2019 16:33:49] WARNING [MYAPP:209] Found Pillars of Eternity Definitive Edition, not full scores
+[18/Feb/2019 16:34:04] WARNING [MYAPP:253] Found Planetary Annihilation: TITANS, no time recorded
+[18/Feb/2019 16:34:07] WARNING [MYAPP:253] Found Pneuma Breath of Life, no time recorded
+[18/Feb/2019 16:34:57] WARNING [MYAPP:253] Found Pokémon White, no time recorded
+[18/Feb/2019 16:35:00] WARNING [MYAPP:253] Found Pokémon X, no time recorded
+[18/Feb/2019 16:35:05] WARNING [MYAPP:253] Found Pokémon Yellow , no time recorded
+[18/Feb/2019 16:35:06] WARNING [MYAPP:305] Pokémon Yellow  - GBC
+[18/Feb/2019 16:35:06] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:35:06] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:35:06] ERROR [MYAPP:308] None
+[18/Feb/2019 16:35:08] WARNING [MYAPP:253] Found Primal Carnage, no time recorded
+[18/Feb/2019 16:35:09] WARNING [MYAPP:253] Found Prince of Persia Warrior Within, no time recorded
+[18/Feb/2019 16:35:10] WARNING [MYAPP:253] Found Princess Remedy in a Heap of Trouble, no time recorded
+[18/Feb/2019 16:35:12] WARNING [MYAPP:209] Found Princess Remedy in a Heap of Trouble, not full scores
+[18/Feb/2019 16:36:03] WARNING [MYAPP:253] Found Prinny: Can I really be the hero?, no time recorded
+[18/Feb/2019 16:36:04] WARNING [MYAPP:253] Found Project: CARS, no time recorded
+[18/Feb/2019 16:36:05] WARNING [MYAPP:253] Found Proteus, no time recorded
+[18/Feb/2019 16:36:08] WARNING [MYAPP:209] Found Pumped BMX +, not full scores
+[18/Feb/2019 16:36:34] WARNING [MYAPP:253] Found QWOP for iOS, no time recorded
+[18/Feb/2019 16:36:51] WARNING [MYAPP:253] Found R. C. Pro-Am, no time recorded
+[18/Feb/2019 16:36:54] WARNING [MYAPP:253] Found R. C. Pro-Am 2, no time recorded
+[18/Feb/2019 16:36:59] WARNING [MYAPP:253] Found Race The Sun, no time recorded
+[18/Feb/2019 16:37:07] WARNING [MYAPP:209] Found RaidersSphere4th, not full scores
+[18/Feb/2019 16:37:12] WARNING [MYAPP:253] Found Read Only Memories, no time recorded
+[18/Feb/2019 16:37:16] WARNING [MYAPP:253] Found Rebel Raiders Operation Nighthawk, no time recorded
+[18/Feb/2019 16:37:24] WARNING [MYAPP:253] Found Recore, no time recorded
+[18/Feb/2019 16:37:26] WARNING [MYAPP:209] Found RefleX, not full scores
+[18/Feb/2019 16:37:29] WARNING [MYAPP:209] Found Remnants of Isolation, not full scores
+[18/Feb/2019 16:37:30] WARNING [MYAPP:253] Found Resident Evil 0 HD Remaster, no time recorded
+[18/Feb/2019 16:37:31] WARNING [MYAPP:253] Found Resident Evil 2, no time recorded
+[18/Feb/2019 16:37:40] WARNING [MYAPP:253] Found Resident Evil 4: Wii Edition, no time recorded
+[18/Feb/2019 16:37:41] WARNING [MYAPP:253] Found Resident Evil HD Remaster, no time recorded
+[18/Feb/2019 16:37:45] WARNING [MYAPP:253] Found Rhythm Thief & The Emperor's Treasure, no time recorded
+[18/Feb/2019 16:37:46] WARNING [MYAPP:253] Found Ricochet, no time recorded
+[18/Feb/2019 16:37:52] WARNING [MYAPP:209] Found Rime Berta, not full scores
+[18/Feb/2019 16:37:56] WARNING [MYAPP:209] Found Rising Angels: Reborn, not full scores
+[18/Feb/2019 16:37:57] WARNING [MYAPP:253] Found RISK Factions, no time recorded
+[18/Feb/2019 16:38:02] WARNING [MYAPP:253] Found Rollercoaster Tycoon Deluxe, no time recorded
+[18/Feb/2019 16:38:06] WARNING [MYAPP:253] Found Root Double -Before Crime * After Days- Xtend Edition, no time recorded
+[18/Feb/2019 16:45:21] WARNING [MYAPP:253] Found RPG Asdivine Hearts, no time recorded
+[18/Feb/2019 16:45:25] WARNING [MYAPP:209] Found RPG Asdivine Hearts, not full scores
+[18/Feb/2019 16:46:34] WARNING [MYAPP:253] Found Ruiner, no time recorded
+[18/Feb/2019 16:46:37] WARNING [MYAPP:209] Found Run or Die, not full scores
+[18/Feb/2019 16:46:38] WARNING [MYAPP:253] Found Running with Rifles, no time recorded
+[18/Feb/2019 16:46:39] WARNING [MYAPP:253] Found Rust, no time recorded
+[18/Feb/2019 16:46:40] WARNING [MYAPP:253] Found RWBY: Grimm Eclipse, no time recorded
+[18/Feb/2019 16:46:44] WARNING [MYAPP:253] Found Ryan North's To Be or Not to Be, no time recorded
+[18/Feb/2019 16:49:55] WARNING [MYAPP:253] Found Sabre Wulf, no time recorded
+[18/Feb/2019 16:49:59] WARNING [MYAPP:253] Found Sam & Max The Devil's Playhouse - Episode 1: The Penal Zone, no time recorded
+[18/Feb/2019 16:50:00] WARNING [MYAPP:253] Found Sam & Max The Devil's Playhouse - Episode 2: The Tomb of Sammun-Mak, no time recorded
+[18/Feb/2019 16:50:01] WARNING [MYAPP:253] Found Sam & Max The Devil's Playhouse - Episode 3: They Stole Max's Brain!, no time recorded
+[18/Feb/2019 16:50:02] WARNING [MYAPP:253] Found Sam & Max The Devil's Playhouse - Episode 4: Beyond the Alley of the Dolls, no time recorded
+[18/Feb/2019 16:50:03] WARNING [MYAPP:253] Found Sam & Max The Devil's Playhouse - Episode 5: The City that Dares not Sleep, no time recorded
+[18/Feb/2019 16:50:04] WARNING [MYAPP:253] Found Sanctuary RPG: Black Edition, no time recorded
+[18/Feb/2019 16:50:11] WARNING [MYAPP:253] Found Science Girls , no time recorded
+[18/Feb/2019 16:50:11] WARNING [MYAPP:305] Science Girls  - STM
+[18/Feb/2019 16:50:11] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:50:11] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:50:11] ERROR [MYAPP:308] None
+[18/Feb/2019 16:50:12] WARNING [MYAPP:253] Found Secret of Mana, no time recorded
+[18/Feb/2019 16:50:20] WARNING [MYAPP:253] Found SEGA Bass Fishing, no time recorded
+[18/Feb/2019 16:50:25] WARNING [MYAPP:253] Found SEGA Vintage Collection: Streets of Rage, no time recorded
+[18/Feb/2019 16:50:28] WARNING [MYAPP:253] Found Severed, no time recorded
+[18/Feb/2019 16:51:00] WARNING [MYAPP:253] Found Shadow of the Colossus, no time recorded
+[18/Feb/2019 16:51:01] WARNING [MYAPP:253] Found Shadow Warrior, no time recorded
+[18/Feb/2019 16:51:17] WARNING [MYAPP:253] Found Shin Megami Tensei: Devil Summoner - Soul Hackers, no time recorded
+[18/Feb/2019 16:51:18] WARNING [MYAPP:253] Found Shin Megami Tensei: Devil Survivor 2: Record Breaker, no time recorded
+[18/Feb/2019 16:51:19] WARNING [MYAPP:253] Found Shin Megami Tensei: Nocturne, no time recorded
+[18/Feb/2019 16:51:25] WARNING [MYAPP:253] Found Shining Force: The Sword Of Hajya, no time recorded
+[18/Feb/2019 16:51:52] WARNING [MYAPP:209] Found Shining in the Darkness, not full scores
+[18/Feb/2019 16:51:55] WARNING [MYAPP:209] Found Shinobi III: Return of the Ninja Master, not full scores
+[18/Feb/2019 16:52:00] WARNING [MYAPP:253] Found Shovel Knight: Spector of Torment, no time recorded
+[18/Feb/2019 16:52:13] WARNING [MYAPP:253] Found Shower With Your Dad Simulator 2015: Do You Still Shower With Your Dad?, no time recorded
+[18/Feb/2019 16:52:22] WARNING [MYAPP:253] Found Silver Creek Falls - Chapter 1 , no time recorded
+[18/Feb/2019 16:52:22] WARNING [MYAPP:305] Silver Creek Falls - Chapter 1  - STM
+[18/Feb/2019 16:52:22] WARNING [MYAPP:306] <type 'exceptions.IndexError'>
+[18/Feb/2019 16:52:22] WARNING [MYAPP:307] string index out of range
+[18/Feb/2019 16:52:22] ERROR [MYAPP:308] None
+[18/Feb/2019 16:52:28] WARNING [MYAPP:253] Found Snake Rattle N Roll, no time recorded
+[18/Feb/2019 16:52:40] WARNING [MYAPP:253] Found Soda Drinker PRO, no time recorded
+[18/Feb/2019 16:52:45] WARNING [MYAPP:253] Found Solstice, no time recorded
+[18/Feb/2019 16:52:47] WARNING [MYAPP:209] Found Solstice, not full scores
+[18/Feb/2019 16:52:48] WARNING [MYAPP:253] Found SOMA, no time recorded
+[18/Feb/2019 16:52:49] WARNING [MYAPP:253] Found Sorcerer King: Rivals, no time recorded
+[18/Feb/2019 16:52:56] WARNING [MYAPP:253] Found SoulCalibur II, no time recorded
+[18/Feb/2019 16:52:57] WARNING [MYAPP:253] Found SoulCalibur III, no time recorded
+[18/Feb/2019 16:52:58] WARNING [MYAPP:253] Found SoulCalibur IV, no time recorded
+[18/Feb/2019 16:52:59] WARNING [MYAPP:253] Found SoulCalibur Legends, no time recorded
+[18/Feb/2019 16:53:04] WARNING [MYAPP:209] Found Space Harrier II, not full scores
+[18/Feb/2019 16:53:08] WARNING [MYAPP:253] Found Space Pilgrim Episode IV: Sol, no time recorded
+[18/Feb/2019 16:53:11] WARNING [MYAPP:253] Found Space Pilgrim Episode One: Alpha Centauri, no time recorded
+[18/Feb/2019 16:53:14] WARNING [MYAPP:253] Found Space Pilgrim Episode Two: Epsilon Indi, no time recorded
+[18/Feb/2019 16:53:17] WARNING [MYAPP:253] Found Space Quest, no time recorded
+[18/Feb/2019 16:53:22] WARNING [MYAPP:253] Found Space Quest 2, no time recorded
+[18/Feb/2019 16:53:29] WARNING [MYAPP:253] Found Space Quest 3, no time recorded
+[18/Feb/2019 16:53:36] WARNING [MYAPP:253] Found Space Quest 4, no time recorded
+[18/Feb/2019 16:53:43] WARNING [MYAPP:253] Found Space Quest 5, no time recorded
+[18/Feb/2019 16:53:58] WARNING [MYAPP:253] Found SPACECOM, no time recorded
+[18/Feb/2019 16:53:59] WARNING [MYAPP:253] Found Spec-Ops: The Line, no time recorded
+[18/Feb/2019 16:54:00] WARNING [MYAPP:253] Found Speedrunners, no time recorded
+[18/Feb/2019 16:54:04] WARNING [MYAPP:253] Found Spider-Man, no time recorded
+[18/Feb/2019 16:54:12] WARNING [MYAPP:209] Found Spooky Cats, not full scores
+[18/Feb/2019 16:54:18] WARNING [MYAPP:209] Found Squidlit, not full scores
+[18/Feb/2019 16:54:19] WARNING [MYAPP:253] Found Star Command, no time recorded
+[18/Feb/2019 16:54:31] WARNING [MYAPP:253] Found Star Fox Assault, no time recorded
+[18/Feb/2019 16:54:35] WARNING [MYAPP:209] Found Star Stealing Prince, not full scores
+[18/Feb/2019 16:54:35] WARNING [MYAPP:253] Found Star Wars, no time recorded
+[18/Feb/2019 16:54:40] WARNING [MYAPP:253] Found STAR WARS Knights of the Old Republic II: The Sith Lords, no time recorded
+[18/Feb/2019 16:54:41] WARNING [MYAPP:253] Found STAR WARS Republic Commando, no time recorded
+[18/Feb/2019 16:54:42] WARNING [MYAPP:253] Found Star Wars Rogue Leader: Rogue Squadron II, no time recorded
+[18/Feb/2019 16:54:43] WARNING [MYAPP:253] Found Star Wars Rogue Squadron, no time recorded
+[18/Feb/2019 16:54:44] WARNING [MYAPP:253] Found Star Wars: Battlefront II, no time recorded
+[18/Feb/2019 16:54:45] WARNING [MYAPP:253] Found STAR WARS: Knights of the Old Republic, no time recorded
+[18/Feb/2019 16:54:46] WARNING [MYAPP:253] Found Starflight 1, no time recorded
+[18/Feb/2019 16:54:51] WARNING [MYAPP:253] Found Starflight 2, no time recorded
+[18/Feb/2019 16:54:57] WARNING [MYAPP:209] Found Stargunner, not full scores
+[18/Feb/2019 16:55:05] WARNING [MYAPP:209] Found Staxel, not full scores
+[18/Feb/2019 16:55:06] WARNING [MYAPP:253] Found Stealth Inc 2 A Game of Clones, no time recorded
+[18/Feb/2019 16:55:07] WARNING [MYAPP:253] Found Steamworld Heist, no time recorded
+[18/Feb/2019 16:55:10] WARNING [MYAPP:253] Found Stikbold! A Dodgeball Adventure!, no time recorded
+[18/Feb/2019 16:55:50] WARNING [MYAPP:253] Found Strife: Veteren Edition, no time recorded
+[18/Feb/2019 16:55:54] WARNING [MYAPP:253] Found Strong Bad's Cool Game For Attractive People Episode 1: Homestar Ruiner, no time recorded
+[18/Feb/2019 16:55:55] WARNING [MYAPP:253] Found Strong Bad's Cool Game For Attractive People Episode 2: Strong Badia the Free, no time recorded
+[18/Feb/2019 16:55:56] WARNING [MYAPP:253] Found Strong Bad's Cool Game For Attractive People Episode 3: Baddest of the Bands, no time recorded
+[18/Feb/2019 16:55:57] WARNING [MYAPP:253] Found Strong Bad's Cool Game For Attractive People Episode 4: Dangeresque 3: The Criminal Projective, no time recorded
+[18/Feb/2019 16:55:58] WARNING [MYAPP:253] Found Strong Bad's Cool Game For Attractive People Episode 5: 8-Bit Is Enough, no time recorded
+[18/Feb/2019 16:56:09] WARNING [MYAPP:209] Found Sunrider Academy, not full scores
+[18/Feb/2019 16:56:10] WARNING [MYAPP:253] Found Sunrider: Liberation Day Captain's Edition, no time recorded
+[18/Feb/2019 16:56:29] WARNING [MYAPP:209] Found Sunrise, not full scores
+[18/Feb/2019 16:56:54] WARNING [MYAPP:253] Found Super Mario Bros, no time recorded
+[18/Feb/2019 16:57:40] WARNING [MYAPP:253] Found Super Mega Baseball: Extra Innings, no time recorded
+[18/Feb/2019 16:57:48] WARNING [MYAPP:253] Found Super Street Fighter IV Arcade Edition, no time recorded
+[18/Feb/2019 16:57:51] WARNING [MYAPP:209] Found Super Thunder Blade, not full scores
+[18/Feb/2019 16:57:52] WARNING [MYAPP:253] Found Superhot, no time recorded
+[18/Feb/2019 16:57:53] WARNING [MYAPP:209] Found Switchcars, not full scores
+[18/Feb/2019 16:57:54] WARNING [MYAPP:253] Found Sword of Vermillion, no time recorded
+[18/Feb/2019 16:58:01] WARNING [MYAPP:253] Found Swords & Soldiers HD, no time recorded
+[18/Feb/2019 16:58:07] WARNING [MYAPP:253] Found System Shock: Enhanced Edition, no time recorded
+[18/Feb/2019 16:58:08] WARNING [MYAPP:253] Found Tactics Ogre: Let Us Cling Together, no time recorded
+[18/Feb/2019 16:58:11] WARNING [MYAPP:209] Found Tales from Candlekeep: Tomb of Annihilation, not full scores
+[18/Feb/2019 16:58:12] WARNING [MYAPP:253] Found Tales from the Borderlands: A Telltale Game Series, no time recorded
+[18/Feb/2019 16:58:18] WARNING [MYAPP:253] Found Team Fortress 2, no time recorded
+[18/Feb/2019 16:58:19] WARNING [MYAPP:253] Found Team Fortress Classic, no time recorded
+[18/Feb/2019 16:58:21] WARNING [MYAPP:209] Found Team Fortress Classic, not full scores
+[18/Feb/2019 16:58:22] WARNING [MYAPP:253] Found Teen Agent, no time recorded
+[18/Feb/2019 16:58:26] WARNING [MYAPP:209] Found Teen Agent, not full scores
+[18/Feb/2019 16:58:30] WARNING [MYAPP:253] Found Terraria, no time recorded
+[18/Feb/2019 16:58:33] WARNING [MYAPP:209] Found The Abbey of Crime Extensum, not full scores
+[18/Feb/2019 16:58:36] WARNING [MYAPP:253] Found The Banner Saga II, no time recorded
+[18/Feb/2019 16:58:52] WARNING [MYAPP:253] Found The Bard's Tale, no time recorded
+[18/Feb/2019 16:58:53] WARNING [MYAPP:253] Found The Bard's Tale 1, no time recorded
+[18/Feb/2019 16:59:07] WARNING [MYAPP:253] Found The Bard's Tale 2, no time recorded
+[18/Feb/2019 16:59:20] WARNING [MYAPP:253] Found The Bard's Tale 3, no time recorded
+[18/Feb/2019 16:59:32] WARNING [MYAPP:253] Found The Bard's Tale IV: Barrow's Deep, no time recorded
+[18/Feb/2019 16:59:33] WARNING [MYAPP:253] Found The Basement Collection, no time recorded
+[18/Feb/2019 16:59:36] WARNING [MYAPP:253] Found The Book of Unwritten Tales: Critter Chronicles, no time recorded
+[18/Feb/2019 16:59:38] WARNING [MYAPP:209] Found The Bridge, not full scores
+[18/Feb/2019 16:59:40] WARNING [MYAPP:209] Found The Bridge, not full scores
+[18/Feb/2019 16:59:48] WARNING [MYAPP:253] Found The Elder Scrolls: Chapter II - Daggerfall, no time recorded
+[18/Feb/2019 16:59:54] WARNING [MYAPP:253] Found The End is Nigh, no time recorded
+[18/Feb/2019 16:59:55] WARNING [MYAPP:253] Found The Expendabros - Broforce: The Expendables Missions, no time recorded
+[18/Feb/2019 16:59:59] WARNING [MYAPP:253] Found The Hobbit, no time recorded
+[18/Feb/2019 17:00:06] WARNING [MYAPP:209] Found The Last Blade, not full scores
+[18/Feb/2019 17:00:11] WARNING [MYAPP:253] Found The Legend of Mana, no time recorded
+[18/Feb/2019 17:00:36] WARNING [MYAPP:253] Found The Legend of Zelda Breath of the Wild, no time recorded
+[18/Feb/2019 17:00:37] WARNING [MYAPP:253] Found The Legend of Zelda Twilight Princess HD, no time recorded
+[18/Feb/2019 17:05:41] WARNING [MYAPP:253] Found The Legend of Zelda: Oracle of Season, no time recorded
+[18/Feb/2019 17:06:28] WARNING [MYAPP:253] Found The Legend of Zelda: TriForce Heroes, no time recorded
+[18/Feb/2019 17:06:29] WARNING [MYAPP:253] Found The Legend of Zelda: Wind Waker HD, no time recorded
+[18/Feb/2019 17:06:32] WARNING [MYAPP:209] Found The Miskatonic, not full scores
+[18/Feb/2019 17:06:33] WARNING [MYAPP:253] Found The Next Penelope, no time recorded
+[18/Feb/2019 17:06:37] WARNING [MYAPP:209] Found The Nightmare Cooperative, not full scores
+[18/Feb/2019 17:06:43] WARNING [MYAPP:209] Found The Revenge of Shinobi, not full scores
+[18/Feb/2019 17:06:47] WARNING [MYAPP:253] Found The Secret Of Monkey Island: Special Edition, no time recorded
+[18/Feb/2019 17:06:53] WARNING [MYAPP:253] Found The Sims, no time recorded
+[18/Feb/2019 17:06:54] WARNING [MYAPP:253] Found The Sims, no time recorded
+[18/Feb/2019 17:06:55] WARNING [MYAPP:253] Found The Sims 2, no time recorded
+[18/Feb/2019 17:06:56] WARNING [MYAPP:253] Found The Sims 3, no time recorded
+[18/Feb/2019 17:06:57] WARNING [MYAPP:253] Found The Walking Dead: 400 Days, no time recorded
+[18/Feb/2019 17:06:58] WARNING [MYAPP:253] Found The Walking Dead: A Telltale Games Series, no time recorded
+[18/Feb/2019 17:06:58] WARNING [MYAPP:253] Found The Walking Dead: Season Two, no time recorded
+[18/Feb/2019 17:06:59] WARNING [MYAPP:253] Found The Wolf Among Us, no time recorded
+[18/Feb/2019 17:07:00] WARNING [MYAPP:253] Found The World Ends With You, no time recorded
+[18/Feb/2019 17:07:01] WARNING [MYAPP:253] Found TheWitchsHouse107, no time recorded
+[18/Feb/2019 17:07:03] WARNING [MYAPP:253] Found Thief, no time recorded
+[18/Feb/2019 17:07:04] WARNING [MYAPP:253] Found Thor.N, no time recorded
+[18/Feb/2019 17:07:07] WARNING [MYAPP:253] Found Thoth, no time recorded
+[18/Feb/2019 17:07:09] WARNING [MYAPP:253] Found Tinker, no time recorded
+[18/Feb/2019 17:07:15] WARNING [MYAPP:253] Found Titan Quest Anniversary Edition, no time recorded
+[18/Feb/2019 17:07:19] WARNING [MYAPP:253] Found Tom Clancy's Rainbow Six Vegas 2, no time recorded
+[18/Feb/2019 17:07:26] WARNING [MYAPP:253] Found Tomb Raider III: Adventures of Lara Croft, no time recorded
+[18/Feb/2019 17:07:29] WARNING [MYAPP:253] Found Tony Hawk Pro Skater, no time recorded
+[18/Feb/2019 17:07:46] WARNING [MYAPP:253] Found Trackmania Turbo, no time recorded
+[18/Feb/2019 17:07:49] WARNING [MYAPP:253] Found Tron Evolution, no time recorded
+[18/Feb/2019 17:07:51] WARNING [MYAPP:209] Found Twinkle Star Sprites, not full scores
+[18/Feb/2019 17:07:55] WARNING [MYAPP:253] Found Tyranny - Commander Edition, no time recorded
+[18/Feb/2019 17:08:01] WARNING [MYAPP:209] Found Tyrian 2000, not full scores
+[18/Feb/2019 17:08:02] WARNING [MYAPP:253] Found Ultima 4: Quest of the Avatar, no time recorded
+[18/Feb/2019 17:08:26] WARNING [MYAPP:253] Found Ultima Worlds of Adventure 2: Martian Dreams, no time recorded
+[18/Feb/2019 17:08:29] WARNING [MYAPP:209] Found Ultima Worlds of Adventure 2: Martian Dreams, not full scores
+[18/Feb/2019 17:08:34] WARNING [MYAPP:209] Found Unearthed: Trail of Ibn Battuta - Episode 1, not full scores
+[18/Feb/2019 17:08:35] WARNING [MYAPP:253] Found Unepic, no time recorded
+[18/Feb/2019 17:08:38] WARNING [MYAPP:209] Found Unreal Gold, not full scores
+[18/Feb/2019 17:08:41] WARNING [MYAPP:209] Found Uurnog Uurnlimited, not full scores
+[18/Feb/2019 17:08:41] WARNING [MYAPP:253] Found Uurnog Uurnlimted, no time recorded
+[18/Feb/2019 17:08:50] WARNING [MYAPP:253] Found Vandal Hearts 2, no time recorded
+[18/Feb/2019 17:08:57] WARNING [MYAPP:253] Found Vanguard Princess Director's Cut, no time recorded
+[18/Feb/2019 17:09:14] WARNING [MYAPP:253] Found Vectorman II, no time recorded
+[18/Feb/2019 17:09:27] WARNING [MYAPP:253] Found Volantia Kingdom in the Sky, no time recorded
+[18/Feb/2019 17:09:55] WARNING [MYAPP:253] Found Warioware, Inc.: Mega Microgame$!, no time recorded
+[18/Feb/2019 17:09:56] WARNING [MYAPP:253] Found Warlock - Master of the Arcane, no time recorded
+[18/Feb/2019 17:10:01] WARNING [MYAPP:253] Found WASTED, no time recorded
+[18/Feb/2019 17:10:02] WARNING [MYAPP:209] Found Wasteland, not full scores
+[18/Feb/2019 17:10:03] WARNING [MYAPP:253] Found We Were Here Too, no time recorded
+[18/Feb/2019 17:10:08] WARNING [MYAPP:253] Found Who's Your Daddy, no time recorded
+[18/Feb/2019 17:10:12] WARNING [MYAPP:253] Found Wild ARMS, no time recorded
+[18/Feb/2019 17:10:17] WARNING [MYAPP:253] Found Wing Commander III, no time recorded
+[18/Feb/2019 17:10:25] WARNING [MYAPP:253] Found Wizardry 6, no time recorded
+[18/Feb/2019 17:10:30] WARNING [MYAPP:253] Found Wizardry 7, no time recorded
+[18/Feb/2019 17:10:37] WARNING [MYAPP:209] Found Wonder Boy III: Monster Lair, not full scores
+[18/Feb/2019 17:10:38] WARNING [MYAPP:253] Found Wonder Boy In Monster World, no time recorded
+[18/Feb/2019 17:10:40] WARNING [MYAPP:209] Found Wonder Boy In Monster World, not full scores
+[18/Feb/2019 17:10:41] WARNING [MYAPP:253] Found Wonder Boy: The Dragon's Trap, no time recorded
+[18/Feb/2019 17:10:42] WARNING [MYAPP:253] Found Worlds of Ultima; The Savage Empire, no time recorded
+[18/Feb/2019 17:10:44] WARNING [MYAPP:209] Found Worlds of Ultima; The Savage Empire, not full scores
+[18/Feb/2019 17:11:00] WARNING [MYAPP:253] Found X-COM UFO Defense, no time recorded
+[18/Feb/2019 17:11:03] WARNING [MYAPP:209] Found X-COM UFO Defense, not full scores
+[18/Feb/2019 17:11:04] WARNING [MYAPP:253] Found Xcom 2, no time recorded
+[18/Feb/2019 17:11:05] WARNING [MYAPP:253] Found Xenosaga Episode I: der Wille Zur Macht, no time recorded
+[18/Feb/2019 17:11:06] WARNING [MYAPP:253] Found Yggdra Union, no time recorded
+[18/Feb/2019 17:11:07] WARNING [MYAPP:253] Found Yoshi, no time recorded
+[18/Feb/2019 17:11:25] WARNING [MYAPP:253] Found Yu-gi-oh! Reshef of Destruction, no time recorded
+[18/Feb/2019 17:11:26] WARNING [MYAPP:253] Found Yume Miru Kusuri, no time recorded
+[18/Feb/2019 17:11:29] WARNING [MYAPP:253] Found Yurei Station, no time recorded
+[18/Feb/2019 17:11:34] WARNING [MYAPP:253] Found Zelda II- The Adventure of Link, no time recorded
+[18/Feb/2019 17:12:31] WARNING [MYAPP:209] Found Zen Puzzle Garden, not full scores
+[18/Feb/2019 17:12:38] WARNING [MYAPP:253] Found ZHeros, no time recorded
+[18/Feb/2019 17:12:38] WARNING [MYAPP:253] Found Zoids: Assault, no time recorded
+[18/Feb/2019 17:12:52] WARNING [MYAPP:253] Found The Legend of Zelda: The Phantom Hourglass, no time recorded
+[18/Feb/2019 17:13:43] WARNING [MYAPP:253] Found VA-11 Hall-A Collector's Edition, no time recorded
+[18/Feb/2019 17:13:56] WARNING [MYAPP:253] Found Kingdom Hearts The Story So Far, no time recorded
+[18/Feb/2019 17:13:59] WARNING [MYAPP:253] Found Persona Dancing Endless Collection, no time recorded
+[18/Feb/2019 17:14:13] WARNING [MYAPP:253] Found Enchanted ARMs, no time recorded
+[18/Feb/2019 17:14:18] WARNING [MYAPP:253] Found Tarzan, no time recorded
+[18/Feb/2019 17:14:24] WARNING [MYAPP:253] Found Pixel: ru2, no time recorded
+[18/Feb/2019 17:14:26] WARNING [MYAPP:209] Found Pixel: ru2, not full scores
+[18/Feb/2019 17:14:31] WARNING [MYAPP:253] Found Uncharted: Among Thieves, no time recorded
+[18/Feb/2019 17:14:35] WARNING [MYAPP:253] Found Uncharted: Drake's Deception, no time recorded
+[18/Feb/2019 17:14:49] WARNING [MYAPP:253] Found Mutant Mudds Super Challenge, no time recorded
+[18/Feb/2019 17:15:01] WARNING [MYAPP:253] Found Mudds Blocks, no time recorded
+[18/Feb/2019 17:15:06] WARNING [MYAPP:253] Found PAPERS, PLEASE, no time recorded
+[18/Feb/2019 17:15:11] WARNING [MYAPP:209] Found Baseball Stars 2, not full scores
+[18/Feb/2019 17:15:27] WARNING [MYAPP:253] Found Samurai Showdown II, no time recorded
+[18/Feb/2019 17:15:36] WARNING [MYAPP:253] Found Boyfriend Dungeon, no time recorded
+[18/Feb/2019 17:15:38] WARNING [MYAPP:209] Found Boyfriend Dungeon, not full scores
+[18/Feb/2019 17:15:39] WARNING [MYAPP:253] Found Enter The Gungeon, no time recorded
+[18/Feb/2019 17:15:45] WARNING [MYAPP:209] Found Tokyo 42, not full scores
+[18/Feb/2019 17:15:46] WARNING [MYAPP:253] Found Tomb Raider - Tomb of the Lost Adventurer, no time recorded
+[18/Feb/2019 17:16:41] WARNING [MYAPP:253] Found Kingdom Hearts: Birth By Sleep Final Mix, no time recorded
+[18/Feb/2019 17:17:36] WARNING [MYAPP:253] Found WRC 6 FIA World Rally Championship, no time recorded
+[18/Feb/2019 17:18:24] WARNING [MYAPP:253] Found DISTRAINT, no time recorded
+[18/Feb/2019 17:18:25] WARNING [MYAPP:253] Found Ys Memories of Celceta, no time recorded
+[18/Feb/2019 17:18:26] WARNING [MYAPP:253] Found Akzend 2: The World Beneath, no time recorded
+[18/Feb/2019 17:18:40] WARNING [MYAPP:253] Found Tales of Vesperia Definitive Edition, no time recorded
+[18/Feb/2019 17:18:41] WARNING [MYAPP:253] Found Defender's Quest, no time recorded
+[18/Feb/2019 17:18:45] WARNING [MYAPP:253] Found Knights of Pen and Paper +1 Deluxier Edition, no time recorded
+[18/Feb/2019 17:18:45] WARNING [MYAPP:253] Found Knights of Pen and Paper II Deluxiest Edition, no time recorded
+[18/Feb/2019 17:20:27] WARNING [MYAPP:253] Found Battle Chef Brigade Deluxe, no time recorded
+[18/Feb/2019 17:20:40] WARNING [MYAPP:253] Found Race The Sun, no time recorded

@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
 import urllib2
 import sys
 from bs4 import BeautifulSoup
 import requests
 import re
 import os
+import logging
+LOGGER = logging.getLogger('MYAPP')
 #swapMonth function works better as a dict in python
 month_dict = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04",
               "May":"05","Jun":"06","Jul":"07","Aug":"08",
@@ -47,9 +50,13 @@ def fixSystem(system):
 
 def fixGame(game):
     # to replace \ that's what you need in the re, \\\\
-    game = re.sub("[:\/\?'\(;\.\)#&$,\\\\']","",game)
+    game = re.sub(r"[:\/\?'\(;\.\)#&$,\\\\']","",game)
     game = game.replace("<","lt").replace(">","gt")
-    return game.replace(" ","-").lower();
+    game = game.replace(" ","-").lower();
+    game = game.replace(u"\xe2\x80\x99","")
+    game = re.sub(r"[\-]{2}", "-", game)
+    game = re.sub(r"[\-]{2}", "---", game)
+    return game
 
 def fixDateFormat(unformatted_date):
 #   looks like "Jun 12, 2001"
@@ -66,13 +73,32 @@ class MetaCritic():
     def __init__(self,game,system):
         headers={'User-Agent': 'Mozilla/5.0'}
         url = "http://www.metacritic.com/game/"+fixSystem(system)+"/"+ fixGame(game)
-        #print url
+        LOGGER.debug(url)
         request = requests.get(url,headers=headers)
         self.raw_data = BeautifulSoup(request.text,"html.parser")
         self.game = game
-
-        self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
-        self.userscore = self.raw_data.find(user_score_class).text
+        #print self.raw_data.find_all("span",attrs={"class":"desc"})
+        if self.raw_data.find("title").text == "404 Page Not Found - Metacritic - Metacritic":
+            self.metacritic = -1.0
+            self.userscore = -1.0
+        else:
+            if re.search("No score yet",self.raw_data.find("span",attrs={"class","desc"}).text):
+                self.metacritic = -2.0
+            else:
+                self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
+                if self.metacritic == "tbd":
+                    self.metacritic = -2.0
+            #print self.raw_data.find(user_score_class)
+            if self.raw_data.find(user_score_class):
+                if re.search("No score yet",self.raw_data.find(user_score_class).text):
+                    self.userscore = -2.0
+                else:
+                    self.userscore = self.raw_data.find(user_score_class).text
+                    if self.userscore == "tbd":
+                        self.userscore = -2.0
+            else:
+                self.userscore = -2.0
+            
         # self.publisher = self.raw_data.find('li',attrs={"class":"summary_detail publisher"}).find("span",attrs={'itemprop':'name'}).text.strip()
         # #can be a list, may need to refactor
         # self.developer = self.raw_data.find("li",attrs={"class":"summary_detail developer"}).find("span",attrs={"class":"data"}).text.strip()
@@ -80,7 +106,7 @@ class MetaCritic():
         # self.players  = self.raw_data.find("li",attrs={"class":"summary_detail product_players"}).find("span",attrs={"class":"data"}).text.strip()
         # #can be a list
         # self.genre = self.raw_data.find("li",attrs={"class":"summary_detail product_genre"}).findall("span",attrs={"class":"data","itemprop":"genre"}).text.strip()
-        print self
+        #print self
 
     def __str__(self):
         return self.__unicode__()
@@ -95,9 +121,8 @@ class ExampleMetaCritic():
         self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
         self.userscore = self.raw_data.find(user_score_class).text
 
+print MetaCritic("Cthulhu Realms", "PC")
 
-# meta = MetaCritic("Fire Emblem","Game Boy Advance")
-# print meta
 # link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
 # print link
 #links = link.find_all("span",attrs={"class":"data","itemprop":"genre"})
@@ -115,9 +140,7 @@ class ExampleMetaCritic():
 # */
 
 #print meta.raw_data
-#meta = MetaCritic("virginia","pc")
-#print meta.metacritic
-#print meta.userscore
+
 #link = meta.raw_data.find('li',attrs={"class":"summary_detail publisher"}).find("span",attrs={'itemprop':'name'}).text.strip()
 #print link
 

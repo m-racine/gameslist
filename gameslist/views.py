@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from datetime import date,datetime
-import logging,re
+import logging,re,traceback
 import urlparse
 import urllib
 import sys
@@ -296,13 +296,16 @@ class PlayBeatAbandonGame(generic.UpdateView):
 def save_all_games(request):
     game_list = Game.objects.all()
     for game in game_list:
-        logger.info(unicode(game))
-        try:
-            #game.clean()
-            game.save()
-        except:
-            logger.warning(unicode(game))
-            logger.warning(sys.exc_info()[1])
+        if game.metacritic < 1 or game.user_score < 1 or game.full_time_to_beat < 1:
+            try:
+                logger.info(unicode(game))
+                #game.clean()
+                game.save()
+            except:
+                logger.warning(unicode(game))
+                logger.warning(sys.exc_info()[0])
+                logger.warning(sys.exc_info()[1])
+                logger.error(traceback.print_tb(sys.exc_info()[2]))
     return HttpResponseRedirect(reverse('gameslist:list'))
 # def beat_game(request, game_id):
 #     game = get_object_or_404(Game, pk=game_id)
