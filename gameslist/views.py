@@ -46,10 +46,10 @@ def top_priority_list(request,**kwags):
     top_dict = {}
     game_list = Game.objects.all().order_by('-priority')
     for item in game_list:
-        if item.system in top_dict:
+        if item.location in top_dict:
             pass
         else:
-            top_dict[item.system] = item.id
+            top_dict[item.location] = item.id
         if len(top_dict.keys()) == paginate_by:
             break
     page = request.GET.get('page')
@@ -362,6 +362,17 @@ def process_notes(request):
             Note.objects.create(text=game.notes_old,created_date=datetime.strptime('2019-1-19', '%Y-%m-%d'),
                                 modified_date=datetime.strptime('2019-1-19', '%Y-%m-%d'),parent_game_id=game.id)
     return HttpResponseRedirect(reverse('gameslist:list'))
+
+def fix_location(request):
+    games = Game.objects.all()
+    for game in games:
+        #print game
+        if game.location in ["BNT","DIG","EPI","GOG","HUM","IND","IIO","ORN","STM","TWH","UPL"]:
+            #do the thing
+            game.location = "PC"
+            game.save()
+    return HttpResponseRedirect(reverse('gameslist:list'))
+
 
 def rec_from_list(request, game_id):
     game = get_object_or_404(Game, pk=game_id)

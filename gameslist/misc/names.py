@@ -2,6 +2,7 @@
 #needs roman numeral check
 #and just number check
 #and checking sans a 1 at the end?
+#all lower, all caps, mixed, lowercase on SOME words?
 
 import re
 import logging
@@ -13,6 +14,12 @@ LOGGER = logging.getLogger('MYAPP')
 #ills = [': ', ' - ']
 FILLS = [' ', ': ', ' - ', '-', ', ']
 #& is not a standard fill, but a swap for and
+
+def roman_to_arabic_or_false(test_string):
+	#so anything outside of that, return false
+	#I V X L C D M
+	#1 5 10 50 100 500 1000
+	return False
 
 def fixGame(game):
     # to replace \ that's what you need in the re, \\\\
