@@ -367,9 +367,23 @@ def fix_location(request):
     games = Game.objects.all()
     for game in games:
         #print game
-        if game.location in ["BNT","DIG","EPI","GOG","HUM","IND","IIO","ORN","STM","TWH","UPL"]:
+        #if game.location in ["BNT","DIG","EPI","GOG","HUM","IND","IIO","ORN","STM","TWH","UPL"]:
             #do the thing
-            game.location = "PC"
+        #    game.location = "PC"
+        if game.location == "NDS":
+            game.location = "3DS"
+            game.save()
+        elif game.location == "GB":
+            game.location = "GBC"
+            game.save()
+        elif game.location == "PSX":
+            game.location = "PS2"
+            game.save()
+        elif game.location == "WII":
+            game.location = "WIU"
+            game.save()
+        elif game.location == "XBX":
+            game.location = "360"
             game.save()
     return HttpResponseRedirect(reverse('gameslist:list'))
 

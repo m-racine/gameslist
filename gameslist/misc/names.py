@@ -278,4 +278,4 @@ def gen_metacritic_names(input_string):
 		naive_list[x] = fixGame(naive_list[x])
 	return list(set(naive_list))
 
-print gen_names("FINAL FANTASY VIII")
+#print gen_names("Locked Hear  -- Typo")

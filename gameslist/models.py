@@ -158,6 +158,7 @@ class Game(BaseModel):
         return self.full_time_to_beat - self.current_time
 
     def save(self, *args, **kwargs):
+        self.name = self.name.strip(" ")
         if self.full_time_to_beat <= 0.0:
             self.full_time_to_beat = self.calculate_how_long_to_beat()
         if self.full_time_to_beat > 0:
