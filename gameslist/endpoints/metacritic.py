@@ -121,7 +121,7 @@ class ExampleMetaCritic():
         self.metacritic = self.raw_data.find("span",attrs={"itemprop":"ratingValue"}).text
         self.userscore = self.raw_data.find(user_score_class).text
 
-print MetaCritic("Cthulhu Realms", "PC")
+#print MetaCritic("Cthulhu Realms", "PC")
 
 # link = meta.raw_data.find("li",attrs={"class":"summary_detail product_genre"})
 # print link

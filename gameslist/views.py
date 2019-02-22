@@ -6,7 +6,8 @@ import logging,re,traceback
 import urlparse
 import urllib
 import sys
-from django.shortcuts import render,get_object_or_404, reverse, redirect
+from django.template import RequestContext
+from django.shortcuts import render,get_object_or_404, reverse, redirect, render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views import generic
 from django.utils import timezone
@@ -17,7 +18,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Game,Wish,Note, SYSTEMS
 from .forms import GameForm,PlayBeatAbandonForm,AlternateNameForm,NoteForm
 from .filters import GameFilter
-
+#from .urls import urlpatterns
 # Create your views here. 
 logger = logging.getLogger('MYAPP')
 #YOUR_PAGE_SIZE = len(SYSTEMS)
@@ -77,6 +78,11 @@ def top_priority_list(request,**kwags):
 def filtered_list(request,**kwargs):
     model = Game
     paginate_by = YOUR_PAGE_SIZE
+    logger.debug(request)
+    logger.debug(request.session)
+    logger.debug(RequestContext(request).flatten())
+    logger.debug(request.META.get('HTTP_REFERER'))
+    logger.debug(request.session['query_string'])
     #game_list = Game.objects.all().order_by('-purchase_date')
     #game_list = Game.objects.all().order_by('-priority')
     game_list = Game.objects.all().order_by('name')
@@ -390,17 +396,23 @@ def fix_location(request):
 
 def rec_from_list(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
-    logger.DEBUG(request)
     game.times_recommended += 1
     game.save()
+    if 'query_string' in request.session:
+        return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
     return HttpResponseRedirect(reverse('gameslist:list'))
+    
+    #return render(request, 'gameslist/list.html', context=RequestContext(request).flatten())
+    
 
 def pass_from_list(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
     game.times_passed_over += 1
     game.save()
+    if 'query_string' in request.session:
+        return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
     return HttpResponseRedirect(reverse('gameslist:list'))
-
+    
 # # Some standard Django stuff
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
 # from django.template import Context, loader
