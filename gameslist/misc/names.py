@@ -3,6 +3,7 @@
 #and just number check
 #and checking sans a 1 at the end?
 #all lower, all caps, mixed, lowercase on SOME words?
+#convert numerals to roman and back?
 
 import re
 import logging

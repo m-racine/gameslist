@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^beaten/$', views.beaten_in_2018_list, name='beaten'),
     url(r'^top/$', views.top_priority_list, name='top_priority_list'),
     url(r'^hltb/$', views.missing_hltb_list, name='hltb'),
-    url(r'^locate/$', views.fix_location, name='locate'),
+    #url(r'^locate/$', views.fix_location, name='locate'),
     #url(r'^notes/$', views.process_notes, name='notes'),
     url(r'^$', views.filtered_list, name='list',kwargs=dict({'page':'','system':'','game_format':''})),
     url(r'^$', views.filtered_list, name='list')]

@@ -78,7 +78,8 @@ def filtered_list(request,**kwargs):
     model = Game
     paginate_by = YOUR_PAGE_SIZE
     #game_list = Game.objects.all().order_by('-purchase_date')
-    game_list = Game.objects.all().order_by('-priority')
+    #game_list = Game.objects.all().order_by('-priority')
+    game_list = Game.objects.all().order_by('name')
     #logger.debug(kwargs)
     if request.META.get('HTTP_REFERER'):
         logger.debug(request.META.get('HTTP_REFERER'))
@@ -367,9 +368,8 @@ def fix_location(request):
     games = Game.objects.all()
     for game in games:
         #print game
-        #if game.location in ["BNT","DIG","EPI","GOG","HUM","IND","IIO","ORN","STM","TWH","UPL"]:
-            #do the thing
-        #    game.location = "PC"
+        if game.location in ["BNT","DIG","EPI","GOG","HUM","IND","IIO","ORN","STM","TWH","UPL"]:
+            game.location = "PC"
         if game.location == "NDS":
             game.location = "3DS"
             game.save()
@@ -390,6 +390,7 @@ def fix_location(request):
 
 def rec_from_list(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
+    logger.DEBUG(request)
     game.times_recommended += 1
     game.save()
     return HttpResponseRedirect(reverse('gameslist:list'))
