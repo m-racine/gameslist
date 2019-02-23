@@ -16,11 +16,7 @@ LOGGER = logging.getLogger('MYAPP')
 FILLS = [' ', ': ', ' - ', '-', ', ']
 #& is not a standard fill, but a swap for and
 
-def roman_to_arabic_or_false(test_string):
-	#so anything outside of that, return false
-	#I V X L C D M
-	#1 5 10 50 100 500 1000
-	return False
+
 
 def fixGame(game):
     # to replace \ that's what you need in the re, \\\\
@@ -279,4 +275,4 @@ def gen_metacritic_names(input_string):
 		naive_list[x] = fixGame(naive_list[x])
 	return list(set(naive_list))
 
-#print gen_names("Locked Hear  -- Typo")
+print gen_names("Boston Cream: The Pieining")

@@ -68,6 +68,17 @@ SYSTEMS = (
     ('XB1', 'Xbox One')
 )
 
+FORMATS = (
+    ('P', 'Physical'),
+    ('D', 'Digital'),
+    ('M', 'Missing'),
+    ('B', 'Borrowed'),
+    ('N', 'None'),
+    ('R', 'Returned'),
+    ('L', 'Lent'),
+    ('E', 'Expired')
+)
+
 def no_future(value):
     today = date.today()
     if value > today:
@@ -92,16 +103,7 @@ class BaseModel(models.Model):
         super(BaseModel, self).save(*args, **kwargs)
 
 class Game(BaseModel):
-    FORMATS = (
-        ('P', 'Physical'),
-        ('D', 'Digital'),
-        ('M', 'Missing'),
-        ('B', 'Borrowed'),
-        ('N', 'None'),
-        ('R', 'Returned'),
-        ('L', 'Lent'),
-        ('E', 'Expired')
-    )
+
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
     system = models.CharField(max_length=3, choices=SYSTEMS, default="STM")
@@ -319,6 +321,37 @@ class Game(BaseModel):
 #        game = self.create()
 
 
+class GameInstance(BaseModel):
+    #id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200, default="")
+    system = models.CharField(max_length=3, choices=SYSTEMS, default="STM")
+    played = models.BooleanField(default=False)
+    beaten = models.BooleanField(default=False)
+    location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
+    game_format = models.CharField('format', max_length=1, choices=FORMATS, default='D')
+    notes_old = models.CharField(max_length=500, default="", blank=True, null=True)
+    #notes = models.ForeignKey(Note, on_delete=models.CASCADE, null=True)
+    purchase_date = models.DateField('date purchased', default=None,
+                                     validators=[no_future])
+    finish_date = models.DateField('date finished', default=None, blank=True, null=True,
+                                   validators=[no_future])
+    abandoned = models.BooleanField(default=False)
+    perler = models.BooleanField(default=False)
+    reviewed = models.BooleanField(default=False)
+    flagged = models.BooleanField(default=False)
+    substantial_progress = models.BooleanField(default=False)
+    full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    #not a property so that it can be sorted more easily.
+    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
+    times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
+
+class GameToInstance(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    instance = models.ForeignKey(GameInstance, on_delete=models.CASCADE)
 
 class Wish(BaseModel):
     #id = models.AutoField(primary_key=True)

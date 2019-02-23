@@ -193,3 +193,6 @@ SECURE_SSL_REDIRECT = False
 # ?: (security.W016) You have 'django.middleware.csrf.CsrfViewMiddleware' in your MIDDLEWARE, but you have not set CSRF_COOKIE_SECURE to True. Using a secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.
 # ?: (security.W018) You should not have DEBUG set to True in deployment.
 # ?: (security.W019) You have 'django.middleware.clickjacking.XFrameOptionsMiddleware' in your MIDDLEWARE, but X_FRAME_OPTIONS is not set to 'DENY'. The default is 'SAMEORIGIN', but unless there is a good reason for your site to serve other parts of itself in a frame, you should change it to 'DENY'.
+
+if os.environ.get('DJANGO_DEVELOPMENT'):
+    from settings_dev import * 
