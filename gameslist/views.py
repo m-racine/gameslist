@@ -15,9 +15,9 @@ from django import forms
 from django.forms.utils import ErrorList
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game,Wish,Note, SYSTEMS
-from .forms import GameForm,PlayBeatAbandonForm,AlternateNameForm,NoteForm
-from .filters import GameFilter
+from .models import Game,Wish,Note, SYSTEMS, GameInstance
+from .forms import GameInstanceForm,PlayBeatAbandonForm,AlternateNameForm,NoteForm
+from .filters import GameInstanceFilter
 #from .urls import urlpatterns
 # Create your views here. 
 logger = logging.getLogger('MYAPP')
@@ -30,12 +30,12 @@ class IndexView(generic.ListView):
     context_object_name = 'new_games_list'
 
     def get_queryset(self):
-        return Game.objects.filter(
+        return GameInstance.objects.filter(
             purchase_date__lte=timezone.now()
         ).order_by('-purchase_date')[:5]
     
 def top_priority_list(request,**kwags):
-    model = Game
+    model = GameInstance
     paginate_by = len(SYSTEMS)
 
     # wanted_items = set()
@@ -45,7 +45,7 @@ def top_priority_list(request,**kwags):
 
     # return model1.objects.filter(pk__in = wanted_items)
     top_dict = {}
-    game_list = Game.objects.all().order_by('-priority')
+    game_list = GameInstance.objects.all().order_by('-priority')
     for item in game_list:
         if item.location in top_dict:
             pass
@@ -56,7 +56,7 @@ def top_priority_list(request,**kwags):
     page = request.GET.get('page')
     filtered_set = set(top_dict.values())
     #print filtered_set
-    filtered_qs = Game.objects.filter(pk__in = filtered_set).order_by('-priority')
+    filtered_qs = GameInstance.objects.filter(pk__in = filtered_set).order_by('-priority')
     paginator = Paginator(filtered_qs, paginate_by)
 
     
@@ -76,7 +76,7 @@ def top_priority_list(request,**kwags):
     )
 
 def filtered_list(request,**kwargs):
-    model = Game
+    model = GameInstance
     paginate_by = YOUR_PAGE_SIZE
     logger.debug(request)
     logger.debug(request.session)
@@ -85,7 +85,7 @@ def filtered_list(request,**kwargs):
     logger.debug(request.session['query_string'])
     #game_list = Game.objects.all().order_by('-purchase_date')
     #game_list = Game.objects.all().order_by('-priority')
-    game_list = Game.objects.all().order_by('name')
+    game_list = GameInstance.objects.all().order_by('name')
     #logger.debug(kwargs)
     if request.META.get('HTTP_REFERER'):
         logger.debug(request.META.get('HTTP_REFERER'))
@@ -109,7 +109,7 @@ def filtered_list(request,**kwargs):
     #else:
     #    logger.debug("NO REFERER")
     page = request.GET.get('page')
-    game_filter = GameFilter(request.GET, queryset=game_list)
+    game_filter = GameInstanceFilter(request.GET, queryset=game_list)
     
     filtered_qs = game_filter.qs
     paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
@@ -130,12 +130,12 @@ def filtered_list(request,**kwargs):
     )
 
 def beaten_in_2018_list(request,**kwargs):
-    model = Game
+    model = GameInstance
     paginate_by = 100
-    game_list = Game.objects.all().order_by('system')
+    game_list = GameInstance.objects.all().order_by('system')
 
     page = request.GET.get('page')
-    game_filter = GameFilter({'beaten':True,'finish_date__year__gte':2018}, queryset=game_list)
+    game_filter = GameInstanceFilter({'beaten':True,'finish_date__year__gte':2018}, queryset=game_list)
     
     filtered_qs = game_filter.qs
     paginator = Paginator(filtered_qs, paginate_by)
@@ -155,12 +155,12 @@ def beaten_in_2018_list(request,**kwargs):
     )
 
 def missing_hltb_list(request,**kwargs):
-    model = Game
+    model = GameInstance
     paginate_by = 100
-    game_list = Game.objects.all().order_by('system')
+    game_list = GameInstance.objects.all().order_by('system')
 
     page = request.GET.get('page')
-    game_filter = GameFilter({'full_time_to_beat':-1.0}, queryset=game_list)
+    game_filter = GameInstanceFilter({'full_time_to_beat':-1.0}, queryset=game_list)
     
     filtered_qs = game_filter.qs
     paginator = Paginator(filtered_qs, paginate_by)
@@ -180,12 +180,12 @@ def missing_hltb_list(request,**kwargs):
     )
 
 def hltb_list(request,**kwargs):
-    model = Game
+    model = GameInstance
     paginate_by = 100
-    game_list = Game.objects.all().order_by('system')
+    game_list = GameInstance.objects.all().order_by('system')
 
     page = request.GET.get('page')
-    game_filter = GameFilter({'full_time_to_beat__lte':5.0,'full_time_to_beat__gte':0.1,'beaten':False}, queryset=game_list)
+    game_filter = GameInstanceFilter({'full_time_to_beat__lte':5.0,'full_time_to_beat__gte':0.1,'beaten':False}, queryset=game_list)
     
     filtered_qs = game_filter.qs
     paginator = Paginator(filtered_qs, paginate_by)
@@ -234,13 +234,13 @@ def check_url_args_for_only_token(url):
 
 
 def move_to_detail_view(request, pk):
-    game = get_object_or_404(Game, pk=pk)
+    game = get_object_or_404(GameInstance, pk=pk)
     #print vars(game)
     #print game.note_set.all()
     return render(request, 'gameslist/detail.html', {'game':game})
 
 class DetailView(generic.DetailView):
-    model = Game
+    model = GameInstance
     template_name = 'gameslist/detail.html'
 
 def add_game_view(request):
@@ -273,7 +273,7 @@ def add_name_view(request,game_id):
             name = form.save()
             name.parent_game_id = game_id
             name.save()
-            game = get_object_or_404(Game, pk=game_id)
+            game = get_object_or_404(GameInstance, pk=game_id)
             game.save()
             return HttpResponseRedirect(reverse('gameslist:detail', args=(game_id,)))
     else:
@@ -281,7 +281,7 @@ def add_name_view(request,game_id):
     return render(request,'gameslist/alternatename_form.html', {'form':form})
 
 class PlayBeatAbandonGame(generic.UpdateView):
-    model = Game
+    model = GameInstance
     form_class = PlayBeatAbandonForm
     template_name_suffix = '_update_form'
 
@@ -301,7 +301,7 @@ class PlayBeatAbandonGame(generic.UpdateView):
         return reverse('gameslist:detail', args=(self.object.id,))
 
 def save_all_games(request):
-    game_list = Game.objects.all()
+    game_list = GameInstance.objects.all()
     for game in game_list:
         if game.metacritic < 1 or game.user_score < 1 or game.full_time_to_beat < 1:
             try:
@@ -337,7 +337,7 @@ def save_all_games(request):
 #     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
 def flag_game(request, game_id):
-    game = get_object_or_404(Game, pk=game_id)
+    game = get_object_or_404(GameInstance, pk=game_id)
     #set game.beat to true
     game.flagged = True
     game.save()
@@ -362,7 +362,7 @@ def test_delete(request):
     return response
 
 def process_notes(request):
-    games = Game.objects.all()
+    games = GameInstance.objects.all()
     for game in games:
         #print game
         if game.notes_old:
@@ -371,7 +371,7 @@ def process_notes(request):
     return HttpResponseRedirect(reverse('gameslist:list'))
 
 def fix_location(request):
-    games = Game.objects.all()
+    games = GameInstance.objects.all()
     for game in games:
         #print game
         if game.location in ["BNT","DIG","EPI","GOG","HUM","IND","IIO","ORN","STM","TWH","UPL"]:
@@ -395,7 +395,7 @@ def fix_location(request):
 
 
 def rec_from_list(request, game_id):
-    game = get_object_or_404(Game, pk=game_id)
+    game = get_object_or_404(GameInstance, pk=game_id)
     game.times_recommended += 1
     game.save()
     if 'query_string' in request.session:
@@ -406,7 +406,7 @@ def rec_from_list(request, game_id):
     
 
 def pass_from_list(request, game_id):
-    game = get_object_or_404(Game, pk=game_id)
+    game = get_object_or_404(GameInstance, pk=game_id)
     game.times_passed_over += 1
     game.save()
     if 'query_string' in request.session:

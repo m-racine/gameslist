@@ -2,12 +2,12 @@ from datetime import date
 from datetime import datetime
 
 from django.forms import ModelForm, SelectDateWidget, DateField
-from .models import Game, Note, AlternateName
+from .models import Game, Note, AlternateName, GameInstance
 
 years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
 years.reverse()
 
-class GameForm(ModelForm):
+class GameInstanceForm(ModelForm):
 #https://stackoverflow.com/questions/604266/django-set-default-form-values
     #def __init__(self, *args, **kwargs):
         #super(GameForm, self).__init__(*args, **kwargs)
@@ -15,7 +15,7 @@ class GameForm(ModelForm):
         #LOGGER.debug(self.initial['purchase_date'])
 
     class Meta:
-        model = Game
+        model = GameInstance
         fields = ('name', 'system', 'location', 'game_format',
                   'played', 'beaten', 'abandoned', 'perler',
                   'reviewed', 'current_time', 'purchase_date', 'finish_date')
@@ -39,7 +39,7 @@ class GameForm(ModelForm):
 
 class PlayBeatAbandonForm(ModelForm):
     class Meta:
-        model = Game
+        model = GameInstance
         years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
         years.reverse()
         fields = ('played', 'current_time', 'beaten', 'abandoned', 'finish_date')
@@ -50,9 +50,9 @@ class PlayBeatAbandonForm(ModelForm):
 class NoteForm(ModelForm):
     class Meta:
         model = Note
-        fields = ('text',)
+        fields = ('note',)
 
 class AlternateNameForm(ModelForm):
     class Meta:
         model = AlternateName
-        fields = ('text',)
+        fields = ('name',)

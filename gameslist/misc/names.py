@@ -275,4 +275,4 @@ def gen_metacritic_names(input_string):
 		naive_list[x] = fixGame(naive_list[x])
 	return list(set(naive_list))
 
-print gen_names("Boston Cream: The Pieining")
+#print gen_names("Boston Cream: The Pieining")

@@ -1,0 +1,17 @@
+to change a field name in django 1.7+
+
+1.  Edit the field name in the model (but remember the old field name: you need it for step 3!)
+2.  Create an empty migration
+$ python manage.py makemigrations --empty myApp
+3.  Edit the empty migration (it's in the migrations folder in your app folder, and will be the most recent migration) by adding
+
+migrations.RenameField('MyModel', 'old_field_name', 'new_field_name'),
+
+to the operations list.
+
+4.  Apply the migration  
+$ python manage.py migrate myApp
+
+
+
+https://gist.githubusercontent.com/dhbradshaw/e2bdeb502b0d0d2acced/raw/fc0906da85550a0599ef58a41b12146d06a350a9/gistfile1.txt

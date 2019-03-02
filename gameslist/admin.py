@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Game
+from .models import Game, GameInstance
 # Register your models here.
 
 
@@ -25,8 +25,8 @@ def wipe_finish(GameAdmin, request, queryset):
     queryset.update(finish_date=None)
 
 
-class GameAdmin(admin.ModelAdmin):
-    list_display = ('name','system','location','game_format','notes_old','purchase_date','finish_date',
+class GameInstanceAdmin(admin.ModelAdmin):
+    list_display = ('name','system','location','game_format','purchase_date','finish_date',
                     'played','beaten','abandoned','perler','reviewed','flagged')
     exclude = ('release_date','developer','publisher','streamable','recordable','aging',
               'play_aging', 'full_time_to_beat','number_of_eps','aging_effect','aging_non_ep',
@@ -37,7 +37,7 @@ class GameAdmin(admin.ModelAdmin):
     actions = [wipe_finish]
 
 
-admin.site.register(Game, GameAdmin)
+admin.site.register(GameInstance, GameInstanceAdmin)
 
 
 

@@ -22,6 +22,14 @@ DATABASES = {
         'PORT':'3306',
         'USER':'jubio',
         'PASSWORD':'Mithras25'
+    },
+    'gamestest': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gamestest',
+        'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
+        'PORT':'3306',
+        'USER':'jubio',
+        'PASSWORD':'Mithras25'
     }
 }
 
