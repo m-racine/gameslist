@@ -15,7 +15,7 @@ from django import forms
 from django.forms.utils import ErrorList
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game,Wish,Note, SYSTEMS, GameInstance
+from .models import Game,Wish,Note, SYSTEMS, GameInstance, GameToInstance, AlternateName
 from .forms import GameInstanceForm,PlayBeatAbandonForm,AlternateNameForm,NoteForm
 from .filters import GameInstanceFilter
 #from .urls import urlpatterns
@@ -314,27 +314,7 @@ def save_all_games(request):
                 logger.warning(sys.exc_info()[1])
                 logger.error(traceback.print_tb(sys.exc_info()[2]))
     return HttpResponseRedirect(reverse('gameslist:list'))
-# def beat_game(request, game_id):
-#     game = get_object_or_404(Game, pk=game_id)
-#     #set game.beat to true
-#     game.beaten = True
-#     game.save()
-#     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
-# #def play_game(request, game_id):
-# def play_game(request, game_id):
-#     game = get_object_or_404(Game, pk=game_id)
-#     #set game.beat to true
-#     game.played = True
-#     game.save()
-#     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
-
-# def abandon_game(request, game_id):
-#     game = get_object_or_404(Game, pk=game_id)
-#     #set game.beat to true
-#     game.abandoned = True
-#     game.save()
-#     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
 
 def flag_game(request, game_id):
     game = get_object_or_404(GameInstance, pk=game_id)
@@ -342,24 +322,6 @@ def flag_game(request, game_id):
     game.flagged = True
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
-
-#...
-def stop_tracking(request):
-#...
-    return HttpResponse("Stop?")
-
-def test_session(request):
-    request.session.set_test_cookie()
-    return HttpResponse("Testing session cookie")
-
-
-def test_delete(request):
-    if request.session.test_cookie_worked():
-        request.session.delete_test_cookie()
-        response = HttpResponse("Cookie test passed")
-    else:
-        response = HttpResponse("Cookie test failed")
-    return response
 
 def process_notes(request):
     games = GameInstance.objects.all()
@@ -413,6 +375,126 @@ def pass_from_list(request, game_id):
         return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
     return HttpResponseRedirect(reverse('gameslist:list'))
     
+
+def move_from_instance_to_game(request):
+    games = GameInstance.objects.all()
+    tries = 0
+    for game in games:
+        mapping = GameToInstance.objects.all().filter(instance_id=game.id)
+        logger.debug(mapping)
+        print mapping.count()
+        if mapping.count() > 0:
+            logger.debug("Mapping found for %s", game)
+            continue
+        else:
+            try:
+                name_list = [game.name] + list(AlternateName.objects.all().filter(parent_game=game.id))
+                logger.error(name_list)
+                for name in name_list:
+                    logger.debug(name)
+                    masters = Game.objects.filter(name=name)
+                    if masters.count() > 1:
+                        logger.debug("Too many matches for %s for %s", name, game)
+                        break
+                    elif masters.count() == 1:
+                        logger.info("Creating mapping from %s to %s", game, masters[0])
+                        g_to_i = GameToInstance.objects.create(game=masters[0], instance=game, primary=False)
+                        #g_to_i.save()
+                        break
+                    else:
+                        logger.debug("Creating new master game for %s", game)
+                        master_game = Game.objects.create(name=game.name, played=game.played, beaten=game.beaten,
+                                                         purchase_date=game.purchase_date, finish_date=game.finish_date,
+                                                         abandoned=game.abandoned, perler=game.perler, reviewed=game.reviewed,
+                                                         flagged=game.flagged, priority=game.priority, times_recommended=game.times_recommended,
+                                                         times_passed_over=game.times_passed_over)
+                        #master_game.save()
+                        logger.debug("Mapping new master game %s to %s", master_game, game)
+                        g_to_i = GameToInstance.objects.create(game=master_game, instance=game, primary=True)
+                        #g_to_i.save()
+                        logger.info("Added %s", master_game.name)
+                        
+                        break
+            except:
+                logger.error(sys.exc_info()[0])
+                logger.error(sys.exc_info()[1])
+                logger.error(traceback.print_tb(sys.exc_info()[2]))
+    return HttpResponseRedirect(reverse('gameslist:list'))
+
+
+    # games = GameInstance.objects.all().filter(system="EPI")
+    # tries = 0
+    # for game in games:
+    #     mapping = GameToInstance.objects.all().filter(instance_id=game.id)
+    #     logger.debug(mapping)
+    #     if mapping.count() > 0:
+    #         logger.debug("Mapping found for %s", game)
+    #         continue
+    #     else:
+    #         try:
+    #             for name in [game.name] + list(AlternateName.objects.all().filter(parent_game=game.id)):
+    #                 logger.debug(name)
+    #                 masters = Game.objects.filter(name=name)
+    #                 if masters.count() > 1:
+    #                     logger.debug("Too many matches for %s for %s", name, game)
+    #                     break
+    #                 elif masters.count() == 1:
+    #                     g_to_i = GameToInstance.objects.create(game=masters[0], instance=game, primary=False)
+    #                     g_to_i.save()
+    #                     break
+    #                 else:
+    #                     master_game = Game.objects.create(name=game.name, played=game.played, beaten=game.beaten,
+    #                                                       purchase_date=game.purchase_date, finish_date=game.finish_date,
+    #                                                       abandoned=game.abandoned, perler=game.perler, reviewed=game.reviewed,
+    #                                                       flagged=game.flagged, priority=game.priority, times_recommended=game.times_recommended,
+    #                                                       times_passed_over=game.times_passed_over)
+    #                     master_game.save()
+    #                     logger.debug(master_game)
+    #                     g_to_i = GameToInstance.objects.create(game=master_game, instance=game, primary=True)
+    #                     logger.debug(g_to_i)
+    #                     g_to_i.save()
+    #                     logger.info("Added %s", master_game.name)
+    #                     break
+    #         except:
+    #             logger.error(sys.exc_info()[0])
+    #             logger.error(sys.exc_info()[1])
+    #             logger.error(traceback.print_tb(sys.exc_info()[2]))
+    # return HttpResponseRedirect(reverse('gameslist:list'))
+
+
+#    name = models.CharField(max_length=200, default="")
+    # played = models.BooleanField(default=False)
+    # beaten = models.BooleanField(default=False)
+    # #notes = models.ForeignKey(Note, on_delete=models.CASCADE, null=True)
+    # purchase_date = models.DateField('date purchased', default=None,
+    #                                  validators=[no_future])
+    # finish_date = models.DateField('date finished', default=None, blank=True, null=True,
+    #                                validators=[no_future])
+    # abandoned = models.BooleanField(default=False)
+    # perler = models.BooleanField(default=False)
+    # reviewed = models.BooleanField(default=False)
+    # flagged = models.BooleanField(default=False)
+    # #not a property so that it can be sorted more easily.
+    # priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    # times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
+    # times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # # Some standard Django stuff
 # from django.http import HttpResponse, HttpResponseRedirect, Http404
 # from django.template import Context, loader
