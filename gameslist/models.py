@@ -79,6 +79,15 @@ FORMATS = (
     ('E', 'Expired')
 )
 
+#ENTITIES
+GAME = 1
+GAME_INSTANCE = 2
+NOTE = 3
+ALTERNATE_NAME = 4
+WISH = 5
+SERIES = 6
+SUB_SERIES = 7
+
 def no_future(value):
     today = date.today()
     if value > today:
@@ -202,10 +211,10 @@ class GameInstance(BaseModel):
         self.priority = self.calculate_priority()
         if self.priority == 0.0:
             self.priority = -5.0
-        super(Game, self).save(*args, **kwargs)
+        super(GameInstance, self).save(*args, **kwargs)
 
     def clean(self):
-        super(Game, self).clean()
+        super(GameInstance, self).clean()
         if self.played and self.current_time <= 0:
             raise ValidationError({'current_time':(CURRENT_TIME_NEGATIVE)})
         if self.current_time > 0 and not self.played:
@@ -366,13 +375,24 @@ class Wish(BaseModel):
 
 class Note(BaseModel):
     note = models.CharField(max_length=500,default="",blank=True,null=True)
-    parent_game = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
+    parent_entity = models.IntegerField(default=1,null=False)
+    parent_entity_type = models.IntegerField(default=1)
+    def __str__(self):
+        return self.note
+
+class Flag(BaseModel):
+    is_resolved = models.BooleanField(default=False)
+    resolved_date = models.DateField(default=None)
+    note = models.CharField(max_length=500,default="",blank=True,null=True)
+    parent_entity = models.IntegerField(default=1,null=False)
+    parent_entity_type = models.IntegerField(default=1)
     def __str__(self):
         return self.note
 
 class AlternateName(BaseModel):
-    parent_game = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
+    parent_entity = models.IntegerField(default=1,null=False)
     name = models.CharField(max_length=200,default="",blank=True,null=True)
+    parent_entity_type = models.IntegerField(default=1)
 
     def __str__(self):
         return self.text
@@ -382,6 +402,21 @@ class AlternateName(BaseModel):
         name = cls(name=name, parent_game=parent_game, created_date=date.today(),modified_date=date.today())
         # do something with the book
         return name
+
+class Series(BaseModel):
+    name = models.CharField(max_length=200,default="",blank=True,null=True)
+    linear = models.BooleanField(default=False)
+
+class SubSeries(BaseModel):
+    name = models.CharField(max_length=200,default="",blank=True,null=True)
+    linear = models.BooleanField(default=False)
+    parent_series = models.ForeignKey(Series,  on_delete=models.CASCADE, null=True)
+
+class GameToSeries(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
+    series = models.ForeignKey(Series, on_delete=models.CASCADE, null=True)
+    subseries = models.ForeignKey(SubSeries, on_delete=models.CASCADE, null=True)
+
 # #
 # AutoField
 # BigAutoField
