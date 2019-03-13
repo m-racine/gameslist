@@ -18,7 +18,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Game,Wish,Note, SYSTEMS, GameInstance, GameToInstance, AlternateName
 from .models import GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES
 from .forms import GameInstanceForm,PlayBeatAbandonForm,AlternateNameForm,NoteForm
-from .filters import GameInstanceFilter
+from .filters import GameInstanceFilter, GameFilter
 #from .urls import urlpatterns
 # Create your views here. 
 logger = logging.getLogger('MYAPP')
@@ -284,7 +284,7 @@ def add_name_view(request,game_id):
     return render(request,'gameslist/alternatename_form.html', {'form':form})
 
 class PlayBeatAbandonGame(generic.UpdateView):
-    model = GameInstance
+    model = Game
     form_class = PlayBeatAbandonForm
     template_name_suffix = '_update_form'
 
@@ -320,7 +320,7 @@ def save_all_games(request):
 
 
 def flag_game(request, game_id):
-    game = get_object_or_404(GameInstance, pk=game_id)
+    game = get_object_or_404(Game, pk=game_id)
     #set game.beat to true
     game.flagged = True
     game.save()
@@ -360,7 +360,7 @@ def fix_location(request):
 
 
 def rec_from_list(request, game_id):
-    game = get_object_or_404(GameInstance, pk=game_id)
+    game = get_object_or_404(Game, pk=game_id)
     game.times_recommended += 1
     game.save()
     if 'query_string' in request.session:
@@ -371,7 +371,7 @@ def rec_from_list(request, game_id):
     
 
 def pass_from_list(request, game_id):
-    game = get_object_or_404(GameInstance, pk=game_id)
+    game = get_object_or_404(Game, pk=game_id)
     game.times_passed_over += 1
     game.save()
     if 'query_string' in request.session:
@@ -586,13 +586,13 @@ def beaten_in_2018_game_list(request,**kwargs):
     )
 
 
-def move_to_detail_view(request, pk):
+def move_to_detail_view_game(request, pk):
     game = get_object_or_404(Game, pk=pk)
     #print vars(game)
     #print game.note_set.all()
     return render(request, 'gameslist/detail.html', {'game':game})
 
-class DetailView(generic.DetailView):
+class DetailView_game(generic.DetailView):
     model = Game
     template_name = 'gameslist/detail.html'
 
@@ -625,49 +625,10 @@ def add_name_plus(request, entity_id, entity_type):
         form = AlternateNameForm(initial={"parent_game_id":game_id})
     return render(request,'gameslist/alternatename_form.html', {'form':form})
 
-class PlayBeatAbandonGame(generic.UpdateView):
-    model = GameInstance
-    form_class = PlayBeatAbandonForm
-    template_name_suffix = '_update_form'
 
-    #https://gist.github.com/vero4karu/3b62a13bdce7fe4178ac
-    def form_valid(self, form):
-        if form.cleaned_data['beaten'] or form.cleaned_data['abandoned']:
-            if not form.cleaned_data['finish_date']:
-                form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                    u'You need to have a finish date in order to beat or abandon a game.'
-                ])
-                return self.form_invalid(form)
-        self.object.is_submitted = True
-        self.object = form.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-    def get_success_url(self):
-        return reverse('gameslist:detail', args=(self.object.id,))
-
-
-def flag_game(request, game_id):
+def flag_game_instance(request, game_id):
     game = get_object_or_404(GameInstance, pk=game_id)
     #set game.beat to true
     game.flagged = True
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
-
-def rec_from_list(request, game_id):
-    game = get_object_or_404(GameInstance, pk=game_id)
-    game.times_recommended += 1
-    game.save()
-    if 'query_string' in request.session:
-        return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
-    return HttpResponseRedirect(reverse('gameslist:list'))
-    
-    #return render(request, 'gameslist/list.html', context=RequestContext(request).flatten())
-    
-
-def pass_from_list(request, game_id):
-    game = get_object_or_404(GameInstance, pk=game_id)
-    game.times_passed_over += 1
-    game.save()
-    if 'query_string' in request.session:
-        return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
-    return HttpResponseRedirect(reverse('gameslist:list'))
