@@ -6,3 +6,12 @@ body {
     font-family: 'Noto Sans SC', sans-serif;
     /*background: white url("images/newyears.png") no-repeat right bottom;*/
 }
+
+div.instance_block {
+    border: double;
+}
+
+div.instance_list {
+    overflow: auto;
+    height:33%;
+}

@@ -52,9 +52,9 @@ class Migration(migrations.Migration):
             model_name='gameinstance',
             name='notes_old',
         ),
-        migrations.AddField(
-            model_name='gametoinstance',
-            name='primary',
-            field=models.BooleanField(default=True),
-        ),
+        # migrations.AddField(
+        #     model_name='gametoinstance',
+        #     name='primary',
+        #     field=models.BooleanField(default=True),
+        # ),
     ]

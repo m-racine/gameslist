@@ -534,10 +534,10 @@ def filtered_game_list(request,**kwargs):
                     logger.debug("REDIRECTING")
                     if 'query_string' in request.session:
                         if request.session['query_string'].strip():
-                            return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
-                        return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
-                    logger.debug(reverse('gameslist:list')+"?page=1")
-                    return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
+                            return HttpResponseRedirect(reverse('gameslist:game_list')+"?{0}".format(request.session['query_string']))
+                        return HttpResponseRedirect(reverse('gameslist:game_list')+"?page=1")
+                    logger.debug(reverse('gameslist:game_list')+"?page=1")
+                    return HttpResponseRedirect(reverse('gameslist:game_list')+"?page=1")
 
     page = request.GET.get('page')
     game_filter = GameInstanceFilter(request.GET, queryset=game_list)
@@ -556,7 +556,7 @@ def filtered_game_list(request,**kwargs):
     request.session['query_string'] =request.GET.urlencode()
     return render(
          request, 
-         'gameslist/list.html', 
+         'gameslist/game_list.html', 
          {'response': response,'filter':game_filter}
     )
 
@@ -590,7 +590,7 @@ def move_to_detail_view_game(request, pk):
     game = get_object_or_404(Game, pk=pk)
     #print vars(game)
     #print game.note_set.all()
-    return render(request, 'gameslist/detail.html', {'game':game})
+    return render(request, 'gameslist/game_detail.html', {'game':game})
 
 class DetailView_game(generic.DetailView):
     model = Game

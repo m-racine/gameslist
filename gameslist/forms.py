@@ -39,7 +39,7 @@ class GameInstanceForm(ModelForm):
 
 class PlayBeatAbandonForm(ModelForm):
     class Meta:
-        model = Game
+        model = GameInstance
         years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
         years.reverse()
         fields = ('played', 'current_time', 'beaten', 'abandoned', 'finish_date')

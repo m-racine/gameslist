@@ -1,5 +1,8 @@
 
-
+#add an Active Flag? Make kind of a dashboard
+# separate active flag for co-op
+# include a "players" object for other people I play it with?
+# 
 #Adventure Time: Pirates of the Enchiridion 3 8
 #Star Wars Republic Commando 3 8
 

@@ -1,0 +1,4 @@
+<form action="{% url 'gameslist:play_game' game.id %}" method="get">
+        {% csrf_token %}
+        <button type="submit"> Change Play Status</button>
+    </form> 

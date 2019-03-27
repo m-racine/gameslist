@@ -1,0 +1,142 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<h1>{{ game.name }}</h1>
+{% if game.alternatename_set.all %}
+<h2>Also Known As</h2>
+  {% for obj in game.alternatename_set.all %}
+    <li>{{obj.text}}</li>
+  {% endfor %}
+{% endif %}
+<form action="{% url 'gameslist:add_name' game.id %}" method="get">
+                {% csrf_token %}
+                <button type="submit"> Add Alternate Name</button>
+</form>
+<body>
+    <p>Priority {{game.priority}} </p>
+    <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
+    <p>Purchased on {{game.purchase_date}} and finished on {{game.finish_date}}</p>
+    <p>Aging: {{game.aging}}. PlayAging: {{game.play_aging}}</p>
+    <p>Remaining Time {{game.time_to_beat}} and Current Time {{game.current_time}}
+    <p>Full Time to Beat: {{game.full_time_to_beat}} Hours</p>
+    <p>Recommended: {{game.times_recommended}} Passed Over: {{ game.times_passed_over }} </p>
+
+    <form action="{% url 'gameslist:play_game' game.id %}" method="get">
+        {% csrf_token %}
+        <button type="submit"> Change Play Status</button>
+    </form> 
+    
+    {% if game.perler %}<p>Perler Made!</p>{% endif %}
+    {% if game.reviewed %}<p>Reviewed!</p>{% endif %}
+    {% if game.flagged %}
+        <p>Flagged!</p>
+    {% else %}
+            <form action="{% url 'gameslist:flag_game' game.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit"> Flag for revision!</button>
+            </form>
+    {% endif %}
+    {%comment%}<p>{{game.notes_old}}</p>{%endcomment%}
+
+    <ul>
+        <h2>Notes</h2>
+        {% for obj in game.note_set.all %}
+           <li>{{obj.text}}</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'gameslist:add_note' game.id %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit"> Add Note</button>
+    </form>
+    <form action="{% url 'gameslist:list' %}" method="get">
+        {% csrf_token %}
+        <button type="submit">Back to List</button>
+    </form> 
+<body>
+
+
+{%comment%}
+
+
+http://protocolostomy.com/2009/08/31/representing-relationships-in-django-templates-without-writing-extra-code-relatedmanager-and-manyrelatedmanager/
+
+
+{% block content %}
+<h2>Projects for {{object.user.first_name}} {{object.user.last_name}}</h2>
+<ul>
+   {% for project in object.project_set.all %}
+      <li><a href="{{project.get_absolute_url}}">{{project.id}} (Opened: {{project.date_started.date}})</a>
+      <ul>
+         <h2>Clients for project {{project.id}}</h2>
+         {% for obj in project.client.all %}
+            <li>{{obj.lname}}, {{obj.fname}}</li>
+         {% endfor %}
+      </ul>
+   {% endfor %}
+</ul>
+{% endblock %}
+
+
+
+https://stackoverflow.com/questions/38965677/django-how-to-show-and-hide-div-based-on-the-selection-of-the-dropdown-menu
+
+
+Template(html)
+
+<div id="pack-method" class="col-sm-30">
+   {{ form.item_packmethod}}
+</div>
+<div id="hidden2-1">
+  <div class="col-sm-20">
+    {{form.pallet_count}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_width}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_height}}
+  </div>
+</div>
+<div id="hidden2-2">
+  <div class="col-sm-20">
+    {{form.pallet_count}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_width}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_height}}
+  </div>
+  <div class="col-sm-20">
+    {{form.pallet_depth}}
+  </div>
+</div>
+
+<script type="text/javascript">
+    $('#hidden2-1').css({
+       'display': 'none'
+    });
+    $('#hidden2-2').css({
+       'display': 'none'
+    });
+    $('select').on('change', function() {
+       var a = $(this).val();
+       if (a === 'Pallet') {
+           $('#hidden2-1').show();
+           $('#hidden2-2').hide();
+       }
+       else if (a === 'Rack') {
+           $('#hidden2-1').hide();
+           $('#hidden2-2').show();
+       }
+       else if (a === 'Box') {
+           $('#hidden2-1').hide();
+           $('#hidden2-2').show();
+       }
+       else {
+           $('#hidden2-1').hide();
+           $('#hidden2-2').hide();
+       }
+    });
+</script>
+
+{%endcomment%}

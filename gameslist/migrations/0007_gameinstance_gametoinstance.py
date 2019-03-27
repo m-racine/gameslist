@@ -46,15 +46,15 @@ class Migration(migrations.Migration):
                 'abstract': False,
             },
         ),
-        migrations.CreateModel(
-            name='GameToInstance',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('game', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gameslist.Game')),
-                ('instance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gameslist.GameInstance')),
-            ],
-            options={
-                'abstract': False,
-            },
-        ),
+        # migrations.CreateModel(
+        #     name='GameToInstance',
+        #     fields=[
+        #         ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #         ('game', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gameslist.Game')),
+        #         ('instance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gameslist.GameInstance')),
+        #     ],
+        #     options={
+        #         'abstract': False,
+        #     },
+        # ),
     ]

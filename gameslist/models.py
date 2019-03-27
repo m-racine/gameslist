@@ -130,6 +130,7 @@ class Game(BaseModel):
     priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
     times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
+    full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
 
 
     def __str__(self):
@@ -156,14 +157,10 @@ class GameInstance(BaseModel):
     reviewed = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
     substantial_progress = models.BooleanField(default=False)
-    full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     #not a property so that it can be sorted more easily.
-    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
-    times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
-    times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
 
     #substantial_progress
     #developer

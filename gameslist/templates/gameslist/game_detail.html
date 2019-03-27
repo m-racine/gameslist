@@ -1,0 +1,60 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'gameslist/style.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<h1>{{ game.name }}</h1>
+{% if game.alternatename_set.all %}
+<h2>Also Known As</h2>
+  {% for obj in game.alternatename_set.all %}
+    <li>{{obj.text}}</li>
+  {% endfor %}
+{% endif %}
+<form action="{% url 'gameslist:add_name' game.id %}" method="get">
+                {% csrf_token %}
+                <button type="submit"> Add Alternate Name</button>
+</form>
+<body>
+    <div>
+      <p>Released on x. Purchased on {{game.purchase_date}}</p> 
+    </div>
+    <div>
+      {% if game.played %}
+        {% if game.abandoned %}
+          <p>Abandoned on {{game.finish_date}}</p>
+        {% else %}
+          {% if game.beaten %}
+            <p>Beaten on {{game.finish_date}}</p>
+          {% else %}
+            <p>Played!</p>
+          {% endif %}
+        {% endif %}
+      {% else %}
+        <p>Unplayed...</p>
+      {% endif %}
+    </div>
+    <div>
+      <p>Priority {{game.priority}} Recommended: {{game.times_recommended}} Passed Over: {{ game.times_passed_over }} </p>
+    </div>
+    <div class="instance_list">
+    {% for obj in game.gametoinstance_set.all %}
+      <div class="instance_block">
+        {% include "gameslist/detail.html" with game=obj.instance %}
+      </div>
+    {% endfor %}
+    </div>
+
+    <ul>
+        <h2>Notes</h2>
+        {% for obj in game.note_set.all %}
+           <li>{{obj.text}}</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'gameslist:add_note' game.id %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit"> Add Note</button>
+    </form>
+    <form action="{% url 'gameslist:list' %}" method="get">
+        {% csrf_token %}
+        <button type="submit">Back to List</button>
+    </form> 
+<body>
