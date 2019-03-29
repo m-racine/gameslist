@@ -131,6 +131,7 @@ class Game(BaseModel):
     times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
     times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
     full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    total_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
 
 
     def __str__(self):
