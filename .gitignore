@@ -8,3 +8,5 @@ lib/*
 .coverage
 cover/*
 mysite.log
+share/*
+bin/
