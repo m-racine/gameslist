@@ -37,7 +37,7 @@ class IndexView(generic.ListView):
         ).order_by('-purchase_date')[:5]
     
 def top_priority_list(request,**kwags):
-    model = GameInstance
+    model = Game
     paginate_by = len(SYSTEMS)
 
     # wanted_items = set()
@@ -47,7 +47,7 @@ def top_priority_list(request,**kwags):
 
     # return model1.objects.filter(pk__in = wanted_items)
     top_dict = {}
-    game_list = GameInstance.objects.all().order_by('-priority')
+    game_list = Game.objects.all().order_by('-priority')
     for item in game_list:
         if item.location in top_dict:
             pass
@@ -58,7 +58,7 @@ def top_priority_list(request,**kwags):
     page = request.GET.get('page')
     filtered_set = set(top_dict.values())
     #print filtered_set
-    filtered_qs = GameInstance.objects.filter(pk__in = filtered_set).order_by('-priority')
+    filtered_qs = Game.objects.filter(pk__in = filtered_set).order_by('-priority')
     paginator = Paginator(filtered_qs, paginate_by)
 
     
@@ -519,11 +519,6 @@ def top_priority_game_list(request,**kwags):
 def filtered_game_list(request,**kwargs):
     model = Game
     paginate_by = YOUR_PAGE_SIZE
-    logger.debug(request)
-    logger.debug(request.session)
-    logger.debug(RequestContext(request).flatten())
-    logger.debug(request.META.get('HTTP_REFERER'))
-    logger.debug(request.session['query_string'])
     game_list = Game.objects.all().order_by('name')
     if request.META.get('HTTP_REFERER'):
         logger.debug(request.META.get('HTTP_REFERER'))
@@ -540,7 +535,7 @@ def filtered_game_list(request,**kwargs):
                     return HttpResponseRedirect(reverse('gameslist:game_list')+"?page=1")
 
     page = request.GET.get('page')
-    game_filter = GameInstanceFilter(request.GET, queryset=game_list)
+    game_filter = GameFilter(request.GET, queryset=game_list)
     
     filtered_qs = game_filter.qs
     paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
@@ -553,7 +548,7 @@ def filtered_game_list(request,**kwargs):
         response = paginator.page(paginator.num_pages)
     except:
         response = paginator.page(1)
-    request.session['query_string'] =request.GET.urlencode()
+    request.session['query_string'] = request.GET.urlencode()
     return render(
          request, 
          'gameslist/game_list.html', 

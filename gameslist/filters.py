@@ -11,7 +11,7 @@ class GameInstanceFilter(django_filters.FilterSet):
                   'game_format':['exact'],
                   'substantial_progress':['exact'],
                   'beaten':['exact'],
-                  'full_time_to_beat':['lte','gte','exact'],
+                  #'full_time_to_beat':['lte','gte','exact'],
                   'finish_date':['year__gte']}
 
 class GameFilter(django_filters.FilterSet):
