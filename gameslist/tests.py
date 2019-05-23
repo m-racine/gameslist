@@ -19,7 +19,7 @@ from nose.plugins.attrib import attr
 
 from endpoints.howlongtobeat import HowLongToBeat, ExampleHowLongToBeat
 
-from .forms import GameForm
+from .forms import GameInstanceForm
 from .models import Game
 from .models import CURRENT_TIME_NEGATIVE, FINISH_DATE_REQUIRED, FINISH_DATE_NOT_ALLOWED
 from .models import NOT_PLAYED, FINISH_AFTER_PURCHASE, CURRENT_TIME_NOT_ALLOWED
@@ -133,11 +133,11 @@ class GameIndexViewTests(TestCase):
         #print response.context['new_games_list']
         self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Portal - STM>'])
 
-    # def test_add_game(self):
-    #     response = self.client.get(reverse('gameslist:add'))
-    #     print response.status_code
-    #     print response
-    #     self.assertRedirects(response,reverse('gameslist:list'))
+    def test_add_game(self):
+        response = self.client.get(reverse('gameslist:add'))
+        print response.status_code
+        print response
+        self.assertRedirects(response,reverse('gameslist:list'))
 
 class GameListViewTests(TestCase):
 
@@ -458,7 +458,7 @@ class GameModelTests(TestCase):
                           response.context['form'].full_clean())
         logger.debug(response.context['form'])
         #self.assertTrue(False)
-        
+
     @attr('date_validation')
     def test_not_played(self):
         form = GameForm({

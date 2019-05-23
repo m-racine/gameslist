@@ -28,16 +28,25 @@ def wipe_finish(GameAdmin, request, queryset):
 class GameInstanceAdmin(admin.ModelAdmin):
     list_display = ('name','system','location','game_format','purchase_date','finish_date',
                     'played','beaten','abandoned','perler','reviewed','flagged')
-    exclude = ('release_date','developer','publisher','streamable','recordable','aging',
-              'play_aging', 'full_time_to_beat','number_of_eps','aging_effect','aging_non_ep',
-              'priority','number_of_players','metacritic','user_score','time_to_beat')
+    exclude = ('release_date','aging',
+              'play_aging', 'full_time_to_beat','aging_effect',
+              'priority','metacritic','user_score','time_to_beat')
     list_filter = ['system','location','played','beaten','game_format','flagged']
+    search_fields = ['name']
+
+    actions = [wipe_finish]
+
+class GameAdmin(admin.ModelAdmin):
+    list_display = ('name','purchase_date','finish_date',
+                    'played','beaten','abandoned','perler','reviewed','flagged')
+    exclude = ('release_date','aging',
+              'play_aging', 'full_time_to_beat','aging_effect','aging_non_ep',
+              'priority','metacritic','user_score','time_to_beat')
+    list_filter = ['played','beaten','flagged']
     search_fields = ['name']
 
     actions = [wipe_finish]
 
 
 admin.site.register(GameInstance, GameInstanceAdmin)
-
-
-
+admin.site.register(Game, GameAdmin)

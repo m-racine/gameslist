@@ -24,6 +24,18 @@ class GameInstanceForm(ModelForm):
             'purchase_date': SelectDateWidget(years=years),
         }
 
+
+class GameForm(ModelForm):
+    class Meta:
+        model = Game
+        fields = ('name',
+                  'played', 'beaten', 'abandoned', 'perler',
+                  'reviewed', 'purchase_date', 'finish_date')
+        widgets = {
+            'finish_date': SelectDateWidget(years=years),
+            'purchase_date': SelectDateWidget(years=years),
+        }
+
     #purchase_date = DateField(initial=date.today(),widget=SelectDateWidget(years=years))
 
     # def __init__(self, *args, **kwargs):

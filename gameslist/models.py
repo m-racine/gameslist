@@ -111,6 +111,12 @@ class BaseModel(models.Model):
             self.created_date = datetime.now()
         super(BaseModel, self).save(*args, **kwargs)
 
+#developer
+#publisher
+#pursued
+#number_of_players
+#streamable
+#recordable
 
 class Game(BaseModel):
     #id = models.AutoField(primary_key=True)
@@ -163,11 +169,6 @@ class GameInstance(BaseModel):
     user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     #not a property so that it can be sorted more easily.
 
-    #substantial_progress
-    #developer
-    #publisher
-    #release_date
-    #series
 
     @property
     def aging(self):
@@ -334,7 +335,7 @@ class GameInstance(BaseModel):
                 misc_factor += 1.0
             if self.substantial_progress:
                 misc_factor += 1.0
-            prior = round(((age_factor +  score_factor)* misc_factor) * rec_factor,2) 
+            prior = round(((age_factor +  score_factor)* misc_factor) * rec_factor,2)
             if round(prior,1) == 0.0:
                 return -3.0
             return prior
