@@ -143,7 +143,7 @@ class GameIndexViewTests(TestCase):
         response = self.client.get(reverse('gameslist:index'))
         self.assertEqual(response.status_code, 200)
         #print response.context['new_games_list']
-        self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Portal - STM>'])
+        self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Portal>'])
 
     def test_add_game(self):
         response = self.client.get(reverse('gameslist:add'))
