@@ -50,8 +50,8 @@ class PersistentSessionClient(Client):
 def create_game(name="Portal", played=False, beaten=False,
                 purchase_date=None, finish_date=None,
                 abandoned=False, perler=False, reviewed=False, flagged=False,
-                priority=1, times_recommended=1, times_passed_over=0,
-                full_time_to_beat=1.0, total_time=1.0):
+                priority=0, times_recommended=0, times_passed_over=0,
+                full_time_to_beat=0.0, total_time=0.0):
     return Game.objects.create(name=name, played=played, beaten=beaten,
                                purchase_date=purchase_date, finish_date=finish_date,
                                abandoned=abandoned, perler=perler, reviewed=reviewed,
