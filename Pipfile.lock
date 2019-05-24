@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3b1ed8cee4514ed8c86a00732871e834f45618a74738d029119a74795efb5ee7"
+            "sha256": "86cb4cde0ad5ea990cbce6ff0344962bfa92a78ee42413ffc620a935a1094f65"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -264,14 +264,11 @@
         },
         "mysqlclient": {
             "hashes": [
-                "sha256:1e85e48b167e2af3bb08f273fdbd1ad6401cbe75057fa6513f97387dc7b282dc",
-                "sha256:2d9ec33de39f4d9c64ad7322ede0521d85829ce36a76f9dd3d6ab76a9c8648e5",
-                "sha256:371df79d000af56b4e540b7ce2120d1c9afb04b751bfce25a1eb609c50fd10ff",
-                "sha256:b3b1a7e4468180afb79289b54069d9499242946a4cedf3928cbf6b2a13800016",
-                "sha256:d56e379c03efad746e84705cbb97401f60d1f98b05e11a27f2d9c2d043936974"
+                "sha256:57008756951e393eb000ee8facc9277270dcd4eeebb55b1d9a676ae7f6da5362",
+                "sha256:b95edaa41d6cc47deecabcdcbb5ab437ad9ae6d8955f5cf10d1847b37e66ef5e"
             ],
-            "index": "pypi",
-            "version": "==1.3.12"
+            "path": "./mysqlclient-1.4.2-cp27-cp27m-win_amd64.whl",
+            "version": "==1.4.2"
         },
         "nose": {
             "hashes": [
@@ -288,6 +285,25 @@
             ],
             "index": "pypi",
             "version": "==0.5.5"
+        },
+        "pypiwin32": {
+            "hashes": [
+                "sha256:06d478295c89dbdd4187e1ac099bb8eab93c29e298bded4e2fbc77009287fa44",
+                "sha256:0b8f74a48021d71c8645d4a9de5426dcd800976a96d9a3bfb90136b24b9318a6",
+                "sha256:34fd396098d5b29b2a1ae71db5ca9ba91e1c6c5b7fb7fbff1296e0d45f0b103f",
+                "sha256:44217c51c54b1dd0de31bdad270d5e18dab0c8fa8c121ddf63fa86fa5991787f",
+                "sha256:5618522ad9c2b229d8a9a1c5175d135a397bf70d6db1d352adf0131aa5321258",
+                "sha256:5e64895aed07c7124b57ff21e48ee0ca4caa9d1f85042b1e7c35eecd0e2f01be",
+                "sha256:74ac5855269b3d67458815a709f083e74961fd5d558a4b9e1307eaa6c832d827",
+                "sha256:794150d9e0c1fc61a9f5845d88028d24ffdf78253f03d7d623e0e1c103b5d92b",
+                "sha256:ca375fdf0adb961d1988786aa2bcb54aac23fd1a647b591ccf44e0965a6dc51f",
+                "sha256:ec4b285e1a58dc6eeaa331d5d278dbc6e9da3fa2675cbb803a9c88d2b9c43f79",
+                "sha256:f226481dade2c075e7f488485b6e18a279367b94a019baf71493fab475f3a4b8",
+                "sha256:f811d494040e91e38f01ef1e127177bbb9fdc350126a11cd65ac5db6cad2b92e",
+                "sha256:fbe640e946e2fcd983048e2c40bee28eba884a9e0178fb1cf03e1d365abd8e3f"
+            ],
+            "markers": "sys_platform == 'win32' and python_version < '3.6'",
+            "version": "==219"
         },
         "python-dateutil": {
             "hashes": [
@@ -383,6 +399,14 @@
             ],
             "index": "pypi",
             "version": "==0.53.0"
+        },
+        "wheel": {
+            "hashes": [
+                "sha256:5e79117472686ac0c4aef5bad5172ea73a1c2d1646b808c35926bd26bdfb0c08",
+                "sha256:62fcfa03d45b5b722539ccbc07b190e4bfff4bb9e3a4d470dd9f6a0981002565"
+            ],
+            "index": "pypi",
+            "version": "==0.33.4"
         }
     },
     "develop": {}
