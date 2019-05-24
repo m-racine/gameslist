@@ -396,7 +396,7 @@ class GameModelTests(TestCase):
     @attr('date_validation')
     def test_future_purchase_date(self):
 
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
@@ -412,7 +412,7 @@ class GameModelTests(TestCase):
 
     @attr('date_validation')
     def test_past_purchase_date(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
@@ -427,7 +427,7 @@ class GameModelTests(TestCase):
 
     @attr('date_validation')
     def test_future_finish_date(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'finish_date_year': 2019,
             'finish_date_month': 01,
@@ -473,7 +473,7 @@ class GameModelTests(TestCase):
 
     @attr('date_validation')
     def test_not_played(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
@@ -495,7 +495,7 @@ class GameModelTests(TestCase):
 
     @attr('date_validation')
     def test_not_played_but_beaten(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
@@ -516,7 +516,7 @@ class GameModelTests(TestCase):
 
     @attr('date_validation')
     def test_not_played_but_abandoned(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
@@ -537,7 +537,7 @@ class GameModelTests(TestCase):
 
     @attr('date_validation')
     def test_not_beaten_or_abandoned(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'finish_date_year': 2018,
             'finish_date_month': 01,
@@ -560,7 +560,7 @@ class GameModelTests(TestCase):
 
     @attr('date_validation')
     def test_beaten_no_finish(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
@@ -583,7 +583,7 @@ class CurrentTimeTests(TestCase):
     #test that setting current time under 0 is impossible
     @attr('current_time')
     def test_negative_current_time(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 1,
@@ -601,7 +601,7 @@ class CurrentTimeTests(TestCase):
     #test that setting current time over 1 with played false is impossible
     @attr('current_time')
     def test_current_time_not_played(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 1,
@@ -617,7 +617,7 @@ class CurrentTimeTests(TestCase):
     #test that setting played to true with current time == 0 is impossible
     @attr('current_time')
     def test_no_time_yes_played(self):
-        form = GameForm({
+        form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
@@ -634,7 +634,8 @@ class CurrentTimeTests(TestCase):
     #test that setting played to true AND current time > 0 is POSSIBLE
     @attr('current_time')
     def test_valid_current_played(self):
-        form = GameForm({
+
+        form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
             'purchase_date_month': 01,
@@ -647,10 +648,10 @@ class CurrentTimeTests(TestCase):
         })
         print form.errors.as_json()
         self.assertTrue(form.is_valid())
-        game = form.save()
+        instance = form.save()
         logger.debug(form.errors.as_json())
-        self.assertTrue(game.played)
-        self.assertEqual(game.current_time, 1)
+        self.assertTrue(instance.played)
+        self.assertEqual(instance.current_time, 1)
 
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py
 

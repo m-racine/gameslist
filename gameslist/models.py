@@ -146,6 +146,54 @@ class Game(BaseModel):
     def __unicode__(self):
         return unicode(self.name)
 
+    def save(self, *args, **kwargs):
+        self.name = self.name.strip(" ")
+        if self.full_time_to_beat <= 0.0:
+            self.full_time_to_beat = self.calculate_how_long_to_beat()
+
+        super(Game, self).save(*args, **kwargs)
+
+    def calculate_how_long_to_beat(self):
+        names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
+        for name in names_list:
+            try:
+                if type(name) == AlternateName:
+                    fulltime = HowLongToBeat(name.text).fulltime
+                else:
+                    fulltime = HowLongToBeat(self.name).fulltime
+                if fulltime > 0.0:
+                    return fulltime
+                elif fulltime == -1.0:
+                    LOGGER.warning("Found %s, no time recorded", name)
+                    return fulltime
+            except:
+                LOGGER.error("HLTB FAIL FOR %s", name)
+                LOGGER.error(sys.exc_info()[0])
+                LOGGER.error(sys.exc_info()[1])
+                LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
+        names_to_try = gen_names(self.name)
+        #LOGGER.warning(names_to_try)
+        if len(names_to_try) > 1000:
+            return -2.0
+        for name in names_to_try:
+            try:
+                fulltime = HowLongToBeat(name).fulltime
+                if fulltime > 0.0:
+                    alt = AlternateName.create(text=name,parent_entity=self)
+                    alt.save()
+                    return fulltime
+                elif fulltime == -1.0:
+                    LOGGER.warning("Found %s, no time recorded", name)
+                    alt = AlternateName.create(text=name,parent_entity=self)
+                    alt.save()
+                    return fulltime
+            except:
+                LOGGER.error("HLTB FAIL FOR %s", name)
+                LOGGER.error(sys.exc_info()[0])
+                LOGGER.error(sys.exc_info()[1])
+                LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
+        return -1.0
+
 class GameInstance(BaseModel):
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
@@ -194,22 +242,22 @@ class GameInstance(BaseModel):
 
     def save(self, *args, **kwargs):
         self.name = self.name.strip(" ")
-        if self.full_time_to_beat <= 0.0:
-            self.full_time_to_beat = self.calculate_how_long_to_beat()
-        if self.full_time_to_beat > 0:
-            if self.current_time > (self.full_time_to_beat / 2):
-                self.substantial_progress = True
-            else:
-                self.substantial_progress = False
-        else:
-            self.substantial_progress = False
+        # if self.full_time_to_beat <= 0.0:
+        #     self.full_time_to_beat = self.calculate_how_long_to_beat()
+        # if self.full_time_to_beat > 0:
+        #     if self.current_time > (self.full_time_to_beat / 2):
+        #         self.substantial_progress = True
+        #     else:
+        #         self.substantial_progress = False
+        # else:
+        #     self.substantial_progress = False
         if self.metacritic <= 0.0 or self.user_score <= 0.0:
             (self.metacritic,self.user_score) = self.calculate_metacritic()
         #temp
         #if self.priority < 1.0:
-        self.priority = self.calculate_priority()
-        if self.priority == 0.0:
-            self.priority = -5.0
+        # self.priority = self.calculate_priority()
+        # if self.priority == 0.0:
+        #     self.priority = -5.0
         super(GameInstance, self).save(*args, **kwargs)
 
     def clean(self):
@@ -230,7 +278,7 @@ class GameInstance(BaseModel):
                 raise ValidationError({'finish_date': (FINISH_DATE_REQUIRED)})
 
     def calculate_metacritic(self):
-        names_list = [self.name] + list(AlternateName.objects.all().filter(parent_game=self.id))
+        names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
         for name in names_list:
             try:
                 if type(name) == AlternateName:
