@@ -20,7 +20,7 @@ from nose.plugins.attrib import attr
 from endpoints.howlongtobeat import HowLongToBeat, ExampleHowLongToBeat
 
 from .forms import GameInstanceForm
-from .models import Game
+from .models import Game, GameInstance
 from .models import CURRENT_TIME_NEGATIVE, FINISH_DATE_REQUIRED, FINISH_DATE_NOT_ALLOWED
 from .models import NOT_PLAYED, FINISH_AFTER_PURCHASE, CURRENT_TIME_NOT_ALLOWED
 from .views import check_url_args_for_only_token
@@ -59,16 +59,21 @@ def create_game(name="Portal", played=False, beaten=False,
                                times_passed_over=times_passed_over, full_time_to_beat=full_time_to_beat,
                                total_time=total_time)
 
-def create_game_instance(name="Portal", system="STM", played=False, beaten=False, location="STM",
-                game_format="D", purchase_date=None, finish_date=None,
-                abandoned=False, perler=False, reviewed=False, flagged=False,
-                substantial_progress=False, current_time=0, metacritic=0.0, user_score=0.0):
-    return Game.objects.create(name=name, system=system, played=played, beaten=beaten,
-                               location=location, game_format=game_format,
-                               purchase_date=purchase_date, finish_date=finish_date,
-                               abandoned=abandoned, perler=perler, reviewed=reviewed,
-                               flagged=flagged, substantial_progress=substantial_progress,
-                               current_time=current_time, metacritic=metacritic, user_score=user_score)
+def create_game_instance(name="Portal", system="STM", played=False, beaten=False,
+                         location="STM", game_format="D", purchase_date=None,
+                         finish_date=None, abandoned=False, perler=False,
+                         reviewed=False, flagged=False,
+                         substantial_progress=False, current_time=0,
+                         metacritic=0.0, user_score=0.0):
+    return GameInstance.objects.create(name=name, system=system, played=played,
+                               beaten=beaten, location=location,
+                               game_format=game_format,
+                               purchase_date=purchase_date,
+                               finish_date=finish_date, abandoned=abandoned,
+                               perler=perler, reviewed=reviewed, flagged=flagged,
+                               substantial_progress=substantial_progress,
+                               current_time=current_time, metacritic=metacritic,
+                               user_score=user_score)
 
 def convert_date(date_string):
     return datetime.strptime(date_string, '%Y-%m-%d').date()
@@ -78,14 +83,14 @@ def convert_date(date_string):
 class AgingTests(unittest.TestCase):
     @attr('aging')
     def test_aging_zero(self):
-        game = create_game(purchase_date=date.today())
+        game = create_game_instance(purchase_date=date.today())
         self.assertEqual(game.purchase_date, date.today())
         self.assertEqual(game.aging.days, 0)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_over_year(self):
-        game = create_game(played=True, beaten=True,
+        game = create_game_instance(played=True, beaten=True,
                            purchase_date=datetime.strptime('2016-10-30', '%Y-%m-%d'),
                            finish_date=datetime.strptime('2018-10-30', '%Y-%m-%d'))
         self.assertEqual(game.purchase_date, datetime.strptime('2016-10-30', '%Y-%m-%d'))
@@ -96,38 +101,38 @@ class AgingTests(unittest.TestCase):
     @attr('aging')
     def test_negative_aging(self):
         future_date = date.today() + timedelta(8)
-        game = create_game(purchase_date=future_date)
+        game = create_game_instance(purchase_date=future_date)
         #self.assertEqual(game.purchase_date,date.today())
         self.assertEqual(game.aging.days, -8)
         self.assertEqual(game.play_aging.days, -8)
 
     @attr('aging')
     def test_aging_beaten(self):
-        game = create_game(purchase_date=date.today() - timedelta(1), beaten=True,
+        game = create_game_instance(purchase_date=date.today() - timedelta(1), beaten=True,
                            finish_date=date.today(), played=True)
         self.assertGreater(game.aging.days, 0)
         self.assertEqual(game.play_aging.days, 0)
-        game = create_game(beaten=True, played=True, purchase_date=date.today(),
+        game = create_game_instance(beaten=True, played=True, purchase_date=date.today(),
                            finish_date=date.today())
         self.assertEqual(game.aging.days, 0)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_played(self):
-        game = create_game(played=True, purchase_date=date.today() - timedelta(1))
+        game = create_game_instance(played=True, purchase_date=date.today() - timedelta(1))
         self.assertEqual(game.aging.days, 1)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_abandoned(self):
-        game = create_game(purchase_date=date.today() - timedelta(4), abandoned=True,
+        game = create_game_instance(purchase_date=date.today() - timedelta(4), abandoned=True,
                            finish_date=date.today(), played=True)
         self.assertEqual(game.aging.days, 4)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_not_played(self):
-        game = create_game(purchase_date=date.today() - timedelta(5))
+        game = create_game_instance(purchase_date=date.today() - timedelta(5))
         self.assertEqual(game.aging.days, 5)
         self.assertEqual(game.play_aging.days, 5)
 
@@ -145,11 +150,11 @@ class GameIndexViewTests(TestCase):
         #print response.context['new_games_list']
         self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Portal>'])
 
-    def test_add_game(self):
-        response = self.client.get(reverse('gameslist:add'))
-        print response.status_code
-        print response
-        self.assertRedirects(response,reverse('gameslist:list'))
+    # def test_add_game(self):
+    #     response = self.client.get(reverse('gameslist:add'))
+    #     print response.status_code
+    #     print response
+    #     self.assertRedirects(response,reverse('gameslist:list'))
 
 class GameListViewTests(TestCase):
 
