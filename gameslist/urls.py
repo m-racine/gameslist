@@ -26,8 +26,10 @@ urlpatterns = [
     url(r'^process_games/$', views.move_from_instance_to_game, name='process_games'),
     #url(r'^locate/$', views.fix_location, name='locate'),
     #url(r'^notes/$', views.process_notes, name='notes'),
-    url(r'^$', views.filtered_game_list, name='list',kwargs=dict({'page':'','system':'','game_format':''})),
-    url(r'^$', views.filtered_game_list, name='list')]
+    url(r'^$', views.filtered_game_list, name='list',kwargs=dict({'page':''})),
+    url(r'^$', views.filtered_game_list, name='list'),
+    url(r'^instance$', views.filtered_list, name='instance_list',kwargs=dict({'page':'','system':'','game_format':''})),
+    url(r'^instance$', views.filtered_list, name='instance_list')]
 
 
 ###notes: need to change detail page to show list of notes associated

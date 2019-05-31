@@ -159,42 +159,43 @@ class GameIndexViewTests(TestCase):
 class GameListViewTests(TestCase):
 
     def test_list_filters(self):
-        create_game(purchase_date=convert_date('2018-10-01'))
-        create_game("Shin Megami Tensei IV", "3DS",purchase_date=convert_date('2018-10-01'))
-        create_game("Bravely Default", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
+        create_game_instance(purchase_date=convert_date('2018-10-01'))
+        create_game_instance(name="Shin Megami Tensei IV", system="3DS",purchase_date=convert_date('2018-10-01'))
+        create_game_instance(name="Bravely Default", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
         #template_name = 'gameslist/list.html'
         #context_object_name = 'full_games_list'
-        request = self.client.get(reverse('gameslist:list'))
+        request = self.client.get(reverse('gameslist:instance_list'))
         response = request.context['response']
 
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Portal - STM>',
-                                                        '<Game: Shin Megami Tensei IV - 3DS>',
-                                                        '<Game: Bravely Default - 3DS>'])
+        print response.object_list
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Portal - STM>',
+                                                        '<GameInstance: Shin Megami Tensei IV - 3DS>',
+                                                        '<GameInstance: Bravely Default - 3DS>'], ordered=False)
 
-        request = self.client.get(reverse('gameslist:list'), {'system': '3DS'})
+        request = self.client.get(reverse('gameslist:instance_list'), {'system': '3DS'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>',
-                                                        '<Game: Bravely Default - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>',
+                                                        '<GameInstance: Bravely Default - 3DS>'],  ordered=False)
 
-        request = self.client.get(reverse('gameslist:list'),
+        request = self.client.get(reverse('gameslist:instance_list'),
                                   {'system': '3DS', 'game_format': 'D'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
 
-        request = self.client.get(reverse('gameslist:list'), {'system': 'STM'})
+        request = self.client.get(reverse('gameslist:instance_list'), {'system': 'STM'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<Game: Portal - STM>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Portal - STM>'])
 
-        request = self.client.get(reverse('gameslist:list'), {'game_format': 'M'})
+        request = self.client.get(reverse('gameslist:instance_list'), {'game_format': 'M'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
         self.assertQuerysetEqual(response.object_list, [])
 
-        request = self.client.get(reverse('gameslist:list'), {'system':'GBA'})
+        request = self.client.get(reverse('gameslist:instance_list'), {'system':'GBA'})
         response = request.context['response']
         self.assertEqual(request.status_code, 200)
         self.assertQuerysetEqual(response.object_list, [])
@@ -205,53 +206,53 @@ class GameListViewTests(TestCase):
 class ListDetailRedirectTests(TestCase):
     #client_class = PersistentSessionClient
     def test_known_bad(self):
-        game = create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:list'), follow=True)
+        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        request = self.client.get(reverse('gameslist:instance_list'), follow=True)
         request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
-        request = self.client.get(reverse('gameslist:list'), follow=True,
+        request = self.client.get(reverse('gameslist:instance_list'), follow=True,
                                   HTTP_REFERER="http://127.0.0.1:8000/3/")
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Fire Emblem - GBA>',
-                                                        '<Game: Shin Megami Tensei IV - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Fire Emblem - GBA>',
+                                                        '<GameInstance: Shin Megami Tensei IV - 3DS>'],  ordered=False)
         self.assertEqual(request.status_code, 200)
 
     def test_list(self):
-        create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
+        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        request = self.client.get(reverse('gameslist:instance_list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         self.assertEqual(session['query_string'], 'system=3DS')
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
 
     def test_list_detail(self):
-        game = create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
+        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        request = self.client.get(reverse('gameslist:instance_list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         self.assertEqual(session['query_string'], 'system=3DS')
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
         request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
         self.assertEqual(session['query_string'], 'system=3DS')
 
     def test_list_detail_list(self):
-        game = create_game("Shin Megami Tensei IV", "3DS", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        create_game("Fire Emblem", "GBA", False, False, "3DS", "P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:list'), {'system':'3DS'}, follow=True)
+        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
+        request = self.client.get(reverse('gameslist:instance_list'), {'system':'3DS'}, follow=True)
         session = self.client.session
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
 
         self.assertEqual(session['query_string'], 'system=3DS')
         request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
         self.assertEqual(session['query_string'], 'system=3DS')
-        request = self.client.get(reverse('gameslist:list'),
+        request = self.client.get(reverse('gameslist:instance_list'),
                                   HTTP_REFERER="http://127.0.0.1:8000/3/", follow=True)
         #self.assertQuerysetEqual(request.context['response'].object_list,['<Game: Test - 3DS>'])
         response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<Game: Shin Megami Tensei IV - 3DS>'])
+        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
         self.assertEqual(session['query_string'], 'system=3DS')
         self.assertEqual(request.status_code, 200)
 
@@ -382,17 +383,17 @@ class HLTBTest(TestCase):
 
     @attr('hltb')
     def test_full_time_on_create(self):
-        game = create_game("Sunset Overdrive",purchase_date=convert_date('2018-10-01'))
+        game = create_game(name="Sunset Overdrive",purchase_date=convert_date('2018-10-01'))
         self.assertEqual(game.full_time_to_beat, 10.0)
 
     @attr('hltb')
     def test_time_to_beat_not_played(self):
-        game = create_game("Sunset Overdrive", current_time=0,purchase_date=convert_date('2018-10-01'))
+        game = create_game(name="Sunset Overdrive", current_time=0,purchase_date=convert_date('2018-10-01'))
         self.assertEqual(game.time_to_beat, 10.0)
 
     @attr('hltb')
     def test_time_to_beat_partial(self):
-        game = create_game("Sunset Overdrive", current_time=5.5,purchase_date=convert_date('2018-10-01'))
+        game = create_game(name="Sunset Overdrive", current_time=5.5,purchase_date=convert_date('2018-10-01'))
         self.assertEqual(game.full_time_to_beat, 10.0)
         self.assertEqual(game.time_to_beat, 4.5)
 

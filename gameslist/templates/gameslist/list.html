@@ -12,21 +12,12 @@
       {{ filter.form.game_format.label }}  {{ filter.form.game_format }}
   </div>
   <div>
-      {{ filter.form.substantial_progress.label }}  {{ filter.form.substantial_progress }}
-  </div>
-  <div>
-      {{ filter.form.full_time_to_beat__lte.label }}  {{ filter.form.full_time_to_beat__lte }}
-  </div>
-  <div>
-      {{ filter.form.full_time_to_beat__gte.label }}  {{ filter.form.full_time_to_beat__gte }}
-  </div>
-  <div>
       {{ filter.form.beaten.label }}  {{ filter.form.beaten }}
   </div>
   <div>
       {{ filter.form.finish_date__year__gte.label }}  {{ filter.form.finish_date__year__gte }}
   </div>
-    
+
   <button type="submit">Search</button>
 </form>
 <table class="table table-bordered">
@@ -35,7 +26,6 @@
       <th>Game</th>
       <th>Location</th>
       <th>Format</th>
-      <th>Priority</th>
     </tr>
   </thead>
   <tbody>
@@ -44,7 +34,6 @@
         <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
         <td>{{ game.get_location_display }}</td>
         <td>{{ game.get_game_format_display }}</td>
-        <td>{{ game.priority }}</td>
         <td><form action="{% url 'gameslist:recommend' game.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit">&#8593;</button>
@@ -53,7 +42,7 @@
         <td><form action="{% url 'gameslist:pass_over' game.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit">&#8595;</button>
-            </form> 
+            </form>
         </td>
       </tr>
     {% endfor %}
@@ -83,20 +72,14 @@
 <form action="{% url 'gameslist:add'%}" method="get">
     {% csrf_token %}
     <button type="submit">Add New Game</button>
-</form> 
+</form>
 
 <form action="{% url 'gameslist:beaten' %}" method="get">
   {% csrf_token %}
     <button type="submit">Beaten list</button>
-</form> 
+</form>
 
 <form action="{% url 'gameslist:hltb' %}" method="get">
   {% csrf_token %}
     <button type="submit">No Time to Beat</button>
-</form> 
-
-<form action="{% url 'gameslist:top_priority_list' %}" method="get">
-  {% csrf_token %}
-    <button type="submit">Top Priority Games</button>
-</form> 
-
+</form>

@@ -80,11 +80,11 @@ def top_priority_list(request,**kwags):
 def filtered_list(request,**kwargs):
     model = GameInstance
     paginate_by = YOUR_PAGE_SIZE
-    logger.debug(request)
-    logger.debug(request.session)
-    logger.debug(RequestContext(request).flatten())
-    logger.debug(request.META.get('HTTP_REFERER'))
-    logger.debug(request.session['query_string'])
+    #logger.debug(request)
+    #logger.debug(request.session)
+    #logger.debug(RequestContext(request).flatten())
+    #logger.debug(request.META.get('HTTP_REFERER'))
+    #logger.debug(request.session['query_string'])
     #game_list = Game.objects.all().order_by('-purchase_date')
     #game_list = Game.objects.all().order_by('-priority')
     game_list = GameInstance.objects.all().order_by('name')
@@ -98,10 +98,10 @@ def filtered_list(request,**kwargs):
                     logger.debug("REDIRECTING")
                     if 'query_string' in request.session:
                         if request.session['query_string'].strip():
-                            return HttpResponseRedirect(reverse('gameslist:list')+"?{0}".format(request.session['query_string']))
-                        return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
-                    logger.debug(reverse('gameslist:list')+"?page=1")
-                    return HttpResponseRedirect(reverse('gameslist:list')+"?page=1")
+                            return HttpResponseRedirect(reverse('gameslist:instance_list')+"?{0}".format(request.session['query_string']))
+                        return HttpResponseRedirect(reverse('gameslist:instance_list')+"?page=1")
+                    logger.debug(reverse('gameslist:instance_list')+"?page=1")
+                    return HttpResponseRedirect(reverse('gameslist:instance_list')+"?page=1")
 
             #else:
             #    logger.debug(request.META.get('QUERY_STRING'))
