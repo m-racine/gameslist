@@ -234,11 +234,11 @@ class GameInstance(BaseModel):
             return timedelta(0)
         return date.today() - self.purchase_date
 
-    @property
-    def time_to_beat(self):
-        if self.beaten or self.abandoned:
-            return 0.0
-        return self.full_time_to_beat - self.current_time
+    # @property
+    # def time_to_beat(self):
+    #     if self.beaten or self.abandoned:
+    #         return 0.0
+    #     return self.full_time_to_beat - self.current_time
 
     def save(self, *args, **kwargs):
         self.name = self.name.strip(" ")
