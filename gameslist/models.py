@@ -210,6 +210,7 @@ class GameInstance(BaseModel):
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    active = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
 
 
