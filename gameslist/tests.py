@@ -48,30 +48,30 @@ class PersistentSessionClient(Client):
         return self._persisted_session
 
 def create_game(name="Portal", played=False, beaten=False,
-                purchase_date=None, finish_date=None,
+                purchase_date=None, finish_date=None, substantial_progress=False,
                 abandoned=False, perler=False, flagged=False,
                 priority=0, times_recommended=0, times_passed_over=0,
                 full_time_to_beat=0.0, total_time=0.0):
     return Game.objects.create(name=name, played=played, beaten=beaten,
                                purchase_date=purchase_date, finish_date=finish_date,
                                abandoned=abandoned, perler=perler,
+                               substantial_progress=substantial_progress,
                                flagged=flagged, priority=priority, times_recommended=times_recommended,
                                times_passed_over=times_passed_over, full_time_to_beat=full_time_to_beat,
                                total_time=total_time)
 
 def create_game_instance(name="Portal", system="STM", played=False, beaten=False,
                          location="STM", game_format="D", purchase_date=None,
-                         finish_date=None, abandoned=False, perler=False,
+                         finish_date=None, abandoned=False,
                          flagged=False,
-                         substantial_progress=False, current_time=0,
+                         current_time=0,
                          metacritic=0.0, user_score=0.0):
     return GameInstance.objects.create(name=name, system=system, played=played,
                                beaten=beaten, location=location,
                                game_format=game_format,
                                purchase_date=purchase_date,
                                finish_date=finish_date, abandoned=abandoned,
-                               perler=perler, flagged=flagged,
-                               substantial_progress=substantial_progress,
+                               flagged=flagged,
                                current_time=current_time, metacritic=metacritic,
                                user_score=user_score)
 

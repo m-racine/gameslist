@@ -17,7 +17,7 @@ class GameInstanceForm(ModelForm):
     class Meta:
         model = GameInstance
         fields = ('name', 'system', 'location', 'game_format',
-                  'played', 'beaten', 'abandoned', 'perler',
+                  'played', 'beaten', 'abandoned',
                   'current_time', 'purchase_date', 'finish_date')
         widgets = {
             'finish_date': SelectDateWidget(years=years),

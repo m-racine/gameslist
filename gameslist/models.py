@@ -132,6 +132,7 @@ class Game(BaseModel):
     perler = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
     priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    substantial_progress = models.BooleanField(default=False)
     times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
     times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
     full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
@@ -206,8 +207,6 @@ class GameInstance(BaseModel):
     finish_date = models.DateField('date finished', default=None, blank=True, null=True,
                                    validators=[no_future])
     abandoned = models.BooleanField(default=False)
-    perler = models.BooleanField(default=False)
-    substantial_progress = models.BooleanField(default=False)
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
@@ -377,8 +376,8 @@ class GameInstance(BaseModel):
                 misc_factor += 1.0
             if self.game_format == "B":
                 misc_factor += 1.0
-            if self.substantial_progress:
-                misc_factor += 1.0
+            #if self.substantial_progress:
+            #   misc_factor += 1.0
             prior = round(((age_factor +  score_factor)* misc_factor) * rec_factor,2)
             if round(prior,1) == 0.0:
                 return -3.0
