@@ -137,6 +137,8 @@ class Game(BaseModel):
     times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
     full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     total_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    aging = models.IntegerField(default=0,validators=[only_positive_or_zero])
+    play_aging = models.IntegerField(default=0,validators=[only_positive_or_zero])
 
 
     def __str__(self):
@@ -193,6 +195,22 @@ class Game(BaseModel):
                 LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
         return -1.0
 
+    # @property
+    # def aging(self):
+    #     if self.beaten or self.abandoned:
+    #         if self.finish_date:
+    #             return self.finish_date - self.purchase_date
+    #         self.flagged = True
+    #         LOGGER.warning("%s is lacking a finish_date", self.name)
+    #         return date.today() - self.purchase_date
+    #     return date.today() - self.purchase_date
+    #
+    # @property
+    # def play_aging(self):
+    #     if self.played:
+    #         return timedelta(0)
+    #     return date.today() - self.purchase_date
+
 class GameInstance(BaseModel):
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
@@ -213,22 +231,6 @@ class GameInstance(BaseModel):
     active = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
 
-
-    @property
-    def aging(self):
-        if self.beaten or self.abandoned:
-            if self.finish_date:
-                return self.finish_date - self.purchase_date
-            self.flagged = True
-            LOGGER.warning("%s is lacking a finish_date", self.name)
-            return date.today() - self.purchase_date
-        return date.today() - self.purchase_date
-
-    @property
-    def play_aging(self):
-        if self.played:
-            return timedelta(0)
-        return date.today() - self.purchase_date
 
     # @property
     # def time_to_beat(self):
