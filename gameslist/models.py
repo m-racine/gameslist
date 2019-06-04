@@ -101,7 +101,7 @@ def only_positive_or_zero(value):
 class BaseModel(models.Model):
     created_date = models.DateField(default=None,editable=False)
     modified_date = models.DateField(default=None,editable=False)
-
+    flagged = models.BooleanField(default=False)
     class Meta:
         abstract = True
 
@@ -131,7 +131,6 @@ class Game(BaseModel):
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
-    flagged = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
     priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
@@ -210,7 +209,6 @@ class GameInstance(BaseModel):
     abandoned = models.BooleanField(default=False)
     perler = models.BooleanField(default=False)
     reviewed = models.BooleanField(default=False)
-    flagged = models.BooleanField(default=False)
     substantial_progress = models.BooleanField(default=False)
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
