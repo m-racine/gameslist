@@ -18,7 +18,7 @@ class GameInstanceForm(ModelForm):
         model = GameInstance
         fields = ('name', 'system', 'location', 'game_format',
                   'played', 'beaten', 'abandoned', 'perler',
-                  'reviewed', 'current_time', 'purchase_date', 'finish_date')
+                  'current_time', 'purchase_date', 'finish_date')
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),
@@ -30,7 +30,7 @@ class GameForm(ModelForm):
         model = Game
         fields = ('name',
                   'played', 'beaten', 'abandoned', 'perler',
-                  'reviewed', 'purchase_date', 'finish_date')
+                  'purchase_date', 'finish_date')
         widgets = {
             'finish_date': SelectDateWidget(years=years),
             'purchase_date': SelectDateWidget(years=years),

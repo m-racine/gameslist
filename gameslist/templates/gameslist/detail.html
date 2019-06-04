@@ -7,9 +7,8 @@
     <p>Full Time to Beat: {{game.full_time_to_beat}} Hours</p>
 
     {% include "gameslist/play_form.html" with game=game %}
-    
+
     {% if game.perler %}<p>Perler Made!</p>{% endif %}
-    {% if game.reviewed %}<p>Reviewed!</p>{% endif %}
     {% if game.flagged %}
         <p>Flagged!</p>
     {% else %}

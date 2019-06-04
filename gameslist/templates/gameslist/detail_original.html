@@ -23,10 +23,9 @@
     <form action="{% url 'gameslist:play_game' game.id %}" method="get">
         {% csrf_token %}
         <button type="submit"> Change Play Status</button>
-    </form> 
-    
+    </form>
+
     {% if game.perler %}<p>Perler Made!</p>{% endif %}
-    {% if game.reviewed %}<p>Reviewed!</p>{% endif %}
     {% if game.flagged %}
         <p>Flagged!</p>
     {% else %}
@@ -50,7 +49,7 @@
     <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List</button>
-    </form> 
+    </form>
 <body>
 
 
