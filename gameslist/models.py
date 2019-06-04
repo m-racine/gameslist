@@ -121,18 +121,18 @@ class BaseModel(models.Model):
 class Game(BaseModel):
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
-    played = models.BooleanField(default=False)
-    beaten = models.BooleanField(default=False)
+    played = models.BooleanField(default=False) #calculated from child instances
+    beaten = models.BooleanField(default=False) #calculated from child instances
     #notes = models.ForeignKey(Note, on_delete=models.CASCADE, null=True)
     purchase_date = models.DateField('date purchased', default=None,
-                                     validators=[no_future])
+                                     validators=[no_future]) #calculated from child instances
     finish_date = models.DateField('date finished', default=None, blank=True, null=True,
-                                   validators=[no_future])
-    abandoned = models.BooleanField(default=False)
+                                   validators=[no_future]) #calculated from child instances
+    abandoned = models.BooleanField(default=False) #calculated from child instances
     perler = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
-    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
-    substantial_progress = models.BooleanField(default=False)
+    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero]) #calculated from child instances
+    substantial_progress = models.BooleanField(default=False) #calculated from child instances
     times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
     times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
     full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
