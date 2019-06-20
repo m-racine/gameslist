@@ -27,9 +27,8 @@ def wipe_finish(GameAdmin, request, queryset):
 
 class GameInstanceAdmin(admin.ModelAdmin):
     list_display = ('name','system','location','game_format','purchase_date','finish_date',
-                    'played','beaten','abandoned','perler','reviewed','flagged')
-    exclude = ('release_date','aging',
-              'play_aging', 'full_time_to_beat','aging_effect',
+                    'played','beaten','abandoned','flagged')
+    exclude = ('release_date', 'full_time_to_beat',
               'priority','metacritic','user_score','time_to_beat')
     list_filter = ['system','location','played','beaten','game_format','flagged']
     search_fields = ['name']
@@ -38,9 +37,9 @@ class GameInstanceAdmin(admin.ModelAdmin):
 
 class GameAdmin(admin.ModelAdmin):
     list_display = ('name','purchase_date','finish_date',
-                    'played','beaten','abandoned','perler','reviewed','flagged')
+                    'played','beaten','abandoned','perler','flagged')
     exclude = ('release_date','aging',
-              'play_aging', 'full_time_to_beat','aging_effect','aging_non_ep',
+              'play_aging', 'full_time_to_beat',
               'priority','metacritic','user_score','time_to_beat')
     list_filter = ['played','beaten','flagged']
     search_fields = ['name']

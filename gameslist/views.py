@@ -412,7 +412,7 @@ def map_single_game_instance(game_id):
                     logger.debug("Creating new master game for %s", game)
                     master_game = Game.objects.create(name=game.name, played=game.played, beaten=game.beaten,
                                                      purchase_date=game.purchase_date, finish_date=game.finish_date,
-                                                     abandoned=game.abandoned, perler=game.perler, reviewed=game.reviewed,
+                                                     abandoned=game.abandoned, perler=game.perler,
                                                      flagged=game.flagged, priority=game.priority, times_recommended=game.times_recommended,
                                                      times_passed_over=game.times_passed_over)
                     #master_game.save()

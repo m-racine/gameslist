@@ -48,30 +48,30 @@ class PersistentSessionClient(Client):
         return self._persisted_session
 
 def create_game(name="Portal", played=False, beaten=False,
-                purchase_date=None, finish_date=None,
-                abandoned=False, perler=False, reviewed=False, flagged=False,
+                purchase_date=None, finish_date=None, substantial_progress=False,
+                abandoned=False, perler=False, flagged=False,
                 priority=0, times_recommended=0, times_passed_over=0,
                 full_time_to_beat=0.0, total_time=0.0):
     return Game.objects.create(name=name, played=played, beaten=beaten,
                                purchase_date=purchase_date, finish_date=finish_date,
-                               abandoned=abandoned, perler=perler, reviewed=reviewed,
+                               abandoned=abandoned, perler=perler,
+                               substantial_progress=substantial_progress,
                                flagged=flagged, priority=priority, times_recommended=times_recommended,
                                times_passed_over=times_passed_over, full_time_to_beat=full_time_to_beat,
                                total_time=total_time)
 
 def create_game_instance(name="Portal", system="STM", played=False, beaten=False,
                          location="STM", game_format="D", purchase_date=None,
-                         finish_date=None, abandoned=False, perler=False,
-                         reviewed=False, flagged=False,
-                         substantial_progress=False, current_time=0,
+                         finish_date=None, abandoned=False,
+                         flagged=False,
+                         current_time=0,
                          metacritic=0.0, user_score=0.0):
     return GameInstance.objects.create(name=name, system=system, played=played,
                                beaten=beaten, location=location,
                                game_format=game_format,
                                purchase_date=purchase_date,
                                finish_date=finish_date, abandoned=abandoned,
-                               perler=perler, reviewed=reviewed, flagged=flagged,
-                               substantial_progress=substantial_progress,
+                               flagged=flagged,
                                current_time=current_time, metacritic=metacritic,
                                user_score=user_score)
 
@@ -83,14 +83,14 @@ def convert_date(date_string):
 class AgingTests(unittest.TestCase):
     @attr('aging')
     def test_aging_zero(self):
-        game = create_game_instance(purchase_date=date.today())
+        game = create_game(purchase_date=date.today())
         self.assertEqual(game.purchase_date, date.today())
         self.assertEqual(game.aging.days, 0)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_over_year(self):
-        game = create_game_instance(played=True, beaten=True,
+        game = create_game(played=True, beaten=True,
                            purchase_date=datetime.strptime('2016-10-30', '%Y-%m-%d'),
                            finish_date=datetime.strptime('2018-10-30', '%Y-%m-%d'))
         self.assertEqual(game.purchase_date, datetime.strptime('2016-10-30', '%Y-%m-%d'))
@@ -101,38 +101,38 @@ class AgingTests(unittest.TestCase):
     @attr('aging')
     def test_negative_aging(self):
         future_date = date.today() + timedelta(8)
-        game = create_game_instance(purchase_date=future_date)
+        game = create_game(purchase_date=future_date)
         #self.assertEqual(game.purchase_date,date.today())
         self.assertEqual(game.aging.days, -8)
         self.assertEqual(game.play_aging.days, -8)
 
     @attr('aging')
     def test_aging_beaten(self):
-        game = create_game_instance(purchase_date=date.today() - timedelta(1), beaten=True,
+        game = create_game(purchase_date=date.today() - timedelta(1), beaten=True,
                            finish_date=date.today(), played=True)
         self.assertGreater(game.aging.days, 0)
         self.assertEqual(game.play_aging.days, 0)
-        game = create_game_instance(beaten=True, played=True, purchase_date=date.today(),
+        game = create_game(beaten=True, played=True, purchase_date=date.today(),
                            finish_date=date.today())
         self.assertEqual(game.aging.days, 0)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_played(self):
-        game = create_game_instance(played=True, purchase_date=date.today() - timedelta(1))
+        game = create_game(played=True, purchase_date=date.today() - timedelta(1))
         self.assertEqual(game.aging.days, 1)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_abandoned(self):
-        game = create_game_instance(purchase_date=date.today() - timedelta(4), abandoned=True,
+        game = create_game(purchase_date=date.today() - timedelta(4), abandoned=True,
                            finish_date=date.today(), played=True)
         self.assertEqual(game.aging.days, 4)
         self.assertEqual(game.play_aging.days, 0)
 
     @attr('aging')
     def test_aging_not_played(self):
-        game = create_game_instance(purchase_date=date.today() - timedelta(5))
+        game = create_game(purchase_date=date.today() - timedelta(5))
         self.assertEqual(game.aging.days, 5)
         self.assertEqual(game.play_aging.days, 5)
 

@@ -101,7 +101,7 @@ def only_positive_or_zero(value):
 class BaseModel(models.Model):
     created_date = models.DateField(default=None,editable=False)
     modified_date = models.DateField(default=None,editable=False)
-
+    flagged = models.BooleanField(default=False)
     class Meta:
         abstract = True
 
@@ -121,23 +121,24 @@ class BaseModel(models.Model):
 class Game(BaseModel):
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
-    played = models.BooleanField(default=False)
-    beaten = models.BooleanField(default=False)
+    played = models.BooleanField(default=False) #calculated from child instances
+    beaten = models.BooleanField(default=False) #calculated from child instances
     #notes = models.ForeignKey(Note, on_delete=models.CASCADE, null=True)
     purchase_date = models.DateField('date purchased', default=None,
-                                     validators=[no_future])
+                                     validators=[no_future]) #calculated from child instances
     finish_date = models.DateField('date finished', default=None, blank=True, null=True,
-                                   validators=[no_future])
-    abandoned = models.BooleanField(default=False)
+                                   validators=[no_future]) #calculated from child instances
+    abandoned = models.BooleanField(default=False) #calculated from child instances
     perler = models.BooleanField(default=False)
-    reviewed = models.BooleanField(default=False)
-    flagged = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
-    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero]) #calculated from child instances
+    substantial_progress = models.BooleanField(default=False) #calculated from child instances
     times_recommended = models.IntegerField(default=0,validators=[only_positive_or_zero])
     times_passed_over = models.IntegerField(default=0,validators=[only_positive_or_zero])
     full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     total_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    aging = models.IntegerField(default=0,validators=[only_positive_or_zero])
+    play_aging = models.IntegerField(default=0,validators=[only_positive_or_zero])
 
 
     def __str__(self):
@@ -194,6 +195,22 @@ class Game(BaseModel):
                 LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
         return -1.0
 
+    # @property
+    # def aging(self):
+    #     if self.beaten or self.abandoned:
+    #         if self.finish_date:
+    #             return self.finish_date - self.purchase_date
+    #         self.flagged = True
+    #         LOGGER.warning("%s is lacking a finish_date", self.name)
+    #         return date.today() - self.purchase_date
+    #     return date.today() - self.purchase_date
+    #
+    # @property
+    # def play_aging(self):
+    #     if self.played:
+    #         return timedelta(0)
+    #     return date.today() - self.purchase_date
+
 class GameInstance(BaseModel):
     #id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="")
@@ -208,31 +225,12 @@ class GameInstance(BaseModel):
     finish_date = models.DateField('date finished', default=None, blank=True, null=True,
                                    validators=[no_future])
     abandoned = models.BooleanField(default=False)
-    perler = models.BooleanField(default=False)
-    reviewed = models.BooleanField(default=False)
-    flagged = models.BooleanField(default=False)
-    substantial_progress = models.BooleanField(default=False)
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    active = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
 
-
-    @property
-    def aging(self):
-        if self.beaten or self.abandoned:
-            if self.finish_date:
-                return self.finish_date - self.purchase_date
-            self.flagged = True
-            LOGGER.warning("%s is lacking a finish_date", self.name)
-            return date.today() - self.purchase_date
-        return date.today() - self.purchase_date
-
-    @property
-    def play_aging(self):
-        if self.played:
-            return timedelta(0)
-        return date.today() - self.purchase_date
 
     # @property
     # def time_to_beat(self):
@@ -381,8 +379,8 @@ class GameInstance(BaseModel):
                 misc_factor += 1.0
             if self.game_format == "B":
                 misc_factor += 1.0
-            if self.substantial_progress:
-                misc_factor += 1.0
+            #if self.substantial_progress:
+            #   misc_factor += 1.0
             prior = round(((age_factor +  score_factor)* misc_factor) * rec_factor,2)
             if round(prior,1) == 0.0:
                 return -3.0
