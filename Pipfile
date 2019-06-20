@@ -47,7 +47,8 @@ PyYAML = "==3.13"
 semantic_version = "==2.5.0"
 websocket_client = "==0.53.0"
 wheel = "*"
-mysqlclient = {path = "./mysqlclient-1.4.2-cp27-cp27m-win_amd64.whl"}
+mysqlclient = {version = "*", sys_platform = "== 'linux2'"}
+###mysqlclient = {path = "./mysqlclient-1.4.2-cp27-cp27m-win_amd64.whl", sys_platform = "== 'win32'"}
 
 [requires]
 python_version = "2.7"
