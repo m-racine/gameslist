@@ -15,8 +15,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 #from endpoints.metacritic import MetaCritic
 from howlongtobeat import HowLongToBeat
-from endpoints.metacritic import MetaCritic
-from misc.names import gen_names, gen_metacritic_names
+from metacritic import MetaCritic
+from names import gen_names, gen_metacritic_names
 
 LOGGER = logging.getLogger('MYAPP')
 

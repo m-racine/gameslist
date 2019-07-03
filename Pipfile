@@ -1,11 +1,11 @@
 [[source]]
-name = "pypi"
-url = "https://pypi.org/simple"
+name = "github"
+url = "https://m-racine.github.io/pypi/"
 verify_ssl = true
 
 [[source]]
-name = "github"
-url = "https://m-racine.github.io/pypi/"
+name = "pypi"
+url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
@@ -53,8 +53,10 @@ semantic_version = "==2.5.0"
 websocket_client = "==0.53.0"
 wheel = "*"
 setuptools = "*"
-mysqlclient = {path = "./mysqlclient-1.4.2-cp27-cp27m-win_amd64.whl"}
 howlongtobeat = "*"
+mysqlclient = "*"
+metacritique = "*"
+mlfey-names = "*"
 
 [requires]
 python_version = "2.7"
