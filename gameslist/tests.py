@@ -17,7 +17,7 @@ from django.core.exceptions import ValidationError
 
 from nose.plugins.attrib import attr
 
-from howlongtobeat import HowLongToBeat, ExampleHowLongToBeat
+from howlongtobeat import HowLongToBeat
 
 from .forms import GameInstanceForm
 from .models import Game, GameInstance
@@ -350,14 +350,14 @@ class ListURLHelperTest(TestCase):
 
 
 class HLTBTest(TestCase):
-    @attr('hltb')
-    def test_example_hltb(self):
-        os.chdir("gameslist/endpoints")
-        hltb = ExampleHowLongToBeat("Sunset Overdrive")
-        os.chdir("../../")
-        self.assertEqual(hltb.game, "Sunset Overdrive")
-        #print hltb
-        self.assertEqual(hltb.fulltime, 10.0)
+    # @attr('hltb')
+    # def test_example_hltb(self):
+    #     os.chdir("gameslist/endpoints")
+    #     hltb = ExampleHowLongToBeat("Sunset Overdrive")
+    #     os.chdir("../../")
+    #     self.assertEqual(hltb.game, "Sunset Overdrive")
+    #     #print hltb
+    #     self.assertEqual(hltb.fulltime, 10.0)
 
     @attr('hltb')
     def test_known_good_hltb(self):

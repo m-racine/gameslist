@@ -3,6 +3,11 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
+[[source]]
+name = "github"
+url = "https://m-racine.github.io/pypi/"
+verify_ssl = true
+
 [dev-packages]
 
 [packages]
@@ -48,14 +53,8 @@ semantic_version = "==2.5.0"
 websocket_client = "==0.53.0"
 wheel = "*"
 setuptools = "*"
+mysqlclient = {path = "./mysqlclient-1.4.2-cp27-cp27m-win_amd64.whl"}
+howlongtobeat = "*"
 
 [requires]
 python_version = "2.7"
-
-[packages.mysqlclient]
-version = "*"
-sys_platform = "== 'linux2'"
-
-[packages.howlongtobeat]
-git = "https://gitlab.com/m-racine/howlongtobeat.git"
-ref = "0.0.3"
