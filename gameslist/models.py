@@ -14,7 +14,7 @@ from django.db import models
 #from django.forms import ModelForm, SelectDateWidget
 from django.core.exceptions import ValidationError
 #from endpoints.metacritic import MetaCritic
-from endpoints.howlongtobeat import HowLongToBeat
+from howlongtobeat import HowLongToBeat
 from endpoints.metacritic import MetaCritic
 from misc.names import gen_names, gen_metacritic_names
 
@@ -151,8 +151,21 @@ class Game(BaseModel):
         self.name = self.name.strip(" ")
         if self.full_time_to_beat <= 0.0:
             self.full_time_to_beat = self.calculate_how_long_to_beat()
-
+        if self.beaten or self.abandoned:
+                 if self.finish_date:
+                     self.aging = (self.finish_date - self.purchase_date).days
+                 else:
+                     self.flagged = True
+                     LOGGER.warning("%s is lacking a finish_date", self.name)
+                     self.aging = (date.today() - self.purchase_date).days
+        else:
+             self.aging = (date.today() - self.purchase_date).days
+        if self.played:
+            self.play_aging = 0
+        else:
+            self.play_aging = (date.today() - self.purchase_date).days
         super(Game, self).save(*args, **kwargs)
+
 
     def calculate_how_long_to_beat(self):
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))

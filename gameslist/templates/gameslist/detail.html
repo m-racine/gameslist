@@ -1,13 +1,9 @@
 <div>
-    <p>Priority {{game.priority}} </p>
     <p>Developed for {{game.get_system_display}}, located on {{game.get_location_display}}, in a {{game.get_game_format_display}} format.</p>
-    <p>Purchased on {{game.purchase_date}}
-    <p>Remaining Time {{game.time_to_beat}} and Current Time {{game.current_time}}
-    <p>Full Time to Beat: {{game.full_time_to_beat}} Hours</p>
-
+    <p>Purchased on {{game.purchase_date}}</p>
+    <p>Current Time {{game.current_time}} hours.</p>
     {% include "gameslist/play_form.html" with game=game %}
 
-    {% if game.perler %}<p>Perler Made!</p>{% endif %}
     {% if game.flagged %}
         <p>Flagged!</p>
     {% else %}
@@ -17,12 +13,7 @@
             </form>
     {% endif %}
 
-    <ul>
-        <h2>Notes</h2>
-        {% for obj in game.note_set.all %}
-           <li>{{obj.text}}</li>
-        {% endfor %}
-    </ul>
+    
     <form action="{% url 'gameslist:add_note' game.id %}" method="get">
                     {% csrf_token %}
                     <button type="submit"> Add Note</button>

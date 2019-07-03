@@ -47,6 +47,7 @@ PyYAML = "==3.13"
 semantic_version = "==2.5.0"
 websocket_client = "==0.53.0"
 wheel = "*"
+setuptools = "*"
 
 [requires]
 python_version = "2.7"
@@ -56,5 +57,5 @@ version = "*"
 sys_platform = "== 'linux2'"
 
 [packages.howlongtobeat]
-git = "https://gitlab.com/m-racine/howlongtobeat"
-ref = "0.0.1"
+git = "https://gitlab.com/m-racine/howlongtobeat.git"
+ref = "0.0.3"

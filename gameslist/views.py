@@ -89,31 +89,50 @@ def filtered_list(request,**kwargs):
     #game_list = Game.objects.all().order_by('-priority')
     game_list = GameInstance.objects.all().order_by('name')
     #logger.debug(kwargs)
+    if 'query_string' in request.session:
+        logger.debug(request.session['query_string'])
+    logger.debug(kwargs)
+    logger.debug(95)
+    logger.debug(game_list)
+    logger.debug(97)
     if request.META.get('HTTP_REFERER'):
         logger.debug(request.META.get('HTTP_REFERER'))
-        match = re.search(r'([\d]+)/$',request.META.get('HTTP_REFERER'))
+        logger.debug(100)
+        match = re.search(r'([\d]+)/detail/$',request.META.get('HTTP_REFERER'))
         if match:
             if check_url_args_for_only_token(request.META.get('QUERY_STRING')):
+                logger.debug(104)
+                logger.debug(reverse('gameslist:detail', args=(match.group(1),)))
+                logger.debug(request.META.get('HTTP_REFERER'))
+                logger.debug(107)
                 if check_url_match(reverse('gameslist:detail', args=(match.group(1),)),request.META.get('HTTP_REFERER')):
                     logger.debug("REDIRECTING")
+                    logger.debug(106)
                     if 'query_string' in request.session:
                         if request.session['query_string'].strip():
                             return HttpResponseRedirect(reverse('gameslist:instance_list')+"?{0}".format(request.session['query_string']))
                         return HttpResponseRedirect(reverse('gameslist:instance_list')+"?page=1")
                     logger.debug(reverse('gameslist:instance_list')+"?page=1")
+                    logger.debug(112)
                     return HttpResponseRedirect(reverse('gameslist:instance_list')+"?page=1")
-
-            #else:
-            #    logger.debug(request.META.get('QUERY_STRING'))
-            #    logger.debug("Query String has search data.")
-        #else:
-        #    logger.debug("NO INITIAL MATCH")
-    #else:
-    #    logger.debug("NO REFERER")
+                else:
+                    logger.debug(match.group(1))
+                    logger.debug(116)
+            else:
+               logger.debug(request.META.get('QUERY_STRING'))
+               logger.debug("Query String has search data.")
+        else:
+           logger.debug("NO INITIAL MATCH")
+    else:
+       logger.debug("NO REFERER")
     page = request.GET.get('page')
+    logger.debug(request.GET)
+    logger.debug(124)
     game_filter = GameInstanceFilter(request.GET, queryset=game_list)
 
     filtered_qs = game_filter.qs
+    logger.debug(filtered_qs)
+    logger.debug(129)
     paginator = Paginator(filtered_qs, YOUR_PAGE_SIZE)
 
     try:

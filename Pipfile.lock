@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e2e8c789cb1ac746794dc6170fc323244c70f2efc073c421f0ae521d8e261669"
+            "sha256": "894a869c82408b6214b0057952e95c0f7bd69ae7ea3bbe23c4cc5bc6c1348bc5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -241,8 +241,8 @@
             "version": "==3.2.3.post2"
         },
         "howlongtobeat": {
-            "git": "https://gitlab.com/m-racine/howlongtobeat",
-            "ref": "0.0.1"
+            "git": "https://gitlab.com/m-racine/howlongtobeat.git",
+            "ref": "0.0.3"
         },
         "idna": {
             "hashes": [
