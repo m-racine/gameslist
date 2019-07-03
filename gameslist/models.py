@@ -9,11 +9,7 @@ from datetime import timedelta
 import logging
 import traceback
 from django.db import models
-#from django.utils import timezone
-#from django.forms import DateField
-#from django.forms import ModelForm, SelectDateWidget
 from django.core.exceptions import ValidationError
-#from endpoints.metacritic import MetaCritic
 from howlongtobeat import HowLongToBeat
 from metacritic import MetaCritic
 from names import gen_names, gen_metacritic_names

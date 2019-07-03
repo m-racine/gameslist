@@ -19,12 +19,12 @@ from nose.plugins.attrib import attr
 
 from howlongtobeat import HowLongToBeat
 
-from .forms import GameInstanceForm
-from .models import Game, GameInstance
-from .models import CURRENT_TIME_NEGATIVE, FINISH_DATE_REQUIRED, FINISH_DATE_NOT_ALLOWED
-from .models import NOT_PLAYED, FINISH_AFTER_PURCHASE, CURRENT_TIME_NOT_ALLOWED
-from .views import check_url_args_for_only_token
-from .apps import GameslistConfig
+from gameslist.forms import GameInstanceForm
+from gameslist.models import Game, GameInstance
+from gameslist.models import CURRENT_TIME_NEGATIVE, FINISH_DATE_REQUIRED, FINISH_DATE_NOT_ALLOWED
+from gameslist.models import NOT_PLAYED, FINISH_AFTER_PURCHASE, CURRENT_TIME_NOT_ALLOWED
+from gameslist.views import check_url_args_for_only_token
+from gameslist.apps import GameslistConfig
 # Create your tests here.
 
 
