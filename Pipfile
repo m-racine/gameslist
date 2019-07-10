@@ -54,8 +54,8 @@ websocket_client = "==0.53.0"
 wheel = "*"
 setuptools = "*"
 howlongtobeat = "*"
-mysqlclient = "*"
 metacritique = "*"
+mysqlclient = {path = "./mysqlclient-1.4.2-cp27-cp27m-win_amd64.whl"}
 mlfey-names = "*"
 
 [requires]

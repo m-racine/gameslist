@@ -16,7 +16,7 @@ from django.forms.utils import ErrorList
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Game,Wish,Note, SYSTEMS, GameInstance, GameToInstance, AlternateName
-from .models import GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES
+from .models import GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES, convert_date_fields
 from .forms import GameInstanceForm,PlayBeatAbandonForm,AlternateNameForm,NoteForm
 from .filters import GameInstanceFilter, GameFilter
 #from .urls import urlpatterns
@@ -268,10 +268,21 @@ def add_game_view(request):
     if request.POST:
         form = GameInstanceForm(request.POST)
         if form.is_valid():
-            game = form.save()
-            game.save()
-            map_single_game_instance(game.id)
+            print request.POST.dict()
+            dict = convert_date_fields(request.POST.dict())
+            if 'csrfmiddlewaretoken' in dict:
+                del dict['csrfmiddlewaretoken']
+            if 'played' in dict:
+                dict['played'] = True
+            if 'beaten' in dict:
+                dict['beaten'] = True
+            if 'abandoned' in dict:
+                dict['abandoned'] = True
+            game = GameInstance.objects.create_game_instance(**dict)
+            #map_single_game_instance(game.id)
             return render(request,'gameslist/thanks.html', {'game':game})
+        else:
+            print form.errors.as_json()
     else:
         form = GameInstanceForm(initial={"purchase_date":date.today()})
     return render(request,'gameslist/game_form.html', {'form':form})
@@ -303,7 +314,7 @@ def add_name_view(request,game_id):
     return render(request,'gameslist/alternatename_form.html', {'form':form})
 
 class PlayBeatAbandonGame(generic.UpdateView):
-    model = Game
+    model = GameInstance
     form_class = PlayBeatAbandonForm
     template_name_suffix = '_update_form'
 
@@ -405,46 +416,7 @@ def move_from_instance_to_game(request):
         map_single_game_instance(game)
     return HttpResponseRedirect(reverse('gameslist:list'))
 
-def map_single_game_instance(game_id):
-    game = get_object_or_404(GameInstance, pk=game_id)
-    mapping = GameToInstance.objects.all().filter(instance_id=game.id)
-    logger.debug(mapping)
-    if mapping.count() > 0:
-        logger.debug("Mapping found for %s", game)
-        return
-    else:
-        try:
-            name_list = [game.name] + list(AlternateName.objects.all().filter(parent_game=game.id))
-            logger.error(name_list)
-            for name in name_list:
-                logger.debug(name)
-                masters = Game.objects.filter(name=name)
-                if masters.count() > 1:
-                    logger.debug("Too many matches for %s for %s", name, game)
-                    break
-                elif masters.count() == 1:
-                    logger.info("Creating mapping from %s to %s", game, masters[0])
-                    g_to_i = GameToInstance.objects.create(game=masters[0], instance=game, primary=False)
-                    #g_to_i.save()
-                    break
-                else:
-                    logger.debug("Creating new master game for %s", game)
-                    master_game = Game.objects.create(name=game.name, played=game.played, beaten=game.beaten,
-                                                     purchase_date=game.purchase_date, finish_date=game.finish_date,
-                                                     abandoned=game.abandoned, perler=game.perler,
-                                                     flagged=game.flagged, priority=game.priority, times_recommended=game.times_recommended,
-                                                     times_passed_over=game.times_passed_over)
-                    #master_game.save()
-                    logger.debug("Mapping new master game %s to %s", master_game, game)
-                    g_to_i = GameToInstance.objects.create(game=master_game, instance=game, primary=True)
-                    #g_to_i.save()
-                    logger.info("Added %s", master_game.name)
 
-                    break
-        except:
-            logger.error(sys.exc_info()[0])
-            logger.error(sys.exc_info()[1])
-            logger.error(traceback.print_tb(sys.exc_info()[2]))
 
 
 

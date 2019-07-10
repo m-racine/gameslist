@@ -29,54 +29,54 @@ class Migration(migrations.Migration):
         #     model_name='gameinstance',
         #     name='substantial_progress',
         # ),
-        migrations.AddField(
-            model_name='alternatename',
-            name='flagged',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='flag',
-            name='flagged',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='game',
-            name='aging',
-            field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
-        ),
-        migrations.AddField(
-            model_name='game',
-            name='play_aging',
-            field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
-        ),
+        # migrations.AddField(
+        #     model_name='alternatename',
+        #     name='flagged',
+        #     field=models.BooleanField(default=False),
+        # ),
+        # migrations.AddField(
+        #     model_name='flag',
+        #     name='flagged',
+        #     field=models.BooleanField(default=False),
+        # ),
+        # migrations.AddField(
+        #     model_name='game',
+        #     name='aging',
+        #     field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
+        # ),
+        # migrations.AddField(
+        #     model_name='game',
+        #     name='play_aging',
+        #     field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
+        # ),
         migrations.AddField(
             model_name='game',
             name='substantial_progress',
             field=models.BooleanField(default=False),
         ),
-        migrations.AddField(
-            model_name='gameinstance',
-            name='active',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='note',
-            name='flagged',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='series',
-            name='flagged',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='subseries',
-            name='flagged',
-            field=models.BooleanField(default=False),
-        ),
-        migrations.AddField(
-            model_name='wish',
-            name='flagged',
-            field=models.BooleanField(default=False),
-        ),
+        # migrations.AddField(
+        #     model_name='gameinstance',
+        #     name='active',
+        #     field=models.BooleanField(default=False),
+        # ),
+        # migrations.AddField(
+        #     model_name='note',
+        #     name='flagged',
+        #     field=models.BooleanField(default=False),
+        # ),
+        # migrations.AddField(
+        #     model_name='series',
+        #     name='flagged',
+        #     field=models.BooleanField(default=False),
+        # ),
+        # migrations.AddField(
+        #     model_name='subseries',
+        #     name='flagged',
+        #     field=models.BooleanField(default=False),
+        # ),
+        # migrations.AddField(
+        #     model_name='wish',
+        #     name='flagged',
+        #     field=models.BooleanField(default=False),
+        # ),
     ]

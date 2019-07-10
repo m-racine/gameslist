@@ -2,7 +2,7 @@
 
 <h1>You entered {{ game.name }}!</h1>
 
-<form action="{% url 'gameslist:detail' game.id %}" method="get">
+<form action="{% url 'gameslist:game_detail' game.parent_game_id %}" method="get">
     {% csrf_token %}
     <input type="submit" value="View Game">
 </form>
@@ -16,4 +16,4 @@
 <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List.</button>
-</form> 
+</form>

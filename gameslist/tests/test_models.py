@@ -20,9 +20,10 @@ from nose.plugins.attrib import attr
 from howlongtobeat import HowLongToBeat
 
 from gameslist.forms import GameInstanceForm
-from gameslist.models import Game, GameInstance
+from gameslist.models import Game, GameInstance, GameToInstance
 from gameslist.models import CURRENT_TIME_NEGATIVE, FINISH_DATE_REQUIRED, FINISH_DATE_NOT_ALLOWED
 from gameslist.models import NOT_PLAYED, FINISH_AFTER_PURCHASE, CURRENT_TIME_NOT_ALLOWED
+from gameslist.models import FORMATS, GAME, GAME_INSTANCE, WISH, NOTE, ALTERNATE_NAME, SERIES, SUB_SERIES, FLAG, SYSTEMS
 from gameslist.views import check_url_args_for_only_token
 from gameslist.apps import GameslistConfig
 # Create your tests here.
@@ -47,34 +48,6 @@ class PersistentSessionClient(Client):
             self._persisted_session = engine.SessionStore("persistent")
         return self._persisted_session
 
-def create_game(name="Portal", played=False, beaten=False,
-                purchase_date=None, finish_date=None, substantial_progress=False,
-                abandoned=False, perler=False, flagged=False,
-                priority=0, times_recommended=0, times_passed_over=0,
-                full_time_to_beat=0.0, total_time=0.0):
-    return Game.objects.create(name=name, played=played, beaten=beaten,
-                               purchase_date=purchase_date, finish_date=finish_date,
-                               abandoned=abandoned, perler=perler,
-                               substantial_progress=substantial_progress,
-                               flagged=flagged, priority=priority, times_recommended=times_recommended,
-                               times_passed_over=times_passed_over, full_time_to_beat=full_time_to_beat,
-                               total_time=total_time)
-
-def create_game_instance(name="Portal", system="STM", played=False, beaten=False,
-                         location="STM", game_format="D", purchase_date=None,
-                         finish_date=None, abandoned=False,
-                         flagged=False,
-                         current_time=0,
-                         metacritic=0.0, user_score=0.0):
-    return GameInstance.objects.create(name=name, system=system, played=played,
-                               beaten=beaten, location=location,
-                               game_format=game_format,
-                               purchase_date=purchase_date,
-                               finish_date=finish_date, abandoned=abandoned,
-                               flagged=flagged,
-                               current_time=current_time, metacritic=metacritic,
-                               user_score=user_score)
-
 def convert_date(date_string):
     return datetime.strptime(date_string, '%Y-%m-%d').date()
 
@@ -83,14 +56,14 @@ def convert_date(date_string):
 class AgingTests(unittest.TestCase):
     @attr('aging')
     def test_aging_zero(self):
-        game = create_game(purchase_date=date.today())
+        game = Game.objects.create_game(purchase_date=date.today())
         self.assertEqual(game.purchase_date, date.today())
         self.assertEqual(game.aging, 0)
         self.assertEqual(game.play_aging, 0)
 
     @attr('aging')
     def test_aging_over_year(self):
-        game = create_game(played=True, beaten=True,
+        game = Game.objects.create_game(played=True, beaten=True,
                            purchase_date=datetime.strptime('2016-10-30', '%Y-%m-%d'),
                            finish_date=datetime.strptime('2018-10-30', '%Y-%m-%d'))
         self.assertEqual(game.purchase_date, datetime.strptime('2016-10-30', '%Y-%m-%d'))
@@ -101,253 +74,40 @@ class AgingTests(unittest.TestCase):
     @attr('aging')
     def test_negative_aging(self):
         future_date = date.today() + timedelta(8)
-        game = create_game(purchase_date=future_date)
+        game = Game.objects.create_game(purchase_date=future_date)
         #self.assertEqual(game.purchase_date,date.today())
         self.assertEqual(game.aging, -8)
         self.assertEqual(game.play_aging, -8)
 
     @attr('aging')
     def test_aging_beaten(self):
-        game = create_game(purchase_date=date.today() - timedelta(1), beaten=True,
+        game = Game.objects.create_game(purchase_date=date.today() - timedelta(1), beaten=True,
                            finish_date=date.today(), played=True)
         self.assertGreater(game.aging, 0)
         self.assertEqual(game.play_aging, 0)
-        game = create_game(beaten=True, played=True, purchase_date=date.today(),
+        game = Game.objects.create_game(beaten=True, played=True, purchase_date=date.today(),
                            finish_date=date.today())
         self.assertEqual(game.aging, 0)
         self.assertEqual(game.play_aging, 0)
 
     @attr('aging')
     def test_aging_played(self):
-        game = create_game(played=True, purchase_date=date.today() - timedelta(1))
+        game = Game.objects.create_game(played=True, purchase_date=date.today() - timedelta(1))
         self.assertEqual(game.aging, 1)
         self.assertEqual(game.play_aging, 0)
 
     @attr('aging')
     def test_aging_abandoned(self):
-        game = create_game(purchase_date=date.today() - timedelta(4), abandoned=True,
+        game = Game.objects.create_game(purchase_date=date.today() - timedelta(4), abandoned=True,
                            finish_date=date.today(), played=True)
         self.assertEqual(game.aging, 4)
         self.assertEqual(game.play_aging, 0)
 
     @attr('aging')
     def test_aging_not_played(self):
-        game = create_game(purchase_date=date.today() - timedelta(5))
+        game = Game.objects.create_game(purchase_date=date.today() - timedelta(5))
         self.assertEqual(game.aging, 5)
         self.assertEqual(game.play_aging, 5)
-
-class GameIndexViewTests(TestCase):
-    def test_no_games(self):
-        response = self.client.get(reverse('gameslist:index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "No games are available.")
-        self.assertQuerysetEqual(response.context['new_games_list'], [])
-
-    def test_new_game_in_list(self):
-        create_game(purchase_date=convert_date('2018-10-01'))
-        response = self.client.get(reverse('gameslist:index'))
-        self.assertEqual(response.status_code, 200)
-        #print response.context['new_games_list']
-        self.assertQuerysetEqual(response.context['new_games_list'], ['<Game: Portal>'])
-
-    # def test_add_game(self):
-    #     response = self.client.get(reverse('gameslist:add'))
-    #     print response.status_code
-    #     print response
-    #     self.assertRedirects(response,reverse('gameslist:list'))
-
-class GameListViewTests(TestCase):
-
-    def test_list_filters(self):
-        create_game_instance(purchase_date=convert_date('2018-10-01'))
-        create_game_instance(name="Shin Megami Tensei IV", system="3DS",purchase_date=convert_date('2018-10-01'))
-        create_game_instance(name="Bravely Default", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        #template_name = 'gameslist/list.html'
-        #context_object_name = 'full_games_list'
-        request = self.client.get(reverse('gameslist:instance_list'))
-        response = request.context['response']
-
-        self.assertEqual(request.status_code, 200)
-        print response.object_list
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Portal - STM>',
-                                                        '<GameInstance: Shin Megami Tensei IV - 3DS>',
-                                                        '<GameInstance: Bravely Default - 3DS>'], ordered=False)
-
-        request = self.client.get(reverse('gameslist:instance_list'), {'system': '3DS'})
-        response = request.context['response']
-        self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>',
-                                                        '<GameInstance: Bravely Default - 3DS>'],  ordered=False)
-
-        request = self.client.get(reverse('gameslist:instance_list'),
-                                  {'system': '3DS', 'game_format': 'D'})
-        response = request.context['response']
-        self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
-
-        request = self.client.get(reverse('gameslist:instance_list'), {'system': 'STM'})
-        response = request.context['response']
-        self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Portal - STM>'])
-
-        request = self.client.get(reverse('gameslist:instance_list'), {'game_format': 'M'})
-        response = request.context['response']
-        self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, [])
-
-        request = self.client.get(reverse('gameslist:instance_list'), {'system':'GBA'})
-        response = request.context['response']
-        self.assertEqual(request.status_code, 200)
-        self.assertQuerysetEqual(response.object_list, [])
-
-        session = self.client.session
-        self.assertEqual(session['query_string'], 'system=GBA')
-
-class ListDetailRedirectTests(TestCase):
-    #client_class = PersistentSessionClient
-    def test_known_bad(self):
-        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:instance_list'), follow=True)
-        request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
-        request = self.client.get(reverse('gameslist:instance_list'), follow=True,
-                                  HTTP_REFERER="http://127.0.0.1:8000/3/")
-        response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Fire Emblem - GBA>',
-                                                        '<GameInstance: Shin Megami Tensei IV - 3DS>'],  ordered=False)
-        self.assertEqual(request.status_code, 200)
-
-    def test_list(self):
-        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:instance_list'), {'system':'3DS'}, follow=True)
-        session = self.client.session
-        self.assertEqual(session['query_string'], 'system=3DS')
-        response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
-
-    def test_list_detail(self):
-        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:instance_list'), {'system':'3DS'}, follow=True)
-        session = self.client.session
-        self.assertEqual(session['query_string'], 'system=3DS')
-        response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
-        request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
-        self.assertEqual(session['query_string'], 'system=3DS')
-
-    def test_list_detail_list(self):
-        game = create_game_instance(name="Shin Megami Tensei IV", system="3DS", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        create_game_instance(name="Fire Emblem", system="GBA", location="3DS", game_format="P",purchase_date=convert_date('2018-10-01'))
-        request = self.client.get(reverse('gameslist:instance_list'), {'system':'3DS'}, follow=True)
-        session = self.client.session
-        response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
-
-        self.assertEqual(session['query_string'], 'system=3DS')
-        request = self.client.get(reverse('gameslist:detail', args=(game.id,)), follow=True)
-        self.assertEqual(session['query_string'], 'system=3DS')
-        request = self.client.get(reverse('gameslist:instance_list'),
-                                  HTTP_REFERER="http://127.0.0.1:8000/2/detail/", follow=True)
-        #self.assertQuerysetEqual(request.context['response'].object_list,['<Game: Test - 3DS>'])
-        response = request.context['response']
-        self.assertQuerysetEqual(response.object_list, ['<GameInstance: Shin Megami Tensei IV - 3DS>'])
-        self.assertEqual(session['query_string'], 'system=3DS')
-        self.assertEqual(request.status_code, 200)
-
-
-class GameDetailViewTests(TestCase):
-
-    #
-    def test_create_game(self):
-        """
-        """
-        game = create_game(purchase_date=convert_date("2018-1-1"))
-        game = get_object_or_404(Game, pk=game.id)
-        self.assertEqual(game.name, "Portal")
-
-    def test_play_game(self):
-        game = create_game(finish_date=None,purchase_date=convert_date('2018-10-01'))
-        self.assertFalse(game.played)
-        response = self.client.post(
-            reverse('gameslist:play_game', kwargs={'pk':game.id}),
-            {'played':True,
-             'current_time': 1}
-        )
-        self.assertEqual(response.status_code, 302)
-        game.refresh_from_db()
-        self.assertTrue(game.played)
-
-
-    def test_beat_game(self):
-        game = create_game(purchase_date=convert_date('2018-10-01'))
-        self.assertFalse(game.beaten)
-        response = self.client.post(
-            reverse('gameslist:play_game', kwargs={'pk':game.id}),
-            {'played':True,
-             'current_time':1,
-             'beaten':True,
-             'finish_date_year': 2018,
-             'finish_date_day':1,
-             'finish_date_month': 11}
-        )
-        self.assertEqual(response.status_code, 302)
-        game.refresh_from_db()
-        self.assertTrue(game.beaten)
-
-    def test_abandon_game(self):
-        #play_game
-        game = create_game(purchase_date=convert_date('2018-10-01'))
-        self.assertFalse(game.abandoned)
-        response = self.client.post(
-            reverse('gameslist:play_game', kwargs={'pk':game.id}),
-            {'finish_date_year': 2018,
-             'finish_date_day':1,
-             'finish_date_month': 11,
-             'played':True,
-             'current_time':1,
-             'abandoned':True}
-        )
-        self.assertEqual(response.status_code, 302)
-        game.refresh_from_db()
-        self.assertTrue(game.abandoned)
-
-    def test_flag_game(self):
-        game = create_game(purchase_date=convert_date('2018-10-01'))
-        self.assertFalse(game.flagged)
-        _ = self.client.post(reverse('gameslist:flag_game', args=(game.id,)))
-        game = get_object_or_404(Game, pk=game.id)
-        self.assertEqual(game.flagged, True)
-
-class GameslistConfigTest(TestCase):
-    def test_apps(self):
-        self.assertEqual(GameslistConfig.name, 'gameslist')
-        self.assertEqual(apps.get_app_config('gameslist').name, 'gameslist')
-
-    def basic_session_test(self):
-        _ = self.client.get(reverse('gameslist:list'))
-        session = self.client.session
-        #my_car = session['my_car']
-        session['my_car'] = 'mini'
-        # Get a session value, setting a default if it is not present ('mini')
-        my_car = session.get('my_car', 'mini')
-
-        # Set a session value
-        print my_car
-        self.assertEqual(session['my_car'], 'mini')
-        # Delete a session value
-        #del request.session['my_car']
-
-class ListURLHelperTest(TestCase):
-
-    def test_check_url_args_for_token(self):
-        self.assertTrue(check_url_args_for_only_token(" "))
-        self.assertTrue(check_url_args_for_only_token("/"))
-        self.assertTrue(check_url_args_for_only_token("?"))
-        self.assertTrue(check_url_args_for_only_token("csrfmiddlewaretoken=xxxyyy22233345455sdf"))
-        self.assertFalse(check_url_args_for_only_token("csrfmiddlewaretoken=xxxyyy22233345&page=1"))
-
 
 class HLTBTest(TestCase):
     # @attr('hltb')
@@ -383,74 +143,24 @@ class HLTBTest(TestCase):
 
     @attr('hltb')
     def test_full_time_on_create(self):
-        game = create_game(name="Sunset Overdrive",purchase_date=convert_date('2018-10-01'))
+        game = Game.objects.create_game(name="Sunset Overdrive",purchase_date=convert_date('2018-10-01'))
         self.assertEqual(game.full_time_to_beat, 10.0)
 
-    # @attr('hltb')
-    # def test_time_to_beat_not_played(self):
-    #     game = create_game(name="Sunset Overdrive", purchase_date=convert_date('2018-10-01'))
-    #     self.assertEqual(game.time_to_beat, 10.0)
+    @attr('hltb')
+    def test_time_to_beat_not_played(self):
+        game = GameInstance.objects.create_game_instance(name="Sunset Overdrive", purchase_date=convert_date('2018-10-01'))
+        self.assertEqual(game.time_to_beat, 10.0)
 
-    # @attr('hltb')
-    # def test_time_to_beat_partial(self):
-    #     game = create_game(name="Sunset Overdrive", purchase_date=convert_date('2018-10-01'))
-    #     self.assertEqual(game.full_time_to_beat, 10.0)
-    #     self.assertEqual(game.time_to_beat, 4.5)
+    @attr('hltb')
+    def test_time_to_beat_partial(self):
+        game = GameInstance.objects.create_game_instance(name="Sunset Overdrive", purchase_date=convert_date('2018-10-01'))
+        mapping = GameToInstance.objects.all().filter(instance_id=game.id)
+        print mapping
+        self.assertEqual(game.full_time_to_beat, 10.0)
+        self.assertEqual(game.time_to_beat, 4.5)
 
 @attr('date_validation')
 class GameModelTests(TestCase):
-    @attr('date_validation')
-    def test_future_purchase_date(self):
-
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM'
-        })
-        print form.errors.as_json()
-        #self.assertTrue(convert_date(form.data['purchase_date']) > date.today())
-        self.assertRaises(ValidationError('Purchase_Date/finish_date cannot be in the future.'),
-                          form.full_clean())
-
-    @attr('date_validation')
-    def test_past_purchase_date(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'current_time': 0
-        })
-        print form.errors.as_json()
-        self.assertTrue(form.is_valid())
-
-    @attr('date_validation')
-    def test_future_finish_date(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'finish_date_year': 2019,
-            'finish_date_month': 01,
-            'finish_date_day': 01,
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': True,
-            'beaten': True,
-            'current_time': 1.0
-        })
-        #self.assertTrue(convert_date(form.data['finish_date']) > date.today())
-        self.assertRaises(ValidationError('Purchase_Date/finish_date cannot be in the future.'),
-                          form.full_clean())
 
     @attr('date_validation')
     def test_past_finish_date(self):
@@ -477,187 +187,100 @@ class GameModelTests(TestCase):
         logger.debug(response.context['form'])
         #self.assertTrue(False)
 
-    @attr('date_validation')
-    def test_not_played(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'finish_date_year': 2018,
-            'finish_date_month': 01,
-            'finish_date_day': 01,
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': False,
-            'current_time': 0.0
-        })
-        print form.errors.as_json()
-        #self.assertFalse(form.is_valid())
-        self.assertFalse(form.is_valid())
-        self.assertRaises(ValidationError({'finish_date':(FINISH_DATE_NOT_ALLOWED)}),
-                          form.full_clean())
 
-    @attr('date_validation')
-    def test_not_played_but_beaten(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'finish_date_year': 2018,
-            'finish_date_month': 01,
-            'finish_date_day': 01,
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': False,
-            'beaten': True
-        })
-        print form.errors.as_json()
-        #self.assertFalse(form.is_valid())
-        self.assertRaises(ValidationError({'played': (NOT_PLAYED)}),
-                          form.full_clean())
+class ConstantTests(TestCase):
+    def test_systems(self):
+        self.assertTrue(('3DS', 'Nintendo 3DS') in SYSTEMS)
+        self.assertTrue(('AND', 'Android') in SYSTEMS)
+        self.assertTrue(('ATA', 'Atari') in SYSTEMS)
+        self.assertTrue(('BNT', 'Battle.net') in SYSTEMS)
+        self.assertTrue(('DIG', 'Digipen') in SYSTEMS)
+        self.assertTrue(('NDS', 'Nintendo DS') in SYSTEMS)
+        self.assertTrue(('EPI', 'Epic Games') in SYSTEMS)
+        self.assertTrue(('GCN', 'Gamecube') in SYSTEMS)
+        self.assertTrue(('GB', 'Game Boy') in SYSTEMS)
+        self.assertTrue(('GBC', 'Game Boy Color') in SYSTEMS)
+        self.assertTrue(('GBA', 'Game Boy Advance') in SYSTEMS)
+        self.assertTrue(('GG', 'GameGear') in SYSTEMS)
+        self.assertTrue(('GOG', 'GoG') in SYSTEMS)
+        self.assertTrue(('HUM', 'Humble') in SYSTEMS)
+        self.assertTrue(('IND', 'IndieBox') in SYSTEMS)
+        self.assertTrue(('IIO', 'Itch.io') in SYSTEMS)
+        self.assertTrue(('KIN', 'Kindle') in SYSTEMS)
+        self.assertTrue(('NES', 'NES') in SYSTEMS)
+        self.assertTrue(('N64', 'Nintendo 64') in SYSTEMS)
+        self.assertTrue(('ORN', 'Origin') in SYSTEMS)
+        self.assertTrue(('PC', 'PC') in SYSTEMS)
+        self.assertTrue(('PSX', 'PlayStation') in SYSTEMS)
+        self.assertTrue(('PS2', 'PlayStation 2') in SYSTEMS)
+        self.assertTrue(('PS3', 'PlayStation 3') in SYSTEMS)
+        self.assertTrue(('PS4', 'PlayStation 4') in SYSTEMS)
+        self.assertTrue(('PSP', 'PlayStation Portable') in SYSTEMS)
+        self.assertTrue(('SNS', 'SNES') in SYSTEMS)
+        self.assertTrue(('STM', 'Steam') in SYSTEMS)
+        self.assertTrue(('NSW', 'Switch') in SYSTEMS)
+        self.assertTrue(('TWH', 'Twitch') in SYSTEMS)
+        self.assertTrue(('UPL', 'Uplay') in SYSTEMS)
+        self.assertTrue(('VIT', 'Vita') in SYSTEMS)
+        self.assertTrue(('WII', 'Wii') in SYSTEMS)
+        self.assertTrue(('WIU', 'Wii U') in SYSTEMS)
+        self.assertTrue(('XBX', 'Xbox') in SYSTEMS)
+        self.assertTrue(('360', 'Xbox 360') in SYSTEMS)
+        self.assertTrue(('XB1', 'Xbox One') in SYSTEMS)
 
-    @attr('date_validation')
-    def test_not_played_but_abandoned(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'finish_date_year': 2018,
-            'finish_date_month': 01,
-            'finish_date_day': 01,
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': False,
-            'abandoned': True
-        })
-        print form.errors.as_json()
-        #self.assertFalse(form.is_valid())
-        self.assertRaises(ValidationError({'played': (NOT_PLAYED)}),
-                          form.full_clean())
+    def test_validator_messages(self):
+        self.assertEqual(CURRENT_TIME_NOT_ALLOWED,'Current time must be 0 if a game is unplayed.')
+        self.assertEqual(CURRENT_TIME_NEGATIVE,'If a game is played the current_time must be over 0.')
+        self.assertEqual(FINISH_DATE_NOT_ALLOWED,"finish_date must be empty if game isn't played and beaten or abandoned.")
+        self.assertEqual(NOT_PLAYED,'You must have played a game to beat or abandon it.')
+        self.assertEqual(FINISH_AFTER_PURCHASE,'finish_date must be after date of purchase.')
+        self.assertEqual(FINISH_DATE_REQUIRED,'You must have a finish date to beat or abandon a game.')
 
-    @attr('date_validation')
-    def test_not_beaten_or_abandoned(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'finish_date_year': 2018,
-            'finish_date_month': 01,
-            'finish_date_day': 01,
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': True,
-            'current_time': 1,
-            'beaten': False,
-            'abandoned': False
-        })
-        print form.errors.as_json()
-        #self.assertFalse(form.is_valid())
-        self.assertRaises(ValidationError({'finish_date':(FINISH_DATE_NOT_ALLOWED)}),
-                          form.full_clean())
+    def test_formats(self):
+        self.assertTrue(("P","Physical") in FORMATS)
+        self.assertTrue(('D', 'Digital') in FORMATS)
+        self.assertTrue(('M', 'Missing') in FORMATS)
+        self.assertTrue(('B', 'Borrowed') in FORMATS)
+        self.assertTrue(('N', 'None') in FORMATS)
+        self.assertTrue(('R', 'Returned') in FORMATS)
+        self.assertTrue(('L', 'Lent') in FORMATS)
+        self.assertTrue(('E', 'Expired') in FORMATS)
+        self.assertFalse(('A','Absent') in FORMATS)
 
-    @attr('date_validation')
-    def test_beaten_no_finish(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': True,
-            'current_time': 1,
-            'beaten': True,
-            'abandoned': False
-        })
-        print form.errors.as_json()
-        #self.assertFalse(form.is_valid())
-        self.assertRaises(ValidationError({'finish_date': (FINISH_DATE_REQUIRED)}),
-                          form.full_clean())
-        self.assertFalse(form.is_valid())
+    def test_entities(self):
+        self.assertEqual(GAME,1)
+        self.assertEqual(GAME_INSTANCE,2)
+        self.assertEqual(NOTE,3)
+        self.assertEqual(ALTERNATE_NAME,4)
+        self.assertEqual(WISH,5)
+        self.assertEqual(SERIES,6)
+        self.assertEqual(SUB_SERIES,7)
+        self.assertEqual(FLAG,8)
 
-class CurrentTimeTests(TestCase):
-    #test that setting current time under 0 is impossible
-    @attr('current_time')
-    def test_negative_current_time(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 1,
-            'purchase_date_day': 1,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'current_time': -1,
-            'played': True
-        })
-        self.assertRaises(ValidationError('Value cannot be negative or zero.'))
-        self.assertRaises(ValidationError({"current_time":(CURRENT_TIME_NEGATIVE)}),
-                          form.full_clean())
 
-    #test that setting current time over 1 with played false is impossible
-    @attr('current_time')
-    def test_current_time_not_played(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 1,
-            'purchase_date_day': 1,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'current_time': 1
-        })
-        self.assertRaises(ValidationError({'current_time':(CURRENT_TIME_NOT_ALLOWED)}),
-                          form.full_clean())
+class AddOrAppendTests(TestCase):
+    def add_new_key_to_dict(self):
+        pass
+    def add_new_value_to_array(self):
+        pass
+    def test_type_exceptions(self):
+        pass
 
-    #test that setting played to true with current time == 0 is impossible
-    @attr('current_time')
-    def test_no_time_yes_played(self):
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': True
-        })
-        print form.errors.as_json()
-        self.assertRaises(ValidationError({'current_time':(CURRENT_TIME_NEGATIVE)}),
-                          form.full_clean())
+class ConvertDateFieldsTests(TestCase):
+    def only_purchase_date_test(self):
+        pass
+    def only_finish_date_test(self):
+        pass
+    def purchase_and_finish_test(self):
+        pass
+    def neither_purchase_or_finish_test(self):
+        pass
+    def incomplete_finish_or_purchase_test(self):
+        pass
+    def invalid_dates_test(self):
+        pass
 
-    #test that setting played to true AND current time > 0 is POSSIBLE
-    @attr('current_time')
-    def test_valid_current_played(self):
-
-        form = GameInstanceForm({
-            'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
-            'system': 'STM',
-            'game_format': 'D',
-            'location': 'STM',
-            'played': True,
-            'current_time': 1
-        })
-        print form.errors.as_json()
-        self.assertTrue(form.is_valid())
-        instance = form.save()
-        logger.debug(form.errors.as_json())
-        self.assertTrue(instance.played)
-        self.assertEqual(instance.current_time, 1)
+#NEED TO TEST PRIORITY ETC POST CREATE
 
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py
 
