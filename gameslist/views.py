@@ -331,7 +331,7 @@ class PlayBeatAbandonGame(generic.UpdateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('gameslist:detail', args=(self.object.id,))
+        return reverse('gameslist:game_detail', args=(self.object.parent_game_id,))
 
 def save_all_games(request):
     game_list = GameInstance.objects.all()
@@ -510,7 +510,7 @@ def top_priority_game_list(request,**kwags):
 def filtered_game_list(request,**kwargs):
     model = Game
     paginate_by = YOUR_PAGE_SIZE
-    game_list = Game.objects.all().order_by('name')
+    game_list = Game.objects.all().order_by('-priority')
     if request.META.get('HTTP_REFERER'):
         logger.debug(request.META.get('HTTP_REFERER'))
         match = re.search(r'([\d]+)/$',request.META.get('HTTP_REFERER'))
