@@ -15,24 +15,6 @@
 </form>
 <body>
     <div>
-      <p>Released on x. Purchased on {{game.purchase_date}}</p> 
-    </div>
-    <div>
-      {% if game.played %}
-        {% if game.abandoned %}
-          <p>Abandoned on {{game.finish_date}}</p>
-        {% else %}
-          {% if game.beaten %}
-            <p>Beaten on {{game.finish_date}}</p>
-          {% else %}
-            <p>Played!</p>
-          {% endif %}
-        {% endif %}
-      {% else %}
-        <p>Unplayed...</p>
-      {% endif %}
-    </div>
-    <div>
       <p>Priority {{game.priority}} Recommended: {{game.times_recommended}} Passed Over: {{ game.times_passed_over }} </p>
     </div>
     <div class="instance_list">
@@ -56,5 +38,5 @@
     <form action="{% url 'gameslist:list' %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List</button>
-    </form> 
+    </form>
 <body>

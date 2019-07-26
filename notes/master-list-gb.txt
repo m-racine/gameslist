@@ -73,7 +73,7 @@ Super Mario Land 2: 6 Golden Coins
 Avenging Spirit
 Bonk's Adventure
 Darkman
-Dr. Franken 
+Dr. Franken
 Dr. Franken II
 The Humans -- lemmings esque
 Mega Man III
@@ -85,7 +85,7 @@ Megalit
 TaleSpin
 Spot: The Cool Adventure
 Star Wars: The Empire Strikes Back
-Zen the Intergalactic Ninja 
+Zen the Intergalactic Ninja
 Zool
 Adventure Island 3
 Darkwing Duck
@@ -192,7 +192,6 @@ Mulan
 The Rugrats Movie
 Bart Simpson's Escape from Camp Deadly
 Final Fantasy Adventure
-Final Fantasy Legend II
 Metroid II: Return of Samus
 Who Framed Roger Rabbit -- played the NES game?
 Kid Icarus: Of Myths and Monsters

@@ -24,6 +24,7 @@ from gameslist.models import Game, GameInstance, GameToInstance
 from gameslist.models import CURRENT_TIME_NEGATIVE, FINISH_DATE_REQUIRED, FINISH_DATE_NOT_ALLOWED
 from gameslist.models import NOT_PLAYED, FINISH_AFTER_PURCHASE, CURRENT_TIME_NOT_ALLOWED
 from gameslist.models import FORMATS, GAME, GAME_INSTANCE, WISH, NOTE, ALTERNATE_NAME, SERIES, SUB_SERIES, FLAG, SYSTEMS
+from gameslist.models import add_or_append, convert_date_fields
 from gameslist.views import check_url_args_for_only_token
 from gameslist.apps import GameslistConfig
 # Create your tests here.
@@ -149,15 +150,16 @@ class HLTBTest(TestCase):
     @attr('hltb')
     def test_time_to_beat_not_played(self):
         game = GameInstance.objects.create_game_instance(name="Sunset Overdrive", purchase_date=convert_date('2018-10-01'))
-        self.assertEqual(game.time_to_beat, 10.0)
+        self.assertEqual(game.current_time, 0.0)
 
     @attr('hltb')
     def test_time_to_beat_partial(self):
-        game = GameInstance.objects.create_game_instance(name="Sunset Overdrive", purchase_date=convert_date('2018-10-01'))
-        mapping = GameToInstance.objects.all().filter(instance_id=game.id)
-        print mapping
+        inst = GameInstance.objects.create_game_instance(name="Sunset Overdrive", purchase_date=convert_date('2018-10-01'), current_time=4.5)
+        game = Game.objects.get(pk=inst.parent_game_id)
         self.assertEqual(game.full_time_to_beat, 10.0)
-        self.assertEqual(game.time_to_beat, 4.5)
+        self.assertEqual(inst.current_time, 4.5)
+        print game.total_time
+        self.assertEqual(game.remaining_time, 5.5)
 
 @attr('date_validation')
 class GameModelTests(TestCase):
@@ -259,28 +261,51 @@ class ConstantTests(TestCase):
 
 
 class AddOrAppendTests(TestCase):
-    def add_new_key_to_dict(self):
-        pass
-    def add_new_value_to_array(self):
-        pass
+    def test_add_new_key_to_dict(self):
+        test = add_or_append({"juice":["orange","apple"]},"soda","lemon")
+        self.assertEqual(test,{"juice":["orange","apple"],"soda":["lemon"]})
+
+    def test_add_new_value_to_array(self):
+        test = add_or_append({"juice":["orange","apple"],"soda":"cola"},"juice","lemon")
+        self.assertEqual(test,{"juice":["orange","apple","lemon"],"soda":"cola"})
+
     def test_type_exceptions(self):
-        pass
+        with self.assertRaises(TypeError):
+            add_or_append(["orange","apple"],"soda","lemon")
+        with self.assertRaises(TypeError):
+            add_or_append({"juice":["orange","apple"]},["soda","water"],"lemon")
 
 class ConvertDateFieldsTests(TestCase):
+    # model_dict['purchase_date'] = date(int(model_dict['purchase_date_year']),
+    #                                    int(model_dict['purchase_date_month']),
+    #                                    int(model_dict['purchase_date_day']))
     def only_purchase_date_test(self):
-        pass
+        data = convert_date_fields({"purchase_date_year":2019,"purchase_date_day":30,"purchase_date_month":12})
+        self.assertEqual(data,{"purchase_date":date(int(2019),int(12),int(30))})
+
     def only_finish_date_test(self):
-        pass
+        data = convert_date_fields({"finish_date_year":2018,"finish_date_day":7,"finish_date_month":1})
+        self.assertEqual(data,{"finish_date":date(int(2018),int(1),int(7))})
+
     def purchase_and_finish_test(self):
-        pass
+        data = convert_date_fields({"purchase_date_year":2019,"purchase_date_day":30,"purchase_date_month":12,"finish_date_year":2018,"finish_date_day":7,"finish_date_month":1})
+        self.assertEqual(data,{"purchase_date":date(int(2019),int(12),int(30)),"finish_date":date(int(2018),int(1),int(7))})
+
     def neither_purchase_or_finish_test(self):
-        pass
+        data = convert_date_fields({"boston":"commons","why":5})
+        self.assertEqual(data, {"boston":"commons","why":5})
+
     def incomplete_finish_or_purchase_test(self):
-        pass
+        with self.assertRaises(KeyError):
+            convert_date_fields({"purchase_date_year":2019,"purchase_date_day":30})
+
     def invalid_dates_test(self):
-        pass
+        #with self.assertRaises(ValueError):
+        data = convert_date_fields({"purchase_date_year":2019,"purchase_date_day":32,"purchase_date_month":12})
+        self.assertEqual(data,{"purchase_date":date.today()})
 
 #NEED TO TEST PRIORITY ETC POST CREATE
+#test priority is 0/negative? if all instances are inactivel
 
 #https://github.com/django/django/blob/master/tests/modeladmin/tests.py
 

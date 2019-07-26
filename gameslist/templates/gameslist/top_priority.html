@@ -5,17 +5,13 @@
   <thead>
     <tr>
       <th>Game</th>
-      <th>Location</th>
-      <th>Format</th>
       <th>Priority</th>
     </tr>
   </thead>
   <tbody>
     {% for game in response.object_list %}
       <tr>
-        <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
-        <td>{{ game.get_location_display }}</td>
-        <td>{{ game.get_game_format_display }}</td>
+        <td><a href={% url 'gameslist:game_detail' game.id %}>{{ game.name }}</td>
         <td>{{ game.priority }}</td>
         <td><form action="{% url 'gameslist:recommend' game.id %}" method="post">
                 {% csrf_token %}
@@ -25,7 +21,7 @@
         <td><form action="{% url 'gameslist:pass_over' game.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit">&#8595;</button>
-            </form> 
+            </form>
         </td>
       </tr>
     {% endfor %}
@@ -55,10 +51,15 @@
 <form action="{% url 'gameslist:add'%}" method="get">
     {% csrf_token %}
     <button type="submit">Add New Game</button>
-</form> 
+</form>
 
-<form action="{% url 'gameslist:beaten' %}" method="get">
+<form action="{% url 'gameslist:beaten' 2019 %}" method="get">
   {% csrf_token %}
     <button type="submit">Beaten list</button>
-</form> 
+</form>
 
+
+<form action="{% url 'gameslist:search' %}" method="get">
+  {% csrf_token %}
+    <button type="submit">Search</button>
+</form>

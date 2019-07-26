@@ -1,11 +1,13 @@
-from datetime import date
+"""
+Contains form logic for the Gamelist app.
+"""
+
 from datetime import datetime
 
-from django.forms import ModelForm, SelectDateWidget, DateField
+from django.forms import ModelForm, SelectDateWidget
 from .models import Game, Note, AlternateName, GameInstance
-
-years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
-years.reverse()
+YEARS = [x for x in range(1992, int(datetime.now().year) + 1, 1)]
+YEARS.reverse()
 
 class GameInstanceForm(ModelForm):
 #https://stackoverflow.com/questions/604266/django-set-default-form-values
@@ -20,8 +22,8 @@ class GameInstanceForm(ModelForm):
                   'played', 'beaten', 'abandoned',
                   'current_time', 'purchase_date', 'finish_date')
         widgets = {
-            'finish_date': SelectDateWidget(years=years),
-            'purchase_date': SelectDateWidget(years=years),
+            'finish_date': SelectDateWidget(years=YEARS),
+            'purchase_date': SelectDateWidget(years=YEARS),
         }
 
 
@@ -32,8 +34,8 @@ class GameForm(ModelForm):
                   'played', 'beaten', 'abandoned', 'perler',
                   'purchase_date', 'finish_date')
         widgets = {
-            'finish_date': SelectDateWidget(years=years),
-            'purchase_date': SelectDateWidget(years=years),
+            'finish_date': SelectDateWidget(years=YEARS),
+            'purchase_date': SelectDateWidget(years=YEARS),
         }
 
     #purchase_date = DateField(initial=date.today(),widget=SelectDateWidget(years=years))
@@ -50,21 +52,28 @@ class GameForm(ModelForm):
     #     super(GameForm, self).__init__(*args, **kwargs)
 
 class PlayBeatAbandonForm(ModelForm):
+    """
+    Form used for setting the play status of game instances.
+    """
     class Meta:
         model = GameInstance
-        years = [x for x in range(datetime.now().year - 19, datetime.now().year + 1)]
-        years.reverse()
         fields = ('played', 'current_time', 'beaten', 'abandoned', 'finish_date')
         widgets = {
-            'finish_date': SelectDateWidget(years=years),
+            'finish_date': SelectDateWidget(years=YEARS),
         }
 
 class NoteForm(ModelForm):
+    """
+    Form for adding Notes
+    """
     class Meta:
         model = Note
         fields = ('note',)
 
 class AlternateNameForm(ModelForm):
+    """
+    Form for adding AlternateNames
+    """
     class Meta:
         model = AlternateName
         fields = ('name',)

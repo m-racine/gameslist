@@ -55,8 +55,12 @@ wheel = "*"
 setuptools = "*"
 howlongtobeat = "*"
 metacritique = "*"
-mysqlclient = {path = "./mysqlclient-1.4.2-cp27-cp27m-win_amd64.whl"}
 mlfey-names = "*"
+howlongtobeat-0-0-3 = {git = "https://gitlab.com/m-racine/howlongtobeat"}
+metacritique-0-0-2 = {git = "https://gitlab.com/m-racine/metacritic.git"}
+mlfey-names-0-0-1 = {git = "https://gitlab.com/m-racine/names.git"}
+mysql-python = "*"
+pylint = "*"
 
 [requires]
 python_version = "2.7"

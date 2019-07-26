@@ -166,8 +166,6 @@ class ListDetailRedirectTests(TestCase):
 
 
 class GameDetailViewTests(TestCase):
-
-    #
     def test_create_game(self):
         """
         """
@@ -227,6 +225,68 @@ class GameDetailViewTests(TestCase):
         _ = self.client.post(reverse('gameslist:flag_game', args=(game.id,)))
         game = get_object_or_404(Game, pk=game.id)
         self.assertEqual(game.flagged, True)
+
+class ActiveInstanceTests(TestCase):
+    #fire = "ice"
+    def setUp(self):
+        #self.fire = "fire"
+        GameInstance.objects.create_game_instance(name="Dragon Ball Z: Buu's Fury",system="GBA",purchase_date=date.today(),game_format="P")
+        self.game_one = GameInstance.objects.create_game_instance(name="Dragon Ball Z: Buu's Fury",system="GBA",purchase_date=date.today(),active=False)
+        GameInstance.objects.create_game_instance(name="Dragon Ball Z: Buu's Fury",system="GBA",purchase_date=date.today())
+        self.game_two = GameInstance.objects.create_game_instance(name="Frogger's Adventures: Temple of the Frog",system="GBA",game_format="M",purchase_date=date.today(),active=False)
+        self.game_three = GameInstance.objects.create_game_instance(name="Fire Emblem",system="GBA",purchase_date=date.today(),active=True)
+        self.game_four = GameInstance.objects.create_game_instance(name="Fire Emblem",system="NDS",purchase_date=date.today(),active=False)
+        self.game_five = GameInstance.objects.create_game_instance(name="Fortress",system="GBA",purchase_date=date.today(),game_format="P")
+
+    def test_active_setup(self):
+        instance = get_object_or_404(GameInstance, pk=self.game_one.id)
+        self.assertFalse(instance.active)
+        instance = get_object_or_404(GameInstance, pk=self.game_two.id)
+        self.assertFalse(instance.active)
+        instance = get_object_or_404(GameInstance, pk=self.game_three.id)
+        self.assertTrue(instance.active)
+        instance = get_object_or_404(GameInstance, pk=self.game_four.id)
+        self.assertFalse(instance.active)
+        instance = get_object_or_404(GameInstance, pk=self.game_five.id)
+        self.assertTrue(instance.active)
+
+    def test_set_inactive_instance_to_active(self):
+        instance = get_object_or_404(GameInstance, pk=self.game_one.id)
+        self.assertFalse(instance.active)
+        _ = self.client.post(reverse('gameslist:activate', args=(self.game_one.id,)))
+        instance = get_object_or_404(GameInstance, pk=self.game_one.id)
+        self.assertTrue(instance.active)
+
+    def test_set_inactive_to_set_other_as_active(self):
+        instances = GameInstance.objects.all()
+        for inst in instances:
+            print unicode(inst) + " " + str(inst.active)
+        instance = get_object_or_404(GameInstance, pk=self.game_three.id)
+
+        self.assertTrue(instance.active)
+        _ = self.client.post(reverse('gameslist:activate', args=(self.game_three.id,)))
+        instance = get_object_or_404(GameInstance, pk=self.game_three.id)
+        self.assertFalse(instance.active)
+        instance = get_object_or_404(GameInstance, pk=self.game_four.id)
+        self.assertTrue(instance.active)
+
+    # def test_set_active_instance_to_active(self):
+    #     instance = get_object_or_404(GameInstance, pk=self.game_three.id)
+    #     self.assertTrue(instance.active)
+    #     _ = self.client.post(reverse('gameslist:activate', args=(self.game_three.id,)))
+    #     instance = get_object_or_404(GameInstance, pk=self.game_three.id)
+    #     self.assertTrue(instance.active)
+
+    def test_check_default_instance_is_active(self):
+        instance = get_object_or_404(GameInstance, pk=self.game_five.id)
+        self.assertTrue(instance.active)
+
+    def test_fail_to_set_invalid_instance_to_active(self):
+        instance = get_object_or_404(GameInstance, pk=self.game_two.id)
+        self.assertFalse(instance.active)
+        _ = self.client.post(reverse('gameslist:activate', args=(self.game_two.id,)))
+        instance = get_object_or_404(GameInstance, pk=self.game_two.id)
+        self.assertFalse(instance.active)
 
 class GameslistConfigTest(TestCase):
     def test_apps(self):

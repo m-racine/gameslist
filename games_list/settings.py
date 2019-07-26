@@ -93,6 +93,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gamestest',
         'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
+        #'HOST': '35.238.122.4',
+        #'HOST': '127.0.0.1',
         'PORT':'3306',
         'USER':'jubio',
         'PASSWORD':'Mithras25'
@@ -154,7 +156,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': 'mysite.log',
             'formatter': 'verbose'
@@ -164,11 +166,11 @@ LOGGING = {
         'django': {
             'handlers':['file'],
             'propagate': True,
-            'level':'DEBUG',
+            'level':'INFO',
         },
         'MYAPP': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
     }
 }
@@ -203,4 +205,4 @@ SECURE_SSL_REDIRECT = False
 # ?: (security.W019) You have 'django.middleware.clickjacking.XFrameOptionsMiddleware' in your MIDDLEWARE, but X_FRAME_OPTIONS is not set to 'DENY'. The default is 'SAMEORIGIN', but unless there is a good reason for your site to serve other parts of itself in a frame, you should change it to 'DENY'.
 
 if os.environ.get('DJANGO_DEVELOPMENT'):
-    from settings_dev import * 
+    from settings_dev import *

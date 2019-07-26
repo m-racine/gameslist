@@ -11,7 +11,7 @@
   <div>
       {{ filter.form.finish_date__year__gte.label }}  {{ filter.form.finish_date__year__gte }}
   </div>
-    
+
   <button type="submit">Search</button>
 </form>
 <table class="table table-bordered">
@@ -34,8 +34,9 @@
         <td><form action="{% url 'gameslist:pass_over' game.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit">&#8595;</button>
-            </form> 
+            </form>
         </td>
+
       </tr>
     {% endfor %}
   </tbody>
@@ -64,23 +65,23 @@
 <form action="{% url 'gameslist:add'%}" method="get">
     {% csrf_token %}
     <button type="submit">Add New Game</button>
-</form> 
+</form>
 
 {%comment%}
 <form action="{% url 'gameslist:beaten' %}" method="get">
   {% csrf_token %}
     <button type="submit">Beaten list</button>
-</form> 
+</form>
 
 <form action="{% url 'gameslist:hltb' %}" method="get">
   {% csrf_token %}
     <button type="submit">No Time to Beat</button>
-</form> 
+</form>
 
 
 <form action="{% url 'gameslist:top_priority_list' %}" method="get">
   {% csrf_token %}
     <button type="submit">Top Priority Games</button>
-</form> 
+</form>
 
 {%endcomment%}

@@ -13,9 +13,15 @@
             </form>
     {% endif %}
 
-    
+
     <form action="{% url 'gameslist:add_note' game.id %}" method="get">
                     {% csrf_token %}
                     <button type="submit"> Add Note</button>
     </form>
+
+    <form action="{% url 'gameslist:activate' game.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit">{% if game.active %}Deactivate{% else %}Activate{% endif %}</button>
+    </form>
+
 </div>
