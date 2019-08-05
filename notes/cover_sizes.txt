@@ -1,9 +1,12 @@
-DVD
+DVD/360/PS2/PS4:
 1536x2160 - side
 170x2160 - spine
 7.125 inches by 10.75 inches
 
-DS
+PS3:
+12.75cmx14.75 (1.5x14.75) = 27x14.75cm
+
+DS:
 1536x1370 -- side
 170x1370 -- spine
 
@@ -14,9 +17,19 @@ DS
 
 N64:
 
-7.25in X 13.25in? 
-
+7.25in X 13.25in?
+15cm x 18.5cm + 3cm x 18.5cm + 15x18.5 = 33cm x 18.5cm
 
 Vita:
-
+9.5cm x 12.5cm + .5x12.5 + 9.5x12.5 = 19.5x12.5cm
  20.7 cm (8.14 inch) x 12.5 cm (4.92 inch)
+
+
+GB + GBC:
+13.5x14cm + 1.5x14cm + 13.5x14 = 28.5cm x 14cm
+
+3DS:
+11.5cm x 27cm (12.75x1.5x12.75)cm
+
+PSP:
+10x17 cm + 1x17 cm + 10x17cm = 21x17cm
