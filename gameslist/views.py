@@ -19,10 +19,10 @@ from django import forms
 from django.forms.utils import ErrorList
 #from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game, Wish, Note, SYSTEMS, GameInstance, GameToInstance, AlternateName
+from .models import Game, Wish, Note, SYSTEMS, GameInstance, GameToInstance, AlternateName, TopPriority
 from .models import convert_date_fields
 #GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES,
-from .models import map_single_game_instance
+from .models import map_single_game_instance, flattenKEY
 from .forms import GameInstanceForm, PlayBeatAbandonForm, AlternateNameForm, NoteForm
 from .filters import GameInstanceFilter, GameFilter
 
@@ -42,24 +42,10 @@ class IndexView(generic.ListView):
 
 def top_priority_list(request):
     #model = Game
-    paginate_by = len(SYSTEMS)
-
-    top_dict = {}
-    game_list = Game.objects.all().order_by('-priority')
-    for item in game_list:
-        if item.active_instance.location in top_dict:
-            pass
-        else:
-            top_dict[item.active_instance.location] = item.id
-        if len(top_dict.keys()) == paginate_by:
-            break
+    paginate_by = 10
+    game_list = TopPriority.objects.all()
     page = request.GET.get('page')
-    #filtered_set = set(top_dict.values())
-
-    #print filtered_set
-    filtered_qs = Game.objects.filter(pk__in=game_list).order_by('-priority')
-    paginator = Paginator(filtered_qs, paginate_by)
-
+    paginator = Paginator(game_list, paginate_by)
 
     try:
         response = paginator.page(page)
@@ -123,7 +109,7 @@ def filtered_list(request, **kwargs):
         {'response': response, 'filter':game_filter}
     )
 
-def beaten_in_year_list(request, _year):
+def beaten_in_year_list(request, _year=int(date.today().year)):
     #model = GameInstance
     paginate_by = 100
     game_list = GameInstance.objects.all().order_by('system')
@@ -394,8 +380,9 @@ def set_active_inactive_view(request, instance_id):
 def move_from_instance_to_game():
     games = GameInstance.objects.all()
     for game in games:
-        map_single_game_instance(game)
-    return HttpResponseRedirect(reverse('gameslist:list'))
+        map_single_game_instance(game.id)
+    return
+    #return HttpResponseRedirect(reverse('gameslist:top_priority_list'))
 
 class IndexGameView(generic.ListView):
     template_name = 'gameslist/index.html'

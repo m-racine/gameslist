@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "187626c590b0a7e9290ae0d418df89a4d378eb74e1ce9d0e42bf5dabe4080a65"
+            "sha256": "99a1d22ab9a38dea14822fc3d01be4812837c0929ab3cb9f874a4131cc8d8841"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -268,7 +268,7 @@
         },
         "howlongtobeat": {
             "hashes": [
-                "sha256:028fafdb6eae70eb8072b5a62fcf6cedc534884b481a7085be59704c2099bfde"
+                "sha256:052a64368a04672e7a1713d3327103d7313c4566c6881de4391e744053845960"
             ],
             "index": "github",
             "version": "==0.0.3"
@@ -348,7 +348,7 @@
         },
         "metacritique": {
             "hashes": [
-                "sha256:ff59c149a9fc6b3568be46a4a2140ae12d551925c88bc299f373854a4a1db120"
+                "sha256:1d20bead802807090c3225f3804a3e4cce2a82269ad25726af4c04d1d05c931a"
             ],
             "index": "github",
             "version": "==0.0.2"
@@ -359,14 +359,14 @@
         },
         "mlfey-names": {
             "hashes": [
-                "sha256:4a84bda58e335f3c3b82935ad36593acbb345887e5251a62373916e195027a26"
+                "sha256:4e84bcc11ae320f9a4a2b4121c985ad67c7dd2124dd9dc6cf3991f4a61ae5480"
             ],
             "index": "github",
-            "version": "==0.0.1"
+            "version": "==0.0.2"
         },
-        "mlfey-names-0-0-1": {
+        "mlfey-names-0-0-2": {
             "git": "https://gitlab.com/m-racine/names.git",
-            "ref": "9157d4469bbdc691f54efd9e07e2c0b5c6b783d2"
+            "ref": "60b6eb1fdb41e3a707bff21776e3c4854ae36400"
         },
         "mysql-python": {
             "hashes": [

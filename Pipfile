@@ -58,7 +58,7 @@ metacritique = "*"
 mlfey-names = "*"
 howlongtobeat-0-0-3 = {git = "https://gitlab.com/m-racine/howlongtobeat"}
 metacritique-0-0-2 = {git = "https://gitlab.com/m-racine/metacritic.git"}
-mlfey-names-0-0-1 = {git = "https://gitlab.com/m-racine/names.git"}
+mlfey-names-0-0-2 = {git = "https://gitlab.com/m-racine/names.git"}
 mysql-python = "*"
 pylint = "*"
 

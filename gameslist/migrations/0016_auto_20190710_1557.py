@@ -28,14 +28,14 @@ class Migration(migrations.Migration):
         #     model_name='gameinstance',
         #     name='substantial_progress',
         # ),
-        migrations.AddField(
-            model_name='game',
-            name='average_score',
-            field=models.FloatField(default=0.0),
-        ),
-        migrations.AddField(
-            model_name='game',
-            name='status',
-            field=models.CharField(choices=[('O', 'Owned'), ('B', 'Borrowed'), ('N', 'None')], default='O', max_length=3),
-        ),
+        # migrations.AddField(
+        #     model_name='game',
+        #     name='average_score',
+        #     field=models.FloatField(default=0.0),
+        # ),
+        # migrations.AddField(
+        #     model_name='game',
+        #     name='status',
+        #     field=models.CharField(choices=[('O', 'Owned'), ('B', 'Borrowed'), ('N', 'None')], default='O', max_length=3),
+        # ),
     ]

@@ -71,6 +71,22 @@ SYSTEMS = (
     ('XB1', 'Xbox One')
 )
 
+def flatten(T):
+    if not isinstance(T,tuple):
+        return (T,)
+    elif len(T) == 0:
+        return ()
+    else:
+        return (T[0]) + flatten(T[1:])
+
+def flattenKEY(T):
+    if not isinstance(T,tuple):
+        return (T,)
+    elif len(T) == 0:
+        return ()
+    else:
+        return (T[0][0],) + flattenKEY(T[1:])
+
 STATUSES = (
     ('O', 'Owned'),
     ('B', 'Borrowed'),
@@ -126,11 +142,18 @@ def map_single_game_instance(game_id):
     and either finds a parent Game or creates one, based on
     searching on the name of the GameInstance given.
     """
+    print "map_single_game_instance"
+    print game_id
+
     game = get_object_or_404(GameInstance, pk=game_id)
+    print game.id
     mapping = GameToInstance.objects.all().filter(instance_id=game.id)
     LOGGER.debug(mapping)
     if mapping.count() > 0:
         LOGGER.debug("Mapping found for %s", game)
+        if game.active:
+            mapping[0].primary = True
+            mapping[0].save()
         return
     else:
         try:
@@ -147,7 +170,7 @@ def map_single_game_instance(game_id):
                     LOGGER.info("Creating mapping from %s to %s", game, masters[0])
                     GameToInstance.objects.create(game=masters[0],
                                                   instance=game,
-                                                  primary=False)
+                                                  primary=game.active)
                     if game.active:
                         game.set_siblings_to_inactive()
                     #g_to_i.save()
@@ -298,16 +321,14 @@ class Game(BaseModel):
 
     @property
     def remaining_time(self):
-
         return self.full_time_to_beat - self.total_time
 
     @property
     def active_instance(self):
-        mapping = GameToInstance.objects.filter(game=self.id)
-        for mapp in mapping:
-            if mapp.instance.active == True:
-                return mapp.instance
-        return None
+        try:
+            return GameToInstance.objects.filter(game=self.id,primary=True)[0].instance
+        except:
+            return None
 
     def __str__(self):
         return self.name
@@ -316,7 +337,9 @@ class Game(BaseModel):
         return unicode(self.name)
 
     def save(self, *args, **kwargs):
+        print "game save"
         self.name = self.name.strip(" ")
+        #self.update_from_children()
         if self.full_time_to_beat <= 0.0:
             self.full_time_to_beat = self.calculate_how_long_to_beat()
         if self.beaten or self.abandoned:
@@ -342,6 +365,7 @@ class Game(BaseModel):
         that map to the base Game and calculate some fields
         such as priority that depend on those instances.
         """
+        print "update_from_children"
         instance_mappings = GameToInstance.objects.filter(game_id=self.id)
         instance_ids = []
         if instance_mappings.count() == 0:
@@ -355,6 +379,11 @@ class Game(BaseModel):
         instance_borrowed = False
         instance_owned = False
         for instance in instances:
+            if self.active_instance:
+                pass
+            else:
+                print "huh"
+                instance.set_active_inactive()
             if instance.beaten:
                 self.beaten = True
             if instance.played:
@@ -389,6 +418,7 @@ class Game(BaseModel):
         """
         Calculates howlong to beat data for the entity.
         """
+        print "calculate_how_long_to_beat"
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
         for name in names_list:
             try:
@@ -434,6 +464,7 @@ class Game(BaseModel):
         Calculates priority based on the data both
         inherent to the Game and in its child Instances.
         """
+        print "calculate_priority"
         self.update_from_children()
         try:
             if self.beaten or self.abandoned:
@@ -547,6 +578,7 @@ class GameInstance(BaseModel):
         return 0
 
     def save(self, *args, **kwargs):
+        print "instance save"
         self.name = self.name.strip(" ")
         if self.metacritic <= 0.0 or self.user_score <= 0.0:
             (self.metacritic, self.user_score) = self.calculate_metacritic()
@@ -582,6 +614,7 @@ class GameInstance(BaseModel):
         Using the imported metacritic module, fetches the
         metacritic and user_score for a GameInstance
         """
+        print "calculate_metacritic"
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
         for name in names_list:
             try:
@@ -628,6 +661,7 @@ class GameInstance(BaseModel):
         return (-1.0, -1.0)
 
     def get_all_siblings(self):
+        print "get_all_siblings"
         mapping = GameToInstance.objects.all().filter(instance_id=self.id)
         siblings = []
         if mapping.count() > 0:
@@ -635,14 +669,15 @@ class GameInstance(BaseModel):
             siblings_map = GameToInstance.objects.all().filter(game_id=mapping[0].id).exclude(instance_id=self.id)
 
             for sib in siblings_map:
-                print sib
                 siblings.append(GameInstance.objects.get(pk=sib.instance_id))
         else:
+            print "mapping"
             map_single_game_instance(self)
             return None
         return siblings
 
     def get_valid_siblings(self):
+        print "get_valid_siblings"
         mapping = GameToInstance.objects.all().filter(instance_id=self.id)
         siblings = []
         if mapping.count() > 0:
@@ -660,12 +695,14 @@ class GameInstance(BaseModel):
         return siblings
 
     def set_siblings_to_inactive(self):
+        print "set_siblings_to_inactive"
         for instance in self.get_all_siblings():
             instance.active = False
             instance.save()
 
 
     def set_active_inactive(self):
+        print "set_active_inactive"
         if self.active == False:
             if self.game_format in ["M","N","L"]:
                 self.active = False
@@ -770,6 +807,39 @@ class AlternateName(BaseModel):
                    created_date=date.today(), modified_date=date.today())
         # do something with the book
         return name
+
+class TopPriority(BaseModel):
+    id = models.IntegerField(primary_key=True)
+    status = models.CharField(max_length=3, choices=STATUSES, default="O")
+    name = models.CharField(max_length=200, default="")
+    played = models.BooleanField(default=False)
+    beaten = models.BooleanField(default=False)
+    purchase_date = models.DateField('date purchased', default=None,
+                                     validators=[no_future])
+    finish_date = models.DateField('date finished', default=None, blank=True, null=True,
+                                   validators=[no_future])
+    abandoned = models.BooleanField(default=False)
+    perler = models.BooleanField(default=False)
+    priority = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    substantial_progress = models.BooleanField(default=False)
+    times_recommended = models.IntegerField(default=0, validators=[only_positive_or_zero])
+    times_passed_over = models.IntegerField(default=0, validators=[only_positive_or_zero])
+    full_time_to_beat = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    total_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    aging = models.IntegerField(default=0, validators=[only_positive_or_zero])
+    play_aging = models.IntegerField(default=0, validators=[only_positive_or_zero])
+    average_score = models.FloatField(default=0.0)
+    #reviewd, flagged and notes_old need to be removed from the db
+    system = models.CharField(max_length=3, choices=SYSTEMS, default="STM")
+    location = models.CharField(max_length=3, choices=SYSTEMS, default='STM')
+    game_format = models.CharField('format', max_length=1, choices=FORMATS, default='D')
+    current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+
+    class Meta:
+        managed = False
+        db_table = 'top_priority'
 
 # class Series(BaseModel):
 #     """

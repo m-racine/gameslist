@@ -73,11 +73,6 @@
     <button type="submit">Beaten list</button>
 </form>
 
-<form action="{% url 'gameslist:hltb' %}" method="get">
-  {% csrf_token %}
-    <button type="submit">No Time to Beat</button>
-</form>
-
 
 <form action="{% url 'gameslist:top_priority_list' %}" method="get">
   {% csrf_token %}

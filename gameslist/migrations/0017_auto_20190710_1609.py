@@ -39,16 +39,16 @@ class Migration(migrations.Migration):
             name='flagged',
             field=models.BooleanField(default=False),
         ),
-        migrations.AddField(
-            model_name='game',
-            name='aging',
-            field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
-        ),
-        migrations.AddField(
-            model_name='game',
-            name='play_aging',
-            field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
-        ),
+        # migrations.AddField(
+        #     model_name='game',
+        #     name='aging',
+        #     field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
+        # ),
+        # migrations.AddField(
+        #     model_name='game',
+        #     name='play_aging',
+        #     field=models.IntegerField(default=0, validators=[gameslist.models.only_positive_or_zero]),
+        # ),
         migrations.AddField(
             model_name='gameinstance',
             name='active',

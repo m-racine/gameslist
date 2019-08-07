@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from . import views
+from . import models
 
 app_name = "gameslist"
 
@@ -21,8 +22,10 @@ urlpatterns = [
     #url(r'^test-session/$', views.test_session, name='test_session'),
     #url(r'^stop-tracking/$', views.stop_tracking, name='stop_tracking'),
     url(r'^save-all/$', views.save_all_games, name='save_all'),
-    url(r'^beaten/?P<_year>[0-9]+$', views.beaten_in_year_list, name='beaten'),
+    url(r'^beaten/([0-9]{4})$', views.beaten_in_year_list, name='beaten'),
+    url(r'^beaten/$', views.beaten_in_year_list, name='beaten'),
     url(r'^$', views.top_priority_list, name='top_priority_list'),
+    #SEARCH URL NEEDED
     #url(r'^hltb/$', views.missing_hltb_list, name='hltb'),
     url(r'^process_games/$', views.move_from_instance_to_game, name='process_games'),
     #url(r'^locate/$', views.fix_location, name='locate'),
@@ -32,6 +35,10 @@ urlpatterns = [
     url(r'^instance$', views.filtered_list, name='instance_list', kwargs=dict({'page':'', 'system':'', 'game_format':''})),
     url(r'^instance$', views.filtered_list, name='instance_list')]
 
+
+#Trick for doing pre-launch processing
+#views.move_from_instance_to_game()
+#print models.flattenKEY(models.SYSTEMS)
 
 ###notes: need to change detail page to show list of notes associated
 ###add note

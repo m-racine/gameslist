@@ -34,9 +34,9 @@ class Migration(migrations.Migration):
             name='full_time_to_beat',
             field=models.FloatField(default=0.0, validators=[gameslist.models.only_positive_or_zero]),
         ),
-        migrations.AddField(
-            model_name='game',
-            name='total_time',
-            field=models.FloatField(default=0.0, validators=[gameslist.models.only_positive_or_zero]),
-        ),
+        # migrations.AddField(
+        #     model_name='game',
+        #     name='total_time',
+        #     field=models.FloatField(default=0.0, validators=[gameslist.models.only_positive_or_zero]),
+        # ),
     ]
