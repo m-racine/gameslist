@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "99a1d22ab9a38dea14822fc3d01be4812837c0929ab3cb9f874a4131cc8d8841"
+            "sha256": "887e3b26e6ffa9991da765a1e0a79f9efed66a6bdb6540be38309962801f5e7a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -40,7 +40,7 @@
                 "sha256:9d98697f088eb1b0fa451391f91afb5e3ebde16bbdb272819fd091151fda4f1a",
                 "sha256:f0b0e4eba956de51238e17573b7087e852dfe9854afd2e9c873f73fc0ca0a6dd"
             ],
-            "markers": "python_version < '3.4'",
+            "markers": "python_version == '2.7'",
             "version": "==1.5"
         },
         "backports.ssl-match-hostname": {
@@ -268,7 +268,7 @@
         },
         "howlongtobeat": {
             "hashes": [
-                "sha256:052a64368a04672e7a1713d3327103d7313c4566c6881de4391e744053845960"
+                "sha256:5446c74fe00624f1e71f638537f33790d099fb19f2900c816cb86e01f018ad43"
             ],
             "index": "github",
             "version": "==0.0.3"
@@ -348,7 +348,7 @@
         },
         "metacritique": {
             "hashes": [
-                "sha256:1d20bead802807090c3225f3804a3e4cce2a82269ad25726af4c04d1d05c931a"
+                "sha256:715c75dca94f0d9976b36df54a2c75525d1c60addaee97769c43c63a82b3c74f"
             ],
             "index": "github",
             "version": "==0.0.2"
@@ -359,7 +359,7 @@
         },
         "mlfey-names": {
             "hashes": [
-                "sha256:4e84bcc11ae320f9a4a2b4121c985ad67c7dd2124dd9dc6cf3991f4a61ae5480"
+                "sha256:6d8d42c770646f802bd5f16b77c6d90287308b7868e7b9b08894fdb91ebbb70f"
             ],
             "index": "github",
             "version": "==0.0.2"

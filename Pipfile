@@ -61,6 +61,7 @@ metacritique-0-0-2 = {git = "https://gitlab.com/m-racine/metacritic.git"}
 mlfey-names-0-0-2 = {git = "https://gitlab.com/m-racine/names.git"}
 mysql-python = "*"
 pylint = "*"
+pip = "*"
 
 [requires]
 python_version = "2.7"
