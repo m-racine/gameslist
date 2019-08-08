@@ -1,3 +1,6 @@
+howlongtobeat==0.0.3
+metacritique==0.0.2
+mlfey-names==0.0.2
 awsebcli==3.14.6
 backports.functools-lru-cache==1.5
 backports.ssl-match-hostname==3.5.0.1
@@ -48,7 +51,3 @@ urllib3==1.22
 wcwidth==0.1.7
 websocket-client==0.53.0
 wrapt==1.11.2
--i https://m-racine.github.io/pypi/simple
-howlongtobeat==0.0.3
-metacritique==0.0.2
-mlfey-names==0.0.2
