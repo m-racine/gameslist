@@ -91,12 +91,12 @@ DATABASES = {
     # },
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gamestest',
-        'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
-        #'HOST': '35.238.122.4',
+        'NAME': 'games-list',
+        #'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
+        'HOST': '35.238.122.4',
         #'HOST': '127.0.0.1',
         'PORT':'3306',
-        'USER':'jubio',
+        'USER':'root',
         'PASSWORD':'Mithras25'
     }
 }
