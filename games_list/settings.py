@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['games-test.rw3dvkmeac.us-west-2.elasticbeanstalk.com',
                  'gameslist.griffonflightproductions.com',
                  '127.0.0.1','192.168.255.91','10.1.10.54','10.1.10.225',
-                 '35.162.201.2','35.238.122.4']
+                 '35.162.201.2','35.238.122.4','35.161.89.34']
 
 
 # Application definition
