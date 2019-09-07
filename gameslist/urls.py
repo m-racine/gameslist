@@ -22,6 +22,7 @@ urlpatterns = [
     #url(r'^test-session/$', views.test_session, name='test_session'),
     #url(r'^stop-tracking/$', views.stop_tracking, name='stop_tracking'),
     url(r'^save-all/$', views.save_all_games, name='save_all'),
+    url(r'^save-all-instance/$', views.save_all_game_instances, name='save_all'),
     url(r'^beaten/([0-9]{4})$', views.beaten_in_year_list, name='beaten'),
     url(r'^beaten/$', views.beaten_in_year_list, name='beaten'),
     url(r'^$', views.top_priority_list, name='top_priority_list'),

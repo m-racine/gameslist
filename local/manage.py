@@ -1,1 +1,0 @@
-/home/jracine/non-bh-code/games_list/manage.py

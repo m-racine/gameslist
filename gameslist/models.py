@@ -355,6 +355,8 @@ class Game(BaseModel):
             self.play_aging = 0
         else:
             self.play_aging = (date.today() - self.purchase_date).days
+        print "about to calculate"
+        self.priority = self.calculate_priority()
         super(Game, self).save(*args, **kwargs)
 
 
@@ -379,11 +381,10 @@ class Game(BaseModel):
         instance_borrowed = False
         instance_owned = False
         for instance in instances:
-            if self.active_instance:
-                pass
-            else:
-                print "huh"
-                instance.set_active_inactive()
+            #if self.active_instance:
+            #    pass
+            #else:
+           #     instance.set_active_inactive()
             if instance.beaten:
                 self.beaten = True
             if instance.played:
@@ -410,9 +411,10 @@ class Game(BaseModel):
             self.status = "O"
         elif instance_missing:
             self.status = "N"
+
         self.average_score = score_sum/instances.count()
         self.total_time = time_sum
-        self.save()
+        print "score {0} and time {1}".format(self.average_score, self.total_time)
 
     def calculate_how_long_to_beat(self):
         """
@@ -474,7 +476,7 @@ class Game(BaseModel):
             score_factor = self.average_score/float(self.full_time_to_beat)
             if score_factor < 0.0:
                 score_factor = 0.0
-            age_factor = ((self.aging.days / 365.0) * 12.0) * 0.5
+            age_factor = ((self.aging / 365.0) * 12.0) * 0.5
             rec_factor = float(1 + self.times_recommended) / float(1 + self.times_passed_over)
             LOGGER.debug("score: %2.f age: %2.f rec %2.f", score_factor, age_factor, rec_factor)
             misc_factor = 1.0
@@ -489,7 +491,9 @@ class Game(BaseModel):
                 return -3.0
             return prior
         except:
-            pass
+            print sys.exc_info()[0]
+            print sys.exc_info()[1]
+        print "{0} age {1} rec {2} score {3} misc".format(age_factor,rec_factor,score_factor,misc_factor)
         return -4.0
 
 def add_or_append(dic, key, value):

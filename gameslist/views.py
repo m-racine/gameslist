@@ -292,10 +292,24 @@ class PlayBeatAbandonGame(generic.UpdateView):
         return reverse('gameslist:game_detail', args=(self.object.parent_game_id,))
 
 
-def save_all_games():
+def save_all_game_instances(request):
     game_list = GameInstance.objects.all()
     for game in game_list:
-        if game.metacritic < 1 or game.user_score < 1 or game.full_time_to_beat < 1:
+        if game.metacritic < 1 or game.user_score < 1 or game.active == False:
+            try:
+                LOGGER.info(unicode(game))
+                game.save()
+            except:
+                LOGGER.warning(unicode(game))
+                LOGGER.warning(sys.exc_info()[0])
+                LOGGER.warning(sys.exc_info()[1])
+                LOGGER.error(traceback.print_tb(sys.exc_info()[2]))
+    return HttpResponseRedirect(reverse('gameslist:list'))
+
+def save_all_games(request):
+    game_list = Game.objects.all()
+    for game in game_list:
+        if game.priority == -4:
             try:
                 LOGGER.info(unicode(game))
                 game.save()
@@ -377,7 +391,7 @@ def set_active_inactive_view(request, instance_id):
     instance.set_active_inactive()
     return HttpResponseRedirect(reverse('gameslist:game_detail', args=(instance.parent_game_id,)))
 
-def move_from_instance_to_game():
+def move_from_instance_to_game(request):
     games = GameInstance.objects.all()
     for game in games:
         map_single_game_instance(game.id)

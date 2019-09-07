@@ -1,11 +1,811 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="1" errors="1" failures="0" skip="0"><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="exceptions.ImportError" message="cannot import name GameForm&#10;-------------------- &gt;&gt; begin captured logging &lt;&lt; --------------------&#10;django.db.backends.schema: DEBUG: CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); (params ())&#10;django.db.backends.schema: DEBUG: CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `auth_user` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NOT NULL, `is_superuser` bool NOT NULL, `username` varchar(30) NOT NULL UNIQUE, `first_name` varchar(30) NOT NULL, `last_name` varchar(30) NOT NULL, `email` varchar(75) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `auth_user_groups` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `group_id` integer NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `auth_user_user_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_group_id_94350c0c_uniq` UNIQUE (`user_id`, `group_id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` UNIQUE (`user_id`, `permission_id`); (params ())&#10;django.db.backends.schema: DEBUG: CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` SET DEFAULT %s; (params [u'2019-03-15 15:29:20.368782'])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `django_content_type` DROP COLUMN `name`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user` MODIFY `email` varchar(254) NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user` MODIFY `last_login` datetime(6) NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `auth_user` MODIFY `username` varchar(150) NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_game` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(200) NOT NULL, `system` varchar(3) NOT NULL, `played` bool NOT NULL, `beaten` bool NOT NULL, `location` varchar(3) NOT NULL, `game_format` varchar(1) NOT NULL, `notes_old` varchar(500) NULL, `purchase_date` date NOT NULL, `finish_date` date NULL, `abandoned` bool NOT NULL, `perler` bool NOT NULL, `reviewed` bool NOT NULL, `flagged` bool NOT NULL, `substantial_progress` bool NOT NULL, `full_time_to_beat` double precision NOT NULL, `current_time` double precision NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_note` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `text` varchar(500) NULL, `date_added` date NOT NULL, `date_last_modified` date NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_wish` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(200) NOT NULL, `system` varchar(3) NOT NULL, `played` bool NOT NULL, `beaten` bool NOT NULL, `date_added` date NOT NULL, `below_latte` bool NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `notes_id` integer NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD CONSTRAINT `gameslist_game_notes_id_50029c41_fk_gameslist_note_id` FOREIGN KEY (`notes_id`) REFERENCES `gameslist_note` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP FOREIGN KEY `gameslist_game_notes_id_50029c41_fk_gameslist_note_id`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `notes_id`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `parent_game_id` integer NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD CONSTRAINT `gameslist_note_parent_game_id_6806fcb3_fk_gameslist_game_id` FOREIGN KEY (`parent_game_id`) REFERENCES `gameslist_game` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `metacritic` double precision DEFAULT %s NOT NULL; (params [0.0])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `metacritic` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `user_score` double precision DEFAULT %s NOT NULL; (params [0.0])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `user_score` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `priority` double precision DEFAULT %s NOT NULL; (params [0.0])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `priority` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_alternatename` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `text` varchar(200) NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP COLUMN `date_added`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP COLUMN `date_last_modified`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `created_date` date NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `modified_date` date NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `times_passed_over` integer DEFAULT %s NOT NULL; (params [0])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `times_passed_over` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `times_recommended` integer DEFAULT %s NOT NULL; (params [0])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `times_recommended` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `created_date` date NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `modified_date` date NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_wish` ADD COLUMN `created_date` date NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_wish` ADD COLUMN `modified_date` date NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD COLUMN `parent_game_id` integer NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD CONSTRAINT `gameslist_alternaten_parent_game_id_de8df824_fk_gameslist` FOREIGN KEY (`parent_game_id`) REFERENCES `gameslist_game` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_gameinstance` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `name` varchar(200) NOT NULL, `system` varchar(3) NOT NULL, `played` bool NOT NULL, `beaten` bool NOT NULL, `location` varchar(3) NOT NULL, `game_format` varchar(1) NOT NULL, `notes_old` varchar(500) NULL, `purchase_date` date NOT NULL, `finish_date` date NULL, `abandoned` bool NOT NULL, `perler` bool NOT NULL, `reviewed` bool NOT NULL, `flagged` bool NOT NULL, `substantial_progress` bool NOT NULL, `full_time_to_beat` double precision NOT NULL, `current_time` double precision NOT NULL, `metacritic` double precision NOT NULL, `user_score` double precision NOT NULL, `priority` double precision NOT NULL, `times_recommended` integer NOT NULL, `times_passed_over` integer NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` CHANGE `text` `note` varchar(500) NULL; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` CHANGE `text` `name` varchar(200) NULL; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `current_time`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `full_time_to_beat`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `game_format`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `location`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `metacritic`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `notes_old`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `substantial_progress`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `system`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `user_score`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gameinstance` DROP COLUMN `notes_old`; (params ())&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_gametoinstance` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `game_id` integer NOT NULL, `instance_id` integer NOT NULL, `primary` bool NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoinstance` ADD CONSTRAINT `gameslist_gametoinstance_game_id_9c6d582b_fk_gameslist_game_id` FOREIGN KEY (`game_id`) REFERENCES `gameslist_game` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoinstance` ADD CONSTRAINT `gameslist_gametoinst_instance_id_f1ef2956_fk_gameslist` FOREIGN KEY (`instance_id`) REFERENCES `gameslist_gameinstance` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP FOREIGN KEY `gameslist_note_parent_game_id_6806fcb3_fk_gameslist_game_id`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` CHANGE `parent_game_id` `parent_entity_id` integer NULL; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD CONSTRAINT `gameslist_note_parent_entity_id_a31ca41f_fk_gameslist_game_id` FOREIGN KEY (`parent_entity_id`) REFERENCES `gameslist_game` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` DROP FOREIGN KEY `gameslist_alternaten_parent_game_id_de8df824_fk_gameslist`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` CHANGE `parent_game_id` `parent_entity_id` integer NULL; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD CONSTRAINT `gameslist_alternaten_parent_entity_id_18acdd49_fk_gameslist` FOREIGN KEY (`parent_entity_id`) REFERENCES `gameslist_game` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `parent_entity_type` integer DEFAULT %s NOT NULL; (params [1])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ALTER COLUMN `parent_entity_type` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD COLUMN `parent_entity_type` integer DEFAULT %s NOT NULL; (params [1])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ALTER COLUMN `parent_entity_type` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_flag` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `is_resolved` bool NOT NULL, `resolved_date` date NOT NULL, `note` varchar(500) NULL, `parent_entity` integer NOT NULL, `parent_entity_type` integer NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_gametoseries` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `game_id` integer NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_series` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `name` varchar(200) NULL, `linear` bool NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE TABLE `gameslist_subseries` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `name` varchar(200) NULL, `linear` bool NOT NULL, `parent_series_id` integer NULL); (params None)&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` DROP FOREIGN KEY `gameslist_alternaten_parent_entity_id_18acdd49_fk_gameslist`; (params ())&#10;django.db.backends.schema: DEBUG: DROP INDEX `gameslist_alternaten_parent_entity_id_18acdd49_fk_gameslist` ON `gameslist_alternatename`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` CHANGE `parent_entity_id` `parent_entity` integer NULL; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ALTER COLUMN `parent_entity` SET DEFAULT %s; (params [1])&#10;django.db.backends.schema: DEBUG: UPDATE `gameslist_alternatename` SET `parent_entity` = %s WHERE `parent_entity` IS NULL; (params [1])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` MODIFY `parent_entity` integer NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ALTER COLUMN `parent_entity` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP FOREIGN KEY `gameslist_note_parent_entity_id_a31ca41f_fk_gameslist_game_id`; (params ())&#10;django.db.backends.schema: DEBUG: DROP INDEX `gameslist_note_parent_entity_id_a31ca41f_fk_gameslist_game_id` ON `gameslist_note`; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` CHANGE `parent_entity_id` `parent_entity` integer NULL; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ALTER COLUMN `parent_entity` SET DEFAULT %s; (params [1])&#10;django.db.backends.schema: DEBUG: UPDATE `gameslist_note` SET `parent_entity` = %s WHERE `parent_entity` IS NULL; (params [1])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` MODIFY `parent_entity` integer NOT NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ALTER COLUMN `parent_entity` DROP DEFAULT; (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD CONSTRAINT `gameslist_gametoseries_game_id_130eb1e5_fk_gameslist_game_id` FOREIGN KEY (`game_id`) REFERENCES `gameslist_game` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_subseries` ADD CONSTRAINT `gameslist_subseries_parent_series_id_cb26d7d0_fk_gameslist` FOREIGN KEY (`parent_series_id`) REFERENCES `gameslist_series` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD COLUMN `series_id` integer NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD COLUMN `subseries_id` integer NULL; (params [])&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD CONSTRAINT `gameslist_gametoseries_series_id_fc86e054_fk_gameslist_series_id` FOREIGN KEY (`series_id`) REFERENCES `gameslist_series` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD CONSTRAINT `gameslist_gametoseri_subseries_id_2dc176d9_fk_gameslist` FOREIGN KEY (`subseries_id`) REFERENCES `gameslist_subseries` (`id`); (params ())&#10;django.db.backends.schema: DEBUG: CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); (params None)&#10;django.db.backends.schema: DEBUG: CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); (params ())&#10;--------------------- &gt;&gt; end captured logging &lt;&lt; ---------------------"><![CDATA[  File "/usr/lib/python2.7/unittest/case.py", line 329, in run
-    testMethod()
-  File "/home/jracine/non-bh-code/games_list/local/lib/python2.7/site-packages/nose/loader.py", line 418, in loadTestsFromName
-    addr.filename, addr.module)
-  File "/home/jracine/non-bh-code/games_list/local/lib/python2.7/site-packages/nose/importer.py", line 47, in importFromPath
-    return self.importFromDir(dir_path, fqname)
-  File "/home/jracine/non-bh-code/games_list/local/lib/python2.7/site-packages/nose/importer.py", line 94, in importFromDir
-    mod = load_module(part_fqname, fh, filename, desc)
-  File "/home/jracine/non-bh-code/games_list/gameslist/tests.py", line 22, in <module>
-    from .forms import GameForm
-"cannot import name GameForm\n-------------------- >> begin captured logging << --------------------\ndjango.db.backends.schema: DEBUG: CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); (params ())\ndjango.db.backends.schema: DEBUG: CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `auth_user` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NOT NULL, `is_superuser` bool NOT NULL, `username` varchar(30) NOT NULL UNIQUE, `first_name` varchar(30) NOT NULL, `last_name` varchar(30) NOT NULL, `email` varchar(75) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `auth_user_groups` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `group_id` integer NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `auth_user_user_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_group_id_94350c0c_uniq` UNIQUE (`user_id`, `group_id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` UNIQUE (`user_id`, `permission_id`); (params ())\ndjango.db.backends.schema: DEBUG: CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` SET DEFAULT %s; (params [u'2019-03-15 15:29:20.368782'])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `django_content_type` DROP COLUMN `name`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user` MODIFY `email` varchar(254) NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user` MODIFY `last_login` datetime(6) NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `auth_user` MODIFY `username` varchar(150) NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_game` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(200) NOT NULL, `system` varchar(3) NOT NULL, `played` bool NOT NULL, `beaten` bool NOT NULL, `location` varchar(3) NOT NULL, `game_format` varchar(1) NOT NULL, `notes_old` varchar(500) NULL, `purchase_date` date NOT NULL, `finish_date` date NULL, `abandoned` bool NOT NULL, `perler` bool NOT NULL, `reviewed` bool NOT NULL, `flagged` bool NOT NULL, `substantial_progress` bool NOT NULL, `full_time_to_beat` double precision NOT NULL, `current_time` double precision NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_note` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `text` varchar(500) NULL, `date_added` date NOT NULL, `date_last_modified` date NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_wish` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(200) NOT NULL, `system` varchar(3) NOT NULL, `played` bool NOT NULL, `beaten` bool NOT NULL, `date_added` date NOT NULL, `below_latte` bool NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `notes_id` integer NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD CONSTRAINT `gameslist_game_notes_id_50029c41_fk_gameslist_note_id` FOREIGN KEY (`notes_id`) REFERENCES `gameslist_note` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP FOREIGN KEY `gameslist_game_notes_id_50029c41_fk_gameslist_note_id`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `notes_id`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `parent_game_id` integer NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD CONSTRAINT `gameslist_note_parent_game_id_6806fcb3_fk_gameslist_game_id` FOREIGN KEY (`parent_game_id`) REFERENCES `gameslist_game` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `metacritic` double precision DEFAULT %s NOT NULL; (params [0.0])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `metacritic` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `user_score` double precision DEFAULT %s NOT NULL; (params [0.0])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `user_score` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `priority` double precision DEFAULT %s NOT NULL; (params [0.0])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `priority` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_alternatename` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `text` varchar(200) NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP COLUMN `date_added`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP COLUMN `date_last_modified`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `created_date` date NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `modified_date` date NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `times_passed_over` integer DEFAULT %s NOT NULL; (params [0])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `times_passed_over` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ADD COLUMN `times_recommended` integer DEFAULT %s NOT NULL; (params [0])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` ALTER COLUMN `times_recommended` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `created_date` date NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `modified_date` date NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_wish` ADD COLUMN `created_date` date NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_wish` ADD COLUMN `modified_date` date NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD COLUMN `parent_game_id` integer NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD CONSTRAINT `gameslist_alternaten_parent_game_id_de8df824_fk_gameslist` FOREIGN KEY (`parent_game_id`) REFERENCES `gameslist_game` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_gameinstance` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `name` varchar(200) NOT NULL, `system` varchar(3) NOT NULL, `played` bool NOT NULL, `beaten` bool NOT NULL, `location` varchar(3) NOT NULL, `game_format` varchar(1) NOT NULL, `notes_old` varchar(500) NULL, `purchase_date` date NOT NULL, `finish_date` date NULL, `abandoned` bool NOT NULL, `perler` bool NOT NULL, `reviewed` bool NOT NULL, `flagged` bool NOT NULL, `substantial_progress` bool NOT NULL, `full_time_to_beat` double precision NOT NULL, `current_time` double precision NOT NULL, `metacritic` double precision NOT NULL, `user_score` double precision NOT NULL, `priority` double precision NOT NULL, `times_recommended` integer NOT NULL, `times_passed_over` integer NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` CHANGE `text` `note` varchar(500) NULL; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` CHANGE `text` `name` varchar(200) NULL; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `current_time`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `full_time_to_beat`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `game_format`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `location`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `metacritic`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `notes_old`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `substantial_progress`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `system`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_game` DROP COLUMN `user_score`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gameinstance` DROP COLUMN `notes_old`; (params ())\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_gametoinstance` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `game_id` integer NOT NULL, `instance_id` integer NOT NULL, `primary` bool NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoinstance` ADD CONSTRAINT `gameslist_gametoinstance_game_id_9c6d582b_fk_gameslist_game_id` FOREIGN KEY (`game_id`) REFERENCES `gameslist_game` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoinstance` ADD CONSTRAINT `gameslist_gametoinst_instance_id_f1ef2956_fk_gameslist` FOREIGN KEY (`instance_id`) REFERENCES `gameslist_gameinstance` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP FOREIGN KEY `gameslist_note_parent_game_id_6806fcb3_fk_gameslist_game_id`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` CHANGE `parent_game_id` `parent_entity_id` integer NULL; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD CONSTRAINT `gameslist_note_parent_entity_id_a31ca41f_fk_gameslist_game_id` FOREIGN KEY (`parent_entity_id`) REFERENCES `gameslist_game` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` DROP FOREIGN KEY `gameslist_alternaten_parent_game_id_de8df824_fk_gameslist`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` CHANGE `parent_game_id` `parent_entity_id` integer NULL; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD CONSTRAINT `gameslist_alternaten_parent_entity_id_18acdd49_fk_gameslist` FOREIGN KEY (`parent_entity_id`) REFERENCES `gameslist_game` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ADD COLUMN `parent_entity_type` integer DEFAULT %s NOT NULL; (params [1])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ALTER COLUMN `parent_entity_type` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ADD COLUMN `parent_entity_type` integer DEFAULT %s NOT NULL; (params [1])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ALTER COLUMN `parent_entity_type` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_flag` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `is_resolved` bool NOT NULL, `resolved_date` date NOT NULL, `note` varchar(500) NULL, `parent_entity` integer NOT NULL, `parent_entity_type` integer NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_gametoseries` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `game_id` integer NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_series` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `name` varchar(200) NULL, `linear` bool NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE TABLE `gameslist_subseries` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created_date` date NOT NULL, `modified_date` date NOT NULL, `name` varchar(200) NULL, `linear` bool NOT NULL, `parent_series_id` integer NULL); (params None)\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` DROP FOREIGN KEY `gameslist_alternaten_parent_entity_id_18acdd49_fk_gameslist`; (params ())\ndjango.db.backends.schema: DEBUG: DROP INDEX `gameslist_alternaten_parent_entity_id_18acdd49_fk_gameslist` ON `gameslist_alternatename`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` CHANGE `parent_entity_id` `parent_entity` integer NULL; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ALTER COLUMN `parent_entity` SET DEFAULT %s; (params [1])\ndjango.db.backends.schema: DEBUG: UPDATE `gameslist_alternatename` SET `parent_entity` = %s WHERE `parent_entity` IS NULL; (params [1])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` MODIFY `parent_entity` integer NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_alternatename` ALTER COLUMN `parent_entity` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` DROP FOREIGN KEY `gameslist_note_parent_entity_id_a31ca41f_fk_gameslist_game_id`; (params ())\ndjango.db.backends.schema: DEBUG: DROP INDEX `gameslist_note_parent_entity_id_a31ca41f_fk_gameslist_game_id` ON `gameslist_note`; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` CHANGE `parent_entity_id` `parent_entity` integer NULL; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ALTER COLUMN `parent_entity` SET DEFAULT %s; (params [1])\ndjango.db.backends.schema: DEBUG: UPDATE `gameslist_note` SET `parent_entity` = %s WHERE `parent_entity` IS NULL; (params [1])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` MODIFY `parent_entity` integer NOT NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_note` ALTER COLUMN `parent_entity` DROP DEFAULT; (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD CONSTRAINT `gameslist_gametoseries_game_id_130eb1e5_fk_gameslist_game_id` FOREIGN KEY (`game_id`) REFERENCES `gameslist_game` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_subseries` ADD CONSTRAINT `gameslist_subseries_parent_series_id_cb26d7d0_fk_gameslist` FOREIGN KEY (`parent_series_id`) REFERENCES `gameslist_series` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD COLUMN `series_id` integer NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD COLUMN `subseries_id` integer NULL; (params [])\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD CONSTRAINT `gameslist_gametoseries_series_id_fc86e054_fk_gameslist_series_id` FOREIGN KEY (`series_id`) REFERENCES `gameslist_series` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: ALTER TABLE `gameslist_gametoseries` ADD CONSTRAINT `gameslist_gametoseri_subseries_id_2dc176d9_fk_gameslist` FOREIGN KEY (`subseries_id`) REFERENCES `gameslist_subseries` (`id`); (params ())\ndjango.db.backends.schema: DEBUG: CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); (params None)\ndjango.db.backends.schema: DEBUG: CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); (params ())\n--------------------- >> end captured logging << ---------------------"]]></error></testcase></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="72" errors="0" failures="0" skip="0"><testcase classname="test_forms.GameInstanceFormTests" name="test_future_finish_date" time="0.111"></testcase><testcase classname="test_forms.GameInstanceFormTests" name="test_future_purchase_date" time="0.106"><system-out><![CDATA[{"current_time": [{"message": "This field is required.", "code": "required"}]}
+]]></system-out></testcase><testcase classname="test_forms.GameInstanceFormTests" name="test_not_played" time="0.107"><system-out><![CDATA[{"finish_date": [{"message": "finish_date must be empty if game isn't played and beaten or abandoned.", "code": ""}]}
+]]></system-out></testcase><testcase classname="test_forms.GameInstanceFormTests" name="test_past_purchase_date" time="0.106"><system-out><![CDATA[{}
+]]></system-out></testcase><testcase classname="test_models.AddOrAppendTests" name="test_add_new_key_to_dict" time="0.106"></testcase><testcase classname="test_models.AddOrAppendTests" name="test_add_new_value_to_array" time="0.107"></testcase><testcase classname="test_models.AddOrAppendTests" name="test_type_exceptions" time="0.105"></testcase><testcase classname="test_models.ConstantTests" name="test_entities" time="0.105"></testcase><testcase classname="test_models.ConstantTests" name="test_formats" time="0.105"></testcase><testcase classname="test_models.ConstantTests" name="test_systems" time="0.106"></testcase><testcase classname="test_models.ConstantTests" name="test_validator_messages" time="0.105"></testcase><testcase classname="test_models.ConvertDateFieldsTests" name="incomplete_finish_or_purchase_test" time="0.104"></testcase><testcase classname="test_models.ConvertDateFieldsTests" name="invalid_dates_test" time="0.105"></testcase><testcase classname="test_models.ConvertDateFieldsTests" name="neither_purchase_or_finish_test" time="0.103"></testcase><testcase classname="test_models.ConvertDateFieldsTests" name="only_finish_date_test" time="0.104"></testcase><testcase classname="test_models.ConvertDateFieldsTests" name="only_purchase_date_test" time="0.104"></testcase><testcase classname="test_models.ConvertDateFieldsTests" name="purchase_and_finish_test" time="0.104"></testcase><testcase classname="test_models.GameModelTests" name="test_past_finish_date" time="0.207"><system-out><![CDATA[{"finish_date": [{"message": "finish_date must be after date of purchase.", "code": ""}]}
+]]></system-out></testcase><testcase classname="test_models.HLTBTest" name="test_alternate_names_hltb" time="1.032"></testcase><testcase classname="test_models.HLTBTest" name="test_full_time_on_create" time="0.924"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.HLTBTest" name="test_known_bad_hltb" time="0.507"></testcase><testcase classname="test_models.HLTBTest" name="test_known_good_hltb" time="0.596"></testcase><testcase classname="test_models.HLTBTest" name="test_time_to_beat_not_played" time="6.922"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+1
+1
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.HLTBTest" name="test_time_to_beat_partial" time="6.051"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+2
+2
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+4.5
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_current_time_negative_but_played" time="2.143"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_current_time_positive_but_not_played" time="3.159"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_current_time_zero_but_played" time="1.600"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_finish_before_purchase" time="1.634"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_finish_date_but_not_beaten_or_abandoned" time="1.660"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_finish_date_but_not_played" time="1.602"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_finished_but_no_date" time="1.582"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_finished_but_not_played" time="2.766"><system-out><![CDATA[instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.CleanValidatorsTests" name="test_valid_clean" time="3.217"><system-out><![CDATA[instance save
+calculate_metacritic
+instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_validators.NoFutureTests" name="test_future_date" time="0.104"></testcase><testcase classname="test_validators.NoFutureTests" name="test_non_date" time="0.104"></testcase><testcase classname="test_validators.NoFutureTests" name="test_past_date" time="0.104"></testcase><testcase classname="test_validators.NoFutureTests" name="test_same_date" time="0.107"></testcase><testcase classname="test_validators.OnlyPositiveOrZeroTests" name="test_negative_float" time="0.106"></testcase><testcase classname="test_validators.OnlyPositiveOrZeroTests" name="test_negative_int" time="0.104"></testcase><testcase classname="test_validators.OnlyPositiveOrZeroTests" name="test_non_number" time="0.104"></testcase><testcase classname="test_validators.OnlyPositiveOrZeroTests" name="test_positive_float" time="0.106"></testcase><testcase classname="test_validators.OnlyPositiveOrZeroTests" name="test_positive_int" time="0.104"></testcase><testcase classname="test_validators.OnlyPositiveOrZeroTests" name="test_zero_float" time="0.105"></testcase><testcase classname="test_validators.OnlyPositiveOrZeroTests" name="test_zero_int" time="0.105"></testcase><testcase classname="test_views.ActiveInstanceTests" name="test_active_setup" time="32.471"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+13
+13
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+14
+14
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+15
+15
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+16
+16
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+instance save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+17
+17
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+18
+18
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+19
+19
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.ActiveInstanceTests" name="test_check_default_instance_is_active" time="29.948"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+20
+20
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+21
+21
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+22
+22
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+23
+23
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+instance save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+24
+24
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+25
+25
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+26
+26
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.ActiveInstanceTests" name="test_fail_to_set_invalid_instance_to_active" time="29.211"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+27
+27
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+28
+28
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+29
+29
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+30
+30
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+instance save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+31
+31
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+32
+32
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+33
+33
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+set_active_inactive
+instance save
+]]></system-out></testcase><testcase classname="test_views.ActiveInstanceTests" name="test_set_inactive_instance_to_active" time="32.404"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+34
+34
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+35
+35
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+36
+36
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+37
+37
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+instance save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+38
+38
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+39
+39
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+40
+40
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+]]></system-out></testcase><testcase classname="test_views.ActiveInstanceTests" name="test_set_inactive_to_set_other_as_active" time="33.337"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+41
+41
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+42
+42
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+43
+43
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+44
+44
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+instance save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+45
+45
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+46
+46
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+47
+47
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+Dragon Ball Z: Buu's Fury - GBA True
+Dragon Ball Z: Buu's Fury - GBA False
+Dragon Ball Z: Buu's Fury - GBA False
+Frogger's Adventures: Temple of the Frog - GBA False
+Fire Emblem - GBA True
+Fire Emblem - NDS False
+Fortress - GBA True
+set_active_inactive
+Fire Emblem - GBAtoggling from True to False
+instance save
+get_valid_siblings
+[<GameInstance: Fire Emblem - NDS>]
+instance save
+calculate_metacritic
+]]></system-out></testcase><testcase classname="test_views.AddGameViewTest" name="test_basic_add" time="9.225"><system-out><![CDATA[{u'current_time': u'1', u'purchase_date_month': u'1', u'name': u'Test', u'played': u'True', u'game_format': u'D', u'system': u'STM', u'purchase_date_day': u'1', u'location': u'STM', u'purchase_date_year': u'2018'}
+instance save
+calculate_metacritic
+map_single_game_instance
+48
+48
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+calculate_how_long_to_beat
+set_active_inactive
+setting to true
+instance save
+calculate_metacritic
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+calculate_how_long_to_beat
+]]></system-out></testcase><testcase classname="test_views.GameDetailViewTests" name="test_abandon_game" time="11.753"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+49
+49
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+]]></system-out></testcase><testcase classname="test_views.GameDetailViewTests" name="test_beat_game" time="6.191"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+50
+50
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+]]></system-out></testcase><testcase classname="test_views.GameDetailViewTests" name="test_create_game" time="0.938"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.GameDetailViewTests" name="test_flag_game" time="1.138"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+game save
+]]></system-out></testcase><testcase classname="test_views.GameDetailViewTests" name="test_play_game" time="4.367"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+51
+51
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+]]></system-out></testcase><testcase classname="test_views.GameIndexViewTests" name="test_new_game_in_list" time="0.951"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.GameIndexViewTests" name="test_no_games" time="0.210"></testcase><testcase classname="test_views.GameListViewTests" name="test_list_filters" time="22.602"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+52
+52
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+53
+53
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+54
+54
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+<QuerySet [<GameInstance: Bravely Default - 3DS>, <GameInstance: Portal - STM>, <GameInstance: Shin Megami Tensei IV - 3DS>]>
+]]></system-out></testcase><testcase classname="test_views.GameslistConfigTest" name="basic_session_test" time="0.782"><system-out><![CDATA[mini
+]]></system-out></testcase><testcase classname="test_views.GameslistConfigTest" name="test_apps" time="0.110"></testcase><testcase classname="test_views.ListDetailRedirectTests" name="test_known_bad" time="10.200"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+55
+55
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+56
+56
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.ListDetailRedirectTests" name="test_list" time="14.170"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+57
+57
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+58
+58
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.ListDetailRedirectTests" name="test_list_detail" time="9.157"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+59
+59
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+60
+60
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.ListDetailRedirectTests" name="test_list_detail_list" time="11.921"><system-out><![CDATA[instance save
+calculate_metacritic
+map_single_game_instance
+61
+61
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+instance save
+calculate_metacritic
+map_single_game_instance
+62
+62
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+set_active_inactive
+setting to true
+instance save
+set_siblings_to_inactive
+get_all_siblings
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_views.ListURLHelperTest" name="test_check_url_args_for_token" time="0.104"></testcase><testcase classname="test_models.AgingTests" name="test_aging_abandoned" time="1.998"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.AgingTests" name="test_aging_beaten" time="2.947"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.AgingTests" name="test_aging_not_played" time="1.332"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.AgingTests" name="test_aging_over_year" time="1.331"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.AgingTests" name="test_aging_played" time="2.304"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.AgingTests" name="test_aging_zero" time="2.079"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase><testcase classname="test_models.AgingTests" name="test_negative_aging" time="2.179"><system-out><![CDATA[game save
+calculate_how_long_to_beat
+calculate_priority
+update_from_children
+game save
+]]></system-out></testcase></testsuite>

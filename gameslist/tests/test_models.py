@@ -140,7 +140,7 @@ class HLTBTest(TestCase):
 
         hltb = HowLongToBeat("Antihero (2017)")
         self.assertEqual(hltb.game, "Antihero (2017)")
-        self.assertEqual(hltb.fulltime, 5.5)
+        self.assertEqual(hltb.fulltime, 6.0)
 
     @attr('hltb')
     def test_full_time_on_create(self):
