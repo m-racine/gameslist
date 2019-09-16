@@ -6,7 +6,7 @@
     <tr>
       <th>Game</th>
       <th>Priority</th>
-      <th>Location</th>
+      <th>System</th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +14,7 @@
       <tr>
         <td><a href={% url 'gameslist:game_detail' game.id %}>{{ game.name }}</td>
         <td>{{ game.priority }}</td>
-        <td>{{ game.location }}</td>
+        <td>{{ game.get_system_display }}</td>
         <td><form action="{% url 'gameslist:recommend' game.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit">&#8593;</button>

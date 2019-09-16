@@ -225,9 +225,12 @@ def convert_date_fields(model_dict):
             del model_dict['purchase_date_day']
     if 'finish_date_year' in model_dict:
         try:
-            model_dict['finish_date'] = date(int(model_dict['finish_date_year']),
-                                             int(model_dict['finish_date_month']),
-                                             int(model_dict['finish_date_day']))
+            if model_dict['finish_date_year'] == '0':
+                model_dict['finish_date'] = None
+            else:
+                model_dict['finish_date'] = date(int(model_dict['finish_date_year']),
+                                                int(model_dict['finish_date_month']),
+                                                int(model_dict['finish_date_day']))
         except ValueError:
             model_dict['finish_date'] = date.today()
             LOGGER.warning("Invalid date: %d-%d-%d", int(model_dict['finish_date_year']),

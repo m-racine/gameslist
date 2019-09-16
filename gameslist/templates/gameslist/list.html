@@ -31,7 +31,7 @@
   <tbody>
     {% for game in response.object_list %}
       <tr>
-        <td><a href={% url 'gameslist:detail' game.id %}>{{ game.name }}</td>
+        <td><a href={% url 'gameslist:game_detail' game.parent_game_id %}>{{ game.name }}</td>
         <td>{{ game.get_location_display }}</td>
         <td>{{ game.get_game_format_display }}</td>
         <td><form action="{% url 'gameslist:recommend' game.id %}" method="post">
