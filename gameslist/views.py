@@ -222,12 +222,19 @@ class DetailView(generic.DetailView):
     model = GameInstance
     template_name = 'gameslist/detail.html'
 
+def prune_null_finish(dict):
+    if dict['finish_date_year'] == 0:
+        del dict['finish_date_year']
+        del dict['finish_date_day']
+        del dict['finish_date_month']
+    return dict
+
 def add_game_view(request):
     if request.POST:
         form = GameInstanceForm(request.POST)
         if form.is_valid():
-            print request.POST.dict()
-            dic = convert_date_fields(request.POST.dict())
+            print prune_null_finish(request.POST.dict())
+            dic = convert_date_fields(prune_null_finish(request.POST.dict()))
             if 'csrfmiddlewaretoken' in dic:
                 del dic['csrfmiddlewaretoken']
             if 'played' in dic:
@@ -236,6 +243,7 @@ def add_game_view(request):
                 dic['beaten'] = True
             if 'abandoned' in dic:
                 dic['abandoned'] = True
+            print dic
             game = GameInstance.objects.create_game_instance(**dic)
             #map_single_game_instance(game.id)
             return render(request, 'gameslist/thanks.html', {'game':game})
@@ -286,6 +294,8 @@ class PlayBeatAbandonGame(generic.UpdateView):
                 return self.form_invalid(form)
         self.object.is_submitted = True
         self.object = form.save()
+        game = get_object_or_404(Game, pk=self.object.parent_game_id)
+        game.save()
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
@@ -444,11 +454,11 @@ def filtered_game_list(request, **kwargs):
                     LOGGER.debug("REDIRECTING")
                     if 'query_string' in request.session:
                         if request.session['query_string'].strip():
-                            return HttpResponseRedirect(reverse('gameslist:game_list') +
+                            return HttpResponseRedirect(reverse('gameslist:list') +
                                                         "?%s" % request.session['query_string'])
-                        return HttpResponseRedirect(reverse('gameslist:game_list') + "?page=1")
-                    LOGGER.debug(reverse('gameslist:game_list') + "?page=1")
-                    return HttpResponseRedirect(reverse('gameslist:game_list') + "?page=1")
+                        return HttpResponseRedirect(reverse('gameslist:list') + "?page=1")
+                    LOGGER.debug(reverse('gameslist:list') + "?page=1")
+                    return HttpResponseRedirect(reverse('gameslist:list') + "?page=1")
 
     page = request.GET.get('page')
     game_filter = GameFilter(request.GET, queryset=game_list)
