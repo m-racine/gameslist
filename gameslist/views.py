@@ -233,7 +233,7 @@ def add_game_view(request):
     if request.POST:
         form = GameInstanceForm(request.POST)
         if form.is_valid():
-            print prune_null_finish(request.POST.dict())
+            #print prune_null_finish(request.POST.dict())
             dic = convert_date_fields(prune_null_finish(request.POST.dict()))
             if 'csrfmiddlewaretoken' in dic:
                 del dic['csrfmiddlewaretoken']
@@ -243,7 +243,6 @@ def add_game_view(request):
                 dic['beaten'] = True
             if 'abandoned' in dic:
                 dic['abandoned'] = True
-            print dic
             game = GameInstance.objects.create_game_instance(**dic)
             #map_single_game_instance(game.id)
             return render(request, 'gameslist/thanks.html', {'game':game})

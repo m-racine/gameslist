@@ -621,7 +621,6 @@ class GameInstance(BaseModel):
         Using the imported metacritic module, fetches the
         metacritic and user_score for a GameInstance
         """
-        print "calculate_metacritic"
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
         for name in names_list:
             try:
@@ -668,23 +667,19 @@ class GameInstance(BaseModel):
         return (-1.0, -1.0)
 
     def get_all_siblings(self):
-        print "get_all_siblings"
         mapping = GameToInstance.objects.all().filter(instance_id=self.id)
         siblings = []
         if mapping.count() > 0:
             #insurance, a mapping should exist after all
-            siblings_map = GameToInstance.objects.all().filter(game_id=mapping[0].id).exclude(instance_id=self.id)
-
+            siblings_map = GameToInstance.objects.all().filter(game_id=mapping[0].game_id).exclude(instance_id=self.id)
             for sib in siblings_map:
                 siblings.append(GameInstance.objects.get(pk=sib.instance_id))
         else:
-            print "mapping"
             map_single_game_instance(self)
             return None
         return siblings
 
     def get_valid_siblings(self):
-        print "get_valid_siblings"
         mapping = GameToInstance.objects.all().filter(instance_id=self.id)
         siblings = []
         if mapping.count() > 0:
@@ -702,32 +697,27 @@ class GameInstance(BaseModel):
         return siblings
 
     def set_siblings_to_inactive(self):
-        print "set_siblings_to_inactive"
         for instance in self.get_all_siblings():
             instance.active = False
             instance.save()
 
 
     def set_active_inactive(self):
-        print "set_active_inactive"
         if self.active == False:
             if self.game_format in ["M","N","L"]:
                 self.active = False
                 self.save()
                 #raise a toast?
             else:
-                print "setting to true"
                 self.active = True
                 self.save()
                 self.set_siblings_to_inactive()
         else:
-            print unicode(self) + "toggling from True to False"
             self.active = False
             self.save()
 #            print self.get_valid_siblings()#
 #            print type(self.get_valid_siblings())
             instance = self.get_valid_siblings()
-            print instance
             if instance:
                 instance[0].active = True
                 instance[0].save()
