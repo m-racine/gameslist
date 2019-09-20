@@ -333,6 +333,10 @@ class Game(BaseModel):
         except:
             return None
 
+    @property
+    def linked_notes(self):
+        return Note.objects.all().filter(parent_entity=self.id, parent_entity_type=GAME)
+
     def __str__(self):
         return self.name
 
@@ -728,6 +732,10 @@ class GameInstance(BaseModel):
 
     def __unicode__(self):
         return unicode(self.name) + u" - " + unicode(self.system)
+
+    @property
+    def linked_notes(self):
+        return Note.objects.all().filter(parent_entity=self.id, parent_entity_type=GAME_INSTANCE)
 
 #class GameManager(models.Manager):
 #    def create_game(self):

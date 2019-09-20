@@ -21,8 +21,9 @@ from django.forms.utils import ErrorList
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Game, Wish, Note, SYSTEMS, GameInstance, GameToInstance, AlternateName, TopPriority
 from .models import convert_date_fields
-#GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES,
+from .models import GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES
 from .models import map_single_game_instance, flattenKEY
+
 from .forms import GameInstanceForm, PlayBeatAbandonForm, AlternateNameForm, NoteForm
 from .filters import GameInstanceFilter, GameFilter
 
@@ -252,17 +253,19 @@ def add_game_view(request):
         form = GameInstanceForm(initial={"purchase_date":date.today()})
     return render(request, 'gameslist/game_form.html', {'form':form})
 
-def add_note_view(request, game_id):
-    if request.POST:
-        form = NoteForm(request.POST)
-        if form.is_valid():
-            note = form.save()
-            note.parent_game_id = game_id
-            note.save()
-            return HttpResponseRedirect(reverse('gameslist:detail', args=(game_id,)))
-    else:
-        form = NoteForm(initial={"parent_game_id":game_id})
-    return render(request, 'gameslist/note_form.html', {'form':form})
+# def add_note_view(request, game_id):
+#     print game_id
+#     if request.POST:
+#         form = NoteForm(request.POST)
+#         if form.is_valid():
+#             note = form.save()
+#             note.parent_entity_id = game_id
+#             print note.parent_entity_id
+#             note.save()
+#             return HttpResponseRedirect(reverse('gameslist:detail', args=(game_id,)))
+#     else:
+#         form = NoteForm(initial={"parent_game_id":game_id})
+#     return render(request, 'gameslist/note_form.html', {'form':form})
 
 def add_name_view(request, game_id):
     if request.POST:
@@ -520,7 +523,8 @@ def add_note_plus(request, entity_id, entity_type):
         form = NoteForm(request.POST)
         if form.is_valid():
             note = form.save()
-            note.parent_game_id = entity_id
+            note.parent_entity = entity_id
+            note.parent_entity_type = entity_type
             note.save()
             return HttpResponseRedirect(reverse('gameslist:detail', args=(entity_id,)))
     else:

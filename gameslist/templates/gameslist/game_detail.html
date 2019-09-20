@@ -9,6 +9,7 @@
     <li>{{obj.text}}</li>
   {% endfor %}
 {% endif %}
+<h2>{{game.remaining_time}}</h2>
 <form action="{% url 'gameslist:add_name' game.id %}" method="get">
                 {% csrf_token %}
                 <button type="submit"> Add Alternate Name</button>
@@ -27,11 +28,11 @@
 
     <ul>
         <h2>Notes</h2>
-        {% for obj in game.note_set.all %}
-           <li>{{obj.text}}</li>
+        {% for obj in game.linked_notes %}
+           <li>{{obj.note}}</li>
         {% endfor %}
     </ul>
-    <form action="{% url 'gameslist:add_note' game.id %}" method="get">
+    <form action="{% url 'gameslist:add_note' game.id 1 %}" method="get">
                     {% csrf_token %}
                     <button type="submit"> Add Note</button>
     </form>
