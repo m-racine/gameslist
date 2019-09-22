@@ -18,4 +18,5 @@ class GameFilter(django_filters.FilterSet):
         fields = {'name':['contains'],
                   'substantial_progress':['exact'],
                   'beaten':['exact'],
-                  'finish_date':['year__gte']}
+                  'finish_date':['year__gte'],
+                  'full_time_to_beat':['lte']}

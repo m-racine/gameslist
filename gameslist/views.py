@@ -321,7 +321,7 @@ def save_all_game_instances(request):
 def save_all_games(request):
     game_list = Game.objects.all()
     for game in game_list:
-        if game.priority == -4:
+#        if game.priority >= 0:
             try:
                 LOGGER.info(unicode(game))
                 game.save()

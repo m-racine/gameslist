@@ -158,7 +158,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'mysite.log',
             'formatter': 'verbose'
@@ -172,7 +172,7 @@ LOGGING = {
         },
         'MYAPP': {
             'handlers': ['file'],
-            'level': 'INFO',
+            'level': 'DEBUG',
         },
     }
 }

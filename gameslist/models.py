@@ -387,11 +387,9 @@ class Game(BaseModel):
         instance_missing = False
         instance_borrowed = False
         instance_owned = False
+        game_abandoned = True
         for instance in instances:
-            #if self.active_instance:
-            #    pass
-            #else:
-           #     instance.set_active_inactive()
+            game_abandoned = (instance.abandoned and game_abandoned)
             if instance.beaten:
                 self.beaten = True
             if instance.played:
@@ -412,6 +410,8 @@ class Game(BaseModel):
                 instance_missing = True
             else:
                 instance_owned = True
+        if game_abandoned:
+            self.abandoned = True
         if instance_borrowed:
             self.status = "B"
         elif instance_owned:
@@ -419,9 +419,8 @@ class Game(BaseModel):
         elif instance_missing:
             self.status = "N"
 
-        self.average_score = score_sum/instances.count()
+        self.average_score = max(score_sum/instances.count(),0)
         self.total_time = time_sum
-        print "score {0} and time {1}".format(self.average_score, self.total_time)
 
     def calculate_how_long_to_beat(self):
         """
@@ -475,32 +474,36 @@ class Game(BaseModel):
         """
         print "calculate_priority"
         self.update_from_children()
+        LOGGER.debug("Score: %f aging: %d", self.average_score, self.aging)
         try:
+            print self.abandoned
             if self.beaten or self.abandoned:
                 return -1.0
             if self.status == "N":
                 return -2.0
-            score_factor = self.average_score/float(self.full_time_to_beat)
+            score_factor = self.average_score/200.00
+            #200 is currently the HIGHEST score possible
+            time_factor = 1.0-float(self.remaining_time)/float(self.full_time_to_beat)
             if score_factor < 0.0:
                 score_factor = 0.0
-            age_factor = ((self.aging / 365.0) * 12.0) * 0.5
+            #age_factor = ((self.aging / 365.0) * 12.0) * 0.5
+            age_factor = (float(self.aging) / 365.0)
             rec_factor = float(1 + self.times_recommended) / float(1 + self.times_passed_over)
-            LOGGER.debug("score: %2.f age: %2.f rec %2.f", score_factor, age_factor, rec_factor)
+            LOGGER.debug("score: %.2f age: %.2f rec %.2f time %.2f", score_factor, age_factor, rec_factor, time_factor)
             misc_factor = 1.0
             if self.played:
                 misc_factor += 1.0
             if self.status == "B":
-                misc_factor += 1.0
+                misc_factor +=  1.0
             #if self.substantial_progress:
             #   misc_factor += 1.0
-            prior = round(((age_factor +  score_factor) * misc_factor) * rec_factor, 2)
+            prior = round(((age_factor +  score_factor + time_factor) * misc_factor) * rec_factor, 2)
             if round(prior, 1) == 0.0:
                 return -3.0
             return prior
         except:
             print sys.exc_info()[0]
             print sys.exc_info()[1]
-        print "{0} age {1} rec {2} score {3} misc".format(age_factor,rec_factor,score_factor,misc_factor)
         return -4.0
 
 def add_or_append(dic, key, value):
