@@ -175,6 +175,7 @@ def map_single_game_instance(game_id):
                         game.set_siblings_to_inactive()
                     #g_to_i.save()
                     masters[0].update_from_children()
+                    masters[0].save()
                     break
                 else:
                     LOGGER.debug("Creating new master game for %s", game)
@@ -196,6 +197,7 @@ def map_single_game_instance(game_id):
                     if not game.active:
                         game.set_active_inactive()
                     master_game.update_from_children()
+                    master_game.save()
                     LOGGER.info("Added %s", master_game.name)
                     break
         except:
@@ -848,6 +850,12 @@ class TopPriority(BaseModel):
     class Meta:
         managed = False
         db_table = 'top_priority'
+
+class SteamData(BaseModel):
+    app_id = models.IntegerField(null=False,default=0)
+    steam_game = models.ForeignKey(GameInstance, on_delete=models.CASCADE)
+    current_time = models.IntegerField(null=False,default=0)
+    score = models.IntegerField(null=False,default=0)
 
 # class Series(BaseModel):
 #     """

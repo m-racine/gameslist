@@ -14,7 +14,7 @@ def get_all_games_for_user(APIKEY="9D14EFB127C85C39448B89807C87EA99", STEAMID="7
 
     steam_games = []
     for game in games_list:
-        steam_games.append([game['name'],game['playtime_forever'],get_score(game['appid']))
+        steam_games.append([game['appid'],game['name'],game['playtime_forever'],get_score(game['appid'])])
 
     return steam_games
 
@@ -25,7 +25,7 @@ def get_two_weeks_for_user(APIKEY="9D14EFB127C85C39448B89807C87EA99", STEAMID="7
 
     steam_games = []
     for game in games_list:
-        steam_games.append([game['name'],game['playtime_forever'],get_score(game['appid']))
+        steam_games.append(game['appid'],[game['name'],game['playtime_forever'],get_score(game['appid'])])
 
     return steam_games
 

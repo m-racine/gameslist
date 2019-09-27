@@ -19,13 +19,15 @@ from django import forms
 from django.forms.utils import ErrorList
 #from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game, Wish, Note, SYSTEMS, GameInstance, GameToInstance, AlternateName, TopPriority
+from .models import Game, Wish, Note, SYSTEMS, GameInstance, GameToInstance, AlternateName, TopPriority, SteamData
 from .models import convert_date_fields
 from .models import GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES
 from .models import map_single_game_instance, flattenKEY
 
 from .forms import GameInstanceForm, PlayBeatAbandonForm, AlternateNameForm, NoteForm
 from .filters import GameInstanceFilter, GameFilter
+
+import endpoints.steam
 
 LOGGER = logging.getLogger('MYAPP')
 YOUR_PAGE_SIZE = 10
@@ -224,7 +226,7 @@ class DetailView(generic.DetailView):
     template_name = 'gameslist/detail.html'
 
 def prune_null_finish(dict):
-    if dict['finish_date_year'] == 0:
+    if 'finish_date_year' in dict and dict['finish_date_year'] == 0:
         del dict['finish_date_year']
         del dict['finish_date_day']
         del dict['finish_date_month']
@@ -554,3 +556,13 @@ def flag_game_instance(request, game_id):
     game.flagged = True
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
+
+def fetch_all_steam_data_for_user(request, user_id=0):
+    games = steam.get_all_games_for_user()[:10]
+    steam_instances = GameInstance.objects.filter(system="STM")
+    for game in games:
+        steam_inst = steam_instances.filter(name=game[2])
+        if steam_inst:
+            SteamData.objects.create(app_id=game[0],steam_game=steam_inst,current_time=game[2],score=game[3])
+            steam_inst.current_time = game[2]
+            steam_inst.save()
