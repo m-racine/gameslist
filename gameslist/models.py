@@ -57,6 +57,7 @@ SYSTEMS = (
     ('PS2', 'PlayStation 2'),
     ('PS3', 'PlayStation 3'),
     ('PS4', 'PlayStation 4'),
+    ('PSV', 'PlayStation VR'),
     ('PSP', 'PlayStation Portable'),
     ('SNS', 'SNES'),
     ('STM', 'Steam'),
@@ -142,11 +143,11 @@ def map_single_game_instance(game_id):
     and either finds a parent Game or creates one, based on
     searching on the name of the GameInstance given.
     """
-    print "map_single_game_instance"
-    print game_id
+    LOGGER.info("map_single_game_instance")
+    LOGGER.debug(game_id)
 
     game = get_object_or_404(GameInstance, pk=game_id)
-    print game.id
+    LOGGER.debug(game.id)
     mapping = GameToInstance.objects.all().filter(instance_id=game.id)
     LOGGER.debug(mapping)
     if mapping.count() > 0:
@@ -346,7 +347,7 @@ class Game(BaseModel):
         return unicode(self.name)
 
     def save(self, *args, **kwargs):
-        print "game save"
+        LOGGER.debug("game save")
         self.name = self.name.strip(" ")
         #self.update_from_children()
         if self.full_time_to_beat <= 0.0:
@@ -364,7 +365,7 @@ class Game(BaseModel):
             self.play_aging = 0
         else:
             self.play_aging = (date.today() - self.purchase_date).days
-        print "about to calculate"
+        LOGGER.debug("about to calculate")
         self.priority = self.calculate_priority()
         super(Game, self).save(*args, **kwargs)
 
@@ -385,6 +386,7 @@ class Game(BaseModel):
             instance_ids.append(inm.instance_id)
         instances = GameInstance.objects.filter(pk__in=instance_ids)
         score_sum = 0.0
+        num_scores = 0
         time_sum = 0.0
         instance_missing = False
         instance_borrowed = False
@@ -402,7 +404,15 @@ class Game(BaseModel):
                         self.finish_date = instance.finish_date
                 else:
                     self.finish_date = instance.finish_date
-            score_sum += instance.metacritic + (instance.user_score*10.0)
+            if instance.metacritic > 0.0:
+                score_sum += instance.metacritic
+                num_scores += 1
+            if instance.user_score > 0.0:
+                score_sum += (instance.user_score*10.0)
+                num_scores += 1
+            if instance.steam_score > 0:
+                score_sum += (instance.steam_score*10.0)
+                num_scores += 1
             if instance.current_time > (self.full_time_to_beat /2.0):
                 self.substantial_progress = True
             time_sum += instance.current_time
@@ -421,7 +431,10 @@ class Game(BaseModel):
         elif instance_missing:
             self.status = "N"
 
-        self.average_score = max(score_sum/instances.count(),0)
+        if num_scores > 0:
+            self.average_score = score_sum/float(num_scores)
+        else:
+            self.average_score = 0
         self.total_time = time_sum
 
     def calculate_how_long_to_beat(self):
@@ -483,9 +496,11 @@ class Game(BaseModel):
                 return -1.0
             if self.status == "N":
                 return -2.0
-            score_factor = self.average_score/200.00
-            #200 is currently the HIGHEST score possible
-            time_factor = 1.0-float(self.remaining_time)/float(self.full_time_to_beat)
+            score_factor = self.average_score/100.00
+            if self.remaining_time < 0:
+                time_factor = 1.0
+            else:
+                time_factor = 1.0-float(self.remaining_time)/float(self.full_time_to_beat)
             if score_factor < 0.0:
                 score_factor = 0.0
             #age_factor = ((self.aging / 365.0) * 12.0) * 0.5
@@ -535,7 +550,7 @@ class GameInstanceManager(models.Manager):
                              flagged=False,
                              current_time=0,
                              metacritic=0.0, user_score=0.0,
-                             active=False):
+                             active=False,steam_score=0):
         """
         Factory method for the GameInstance class.
         """
@@ -547,7 +562,7 @@ class GameInstanceManager(models.Manager):
                                     flagged=flagged,
                                     current_time=current_time, metacritic=metacritic,
                                     user_score=user_score,
-                                    active=active)
+                                    active=active,steam_score=steam_score)
         map_single_game_instance(game_instance.id)
         #game_instance.save()
         return game_instance
@@ -574,6 +589,7 @@ class GameInstance(BaseModel):
     current_time = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     metacritic = models.FloatField(default=0.0, validators=[only_positive_or_zero])
     user_score = models.FloatField(default=0.0, validators=[only_positive_or_zero])
+    steam_score = models.IntegerField(default=0,validators=[only_positive_or_zero])
     active = models.BooleanField(default=False)
     #not a property so that it can be sorted more easily.
     # @property
@@ -593,11 +609,24 @@ class GameInstance(BaseModel):
         #else:
         return 0
 
+    @property
+    def parent_game_obj(self):
+        """
+        Shorthand property for returning the idea of a GameInstance's parent Game.
+        """
+        mapping = GameToInstance.objects.all().filter(instance_id=self.id)
+        if mapping.count() > 0:
+            return get_object_or_404(Game,pk=mapping[0].game_id)
+        return None
+
     def save(self, *args, **kwargs):
         print "instance save"
+        LOGGER.debug(self)
         self.name = self.name.strip(" ")
+        LOGGER.debug("610")
         if self.metacritic <= 0.0 or self.user_score <= 0.0:
             (self.metacritic, self.user_score) = self.calculate_metacritic()
+        LOGGER.debug("super save")
         super(GameInstance, self).save(*args, **kwargs)
 
     def clean(self):
@@ -630,6 +659,7 @@ class GameInstance(BaseModel):
         Using the imported metacritic module, fetches the
         metacritic and user_score for a GameInstance
         """
+        LOGGER.debug("calculate metacritic")
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
         for name in names_list:
             try:
@@ -854,8 +884,8 @@ class TopPriority(BaseModel):
 class SteamData(BaseModel):
     app_id = models.IntegerField(null=False,default=0)
     steam_game = models.ForeignKey(GameInstance, on_delete=models.CASCADE)
-    current_time = models.IntegerField(null=False,default=0)
-    score = models.IntegerField(null=False,default=0)
+    #current_time = models.IntegerField(null=False,default=0)
+    #score = models.IntegerField(null=False,default=0)
 
 # class Series(BaseModel):
 #     """

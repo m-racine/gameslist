@@ -14,7 +14,7 @@ def get_all_games_for_user(APIKEY="9D14EFB127C85C39448B89807C87EA99", STEAMID="7
 
     steam_games = []
     for game in games_list:
-        steam_games.append([game['appid'],game['name'],game['playtime_forever'],get_score(game['appid'])])
+        steam_games.append([game['appid'],game['name'],game['playtime_forever']/60.0,get_score(game['appid'])])
 
     return steam_games
 
@@ -25,13 +25,16 @@ def get_two_weeks_for_user(APIKEY="9D14EFB127C85C39448B89807C87EA99", STEAMID="7
 
     steam_games = []
     for game in games_list:
-        steam_games.append(game['appid'],[game['name'],game['playtime_forever'],get_score(game['appid'])])
+        steam_games.append([game['appid'],game['name'],game['playtime_forever']/60.0,get_score(game['appid'])])
 
     return steam_games
 
 def get_score(APPID):
-    request = requests.get("https://store.steampowered.com/appreviews/{0}".format(APPID))
-    return json.loads(request.text)['query_summary']['review_score']
+    request = requests.get("https://store.steampowered.com/appreviews/{0}?json=1".format(APPID))
+    response = json.loads(request.text)
+    if 'query_summary' in response:
+        return response['query_summary']['review_score']
+    return 0
     #gets us review score- scale of 10 -- ['query_summary']['review_score']
     #https://store.steampowered.com/appreviews/12200
 
