@@ -83,7 +83,8 @@ WSGI_APPLICATION = 'games_list.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'gameslist',
         'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
         'PORT':'3306',

@@ -33,6 +33,7 @@ urlpatterns = [
     #url(r'^notes/$', views.process_notes, name='notes'),
     url(r'^full$', views.filtered_game_list, name='list', kwargs=dict({'page':''})),
     url(r'^full$', views.filtered_game_list, name='list'),
+    url(r'^steam$',views.fetch_all_steam_data_for_user, name='steam'),
     url(r'^instance$', views.filtered_list, name='instance_list', kwargs=dict({'page':'', 'system':'', 'game_format':''})),
     url(r'^instance$', views.filtered_list, name='instance_list')]
 

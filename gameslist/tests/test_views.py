@@ -270,12 +270,12 @@ class ActiveInstanceTests(TestCase):
         instance = get_object_or_404(GameInstance, pk=self.game_four.id)
         self.assertTrue(instance.active)
 
-    # def test_set_active_instance_to_active(self):
-    #     instance = get_object_or_404(GameInstance, pk=self.game_three.id)
-    #     self.assertTrue(instance.active)
-    #     _ = self.client.post(reverse('gameslist:activate', args=(self.game_three.id,)))
-    #     instance = get_object_or_404(GameInstance, pk=self.game_three.id)
-    #     self.assertTrue(instance.active)
+    def test_set_active_instance_to_active(self):
+        instance = get_object_or_404(GameInstance, pk=self.game_three.id)
+        self.assertTrue(instance.active)
+        _ = self.client.post(reverse('gameslist:activate', args=(self.game_three.id,)))
+        instance = get_object_or_404(GameInstance, pk=self.game_three.id)
+        self.assertTrue(instance.active)
 
     def test_check_default_instance_is_active(self):
         instance = get_object_or_404(GameInstance, pk=self.game_five.id)

@@ -158,7 +158,7 @@ class HLTBTest(TestCase):
         game = Game.objects.get(pk=inst.parent_game_id)
         self.assertEqual(game.full_time_to_beat, 10.0)
         self.assertEqual(inst.current_time, 4.5)
-        print game.total_time
+        self.assertEqual(game.total_time, 4.5)
         self.assertEqual(game.remaining_time, 5.5)
 
 @attr('date_validation')

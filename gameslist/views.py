@@ -19,13 +19,15 @@ from django import forms
 from django.forms.utils import ErrorList
 #from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Game, Wish, Note, SYSTEMS, GameInstance, GameToInstance, AlternateName, TopPriority
+from .models import Game, Wish, Note, SYSTEMS, GameInstance, GameToInstance, AlternateName, TopPriority, SteamData
 from .models import convert_date_fields
 from .models import GAME, GAME_INSTANCE, NOTE, ALTERNATE_NAME, WISH, SERIES
 from .models import map_single_game_instance, flattenKEY
 
 from .forms import GameInstanceForm, PlayBeatAbandonForm, AlternateNameForm, NoteForm
 from .filters import GameInstanceFilter, GameFilter
+
+import endpoints.steam as steam
 
 LOGGER = logging.getLogger('MYAPP')
 YOUR_PAGE_SIZE = 10
@@ -224,7 +226,7 @@ class DetailView(generic.DetailView):
     template_name = 'gameslist/detail.html'
 
 def prune_null_finish(dict):
-    if dict['finish_date_year'] == 0:
+    if 'finish_date_year' in dict and dict['finish_date_year'] == 0:
         del dict['finish_date_year']
         del dict['finish_date_day']
         del dict['finish_date_month']
@@ -554,3 +556,42 @@ def flag_game_instance(request, game_id):
     game.flagged = True
     game.save()
     return HttpResponseRedirect(reverse('gameslist:detail', args=(game.id,)))
+
+def fetch_all_steam_data_for_user(request, user_id=0):
+    games = steam.get_all_games_for_user()
+    return process_steam_games(games)
+
+def fetch_two_weeks_steam_for_user(request, user_id=0):
+    games = steam.get_two_weeks_for_user()
+    return process_steam_games(games)
+
+def process_steam_games(games):
+    LOGGER.info(games)
+    steam_instances = GameInstance.objects.filter(system="STM")
+    LOGGER.info(steam_instances)
+    for game in games:
+        steam_data = SteamData.objects.filter(app_id=game[0])
+        if steam_data:
+            #TEMP
+            pass
+            # steam_data[0].steam_game.current_time = game[2]
+            # steam_data[0].steam_game.steam_score = game[3]
+            # steam_data[0].steam_game.save()
+            # steam_data[0].steam_game.parent_game_obj.save()
+        else:
+            steam_inst = steam_instances.filter(name=game[1])
+            if steam_inst:
+                SteamData.objects.create(app_id=game[0],steam_game=steam_inst[0])
+                steam_inst[0].current_time = game[2]
+                steam_inst[0].steam_score = game[3]
+                steam_inst[0].save()
+                steam_inst[0].parent_game_obj.save()
+            else:
+                LOGGER.info("Creating instance for %s", game[1])
+                steam_game = GameInstance.objects.create_game_instance(name=game[1], system="STM",
+                                    played=(game[2]>0),
+                                    location="STM", game_format="D",
+                                    purchase_date=date.today(),
+                                    current_time=game[2], steam_score=game[3])
+                SteamData.objects.create(app_id=game[0],steam_game=steam_game)
+    return HttpResponseRedirect(reverse('gameslist:top_priority_list'))

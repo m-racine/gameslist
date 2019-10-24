@@ -8,5 +8,6 @@ lib/*
 .coverage
 cover/*
 mysite.log
+tests.xml
 share/*
 bin/
