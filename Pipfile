@@ -3,6 +3,11 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
+[[source]]
+name = "mlfey"
+url = "https://m-racine.github.io/pypi/"
+verify_ssl = false
+
 [dev-packages]
 
 [packages]
@@ -56,9 +61,9 @@ wrapt = "==1.11.2"
 "backports.functools_lru_cache" = "==1.5"
 "backports.ssl_match_hostname" = "==3.5.0.1"
 Django = "==1.11"
-MySQL-python = "==1.2.5"
 PyYAML = "==3.13"
 websocket_client = "==0.53.0"
+mysql-connector-python = "*"
 
 [requires]
 python_version = "2.7"
