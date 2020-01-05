@@ -1,0 +1,1 @@
+#has game listings AND ratings AND prices

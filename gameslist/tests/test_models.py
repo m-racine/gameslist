@@ -111,36 +111,6 @@ class AgingTests(unittest.TestCase):
         self.assertEqual(game.play_aging, 5)
 
 class HLTBTest(TestCase):
-    # @attr('hltb')
-    # def test_example_hltb(self):
-    #     os.chdir("gameslist/endpoints")
-    #     hltb = ExampleHowLongToBeat("Sunset Overdrive")
-    #     os.chdir("../../")
-    #     self.assertEqual(hltb.game, "Sunset Overdrive")
-    #     #print hltb
-    #     self.assertEqual(hltb.fulltime, 10.0)
-
-    @attr('hltb')
-    def test_known_good_hltb(self):
-        hltb = HowLongToBeat("Human Resource Machine")
-        self.assertEqual(hltb.game, "Human Resource Machine")
-        self.assertEqual(hltb.fulltime, 4.0)
-
-    @attr('hltb')
-    def test_known_bad_hltb(self):
-        hltb = HowLongToBeat("Legion Saga")
-        self.assertEqual(hltb.game, "Legion Saga")
-        self.assertEqual(hltb.fulltime, -1)
-
-    @attr('hltb')
-    def test_alternate_names_hltb(self):
-        hltb = HowLongToBeat("Antihero")
-        self.assertEqual(str(hltb), "Antihero - Not Found")
-        self.assertEqual(hltb.fulltime, -1)
-
-        hltb = HowLongToBeat("Antihero (2017)")
-        self.assertEqual(hltb.game, "Antihero (2017)")
-        self.assertEqual(hltb.fulltime, 6.0)
 
     @attr('hltb')
     def test_full_time_on_create(self):
@@ -184,8 +154,7 @@ class GameModelTests(TestCase):
         }
         response = self.client.post(reverse("gameslist:add"), data)
         logger.debug(vars(response).keys())
-        self.assertRaises(ValidationError({"finish_date":(FINISH_AFTER_PURCHASE)}),
-                          response.context['form'].full_clean())
+        self.assertEqual(response.context['form'].errors.get("finish_date"),[FINISH_AFTER_PURCHASE])
         logger.debug(response.context['form'])
         #self.assertTrue(False)
 

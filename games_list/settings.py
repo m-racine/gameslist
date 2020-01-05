@@ -42,9 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_nose',
-    'django_filters'
-]
+    'django_nose'
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -83,8 +82,8 @@ WSGI_APPLICATION = 'games_list.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.mysql',
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
+        #'ENGINE': 'mysql.connector.django',
         'NAME': 'gameslist',
         'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
         'PORT':'3306',
@@ -154,7 +153,8 @@ LOGGING = {
             'datefmt' : "%d/%b/%Y %H:%M:%S"
         },
         'simple': {
-            'format': '%(levelname)s %(message)s'
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
         },
     },
     'handlers': {
@@ -170,6 +170,18 @@ LOGGING = {
             'handlers':['file'],
             'propagate': True,
             'level':'INFO',
+        },
+        'views': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+        'models': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+        'forms': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
         },
         'MYAPP': {
             'handlers': ['file'],

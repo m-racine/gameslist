@@ -5,7 +5,7 @@ and updating their own data.
 """
 
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+#from __future__ import unicode_literals
 
 #import datetime
 import sys
@@ -21,7 +21,7 @@ from howlongtobeat import HowLongToBeat
 from metacritic import MetaCritic
 from names import gen_names, gen_metacritic_names
 
-LOGGER = logging.getLogger('MYAPP') # pragma: no cover
+LOGGER = logging.getLogger('models') # pragma: no cover
 
 CURRENT_TIME_NOT_ALLOWED = 'Current time must be 0 if a game is unplayed.'
 CURRENT_TIME_NEGATIVE = 'If a game is played the current_time must be over 0.'
@@ -29,6 +29,7 @@ FINISH_DATE_NOT_ALLOWED = "finish_date must be empty if game isn't played and be
 NOT_PLAYED = 'You must have played a game to beat or abandon it.'
 FINISH_AFTER_PURCHASE = 'finish_date must be after date of purchase.'
 FINISH_DATE_REQUIRED = 'You must have a finish date to beat or abandon a game.'
+FUTURE_DATE = 'Purchase_Date/finish_date cannot be in the future.'
 # # Create your models here.
 
 SYSTEMS = (
@@ -143,13 +144,12 @@ def map_single_game_instance(game_id):
     and either finds a parent Game or creates one, based on
     searching on the name of the GameInstance given.
     """
-    LOGGER.info("map_single_game_instance")
-    LOGGER.debug(game_id)
+    #LOGGER.debug(game_id)
 
     game = get_object_or_404(GameInstance, pk=game_id)
-    LOGGER.debug(game.id)
+    #LOGGER.debug(game.id)
     mapping = GameToInstance.objects.all().filter(instance_id=game.id)
-    LOGGER.debug(mapping)
+    #LOGGER.debug(mapping)
     if mapping.count() > 0:
         LOGGER.debug("Mapping found for %s", game)
         if game.active:
@@ -160,9 +160,9 @@ def map_single_game_instance(game_id):
         try:
             filtered_names = list(AlternateName.objects.all().filter(parent_entity=game.id))
             name_list = [game.name] + filtered_names
-            LOGGER.error(name_list)
+            #LOGGER.error(name_list)
             for name in name_list:
-                LOGGER.debug(name)
+                #LOGGER.debug(name)
                 masters = Game.objects.filter(name=name)
                 if masters.count() > 1:
                     LOGGER.debug("Too many matches for %s for %s", name, game)
@@ -347,7 +347,6 @@ class Game(BaseModel):
         return unicode(self.name)
 
     def save(self, *args, **kwargs):
-        LOGGER.debug("game save")
         self.name = self.name.strip(" ")
         #self.update_from_children()
         if self.full_time_to_beat <= 0.0:
@@ -365,7 +364,6 @@ class Game(BaseModel):
             self.play_aging = 0
         else:
             self.play_aging = (date.today() - self.purchase_date).days
-        LOGGER.debug("about to calculate")
         self.priority = self.calculate_priority()
         super(Game, self).save(*args, **kwargs)
 
@@ -377,7 +375,6 @@ class Game(BaseModel):
         that map to the base Game and calculate some fields
         such as priority that depend on those instances.
         """
-        print "update_from_children"
         instance_mappings = GameToInstance.objects.filter(game_id=self.id)
         instance_ids = []
         if instance_mappings.count() == 0:
@@ -441,7 +438,6 @@ class Game(BaseModel):
         """
         Calculates howlong to beat data for the entity.
         """
-        print "calculate_how_long_to_beat"
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
         for name in names_list:
             try:
@@ -487,11 +483,9 @@ class Game(BaseModel):
         Calculates priority based on the data both
         inherent to the Game and in its child Instances.
         """
-        print "calculate_priority"
         self.update_from_children()
         LOGGER.debug("Score: %f aging: %d", self.average_score, self.aging)
         try:
-            print self.abandoned
             if self.beaten or self.abandoned:
                 return -1.0
             if self.status == "N":
@@ -519,8 +513,10 @@ class Game(BaseModel):
                 return -3.0
             return prior
         except:
-            print sys.exc_info()[0]
-            print sys.exc_info()[1]
+            print(sys.exc_info()[0])
+            print(sys.exc_info()[1])
+            LOGGER.error(sys.exc_info()[0])
+            LOGGER.error(sys.exc_info()[1])
         return -4.0
 
 def add_or_append(dic, key, value):
@@ -620,13 +616,10 @@ class GameInstance(BaseModel):
         return None
 
     def save(self, *args, **kwargs):
-        print "instance save"
-        LOGGER.debug(self)
+        #LOGGER.debug(self)
         self.name = self.name.strip(" ")
-        LOGGER.debug("610")
         if self.metacritic <= 0.0 or self.user_score <= 0.0:
             (self.metacritic, self.user_score) = self.calculate_metacritic()
-        LOGGER.debug("super save")
         super(GameInstance, self).save(*args, **kwargs)
 
     def clean(self):
@@ -645,6 +638,8 @@ class GameInstance(BaseModel):
         if self.finish_date:
             if self.finish_date < self.purchase_date:
                 errors = add_or_append(errors, 'finish_date', FINISH_AFTER_PURCHASE)
+            if self.finish_date > date.today():
+                errors = add_or_append(errors, 'finish_date', FUTURE_DATE)
         if self.beaten or self.abandoned:
             if not self.played:
                 errors = add_or_append(errors, 'played', NOT_PLAYED)
@@ -659,7 +654,6 @@ class GameInstance(BaseModel):
         Using the imported metacritic module, fetches the
         metacritic and user_score for a GameInstance
         """
-        LOGGER.debug("calculate metacritic")
         names_list = [self.name] + list(AlternateName.objects.all().filter(parent_entity=self.id))
         for name in names_list:
             try:
@@ -751,15 +745,13 @@ class GameInstance(BaseModel):
                 self.active = True
                 self.save()
                 self.set_siblings_to_inactive()
-        else:
-            self.active = False
-            self.save()
-#            print self.get_valid_siblings()#
-#            print type(self.get_valid_siblings())
-            instance = self.get_valid_siblings()
-            if instance:
-                instance[0].active = True
-                instance[0].save()
+        # else:
+        #     self.active = False
+        #     self.save()
+        #     instance = self.get_valid_siblings()
+        #     if instance:
+        #         instance[0].active = True
+        #         instance[0].save()
 
 
     def __str__(self):
