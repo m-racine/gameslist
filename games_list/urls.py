@@ -20,5 +20,5 @@ from gameslist import views
 
 urlpatterns = [
     url(r'^', include('gameslist.urls', namespace="gameslist")),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 ]

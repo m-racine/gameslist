@@ -27,7 +27,13 @@ from gameslist.views import check_url_args_for_only_token
 from gameslist.apps import GameslistConfig
 # Create your tests here.
 
-
+CURRENT_TIME_NOT_ALLOWED = 'Current time must be 0 if a game is unplayed.'
+CURRENT_TIME_NEGATIVE = 'If a game is played the current_time must be over 0.'
+FINISH_DATE_NOT_ALLOWED = "finish_date must be empty if game isn't played and beaten or abandoned."
+NOT_PLAYED = 'You must have played a game to beat or abandon it.'
+FINISH_AFTER_PURCHASE = 'finish_date must be after date of purchase.'
+FINISH_DATE_REQUIRED = 'You must have a finish date to beat or abandon a game.'
+FUTURE_DATE = 'Purchase_Date/finish_date cannot be in the future.'
 
 #HOW DO I TEST admin.py
 #HOW DO I TEST apps.py
@@ -55,71 +61,81 @@ class GameInstanceFormTests(TestCase):
         form = GameInstanceForm({
             'name': "Portal 2",
             'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
+            'purchase_date_month': 1,
+            'purchase_date_day': 1,
             'system': 'STM',
             'game_format': 'D',
             'location': 'STM',
             'played': False,
             'current_time': 0.0
         })
-        print form.errors.as_json()
+        print(form.errors.as_json())
         self.assertTrue(form.is_valid())
+
     @attr('date_validation')
     def test_future_purchase_date(self):
 
         form = GameInstanceForm({
             'name': "Portal 2",
-            'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
+            'purchase_date_year': 2100,
+            'purchase_date_month': 1,
+            'purchase_date_day': 1,
             'system': 'STM',
             'game_format': 'D',
-            'location': 'STM'
+            'location': 'STM',
+            'current_time': 0.0
         })
-        print form.errors.as_json()
+        print(form.errors.as_json())
         #self.assertTrue(convert_date(form.data['purchase_date']) > date.today())
-        self.assertRaises(ValidationError('Purchase_Date/finish_date cannot be in the future.'),
-                          form.full_clean())
+        self.assertEqual(form.errors.get("purchase_date"),[FUTURE_DATE])
+    
     @attr('date_validation')
     def test_future_finish_date(self):
         form = GameInstanceForm({
             'name': "Portal 2",
-            'finish_date_year': 2019,
-            'finish_date_month': 01,
-            'finish_date_day': 01,
+            'finish_date_year': 2100,
+            'finish_date_month': 1,
+            'finish_date_day': 1,
             'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
+            'purchase_date_month': 1,
+            'purchase_date_day': 1,
             'system': 'STM',
             'game_format': 'D',
             'location': 'STM',
             'played': True,
-            'beaten': True,
+            'beaten': False,
             'current_time': 1.0
         })
         #self.assertTrue(convert_date(form.data['finish_date']) > date.today())
-        self.assertRaises(ValidationError('Purchase_Date/finish_date cannot be in the future.'),
-                          form.full_clean())
+        # with self.assertRaises(SomeException) as cm:
+        #     do_something()
+        # err = cm.exception
+        # self.assertEqual(str(err), 'expected error message.')
+        #https://github.com/cloudant/python-cloudant/issues/80
+        
+       # with self.assertRaises(ValidationError) as err:
+        #form.full_clean()
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors.get("finish_date"),[FUTURE_DATE])
 
     @attr('date_validation')
     def test_not_played(self):
         form = GameInstanceForm({
             'name': "Portal 2",
             'finish_date_year': 2018,
-            'finish_date_month': 01,
-            'finish_date_day': 01,
+            'finish_date_month': 1,
+            'finish_date_day': 1,
             'purchase_date_year': 2018,
-            'purchase_date_month': 01,
-            'purchase_date_day': 01,
+            'purchase_date_month': 1,
+            'purchase_date_day': 1,
             'system': 'STM',
             'game_format': 'D',
             'location': 'STM',
             'played': False,
             'current_time': 0.0
         })
-        print form.errors.as_json()
+        print(form.errors.as_json())
         #self.assertFalse(form.is_valid())
         self.assertFalse(form.is_valid())
-        self.assertRaises(ValidationError({'finish_date':(FINISH_DATE_NOT_ALLOWED)}),
+        self.assertRaises(ValidationError,
                           form.full_clean()) 
