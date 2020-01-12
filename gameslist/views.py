@@ -11,7 +11,7 @@ import sys
 #from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404, reverse
 #, redirect, render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 #HttpResponse, Http404,
 from django.views import generic
 from django.utils import timezone
@@ -58,6 +58,7 @@ def top_priority_list(request):
     except:
         response = paginator.page(1)
     request.session['query_string'] = request.GET.urlencode()
+    request.session['source_list'] = 'top_priority_list'
     return render(
         request,
         'gameslist/top_priority.html',
@@ -112,6 +113,7 @@ def filtered_list(request, **kwargs):
     except:
         response = paginator.page(1)
     request.session['query_string'] = request.GET.urlencode()
+    request.session['source_list'] = 'instance'
     return render(
         request,
         'gameslist/list.html',
@@ -126,10 +128,10 @@ def beaten_in_year_list(request, _year=int(date.today().year)):
     page = request.GET.get('page')
     game_filter = {'beaten':True,
                     'finish_date__year__gte':_year}
-
-    filtered_qs = game_list.filter(game_filter)
+    filtered_qs = game_list.filter(**game_filter)
     paginator = Paginator(filtered_qs, paginate_by)
-
+    request.session['source_list'] = 'beaten/{0}'.format(_year)
+    LOGGER.debug(request.session)
     try:
         response = paginator.page(page)
     except PageNotAnInteger:
@@ -144,57 +146,59 @@ def beaten_in_year_list(request, _year=int(date.today().year)):
         {'response': response, 'filter':game_filter}
     )
 
-def missing_hltb_list(request):
-    #model = GameInstance
-    paginate_by = 100
-    game_list = GameInstance.objects.all().order_by('system')
+#Deprecated
+# def missing_hltb_list(request):
+#     #model = GameInstance
+#     paginate_by = 100
+#     game_list = GameInstance.objects.all().order_by('system')
 
-    page = request.GET.get('page')
+#     page = request.GET.get('page')
 
-    game_filter = {'full_time_to_beat':-1.0}
-    filtered_qs = game_list.filter(game_filter)
-    paginator = Paginator(filtered_qs, paginate_by)
+#     game_filter = {'full_time_to_beat':-1.0}
+#     filtered_qs = game_list.filter(game_filter)
+#     paginator = Paginator(filtered_qs, paginate_by)
 
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-    except:
-        response = paginator.page(1)
-    return render(
-        request,
-        'gameslist/missinghltb.html',
-        {'response': response, 'filter':game_filter}
-    )
+#     try:
+#         response = paginator.page(page)
+#     except PageNotAnInteger:
+#         response = paginator.page(1)
+#     except EmptyPage:
+#         response = paginator.page(paginator.num_pages)
+#     except:
+#         response = paginator.page(1)
+#     return render(
+#         request,
+#         'gameslist/missinghltb.html',
+#         {'response': response, 'filter':game_filter}
+#     )
 
-def hltb_list(request):
-    #model = GameInstance
-    paginate_by = 100
-    game_list = GameInstance.objects.all().order_by('system')
+#Deprecated
+# def hltb_list(request):
+#     #model = GameInstance
+#     paginate_by = 100
+#     game_list = GameInstance.objects.all().order_by('system')
 
-    page = request.GET.get('page')
-    game_filter ={'full_time_to_beat__lte':5.0,
-                  'full_time_to_beat__gte':0.1,
-                  'beaten':False}
+#     page = request.GET.get('page')
+#     game_filter ={'full_time_to_beat__lte':5.0,
+#                   'full_time_to_beat__gte':0.1,
+#                   'beaten':False}
 
-    filtered_qs = game_list.filter(game_filter)
-    paginator = Paginator(filtered_qs, paginate_by)
+#     filtered_qs = game_list.filter(game_filter)
+#     paginator = Paginator(filtered_qs, paginate_by)
 
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-    except:
-        response = paginator.page(1)
-    return render(
-        request,
-        'gameslist/missinghltb.html',
-        {'response': response, 'filter':game_filter}
-    )
+#     try:
+#         response = paginator.page(page)
+#     except PageNotAnInteger:
+#         response = paginator.page(1)
+#     except EmptyPage:
+#         response = paginator.page(paginator.num_pages)
+#     except:
+#         response = paginator.page(1)
+#     return render(
+#         request,
+#         'gameslist/missinghltb.html',
+#         {'response': response, 'filter':game_filter}
+#     )
 
 def check_url_match(url, referer):
     for host in ['http://gameslist.griffonflightproductions.com', 'http://127.0.0.1:8000']:
@@ -423,27 +427,28 @@ class IndexGameView(generic.ListView):
             purchase_date__lte=timezone.now()
         ).order_by('-purchase_date')[:5]
 
-def top_priority_game_list(request):
-    #model = Game
-    paginate_by = 10
-    game_list = Game.objects.all().order_by('-priority')
-    paginator = Paginator(game_list, paginate_by)
-    page = request.GET.get('page')
+# @Deprecated
+# def top_priority_game_list(request):
+#     #model = Game
+#     paginate_by = 10
+#     game_list = Game.objects.all().order_by('-priority')
+#     paginator = Paginator(game_list, paginate_by)
+#     page = request.GET.get('page')
 
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-    except:
-        response = paginator.page(1)
-    request.session['query_string'] = request.GET.urlencode()
-    return render(
-        request,
-        'gameslist/top_priority.html',
-        {'response': response}
-    )
+#     try:
+#         response = paginator.page(page)
+#     except PageNotAnInteger:
+#         response = paginator.page(1)
+#     except EmptyPage:
+#         response = paginator.page(paginator.num_pages)
+#     except:
+#         response = paginator.page(1)
+#     request.session['query_string'] = request.GET.urlencode()
+#     return render(
+#         request,
+#         'gameslist/top_priority.html',
+#         {'response': response}
+#     )
 
 def filtered_game_list(request, **kwargs):
     model = Game
@@ -486,36 +491,38 @@ def filtered_game_list(request, **kwargs):
     except:
         response = paginator.page(1)
     request.session['query_string'] = request.GET.urlencode()
+    request.session['source_list'] = 'list'
     return render(
         request,
         'gameslist/game_list.html',
         {'response': response, 'filter':game_filter}
     )
 
-def beaten_in_2018_game_list(request, **kwargs):
-    model = Game
-    paginate_by = 100
-    game_list = Game.objects.all().order_by('system')
+# @Deprecated
+# def beaten_in_2018_game_list(request, **kwargs):
+#     model = Game
+#     paginate_by = 100
+#     game_list = Game.objects.all().order_by('system')
 
-    page = request.GET.get('page')
-    game_filter = {'beaten':True, 'finish_date__year__gte':2018}
+#     page = request.GET.get('page')
+#     game_filter = {'beaten':True, 'finish_date__year__gte':2018}
 
-    filtered_qs = game_list.filter(game_filter)
-    paginator = Paginator(filtered_qs, paginate_by)
+#     filtered_qs = game_list.filter(game_filter)
+#     paginator = Paginator(filtered_qs, paginate_by)
 
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-    except:
-        response = paginator.page(1)
-    return render(
-        request,
-        'gameslist/beaten.html',
-        {'response': response, 'filter':game_filter}
-    )
+#     try:
+#         response = paginator.page(page)
+#     except PageNotAnInteger:
+#         response = paginator.page(1)
+#     except EmptyPage:
+#         response = paginator.page(paginator.num_pages)
+#     except:
+#         response = paginator.page(1)
+#     return render(
+#         request,
+#         'gameslist/beaten.html',
+#         {'response': response, 'filter':game_filter}
+#     )
 
 
 def move_to_detail_view_game(request, primary):
@@ -535,7 +542,13 @@ def add_note_plus(request, entity_id, entity_type):
             note.parent_entity = entity_id
             note.parent_entity_type = entity_type
             note.save()
-            return HttpResponseRedirect(reverse('gameslist:detail', args=(entity_id,)))
+            if int(entity_type) == GAME_INSTANCE:
+                instance = get_object_or_404(GameInstance,pk=entity_id)
+                LOGGER.debug(instance)
+                return HttpResponseRedirect(reverse('gameslist:game_detail', args=(instance.parent_game_id,)))
+            else:
+                LOGGER.debug(entity_type)
+                return HttpResponseRedirect(reverse('gameslist:game_detail', args=(entity_id,)))
     else:
         form = NoteForm(initial={"parent_entity_id":entity_id})
     return render(request, 'gameslist/note_form.html', {'form':form})
@@ -602,3 +615,8 @@ def process_steam_games(games):
                                     current_time=game[2], steam_score=game[3])
                 SteamData.objects.create(app_id=game[0],steam_game=steam_game)
     return HttpResponseRedirect(reverse('gameslist:top_priority_list'))
+
+def return_to_list(request):
+    LOGGER.debug(request.session)
+    LOGGER.debug(request.session['source_list'])
+    return HttpResponseRedirect(reverse('gameslist:{0}'.format(request.session['source_list'])))

@@ -36,7 +36,7 @@
                     {% csrf_token %}
                     <button type="submit"> Add Note</button>
     </form>
-    <form action="{% url 'gameslist:list' %}" method="get">
+    <form action="{% url 'gameslist:return' %}" method="get">
         {% csrf_token %}
         <button type="submit">Back to List</button>
     </form>
