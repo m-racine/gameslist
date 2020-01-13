@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "91124c550835ec611f7501e7ef482525ff9e0fac1cbe21191edb38cf61acb327"
+            "sha256": "7db1b654ea01ba307394362bb0d22a7b9e44288eeabc598084d0058ceceacdc3"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.7"
+            "python_version": "3.6"
         },
         "sources": [
             {
@@ -73,10 +73,10 @@
         },
         "howlongtobeat": {
             "hashes": [
-                "sha256:ac93e455fe682eca3df040c9e8da434204551f49da4433a6b9a70c2371a04c2e"
+                "sha256:c1be0763e1339331002826cdeb1f6dace1f59f08401155ed74771429e1f655d0"
             ],
             "index": "pypi",
-            "version": "==0.1.1"
+            "version": "==0.1.2"
         },
         "idna": {
             "hashes": [
@@ -87,14 +87,14 @@
         },
         "metacritique": {
             "hashes": [
-                "sha256:4f47f9ffad085945af8d9395036c85ec4533b4a46a45dd72c89af432cf2091b2"
+                "sha256:5bfb5f9523aa763816ea9648e34f6284fde4537293df0b1fe85f89e85b78c7c3"
             ],
             "index": "pypi",
             "version": "==0.1.1"
         },
         "mlfey-names": {
             "hashes": [
-                "sha256:5f9264916de385dc352b7641876df4cf487d76579d296de35f8b37165327d753"
+                "sha256:0c34695df18e3d0fe26ea27eeca71dc5ff9de2b4594ec69da652459d883d60c8"
             ],
             "index": "pypi",
             "version": "==0.1.2"
