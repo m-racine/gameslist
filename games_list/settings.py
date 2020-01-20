@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['games-test.rw3dvkmeac.us-west-2.elasticbeanstalk.com',
                  'gameswishlist-python3-prod.rw3dvkmeac.us-west-2.elasticbeanstalk.com'
                  'gameslist.griffonflightproductions.com',
+                 'gameslist.appspot.com',
                  '127.0.0.1','192.168.255.91','10.1.10.54','10.1.10.225',
                  '35.162.201.2','35.238.122.4','35.161.89.34','52.37.24.205']
 
@@ -80,16 +81,26 @@ WSGI_APPLICATION = 'games_list.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        #'ENGINE': 'mysql.connector.django',
-        'NAME': 'gameslist',
-        'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
-        'PORT':'3306',
-        'USER':'jubio',
-        'PASSWORD':'Mithras25'
+if os.getenv('GAE_APPLICATION', None):
+    DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.mysql',
+             'HOST': '/cloudsql/gameslist:us-central1:gameslist-try-again',
+             'USER': 'jubio',
+             'PASSWORD': 'Time_does_not_wait',
+             'NAME': 'gameslist',
+         }
+     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            #'ENGINE': 'mysql.connector.django',
+            'NAME': 'gameslist',
+            'HOST': 'games-list.cxotlb2v8xd7.us-west-2.rds.amazonaws.com',
+            'PORT':'3306',
+            'USER':'jubio',
+            'PASSWORD':'Mithras25'
     },
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
@@ -145,51 +156,106 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
 # https://stackoverflow.com/questions/15128135/setting-debug-false-causes-500-error
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
+
+if os.getenv('GAE_APPLICATION', None):
+
+    from google.cloud import logging
+
+# Instantiates a client
+    logging_client = logging.Client()
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'verbose': {
+                'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+                'datefmt' : "%d/%b/%Y %H:%M:%S"
+            },
+            'simple': {
+                'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+                'datefmt' : "%d/%b/%Y %H:%M:%S"
+            },
         },
-        'simple': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },  
+            'stackdriver_logging': {
+                'class': 'google.cloud.logging.handlers.CloudLoggingHandler',
+                'client': logging_client,
+            },
         },
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'mysite.log',
-            'formatter': 'verbose'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers':['file'],
-            'propagate': True,
-            'level':'INFO',
-        },
-        'views': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-        'models': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-        'forms': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-        'MYAPP': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
+        'loggers': {
+            'django': {
+                'handlers':['console','stackdriver_logging'],
+                'propagate': True,
+                'level':'INFO',
+            },
+            'views': {
+                'handlers': ['console','stackdriver_logging'],
+                'level': 'DEBUG',
+            },
+            'models': {
+                'handlers': ['console','stackdriver_logging'],
+                'level': 'DEBUG',
+            },
+            'forms': {
+                'handlers': ['console','stackdriver_logging'],
+                'level': 'DEBUG',
+            },
+            'MYAPP': {
+                'handlers': ['console','stackdriver_logging'],
+                'level': 'DEBUG',
+            },
+        }
     }
-}
+else:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+                'datefmt' : "%d/%b/%Y %H:%M:%S"
+            },
+            'simple': {
+                'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+                'datefmt' : "%d/%b/%Y %H:%M:%S"
+            },
+        },
+        'handlers': {
+            'dev': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': 'gameslist.log',
+                'formatter': 'verbose'
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers':['dev'],
+                'propagate': True,
+                'level':'INFO',
+            },
+            'views': {
+                'handlers': ['dev'],
+                'level': 'DEBUG',
+            },
+            'models': {
+                'handlers': ['dev'],
+                'level': 'DEBUG',
+            },
+            'forms': {
+                'handlers': ['dev'],
+                'level': 'DEBUG',
+            },
+            'MYAPP': {
+                'handlers': ['dev'],
+                'level': 'DEBUG',
+            },
+        }
+    }
 
 # Use nose to run all tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

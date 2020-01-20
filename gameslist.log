@@ -1,0 +1,1108 @@
+[19/Jan/2020 16:08:30] WARNING [models:224] Invalid date: 2019-12-32
+[19/Jan/2020 16:08:33] DEBUG [MYAPP:156] dict_keys(['_headers', '_closable_objects', '_handler_class', 'cookies', 'closed', '_reason_phrase', '_charset', '_container', 'csrf_cookie_set', 'wsgi_request', 'exc_info', 'client', 'request', 'templates', 'context', 'json', 'resolver_match'])
+[19/Jan/2020 16:08:33] DEBUG [MYAPP:158] <tr><th><label for="id_name">Name:</label></th><td><input type="text" name="name" value="Portal 2" maxlength="200" required id="id_name"></td></tr>
+<tr><th><label for="id_system">System:</label></th><td><select name="system" id="id_system">
+  <option value="3DS">Nintendo 3DS</option>
+
+  <option value="AND">Android</option>
+
+  <option value="ATA">Atari</option>
+
+  <option value="BNT">Battle.net</option>
+
+  <option value="DIG">Digipen</option>
+
+  <option value="NDS">Nintendo DS</option>
+
+  <option value="EPI">Epic Games</option>
+
+  <option value="GCN">Gamecube</option>
+
+  <option value="GB">Game Boy</option>
+
+  <option value="GBC">Game Boy Color</option>
+
+  <option value="GBA">Game Boy Advance</option>
+
+  <option value="GG">GameGear</option>
+
+  <option value="GOG">GoG</option>
+
+  <option value="HUM">Humble</option>
+
+  <option value="IND">IndieBox</option>
+
+  <option value="IIO">Itch.io</option>
+
+  <option value="KIN">Kindle</option>
+
+  <option value="NES">NES</option>
+
+  <option value="N64">Nintendo 64</option>
+
+  <option value="ORN">Origin</option>
+
+  <option value="PC">PC</option>
+
+  <option value="PSX">PlayStation</option>
+
+  <option value="PS2">PlayStation 2</option>
+
+  <option value="PS3">PlayStation 3</option>
+
+  <option value="PS4">PlayStation 4</option>
+
+  <option value="PSV">PlayStation VR</option>
+
+  <option value="PSP">PlayStation Portable</option>
+
+  <option value="SNS">SNES</option>
+
+  <option value="STM" selected>Steam</option>
+
+  <option value="NSW">Switch</option>
+
+  <option value="TWH">Twitch</option>
+
+  <option value="UPL">Uplay</option>
+
+  <option value="VIT">Vita</option>
+
+  <option value="WII">Wii</option>
+
+  <option value="WIU">Wii U</option>
+
+  <option value="XBX">Xbox</option>
+
+  <option value="360">Xbox 360</option>
+
+  <option value="XB1">Xbox One</option>
+
+</select></td></tr>
+<tr><th><label for="id_location">Location:</label></th><td><select name="location" id="id_location">
+  <option value="3DS">Nintendo 3DS</option>
+
+  <option value="AND">Android</option>
+
+  <option value="ATA">Atari</option>
+
+  <option value="BNT">Battle.net</option>
+
+  <option value="DIG">Digipen</option>
+
+  <option value="NDS">Nintendo DS</option>
+
+  <option value="EPI">Epic Games</option>
+
+  <option value="GCN">Gamecube</option>
+
+  <option value="GB">Game Boy</option>
+
+  <option value="GBC">Game Boy Color</option>
+
+  <option value="GBA">Game Boy Advance</option>
+
+  <option value="GG">GameGear</option>
+
+  <option value="GOG">GoG</option>
+
+  <option value="HUM">Humble</option>
+
+  <option value="IND">IndieBox</option>
+
+  <option value="IIO">Itch.io</option>
+
+  <option value="KIN">Kindle</option>
+
+  <option value="NES">NES</option>
+
+  <option value="N64">Nintendo 64</option>
+
+  <option value="ORN">Origin</option>
+
+  <option value="PC">PC</option>
+
+  <option value="PSX">PlayStation</option>
+
+  <option value="PS2">PlayStation 2</option>
+
+  <option value="PS3">PlayStation 3</option>
+
+  <option value="PS4">PlayStation 4</option>
+
+  <option value="PSV">PlayStation VR</option>
+
+  <option value="PSP">PlayStation Portable</option>
+
+  <option value="SNS">SNES</option>
+
+  <option value="STM" selected>Steam</option>
+
+  <option value="NSW">Switch</option>
+
+  <option value="TWH">Twitch</option>
+
+  <option value="UPL">Uplay</option>
+
+  <option value="VIT">Vita</option>
+
+  <option value="WII">Wii</option>
+
+  <option value="WIU">Wii U</option>
+
+  <option value="XBX">Xbox</option>
+
+  <option value="360">Xbox 360</option>
+
+  <option value="XB1">Xbox One</option>
+
+</select></td></tr>
+<tr><th><label for="id_game_format">Format:</label></th><td><select name="game_format" id="id_game_format">
+  <option value="P" selected>Physical</option>
+
+  <option value="D">Digital</option>
+
+  <option value="M">Missing</option>
+
+  <option value="B">Borrowed</option>
+
+  <option value="N">None</option>
+
+  <option value="R">Returned</option>
+
+  <option value="L">Lent</option>
+
+  <option value="E">Expired</option>
+
+</select></td></tr>
+<tr><th><label for="id_played">Played:</label></th><td><input type="checkbox" name="played" id="id_played" checked></td></tr>
+<tr><th><label for="id_beaten">Beaten:</label></th><td><input type="checkbox" name="beaten" id="id_beaten" checked></td></tr>
+<tr><th><label for="id_abandoned">Abandoned:</label></th><td><input type="checkbox" name="abandoned" id="id_abandoned"></td></tr>
+<tr><th><label for="id_current_time">Current time:</label></th><td><input type="number" name="current_time" value="2" step="any" required id="id_current_time"></td></tr>
+<tr><th><label for="id_purchase_date_month">Date purchased:</label></th><td><select name="purchase_date_month" required id="id_purchase_date_month"><option value="1" selected>January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select><select name="purchase_date_day" required id="id_purchase_date_day"><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select><select name="purchase_date_year" required id="id_purchase_date_year"><option value="2020">2020</option><option value="2019">2019</option><option value="2018" selected>2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option></select></td></tr>
+<tr><th><label for="id_finish_date_month">Date finished:</label></th><td><ul class="errorlist"><li>finish_date must be after date of purchase.</li></ul><select name="finish_date_month" id="id_finish_date_month"><option value="">---</option><option value="1" selected>January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select><select name="finish_date_day" id="id_finish_date_day"><option value="">---</option><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select><select name="finish_date_year" id="id_finish_date_year"><option value="">---</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017" selected>2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option></select></td></tr>
+[19/Jan/2020 16:08:35] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:35] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:35] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:35] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:35] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:35] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:36] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/sunset-overdrive
+[19/Jan/2020 16:08:40] DEBUG [models:182] Creating new master game for Sunset Overdrive - STM
+[19/Jan/2020 16:08:41] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:41] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:41] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:41] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:41] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:41] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:41] DEBUG [models:192] Mapping new master game Sunset Overdrive to Sunset Overdrive - STM
+[19/Jan/2020 16:08:42] DEBUG [models:487] Score: 77.500000 aging: 475
+[19/Jan/2020 16:08:42] DEBUG [models:503] score: 0.78 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:42] INFO [models:202] Added Sunset Overdrive
+[19/Jan/2020 16:08:43] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/sunset-overdrive
+[19/Jan/2020 16:08:46] DEBUG [models:182] Creating new master game for Sunset Overdrive - STM
+[19/Jan/2020 16:08:46] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:46] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:46] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:46] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:47] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:08:47] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:08:47] DEBUG [models:192] Mapping new master game Sunset Overdrive to Sunset Overdrive - STM
+[19/Jan/2020 16:08:48] DEBUG [models:487] Score: 77.500000 aging: 475
+[19/Jan/2020 16:08:48] DEBUG [models:503] score: 0.78 age: 1.30 rec 1.00 time 0.45
+[19/Jan/2020 16:08:48] INFO [models:202] Added Sunset Overdrive
+[19/Jan/2020 16:08:49] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:08:52] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:08:55] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:08:57] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:08:59] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:09:01] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:09:02] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:09:04] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:09:07] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:09:09] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:09:17] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:09:21] DEBUG [models:182] Creating new master game for Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:09:21] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:09:21] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:09:21] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:09:21] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:21] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:21] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:21] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:22] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:09:22] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:09:22] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:09:22] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:22] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:22] DEBUG [models:192] Mapping new master game Dragon Ball Z: Buu's Fury to Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:09:23] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:09:23] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:09:23] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:09:24] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:09:24] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:24] INFO [models:202] Added Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:09:24] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:09:27] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:09:28] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:09:28] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:09:28] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:09:28] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:09:28] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:28] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:09:30] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:09:31] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:09:31] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:09:31] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:09:31] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:09:31] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:32] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/froggers-adventures-temple-of-the-frog
+[19/Jan/2020 16:09:39] DEBUG [models:182] Creating new master game for Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:09:39] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:09:39] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:09:39] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:09:40] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:40] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:40] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:40] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:40] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:09:40] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:09:40] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:09:40] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:40] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:09:40] DEBUG [models:192] Mapping new master game Frogger's Adventures: Temple of the Frog to Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:09:41] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:09:41] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:09:41] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:09:41] DEBUG [models:487] Score: 75.500000 aging: 0
+[19/Jan/2020 16:09:41] INFO [models:202] Added Frogger's Adventures: Temple of the Frog
+[19/Jan/2020 16:09:42] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:09:46] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:09:46] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:46] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:09:46] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:46] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:09:46] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:09:46] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:09:47] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:09:47] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:09:47] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:09:47] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:09:47] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:09:48] DEBUG [MYAPP:241] Fire Emblem
+[19/Jan/2020 16:09:48] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem!
+[19/Jan/2020 16:09:49] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem!
+[19/Jan/2020 16:09:51] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem
+[19/Jan/2020 16:09:52] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:09:53] INFO [models:171] Creating mapping from Fire Emblem - NDS to Fire Emblem
+[19/Jan/2020 16:09:54] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:09:54] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:09:54] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fortress
+[19/Jan/2020 16:09:59] DEBUG [models:182] Creating new master game for Fortress - GBA
+[19/Jan/2020 16:10:00] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:00] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:00] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:00] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:00] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:00] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:00] DEBUG [models:192] Mapping new master game Fortress to Fortress - GBA
+[19/Jan/2020 16:10:02] DEBUG [models:487] Score: 71.000000 aging: 0
+[19/Jan/2020 16:10:02] DEBUG [models:503] score: 0.71 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:02] INFO [models:202] Added Fortress
+[19/Jan/2020 16:10:03] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:10:05] DEBUG [models:182] Creating new master game for Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:10:05] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:05] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:05] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:06] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:06] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:06] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:06] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:06] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:06] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:06] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:06] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:06] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:06] DEBUG [models:192] Mapping new master game Dragon Ball Z: Buu's Fury to Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:10:08] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:08] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:08] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:08] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:10:08] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:09] INFO [models:202] Added Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:10:09] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:10:11] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:10:13] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:13] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:13] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:13] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:10:13] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:13] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:10:16] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:10:17] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:17] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:17] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:17] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:10:17] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:17] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/froggers-adventures-temple-of-the-frog
+[19/Jan/2020 16:10:19] DEBUG [models:182] Creating new master game for Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:10:20] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:10:20] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:10:20] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:10:20] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:20] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:20] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:20] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:20] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:10:20] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:10:20] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:10:20] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:20] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:21] DEBUG [models:192] Mapping new master game Frogger's Adventures: Temple of the Frog to Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:10:21] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:10:21] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:10:21] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:10:22] DEBUG [models:487] Score: 75.500000 aging: 0
+[19/Jan/2020 16:10:22] INFO [models:202] Added Frogger's Adventures: Temple of the Frog
+[19/Jan/2020 16:10:22] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:10:25] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:10:25] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:25] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:25] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:25] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:26] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:26] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:26] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:10:26] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:10:26] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:26] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:10:27] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:10:27] DEBUG [MYAPP:241] Fire Emblem
+[19/Jan/2020 16:10:27] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem!
+[19/Jan/2020 16:10:28] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem!
+[19/Jan/2020 16:10:29] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem
+[19/Jan/2020 16:10:30] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:10:32] INFO [models:171] Creating mapping from Fire Emblem - NDS to Fire Emblem
+[19/Jan/2020 16:10:33] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:10:33] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:10:33] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fortress
+[19/Jan/2020 16:10:34] ERROR [models:672] METACRITIC FAIL FOR Fortress
+[19/Jan/2020 16:10:34] ERROR [models:673] <class 'requests.exceptions.ConnectionError'>
+[19/Jan/2020 16:10:34] ERROR [models:674] ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[19/Jan/2020 16:10:35] ERROR [models:675] None
+[19/Jan/2020 16:10:35] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fortress
+[19/Jan/2020 16:10:37] ERROR [models:696] MetaCritic FAIL FOR fortress
+[19/Jan/2020 16:10:37] ERROR [models:697] <class 'TypeError'>
+[19/Jan/2020 16:10:37] ERROR [models:698] Field 'parent_entity' expected a number but got <GameInstance: Fortress - GBA>.
+[19/Jan/2020 16:10:38] ERROR [models:699] None
+[19/Jan/2020 16:10:38] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:10:41] DEBUG [models:182] Creating new master game for Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:10:41] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:41] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:41] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:41] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:41] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:42] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:42] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:42] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:42] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:42] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:42] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:42] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:42] DEBUG [models:192] Mapping new master game Dragon Ball Z: Buu's Fury to Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:10:43] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:43] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:43] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:43] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:10:43] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:44] INFO [models:202] Added Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:10:44] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:10:46] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:10:47] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:47] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:47] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:47] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:10:47] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:48] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:10:50] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:10:51] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:10:51] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:10:51] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:10:52] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:10:52] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:52] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/froggers-adventures-temple-of-the-frog
+[19/Jan/2020 16:10:55] DEBUG [models:182] Creating new master game for Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:10:55] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:10:55] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:10:55] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:10:55] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:55] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:55] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:55] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:56] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:10:56] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:10:56] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:10:56] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:10:56] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:10:56] DEBUG [models:192] Mapping new master game Frogger's Adventures: Temple of the Frog to Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:10:57] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:10:57] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:10:57] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:10:57] DEBUG [models:487] Score: 75.500000 aging: 0
+[19/Jan/2020 16:10:57] INFO [models:202] Added Frogger's Adventures: Temple of the Frog
+[19/Jan/2020 16:10:57] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:11:01] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:11:02] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:02] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:02] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:02] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:02] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:02] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:02] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:11:03] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:11:03] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:03] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:11:03] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:11:05] DEBUG [MYAPP:241] Fire Emblem
+[19/Jan/2020 16:11:05] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem!
+[19/Jan/2020 16:11:07] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem!
+[19/Jan/2020 16:11:10] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem
+[19/Jan/2020 16:11:12] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:11:16] INFO [models:171] Creating mapping from Fire Emblem - NDS to Fire Emblem
+[19/Jan/2020 16:11:17] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:11:17] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:17] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fortress
+[19/Jan/2020 16:11:20] DEBUG [models:182] Creating new master game for Fortress - GBA
+[19/Jan/2020 16:11:21] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:21] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:21] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:21] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:21] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:21] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:21] DEBUG [models:192] Mapping new master game Fortress to Fortress - GBA
+[19/Jan/2020 16:11:22] DEBUG [models:487] Score: 71.000000 aging: 0
+[19/Jan/2020 16:11:22] DEBUG [models:503] score: 0.71 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:22] INFO [models:202] Added Fortress
+[19/Jan/2020 16:11:23] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:11:25] DEBUG [models:182] Creating new master game for Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:11:25] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:11:25] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:11:25] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:11:26] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:26] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:26] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:26] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:26] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:11:26] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:11:26] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:11:26] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:26] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:26] DEBUG [models:192] Mapping new master game Dragon Ball Z: Buu's Fury to Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:11:27] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:11:27] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:11:27] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:11:28] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:11:28] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:28] INFO [models:202] Added Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:11:28] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:11:31] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:11:32] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:11:32] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:11:32] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:11:32] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:11:32] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:33] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:11:37] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:11:38] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:11:38] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:11:38] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:11:38] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:11:38] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:39] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/froggers-adventures-temple-of-the-frog
+[19/Jan/2020 16:11:41] DEBUG [models:182] Creating new master game for Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:11:42] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:11:42] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:11:42] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:11:42] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:42] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:42] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:42] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:43] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:11:43] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:11:43] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:11:43] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:43] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:11:43] DEBUG [models:192] Mapping new master game Frogger's Adventures: Temple of the Frog to Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:11:44] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:11:44] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:11:44] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:11:44] DEBUG [models:487] Score: 75.500000 aging: 0
+[19/Jan/2020 16:11:44] INFO [models:202] Added Frogger's Adventures: Temple of the Frog
+[19/Jan/2020 16:11:44] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:11:48] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:11:49] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:49] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:49] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:49] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:49] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:11:49] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:49] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:11:50] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:11:50] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:11:50] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:11:50] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:11:52] DEBUG [MYAPP:241] Fire Emblem
+[19/Jan/2020 16:11:52] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem!
+[19/Jan/2020 16:11:55] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem!
+[19/Jan/2020 16:11:57] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem
+[19/Jan/2020 16:11:59] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:12:02] INFO [models:171] Creating mapping from Fire Emblem - NDS to Fire Emblem
+[19/Jan/2020 16:12:03] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:12:03] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:03] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fortress
+[19/Jan/2020 16:12:06] DEBUG [models:182] Creating new master game for Fortress - GBA
+[19/Jan/2020 16:12:06] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:06] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:06] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:06] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:07] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:07] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:07] DEBUG [models:192] Mapping new master game Fortress to Fortress - GBA
+[19/Jan/2020 16:12:08] DEBUG [models:487] Score: 71.000000 aging: 0
+[19/Jan/2020 16:12:08] DEBUG [models:503] score: 0.71 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:08] INFO [models:202] Added Fortress
+[19/Jan/2020 16:12:09] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:12:13] DEBUG [models:182] Creating new master game for Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:12:13] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:12:13] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:12:13] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:12:13] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:13] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:14] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:14] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:14] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:12:14] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:12:14] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:12:14] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:14] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:14] DEBUG [models:192] Mapping new master game Dragon Ball Z: Buu's Fury to Dragon Ball Z: Buu's Fury - GBA
+[19/Jan/2020 16:12:15] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:12:15] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:12:15] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:12:16] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:12:16] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:16] INFO [models:202] Added Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:12:16] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:12:19] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:12:20] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:12:20] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:12:20] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:12:20] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:12:20] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:20] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/dragon-ball-z-buus-fury
+[19/Jan/2020 16:12:23] INFO [models:171] Creating mapping from Dragon Ball Z: Buu's Fury - GBA to Dragon Ball Z: Buu's Fury
+[19/Jan/2020 16:12:24] INFO [MYAPP:62] NOT FOUND: Dragon Ball Z: Buu's Fury.
+[19/Jan/2020 16:12:24] INFO [MYAPP:63] Did you mean: Dragon Ball Z Buus Fury?
+[19/Jan/2020 16:12:24] WARNING [models:451] Found Dragon Ball Z: Buu's Fury, no time recorded
+[19/Jan/2020 16:12:24] DEBUG [models:487] Score: 73.500000 aging: 0
+[19/Jan/2020 16:12:24] DEBUG [models:503] score: 0.73 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:25] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/froggers-adventures-temple-of-the-frog
+[19/Jan/2020 16:12:27] DEBUG [models:182] Creating new master game for Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:12:28] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:12:28] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:12:28] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:12:28] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:28] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:28] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:28] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:28] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:12:28] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:12:28] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:12:28] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:28] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 1.00
+[19/Jan/2020 16:12:28] DEBUG [models:192] Mapping new master game Frogger's Adventures: Temple of the Frog to Frogger's Adventures: Temple of the Frog - GBA
+[19/Jan/2020 16:12:29] INFO [MYAPP:62] NOT FOUND: Frogger's Adventures: Temple of the Frog.
+[19/Jan/2020 16:12:29] INFO [MYAPP:63] Did you mean: Froggers Adventures Temple of the Frog?
+[19/Jan/2020 16:12:29] WARNING [models:451] Found Frogger's Adventures: Temple of the Frog, no time recorded
+[19/Jan/2020 16:12:30] DEBUG [models:487] Score: 75.500000 aging: 0
+[19/Jan/2020 16:12:30] INFO [models:202] Added Frogger's Adventures: Temple of the Frog
+[19/Jan/2020 16:12:30] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:12:33] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:12:33] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:33] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:33] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:33] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:34] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:34] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:34] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:12:34] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:12:34] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:34] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:12:35] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:12:37] DEBUG [MYAPP:241] Fire Emblem
+[19/Jan/2020 16:12:37] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem!
+[19/Jan/2020 16:12:38] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem!
+[19/Jan/2020 16:12:40] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire---emblem
+[19/Jan/2020 16:12:43] DEBUG [MYAPP:78] http://www.metacritic.com/game/ds/fire-emblem
+[19/Jan/2020 16:12:45] INFO [models:171] Creating mapping from Fire Emblem - NDS to Fire Emblem
+[19/Jan/2020 16:12:46] DEBUG [models:487] Score: 89.000000 aging: 0
+[19/Jan/2020 16:12:46] DEBUG [models:503] score: 0.89 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:46] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fortress
+[19/Jan/2020 16:12:50] DEBUG [models:182] Creating new master game for Fortress - GBA
+[19/Jan/2020 16:12:50] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:50] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:51] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:51] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:51] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:12:51] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:51] DEBUG [models:192] Mapping new master game Fortress to Fortress - GBA
+[19/Jan/2020 16:12:52] DEBUG [models:487] Score: 71.000000 aging: 0
+[19/Jan/2020 16:12:52] DEBUG [models:503] score: 0.71 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:12:52] INFO [models:202] Added Fortress
+[19/Jan/2020 16:12:54] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/test
+[19/Jan/2020 16:12:56] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/test
+[19/Jan/2020 16:12:58] DEBUG [models:182] Creating new master game for Test - STM
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: The Turing Test?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: ARK Survival of the Fittest?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: The Testament of Sherlock Holmes?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Mega Man 6?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Test Drive Unlimited 2?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Aperture Tag The Paint Gun Testing Initiative?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Comic Book Hero The Greatest Cape?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Nonogram  The Greatest Painter?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Guitar Hero Smash Hits?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Numen Contest of Heroes?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Shortest Trip to Earth?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Indiana Jones Greatest Adventures?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Cubivore Survival of the Fittest?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Test Drive Ferrari Racing Legends?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Blossoms Bloom Brightest?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Test Drive Unlimited?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Midways Greatest Arcade Hits?
+[19/Jan/2020 16:12:58] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:58] INFO [MYAPP:63] Did you mean: Americas Test Kitchen Lets Get Cooking?
+[19/Jan/2020 16:12:58] WARNING [models:451] Found Test, no time recorded
+[19/Jan/2020 16:12:58] DEBUG [models:487] Score: 0.000000 aging: 748
+[19/Jan/2020 16:12:58] DEBUG [models:503] score: 0.00 age: 2.05 rec 1.00 time 1.00
+[19/Jan/2020 16:12:58] DEBUG [models:487] Score: 0.000000 aging: 748
+[19/Jan/2020 16:12:58] DEBUG [models:503] score: 0.00 age: 2.05 rec 1.00 time 1.00
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: The Turing Test?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: ARK Survival of the Fittest?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: The Testament of Sherlock Holmes?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Mega Man 6?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Test Drive Unlimited 2?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Aperture Tag The Paint Gun Testing Initiative?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Comic Book Hero The Greatest Cape?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Nonogram  The Greatest Painter?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Guitar Hero Smash Hits?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Numen Contest of Heroes?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Shortest Trip to Earth?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Indiana Jones Greatest Adventures?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Cubivore Survival of the Fittest?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Test Drive Ferrari Racing Legends?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Blossoms Bloom Brightest?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Test Drive Unlimited?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Midways Greatest Arcade Hits?
+[19/Jan/2020 16:12:59] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:12:59] INFO [MYAPP:63] Did you mean: Americas Test Kitchen Lets Get Cooking?
+[19/Jan/2020 16:12:59] WARNING [models:451] Found Test, no time recorded
+[19/Jan/2020 16:12:59] DEBUG [models:487] Score: 0.000000 aging: 748
+[19/Jan/2020 16:12:59] DEBUG [models:503] score: 0.00 age: 2.05 rec 1.00 time 1.00
+[19/Jan/2020 16:12:59] DEBUG [models:192] Mapping new master game Test to Test - STM
+[19/Jan/2020 16:12:59] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/test
+[19/Jan/2020 16:13:00] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/test
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: The Turing Test?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: ARK Survival of the Fittest?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: The Testament of Sherlock Holmes?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Mega Man 6?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Test Drive Unlimited 2?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Aperture Tag The Paint Gun Testing Initiative?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Comic Book Hero The Greatest Cape?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Nonogram  The Greatest Painter?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Guitar Hero Smash Hits?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Numen Contest of Heroes?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Shortest Trip to Earth?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Indiana Jones Greatest Adventures?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Cubivore Survival of the Fittest?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Test Drive Ferrari Racing Legends?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Blossoms Bloom Brightest?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Test Drive Unlimited?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Midways Greatest Arcade Hits?
+[19/Jan/2020 16:13:02] INFO [MYAPP:62] NOT FOUND: Test.
+[19/Jan/2020 16:13:02] INFO [MYAPP:63] Did you mean: Americas Test Kitchen Lets Get Cooking?
+[19/Jan/2020 16:13:02] WARNING [models:451] Found Test, no time recorded
+[19/Jan/2020 16:13:02] DEBUG [models:487] Score: 0.000000 aging: 748
+[19/Jan/2020 16:13:02] DEBUG [models:503] score: 0.00 age: 2.05 rec 1.00 time 1.00
+[19/Jan/2020 16:13:02] INFO [models:202] Added Test
+[19/Jan/2020 16:13:03] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:13:03] DEBUG [views:96] <QueryDict: {}>
+[19/Jan/2020 16:13:03] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=PKX07gfFFiuEgPPBr7ljTrp7CFw1Y5XfOmQkrjxOovUdkiT2b1CWlJiioJTmr0b9', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B6359CF5C0>, 'wsgi.errors': <_io.BytesIO object at 0x000002B636457150>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': '', 'CSRF_COOKIE': 'PKX07gfFFiuEgPPBr7ljTrp7CFw1Y5XfOmQkrjxOovUdkiT2b1CWlJiioJTmr0b9'}
+[19/Jan/2020 16:13:03] DEBUG [views:104] case sensitivity issue?
+[19/Jan/2020 16:13:06] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:13:08] DEBUG [models:182] Creating new master game for Portal - STM
+[19/Jan/2020 16:13:08] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:08] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:08] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:08] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:08] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:08] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:09] DEBUG [models:192] Mapping new master game Portal to Portal - STM
+[19/Jan/2020 16:13:10] DEBUG [models:487] Score: 91.000000 aging: 475
+[19/Jan/2020 16:13:10] DEBUG [models:503] score: 0.91 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:10] INFO [models:202] Added Portal
+[19/Jan/2020 16:13:11] DEBUG [models:487] Score: 91.000000 aging: 475
+[19/Jan/2020 16:13:12] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:13:15] DEBUG [models:182] Creating new master game for Portal - STM
+[19/Jan/2020 16:13:17] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:17] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:17] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:17] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:17] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:17] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:17] DEBUG [models:192] Mapping new master game Portal to Portal - STM
+[19/Jan/2020 16:13:18] DEBUG [models:487] Score: 91.000000 aging: 475
+[19/Jan/2020 16:13:18] DEBUG [models:503] score: 0.91 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:19] INFO [models:202] Added Portal
+[19/Jan/2020 16:13:19] DEBUG [models:487] Score: 91.000000 aging: 475
+[19/Jan/2020 16:13:21] DEBUG [models:487] Score: 0.000000 aging: 748
+[19/Jan/2020 16:13:21] DEBUG [models:503] score: 0.00 age: 2.05 rec 1.00 time 0.00
+[19/Jan/2020 16:13:21] DEBUG [models:487] Score: 0.000000 aging: 748
+[19/Jan/2020 16:13:21] DEBUG [models:503] score: 0.00 age: 2.05 rec 1.00 time 0.00
+[19/Jan/2020 16:13:21] DEBUG [models:487] Score: 0.000000 aging: 748
+[19/Jan/2020 16:13:21] DEBUG [models:503] score: 0.00 age: 2.05 rec 1.00 time 0.00
+[19/Jan/2020 16:13:23] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:23] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:23] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:23] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:23] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:23] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:24] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:24] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:24] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:13:26] DEBUG [models:182] Creating new master game for Portal - STM
+[19/Jan/2020 16:13:27] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:27] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:27] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:27] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:27] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:27] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:27] DEBUG [models:192] Mapping new master game Portal to Portal - STM
+[19/Jan/2020 16:13:28] DEBUG [models:487] Score: 91.000000 aging: 475
+[19/Jan/2020 16:13:28] DEBUG [models:503] score: 0.91 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:28] INFO [models:202] Added Portal
+[19/Jan/2020 16:13:29] DEBUG [models:487] Score: 91.000000 aging: 475
+[19/Jan/2020 16:13:29] DEBUG [models:503] score: 0.91 age: 1.30 rec 1.00 time 0.33
+[19/Jan/2020 16:13:31] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:31] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:31] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:31] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:31] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:31] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:36] DEBUG [MYAPP:78] http://www.metacritic.com/game/pc/portal
+[19/Jan/2020 16:13:38] DEBUG [models:182] Creating new master game for Portal - STM
+[19/Jan/2020 16:13:38] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:38] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:38] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:38] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:38] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:38] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:38] DEBUG [models:192] Mapping new master game Portal to Portal - STM
+[19/Jan/2020 16:13:40] DEBUG [models:487] Score: 91.000000 aging: 475
+[19/Jan/2020 16:13:40] DEBUG [models:503] score: 0.91 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:40] INFO [models:202] Added Portal
+[19/Jan/2020 16:13:40] DEBUG [MYAPP:78] http://www.metacritic.com/game/3ds/shin-megami-tensei-iv
+[19/Jan/2020 16:13:46] DEBUG [models:182] Creating new master game for Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:13:47] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:47] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:47] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:47] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:47] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:47] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:47] DEBUG [models:192] Mapping new master game Shin Megami Tensei IV to Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:13:48] DEBUG [models:487] Score: 73.000000 aging: 475
+[19/Jan/2020 16:13:48] DEBUG [models:503] score: 0.73 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:48] INFO [models:202] Added Shin Megami Tensei IV
+[19/Jan/2020 16:13:48] DEBUG [MYAPP:78] http://www.metacritic.com/game/3ds/bravely-default
+[19/Jan/2020 16:13:55] DEBUG [models:182] Creating new master game for Bravely Default - 3DS
+[19/Jan/2020 16:13:57] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:57] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:57] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:57] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:57] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:13:57] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:57] DEBUG [models:192] Mapping new master game Bravely Default to Bravely Default - 3DS
+[19/Jan/2020 16:13:59] DEBUG [models:487] Score: 85.000000 aging: 475
+[19/Jan/2020 16:13:59] DEBUG [models:503] score: 0.85 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:13:59] INFO [models:202] Added Bravely Default
+[19/Jan/2020 16:13:59] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:13:59] DEBUG [views:96] <QueryDict: {}>
+[19/Jan/2020 16:13:59] DEBUG [views:97] {'HTTP_COOKIE': '', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B636698D30>, 'wsgi.errors': <_io.BytesIO object at 0x000002B6359FA5C8>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': ''}
+[19/Jan/2020 16:13:59] DEBUG [views:104] case sensitivity issue?
+[19/Jan/2020 16:14:00] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:14:00] DEBUG [views:96] <QueryDict: {'system': ['3DS']}>
+[19/Jan/2020 16:14:00] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud; sessionid=ddkalpzqeec2vqk3tmeazuam5u9ipnzi', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B635BE3358>, 'wsgi.errors': <_io.BytesIO object at 0x000002B6359FA5C8>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'system=3DS', 'CSRF_COOKIE': 'QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud'}
+[19/Jan/2020 16:14:00] DEBUG [views:101] <QuerySet [<GameInstance: Bravely Default - 3DS>, <GameInstance: Shin Megami Tensei IV - 3DS>]>
+[19/Jan/2020 16:14:01] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:14:01] DEBUG [views:96] <QueryDict: {'system': ['3DS'], 'game_format': ['D']}>
+[19/Jan/2020 16:14:01] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud; sessionid=ddkalpzqeec2vqk3tmeazuam5u9ipnzi', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B6368B5358>, 'wsgi.errors': <_io.BytesIO object at 0x000002B6359FA5C8>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'system=3DS&game_format=D', 'CSRF_COOKIE': 'QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud'}
+[19/Jan/2020 16:14:01] DEBUG [views:101] <QuerySet [<GameInstance: Shin Megami Tensei IV - 3DS>]>
+[19/Jan/2020 16:14:02] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:14:02] DEBUG [views:96] <QueryDict: {'system': ['STM']}>
+[19/Jan/2020 16:14:02] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud; sessionid=ddkalpzqeec2vqk3tmeazuam5u9ipnzi', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B636308C88>, 'wsgi.errors': <_io.BytesIO object at 0x000002B6359FA5C8>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'system=STM', 'CSRF_COOKIE': 'QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud'}
+[19/Jan/2020 16:14:02] DEBUG [views:101] <QuerySet [<GameInstance: Portal - STM>]>
+[19/Jan/2020 16:14:03] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:14:03] DEBUG [views:96] <QueryDict: {'game_format': ['M']}>
+[19/Jan/2020 16:14:03] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud; sessionid=ddkalpzqeec2vqk3tmeazuam5u9ipnzi', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B635BCB240>, 'wsgi.errors': <_io.BytesIO object at 0x000002B6359FA5C8>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'game_format=M', 'CSRF_COOKIE': 'QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud'}
+[19/Jan/2020 16:14:03] DEBUG [views:101] <QuerySet []>
+[19/Jan/2020 16:14:04] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:14:04] DEBUG [views:96] <QueryDict: {'system': ['GBA']}>
+[19/Jan/2020 16:14:04] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud; sessionid=ddkalpzqeec2vqk3tmeazuam5u9ipnzi', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B635BCB470>, 'wsgi.errors': <_io.BytesIO object at 0x000002B6359FA5C8>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'system=GBA', 'CSRF_COOKIE': 'QuRkfgjkHQBCk1xrdZxFM9o6JivFH2lCFk7eySJFkFu57zrdfO5eaHUfN06NbBud'}
+[19/Jan/2020 16:14:04] DEBUG [views:101] <QuerySet []>
+[19/Jan/2020 16:14:08] DEBUG [MYAPP:78] http://www.metacritic.com/game/3ds/shin-megami-tensei-iv
+[19/Jan/2020 16:14:10] DEBUG [models:182] Creating new master game for Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:14:11] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:11] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:11] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:11] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:11] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:11] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:11] DEBUG [models:192] Mapping new master game Shin Megami Tensei IV to Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:14:12] DEBUG [models:487] Score: 73.000000 aging: 475
+[19/Jan/2020 16:14:12] DEBUG [models:503] score: 0.73 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:13] INFO [models:202] Added Shin Megami Tensei IV
+[19/Jan/2020 16:14:13] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:14:17] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:14:18] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:18] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:18] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:18] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:18] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:18] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:18] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:14:19] DEBUG [models:487] Score: 89.000000 aging: 475
+[19/Jan/2020 16:14:19] DEBUG [models:503] score: 0.89 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:19] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:14:19] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:14:19] DEBUG [views:96] <QueryDict: {}>
+[19/Jan/2020 16:14:19] DEBUG [views:97] {'HTTP_COOKIE': '', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B635BC6208>, 'wsgi.errors': <_io.BytesIO object at 0x000002B635A580A0>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': ''}
+[19/Jan/2020 16:14:19] DEBUG [views:104] case sensitivity issue?
+[19/Jan/2020 16:14:20] DEBUG [views:91] NO INITIAL MATCH
+[19/Jan/2020 16:14:20] DEBUG [views:96] <QueryDict: {}>
+[19/Jan/2020 16:14:20] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=5Xbt8Q2KecNiunEAVZdcT9GWqCF6Rek5SaCH7YxzkL0apA02wMndcwVA1o83FQOj; sessionid=j26uvoqmv3hfhsrlizrqhl6z17odtsyc', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B6361CBE48>, 'wsgi.errors': <_io.BytesIO object at 0x000002B635A580A0>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': '', 'HTTP_REFERER': 'http://127.0.0.1:8000/3/', 'CSRF_COOKIE': '5Xbt8Q2KecNiunEAVZdcT9GWqCF6Rek5SaCH7YxzkL0apA02wMndcwVA1o83FQOj'}
+[19/Jan/2020 16:14:20] DEBUG [views:104] case sensitivity issue?
+[19/Jan/2020 16:14:22] DEBUG [MYAPP:78] http://www.metacritic.com/game/3ds/shin-megami-tensei-iv
+[19/Jan/2020 16:14:25] DEBUG [models:182] Creating new master game for Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:14:26] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:26] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:26] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:26] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:27] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:27] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:27] DEBUG [models:192] Mapping new master game Shin Megami Tensei IV to Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:14:28] DEBUG [models:487] Score: 73.000000 aging: 475
+[19/Jan/2020 16:14:28] DEBUG [models:503] score: 0.73 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:28] INFO [models:202] Added Shin Megami Tensei IV
+[19/Jan/2020 16:14:28] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:14:32] ERROR [models:672] METACRITIC FAIL FOR Fire Emblem
+[19/Jan/2020 16:14:32] ERROR [models:673] <class 'requests.exceptions.ConnectionError'>
+[19/Jan/2020 16:14:32] ERROR [models:674] ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[19/Jan/2020 16:14:32] ERROR [models:675] None
+[19/Jan/2020 16:14:32] DEBUG [MYAPP:241] Fire Emblem
+[19/Jan/2020 16:14:32] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire---emblem!
+[19/Jan/2020 16:14:33] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem!
+[19/Jan/2020 16:14:35] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire---emblem
+[19/Jan/2020 16:14:38] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:14:41] ERROR [models:696] MetaCritic FAIL FOR fire-emblem
+[19/Jan/2020 16:14:41] ERROR [models:697] <class 'requests.exceptions.ConnectionError'>
+[19/Jan/2020 16:14:41] ERROR [models:698] ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[19/Jan/2020 16:14:41] ERROR [models:699] None
+[19/Jan/2020 16:14:41] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:14:42] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:42] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:42] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:42] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:42] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:42] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:42] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:14:42] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:14:45] DEBUG [models:487] Score: 89.000000 aging: 475
+[19/Jan/2020 16:14:45] DEBUG [models:503] score: 0.89 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:14:45] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:14:45] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb-radier
+[19/Jan/2020 16:14:47] DEBUG [MYAPP:241] Tomb Radier
+[19/Jan/2020 16:14:47] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb-radier
+[19/Jan/2020 16:14:49] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb---radier!
+[19/Jan/2020 16:14:50] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb---radier
+[19/Jan/2020 16:14:51] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb-radier!
+[19/Jan/2020 16:14:53] DEBUG [models:182] Creating new master game for Tomb Radier - PS1
+[19/Jan/2020 16:14:53] WARNING [models:451] Found Tomb Radier, no time recorded
+[19/Jan/2020 16:14:53] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:53] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 1.00
+[19/Jan/2020 16:14:53] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:53] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 1.00
+[19/Jan/2020 16:14:54] WARNING [models:451] Found Tomb Radier, no time recorded
+[19/Jan/2020 16:14:54] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:54] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 1.00
+[19/Jan/2020 16:14:54] DEBUG [models:192] Mapping new master game Tomb Radier to Tomb Radier - PS1
+[19/Jan/2020 16:14:54] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb-radier
+[19/Jan/2020 16:14:55] DEBUG [MYAPP:241] Tomb Radier
+[19/Jan/2020 16:14:55] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb-radier
+[19/Jan/2020 16:14:56] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb---radier!
+[19/Jan/2020 16:14:56] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb---radier
+[19/Jan/2020 16:14:57] DEBUG [MYAPP:78] http://www.metacritic.com/game/ps1/tomb-radier!
+[19/Jan/2020 16:14:59] WARNING [models:451] Found Tomb Radier, no time recorded
+[19/Jan/2020 16:14:59] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:14:59] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 1.00
+[19/Jan/2020 16:14:59] INFO [models:202] Added Tomb Radier
+[19/Jan/2020 16:14:59] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:14:59] DEBUG [views:96] <QueryDict: {'location': ['3DS']}>
+[19/Jan/2020 16:14:59] DEBUG [views:97] {'HTTP_COOKIE': '', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B63616AF60>, 'wsgi.errors': <_io.BytesIO object at 0x000002B63670DE60>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'location=3DS'}
+[19/Jan/2020 16:14:59] DEBUG [views:101] <QuerySet [<GameInstance: Shin Megami Tensei IV - 3DS>]>
+[19/Jan/2020 16:15:01] DEBUG [MYAPP:78] http://www.metacritic.com/game/3ds/shin-megami-tensei-iv
+[19/Jan/2020 16:15:02] DEBUG [models:182] Creating new master game for Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:15:03] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:03] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:03] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:03] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:03] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:03] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:04] DEBUG [models:192] Mapping new master game Shin Megami Tensei IV to Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:15:05] DEBUG [models:487] Score: 73.000000 aging: 475
+[19/Jan/2020 16:15:05] DEBUG [models:503] score: 0.73 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:05] INFO [models:202] Added Shin Megami Tensei IV
+[19/Jan/2020 16:15:05] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:15:07] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:15:07] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:07] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:07] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:07] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:08] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:08] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:08] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:15:09] DEBUG [models:487] Score: 89.000000 aging: 475
+[19/Jan/2020 16:15:09] DEBUG [models:503] score: 0.89 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:09] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:15:09] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:15:09] DEBUG [views:96] <QueryDict: {'system': ['3DS']}>
+[19/Jan/2020 16:15:09] DEBUG [views:97] {'HTTP_COOKIE': '', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B6366BE320>, 'wsgi.errors': <_io.BytesIO object at 0x000002B635ADFE08>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'system=3DS'}
+[19/Jan/2020 16:15:09] DEBUG [views:101] <QuerySet [<GameInstance: Shin Megami Tensei IV - 3DS>]>
+[19/Jan/2020 16:15:11] DEBUG [MYAPP:78] http://www.metacritic.com/game/3ds/shin-megami-tensei-iv
+[19/Jan/2020 16:15:13] DEBUG [models:182] Creating new master game for Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:15:14] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:14] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:14] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:14] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:14] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:14] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:14] DEBUG [models:192] Mapping new master game Shin Megami Tensei IV to Shin Megami Tensei IV - 3DS
+[19/Jan/2020 16:15:15] DEBUG [models:487] Score: 73.000000 aging: 475
+[19/Jan/2020 16:15:15] DEBUG [models:503] score: 0.73 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:15] INFO [models:202] Added Shin Megami Tensei IV
+[19/Jan/2020 16:15:15] DEBUG [MYAPP:78] http://www.metacritic.com/game/game-boy-advance/fire-emblem
+[19/Jan/2020 16:15:17] DEBUG [models:182] Creating new master game for Fire Emblem - GBA
+[19/Jan/2020 16:15:17] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:17] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:18] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:18] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:18] DEBUG [models:487] Score: 0.000000 aging: 475
+[19/Jan/2020 16:15:18] DEBUG [models:503] score: 0.00 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:18] DEBUG [models:192] Mapping new master game Fire Emblem to Fire Emblem - GBA
+[19/Jan/2020 16:15:19] DEBUG [models:487] Score: 89.000000 aging: 475
+[19/Jan/2020 16:15:19] DEBUG [models:503] score: 0.89 age: 1.30 rec 1.00 time 0.00
+[19/Jan/2020 16:15:19] INFO [models:202] Added Fire Emblem
+[19/Jan/2020 16:15:19] DEBUG [views:93] NO REFERER
+[19/Jan/2020 16:15:19] DEBUG [views:96] <QueryDict: {'system': ['3DS']}>
+[19/Jan/2020 16:15:19] DEBUG [views:97] {'HTTP_COOKIE': '', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B6365B34E0>, 'wsgi.errors': <_io.BytesIO object at 0x000002B635F8AE60>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'system=3DS'}
+[19/Jan/2020 16:15:19] DEBUG [views:101] <QuerySet [<GameInstance: Shin Megami Tensei IV - 3DS>]>
+[19/Jan/2020 16:15:20] DEBUG [views:88] system=3DS
+[19/Jan/2020 16:15:20] DEBUG [views:89] Query String has search data.
+[19/Jan/2020 16:15:20] DEBUG [views:96] <QueryDict: {'system': ['3DS']}>
+[19/Jan/2020 16:15:20] DEBUG [views:97] {'HTTP_COOKIE': 'csrftoken=N95UiOPzxnE2HxAFFbyUCwUYfAj3ucp8KB9toWzn0AD1p1UaEQ4KPkyqaqJlgo08; sessionid=s7ga4r6o7n7v0q23n9gswgw1bnu9eiaa', 'PATH_INFO': '/instance', 'REMOTE_ADDR': '127.0.0.1', 'REQUEST_METHOD': 'GET', 'SCRIPT_NAME': '', 'SERVER_NAME': 'testserver', 'SERVER_PORT': '80', 'SERVER_PROTOCOL': 'HTTP/1.1', 'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <django.test.client.FakePayload object at 0x000002B6367B9978>, 'wsgi.errors': <_io.BytesIO object at 0x000002B635F8AE60>, 'wsgi.multiprocess': True, 'wsgi.multithread': False, 'wsgi.run_once': False, 'QUERY_STRING': 'system=3DS', 'HTTP_REFERER': 'http://127.0.0.1:8000/2/detail/', 'CSRF_COOKIE': 'N95UiOPzxnE2HxAFFbyUCwUYfAj3ucp8KB9toWzn0AD1p1UaEQ4KPkyqaqJlgo08'}
+[19/Jan/2020 16:15:20] DEBUG [views:101] <QuerySet [<GameInstance: Shin Megami Tensei IV - 3DS>]>
+[19/Jan/2020 16:15:25] DEBUG [models:487] Score: 0.000000 aging: 4
+[19/Jan/2020 16:15:25] DEBUG [models:487] Score: 0.000000 aging: 4
+[19/Jan/2020 16:15:25] DEBUG [models:487] Score: 0.000000 aging: 4
+[19/Jan/2020 16:15:27] DEBUG [models:487] Score: 0.000000 aging: 1
+[19/Jan/2020 16:15:27] DEBUG [models:487] Score: 0.000000 aging: 1
+[19/Jan/2020 16:15:27] DEBUG [models:487] Score: 0.000000 aging: 1
+[19/Jan/2020 16:15:28] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:15:28] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:15:28] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:15:29] DEBUG [models:487] Score: 0.000000 aging: 5
+[19/Jan/2020 16:15:29] DEBUG [models:503] score: 0.00 age: 0.01 rec 1.00 time 0.00
+[19/Jan/2020 16:15:29] DEBUG [models:487] Score: 0.000000 aging: 5
+[19/Jan/2020 16:15:29] DEBUG [models:503] score: 0.00 age: 0.01 rec 1.00 time 0.00
+[19/Jan/2020 16:15:29] DEBUG [models:487] Score: 0.000000 aging: 5
+[19/Jan/2020 16:15:29] DEBUG [models:503] score: 0.00 age: 0.01 rec 1.00 time 0.00
+[19/Jan/2020 16:15:30] DEBUG [models:487] Score: 0.000000 aging: 730
+[19/Jan/2020 16:15:30] DEBUG [models:487] Score: 0.000000 aging: 730
+[19/Jan/2020 16:15:30] DEBUG [models:487] Score: 0.000000 aging: 730
+[19/Jan/2020 16:15:31] DEBUG [models:487] Score: 0.000000 aging: 1
+[19/Jan/2020 16:15:31] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:15:31] DEBUG [models:487] Score: 0.000000 aging: 1
+[19/Jan/2020 16:15:31] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:15:31] DEBUG [models:487] Score: 0.000000 aging: 1
+[19/Jan/2020 16:15:31] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:15:32] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:15:32] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:15:33] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:15:33] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:15:33] DEBUG [models:487] Score: 0.000000 aging: 0
+[19/Jan/2020 16:15:33] DEBUG [models:503] score: 0.00 age: 0.00 rec 1.00 time 0.00
+[19/Jan/2020 16:15:34] DEBUG [models:487] Score: 0.000000 aging: -8
+[19/Jan/2020 16:15:34] DEBUG [models:503] score: 0.00 age: -0.02 rec 1.00 time 0.00
+[19/Jan/2020 16:15:35] DEBUG [models:487] Score: 0.000000 aging: -8
+[19/Jan/2020 16:15:35] DEBUG [models:503] score: 0.00 age: -0.02 rec 1.00 time 0.00
+[19/Jan/2020 16:15:35] DEBUG [models:487] Score: 0.000000 aging: -8
+[19/Jan/2020 16:15:35] DEBUG [models:503] score: 0.00 age: -0.02 rec 1.00 time 0.00

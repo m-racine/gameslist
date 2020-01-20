@@ -23,7 +23,8 @@ dockerpty==0.4.1
 docopt==0.6.2
 docutils==0.14
 enum34==1.1.6
-howlongtobeat==0.1.2
+google-cloud-logging==1.14.0
+howlongtobeat-0.1.2-py3-none-any.whl
 idna==2.8
 ipaddress==1.0.22
 isort==4.3.21
@@ -31,8 +32,8 @@ jmespath==0.9.3
 jsonschema==2.6.0
 lazy-object-proxy==1.4.1
 mccabe==0.6.1
-metacritique==0.1.1
-mlfey-names==0.1.2
+metacritique-0.1.1-py3-none-any.whl
+mlfey_names-0.1.2-py3-none-any.whl
 mysql-connector-python==8.0.18
 mysqlclient==1.4.6
 nose==1.3.7
