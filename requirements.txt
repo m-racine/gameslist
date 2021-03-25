@@ -41,7 +41,7 @@ pathspec==0.5.5
 protobuf==3.10.0
 python-dateutil==2.7.5
 pytz==2019.3
-PyYAML==3.13
+PyYAML==5.4
 requests==2.22.0
 semantic-version==2.5.0
 singledispatch==3.4.0.3
